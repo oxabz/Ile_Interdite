@@ -1,5 +1,7 @@
 package Modele;
 
+import util.Utils;
+
 import java.util.HashMap;
 
 public class GameState {
@@ -8,7 +10,7 @@ public class GameState {
     ATTRIBUTES
      */
 
-    private HashMap<Tresor,Boolean> tresors;
+    private HashMap<Utils.Tresor,Boolean> tresors;
     private int niveauEau;
 
     /*
@@ -22,8 +24,8 @@ public class GameState {
 
         //initialisation de la liste des tresor recolté
         tresors = new HashMap<>();
-        for (Tresor tresor :
-                Tresor.values()) {
+        for (Utils.Tresor tresor :
+                Utils.Tresor.values()) {
             tresors.put(tresor,false);
         }
 
@@ -35,7 +37,7 @@ public class GameState {
 
 
     //Sert à sauvegarder la recuperation d'un tresor
-    public void recupererTresor(Tresor tresor){
+    public void recupererTresor(Utils.Tresor tresor){
         Boolean t = tresors.get(tresor);
         t = true;
     }

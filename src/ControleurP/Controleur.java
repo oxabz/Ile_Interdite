@@ -1,3 +1,5 @@
+package ControleurP;
+
 public class Controleur {
     private Controleur() {
 

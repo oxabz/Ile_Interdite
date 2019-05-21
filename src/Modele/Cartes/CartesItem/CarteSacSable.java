@@ -1,6 +1,16 @@
 package Modele.Cartes.CartesItem;
 
-import Modele.Cartes.CarteItem;
+import ControleurP.Controleur;
 
-public class CarteSacSable extends CarteItem {
+public class CarteSacSable extends CarteBonus {
+    public CarteSacSable(String image) {
+        super(image);
+    }
+
+    @Override
+    void actionCarte() {
+
+    }
+
+
 }
