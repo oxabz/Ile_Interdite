@@ -7,16 +7,22 @@ package Project.util;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import javax.swing.JOptionPane;
 import Project.Modele.Aventurier;
+//import Project.stockage.view.Parameters;
 
 /**
  *
  * @author Eric
  */
 public class Utils {
+    public enum Tresor{
+        CRISTAL,
+        COUPE,
+        PIERRE,
+        STATUE
+    }
  
     public static enum EtatTuile {
         ASSECHEE("Asséchée"), 

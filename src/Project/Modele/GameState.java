@@ -1,6 +1,6 @@
 package Project.Modele;
 
-import Project.stockage.view.Utils;
+import Project.util.Utils;
 
 import java.util.HashMap;
 

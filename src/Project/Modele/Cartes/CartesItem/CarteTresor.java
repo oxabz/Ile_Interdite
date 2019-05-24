@@ -1,7 +1,7 @@
 package Project.Modele.Cartes.CartesItem;
 
 import Project.Modele.Cartes.CarteItem;
-import Project.stockage.view.Utils;
+import Project.util.Utils;
 
 
 public class CarteTresor  extends CarteItem {
