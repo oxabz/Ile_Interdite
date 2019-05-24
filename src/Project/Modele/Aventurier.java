@@ -1,6 +1,7 @@
 package Project.Modele;
 
 import Project.Controleur;
+import Project.Modele.Cartes.CarteItem;
 import Project.util.Vector2;
 
 import java.util.ArrayList;
@@ -15,7 +16,8 @@ public class Aventurier extends ObjetIdentifie {
     ATTRIBUTES
      */
 
-    private Vector2 position;
+    protected Vector2 position;
+    private ArrayList<CarteItem> carteItems;
 
     /*
     CONSTRUCTOR
@@ -73,6 +75,10 @@ public class Aventurier extends ObjetIdentifie {
         //g.getTuile(aAssecher);
     }
 
+    public void donnerCarte(){
+
+    }
+
     /*
     GETTER SETTER
      */
@@ -83,5 +89,17 @@ public class Aventurier extends ObjetIdentifie {
 
     public void setPosition(Vector2 position) {
         this.position = position;
+    }
+
+    public ArrayList<CarteItem> getCarteItems() {
+        return carteItems;
+    }
+
+    public void addCarteItem(CarteItem carte){
+        carteItems.add(carte);
+    }
+
+    public void removeCarteItem(CarteItem carteItem){
+        carteItems.remove(carteItem);
     }
 }
