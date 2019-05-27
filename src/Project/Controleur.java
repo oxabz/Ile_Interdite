@@ -3,6 +3,7 @@ package Project;
 import Project.Modele.Grille;
 import Project.util.Vector2;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Controleur {
@@ -31,7 +32,7 @@ public class Controleur {
      */
 
 
-    public Vector2 getPosClick(Vector2[] clickables){
+    public Vector2 getPosClick(ArrayList<Vector2> clickables){
         //placeholder
 
         Scanner scanner = new Scanner(System.in);
@@ -44,7 +45,7 @@ public class Controleur {
         System.out.print('\n');
 
 
-        while (clickables.length != 0) {
+        while (clickables.size() != 0) {
             int x, y;
             System.out.print("x : ");
             x = scanner.nextInt();

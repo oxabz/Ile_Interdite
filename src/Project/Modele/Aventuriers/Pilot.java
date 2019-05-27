@@ -30,7 +30,7 @@ public class Pilot extends Aventurier {
                     }
                 }
             }
-            position = c.getPosClick(pos.toArray(Vector2[]::new));
+            position = c.getPosClick(pos);
         }else {
             super.seDeplacer();
         }

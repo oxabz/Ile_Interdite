@@ -27,7 +27,7 @@ public class Plongeur extends Aventurier {
                     iterator.remove();
                 }
             }
-            position = c.getPosClick(pos.toArray(Vector2[]::new));
+            position = c.getPosClick(pos);
         }while (grille.getTuile(position)==null);//non fini
     }
 }
