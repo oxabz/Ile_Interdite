@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="634db893-f018-44b3-a58f-0940b4a6825d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -21,20 +20,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="27" column="69" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="69" />
+            <state relative-caret-position="409">
+              <caret line="35" column="9" selection-start-line="33" selection-start-column="14" selection-end-line="35" selection-end-column="9" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/VueAventurier.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -51,8 +41,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Explorateur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="60">
-              <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+            <state relative-caret-position="315">
+              <caret line="21" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -78,7 +68,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="435">
@@ -117,11 +107,20 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
+            <state relative-caret-position="-252">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Tuile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="45">
+              <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -184,13 +183,13 @@
         <option value="$PROJECT_DIR$/src/Project/util/Utils.java" />
         <option value="$PROJECT_DIR$/src/Project/util/Message.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/GameState.java" />
-        <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilot.java" />
         <option value="$PROJECT_DIR$/src/Project/testAventurier.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Explorateur.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Ingenieur.java" />
-        <option value="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" />
         <option value="$PROJECT_DIR$/src/Project/Controleur.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java" />
+        <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilot.java" />
+        <option value="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" />
       </list>
     </option>
   </component>
@@ -374,7 +373,7 @@
       <workItem from="1558505453567" duration="7412000" />
       <workItem from="1558608159379" duration="587000" />
       <workItem from="1558695541480" duration="7277000" />
-      <workItem from="1558944396670" duration="375000" />
+      <workItem from="1558944396670" duration="977000" />
     </task>
     <task id="LOCAL-00001" summary="Ajout Code Chamilo">
       <created>1558437125077</created>
@@ -432,11 +431,18 @@
       <option name="project" value="LOCAL" />
       <updated>1558702432649</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="implementation de toutes les methodes se deplacer plus fonction assecher faite parciellement">
+      <created>1558944856946</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1558944856946</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="24580000" />
+    <option name="totallyTimeSpent" value="25182000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -518,13 +524,6 @@
     <entry file="file://$PROJECT_DIR$/src/Project/stockage/view/MessageBox.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/stockage/view/VueGrille.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/stockage/view/VueTuile.java" />
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Tuile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/ObjetIdentifie.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -667,16 +666,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="27" column="69" selection-start-line="27" selection-start-column="36" selection-end-line="27" selection-end-column="69" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/VueAventurier.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="75">
@@ -684,13 +673,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Explorateur.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/util/Parameters.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="60">
-          <caret line="7" column="45" selection-start-line="7" selection-start-column="45" selection-end-line="7" selection-end-column="45" />
+        <state relative-caret-position="135">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#641#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="41" column="32" lean-forward="true" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Explorateur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="21" column="5" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="21" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Ingenieur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -708,37 +724,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/util/Parameters.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilot.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-          <folding>
-            <element signature="e#0#641#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Ingenieur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="25" selection-start-line="9" selection-start-column="25" selection-end-line="9" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="48" column="27" selection-start-line="48" selection-start-column="27" selection-end-line="48" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="183">
-          <caret line="41" column="32" lean-forward="true" selection-start-line="41" selection-start-column="32" selection-end-line="41" selection-end-column="32" />
+        <state relative-caret-position="409">
+          <caret line="35" column="9" selection-start-line="33" selection-start-column="14" selection-end-line="35" selection-end-column="9" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -752,6 +741,23 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-252">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Tuile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="20" selection-start-line="3" selection-start-column="20" selection-end-line="3" selection-end-column="20" />
         </state>
       </provider>
     </entry>

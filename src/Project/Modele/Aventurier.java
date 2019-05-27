@@ -46,7 +46,7 @@ public class Aventurier extends ObjetIdentifie {
                 iterator.remove();
             }
         }
-        position = c.getPosClick(pos.toArray(Vector2[]::new));
+        position = c.getPosClick(pos);
     }
 
     //Retourne les position de deplacemnt du joueur
@@ -71,7 +71,7 @@ public class Aventurier extends ObjetIdentifie {
                 pos.add(position.add(0,i));
             }
         }
-        Vector2 aAssecher = c.getPosClick(pos.toArray(Vector2[]::new));
+        Vector2 aAssecher = c.getPosClick(pos);
         //g.getTuile(aAssecher);
     }
 
