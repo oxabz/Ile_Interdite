@@ -64,15 +64,15 @@ public class Aventurier extends ObjetIdentifie {
         Grille g = c.getGrille();
         ArrayList<Vector2> pos = new ArrayList<>();
         for (int i = -1; i < 2; i++) {
-            if (g.getTuile(position.add(i,0))!=null){//non fini
+            if (g.getTuile(position.add(i,0))!=null&&g.getTuile(position.add(i,0)).isInnondee()){//non fini
                 pos.add(position.add(i,0));
             }
-            if (g.getTuile(position.add(0,i))!=null){//non fini
+            if (g.getTuile(position.add(0,i))!=null&&g.getTuile(position.add(0,i)).isInnondee()){//non fini
                 pos.add(position.add(0,i));
             }
         }
         Vector2 aAssecher = c.getPosClick(pos);
-        //g.getTuile(aAssecher);
+        g.getTuile(aAssecher).setInnondee(false);
     }
 
     public void donnerCarte(){

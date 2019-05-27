@@ -26,7 +26,7 @@ public class Grille {
         //Berk
         for (int i = 0; i < GRILLE_TAILLE_X; i++) {
             for (int j = 0; j < GRILLE_TAILLE_Y; j++) {
-                tuiles[i][j] = new Tuile();
+                tuiles[i][j] = new Tuile("TRUC");
             }
         }
         tuiles[5][5] = null;
@@ -52,5 +52,13 @@ public class Grille {
             return null;
         }
 
+    }
+
+    public int getSizeX() {
+        return GRILLE_TAILLE_X;
+    }
+
+    public int getSizeY() {
+        return GRILLE_TAILLE_X;
     }
 }
