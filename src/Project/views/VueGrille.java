@@ -1,0 +1,92 @@
+package Project.views;
+
+import Project.util.Message;
+import Project.util.MessageType;
+import Project.util.Observe;
+import Project.util.Vector2;
+
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+
+public class VueGrille extends Observe {
+
+    private boolean opened;
+    private JFrame fenetre;
+    private JButton tuiles[][];
+
+    public VueGrille(int sizeX, int sizeY, boolean[][] presente) {
+        fenetre = new JFrame();
+        opened = true;
+        fenetre.setSize(600,600);
+        fenetre.setTitle("Plateau");
+        fenetre.setLayout(new GridLayout(sizeX,sizeY));
+        fenetre.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                super.windowClosed(e);
+                opened = false;
+                System.exit(0);
+            }
+        });
+
+
+        tuiles = new JButton[sizeX][sizeY];
+
+        for (int j = 0; j < sizeY; j++) {
+            for (int i = 0; i < sizeX; i++) {
+                JButton b = new JButton(i+","+j);
+                b.setEnabled(false);
+                fenetre.add(b);
+
+                b.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent actionEvent) {
+                        JButton b = ((JButton)actionEvent.getSource());
+                        for (int i = 0; i < tuiles.length; i++) {
+                            for (int j = 0; j < tuiles[i].length; j++) {
+                                if(tuiles[i][j]==b){
+                                    Message message = new Message(MessageType.POSITION);
+                                    message.position=new Vector2(i,j);
+                                    notifierObserver(message);
+                                }
+                            }
+                        }
+                    }
+                });
+
+                tuiles[i][j] = b;
+                if (!presente[i][j]){
+                    b.setBackground(Color.BLACK);
+                }
+            }
+        }
+
+        fenetre.setVisible(true);
+    }
+
+    public void allumerTuiles(ArrayList<Vector2> positions){
+        for (Vector2 p :
+                positions) {
+            tuiles[p.x][p.y].setEnabled(true);
+        }
+    }
+
+    public void etteindreTuiles(){
+        for (JButton[] ligne :
+                tuiles) {
+            for (JButton b:
+                 ligne) {
+                b.setEnabled(false);
+            }
+        }
+    }
+
+    public boolean isOpen(){
+        return opened;
+    }
+}

@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Plongeur extends Aventurier {
+
+    private static final String NOM  = "Plongeur";
+
     @Override
     public void seDeplacer(){
 
@@ -29,5 +32,10 @@ public class Plongeur extends Aventurier {
             }
             position = c.getPosClick(pos);
         }while (grille.getTuile(position)==null);//non fini
+    }
+
+    @Override
+    public String getNom() {
+        return NOM;
     }
 }

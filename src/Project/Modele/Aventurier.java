@@ -11,19 +11,25 @@ import java.util.Iterator;
  *
  * @author IUT2-Dept Info
  */
-public class Aventurier extends ObjetIdentifie {
+public abstract class Aventurier extends ObjetIdentifie {
     /*
     ATTRIBUTES
      */
 
     protected Vector2 position;
     private ArrayList<CarteItem> carteItems;
+    private String joueur;
 
     /*
     CONSTRUCTOR
      */
 
     public Aventurier() {
+        position = new Vector2(0,0);
+    }
+
+    public Aventurier(Vector2 position) {
+        this.position = position;
     }
 
     /*
@@ -46,7 +52,10 @@ public class Aventurier extends ObjetIdentifie {
                 iterator.remove();
             }
         }
-        position = c.getPosClick(pos);
+        Vector2 p = c.getPosClick(pos);
+        if (p!=null){
+            position = p;
+        }
     }
 
     //Retourne les position de deplacemnt du joueur
@@ -102,4 +111,18 @@ public class Aventurier extends ObjetIdentifie {
     public void removeCarteItem(CarteItem carteItem){
         carteItems.remove(carteItem);
     }
+
+    public void setCarteItems(ArrayList<CarteItem> carteItems) {
+        this.carteItems = carteItems;
+    }
+
+    public String getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(String joueur) {
+        this.joueur = joueur;
+    }
+
+    public abstract String getNom();
 }

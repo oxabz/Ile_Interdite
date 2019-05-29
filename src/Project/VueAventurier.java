@@ -86,11 +86,11 @@ public class VueAventurier  {
     public void setPosition(String pos) {
         this.position.setText(pos);
     }
-    
-     public JButton getBtnAutreAction() {
+
+    public JButton getBtnAutreAction() {
         return btnAutreAction;
     }
-    
+
     public String getPosition() {
         return position.getText();
     }
@@ -98,7 +98,7 @@ public class VueAventurier  {
     public JButton getBtnBouger() {
         return btnBouger;
     }
-    
+
     public JButton getBtnAssecher() {
         return btnAssecher;
     }
@@ -106,7 +106,7 @@ public class VueAventurier  {
     public JButton getBtnTerminerTour() {
         return btnTerminerTour;
     }
- 
+
      public static void main(String [] args) {
         // Instanciation de la fenêtre 
         VueAventurier vueAventurier = new VueAventurier("Manon", "Explorateur",Pion.ROUGE.getCouleur() );
