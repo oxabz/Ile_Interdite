@@ -1,10 +1,8 @@
 package Project;
 
-import Project.Modele.Aventurier;
+import Project.Modele.*;
 import Project.Modele.Aventuriers.*;
-import Project.Modele.Deck;
-import Project.Modele.GameState;
-import Project.Modele.Grille;
+import Project.Modele.Cartes.CarteItem;
 import Project.util.*;
 import Project.views.VueAventurier;
 import Project.views.VueGrille;
@@ -31,7 +29,7 @@ public class Controleur implements Observeur {
 
     private Deque<Message> messages = new ArrayDeque<>();
 
-    private Aventurier currentAventurier;
+    private int currentAventurier;
 
 
     /*
@@ -66,6 +64,7 @@ public class Controleur implements Observeur {
      */
 
 
+    //Retourne une position selectioné dans les clickable
     public Vector2 getPosClick(ArrayList<Vector2> clickables){
         //placeholder
 
@@ -92,6 +91,8 @@ public class Controleur implements Observeur {
         }
         return null;
 
+
+        //Console based I/O deprecated
         /*
 
         Scanner scanner = new Scanner(System.in);
@@ -123,6 +124,8 @@ public class Controleur implements Observeur {
         //return null;
     }
 
+
+    //Retourne une action selectioné par l'aventurier d'index aventurierIndex
     Utils.Action getSelectedAction(int aventurierIndex){
 
         vuesAventurier.get(aventurierIndex).setMode(1,"");
@@ -144,6 +147,7 @@ public class Controleur implements Observeur {
 
         return act;
 
+        //Console based I/O deprecated
         /*
         Scanner s  = new Scanner(System.in);
         System.out.print("choisissez  une action a faire ((d)se deplacer,(a)assecher, (e)donner carte, (t)prendre tresor, (f)fin de tour, (c)utiliser carte"+(currentAventurier instanceof Navigateur ? "(s)action speciale" : "" ));
@@ -166,6 +170,7 @@ public class Controleur implements Observeur {
         }*/
     }
 
+    //Permet de selectionner un aventurier un aventurier
     public Aventurier getAventurier(int indexAventurier){
         vuesAventurier.get(indexAventurier).setMode(2,"veuillez entrer un nom d'aventurier : ");
 
@@ -175,13 +180,14 @@ public class Controleur implements Observeur {
             System.out.print("");
             while (!messages.isEmpty()){
                 Message m = messages.poll();
-                if(m.type == MessageType.ACTION){
+                if(m.type == MessageType.PARAMETRE){
                     done = true;
                     s = m.parametre;
                 }
             }
         }
 
+        vuesAventurier.get(indexAventurier).setMode(0,"");
         for (Aventurier av :
                 aventuriers) {
             if (av.getNom() == s) {
@@ -189,22 +195,64 @@ public class Controleur implements Observeur {
             }
         }
 
-        vuesAventurier.get(indexAventurier).setMode(0,"");
 
         return null;
+    }
+
+    //Permet de selectinner une carte
+    public Carte getCarteSelectionne(int currentAventurier) {
+
+        vuesAventurier.get(currentAventurier).setMode(2,"veuillez entrer le nom d'une carte : ");
+
+        String s = "";
+        boolean done = false;
+        while (!done){
+            System.out.print("");
+            while (!messages.isEmpty()){
+                Message m = messages.poll();
+                if(m.type == MessageType.PARAMETRE){
+                    done = true;
+                    s = m.parametre;
+                }
+            }
+        }
+
+
+        ArrayList<CarteItem> cartes = aventuriers.get(currentAventurier).getCarteItems();
+        vuesAventurier.get(currentAventurier).setMode(0,"");
+        for (CarteItem c :
+                cartes) {
+            if (c.getNom() == s) {
+                return c;
+            }
+        }
+
+        return null;
+
+         
     }
 
     /*
     GAME LOOP
      */
 
+    //Gere le tour de jeu
     void gameLoop(){
         while(true){//Berk
             for (int i = 0;i<aventuriers.size();i++) {
                 Aventurier av = aventuriers.get(i);
-                currentAventurier = av;
+                currentAventurier = i;
+
+                //Actions Tour
+
+                //Initialisation du tour
                 int nbAction = 0;
                 boolean finT = false;
+                if(av instanceof Pilot){
+                    ((Pilot)av).setDeplacemntSpecial(true);
+                }
+
+                //Phase d'action
                 System.out.println("Tour de : " + av.getJoueur());
                 while(nbAction<3&&!finT){
                     switch (getSelectedAction(i)){
@@ -233,12 +281,17 @@ public class Controleur implements Observeur {
                             break;
                     }
                 }
+
+                //phase de pioche
+
+                //phase d'innondation
             }            
         }
 
 
     }
 
+    //Permet de demarer une partie
     void initialiserPartie(){
 
         //Ajout des joueurs
@@ -338,6 +391,9 @@ public class Controleur implements Observeur {
         this.gameState = gameState;
     }
 
+    public int getCurrentAventurier() {
+        return currentAventurier;
+    }
 
 
 }

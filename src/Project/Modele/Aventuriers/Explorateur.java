@@ -38,7 +38,9 @@ public class Explorateur extends Aventurier {
 
         }
         Vector2 aAssecher = c.getPosClick(pos);
-        g.getTuile(aAssecher).setInnondee(false);
+        if(aAssecher != null){
+            g.getTuile(aAssecher).setInnondee(false);
+        }
     }
 
     @Override

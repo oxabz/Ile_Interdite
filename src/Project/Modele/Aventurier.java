@@ -81,10 +81,19 @@ public abstract class Aventurier extends ObjetIdentifie {
             }
         }
         Vector2 aAssecher = c.getPosClick(pos);
-        g.getTuile(aAssecher).setInnondee(false);
+        if(aAssecher != null){
+
+            g.getTuile(aAssecher).setInnondee(false);
+        }
     }
 
     public void donnerCarte(){
+        System.out.println("Choisissezun aventurier");
+        Controleur c = Controleur.getControleur();
+
+        Aventurier av = c.getAventurier(c.getCurrentAventurier());
+
+        Carte carte = c.getCarteSelectionne(c.getCurrentAventurier());
 
     }
 

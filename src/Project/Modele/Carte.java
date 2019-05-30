@@ -5,6 +5,7 @@ public abstract class Carte {
     ATTRIBUTES
      */
 
+    private String nom;
     private String image;
 
     /*
@@ -25,5 +26,13 @@ public abstract class Carte {
 
     public String getImage() {
         return image;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
     }
 }

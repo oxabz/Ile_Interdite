@@ -44,4 +44,8 @@ public class Pilot extends Aventurier {
     public String getNom() {
         return NOM;
     }
+
+    public void setDeplacemntSpecial(boolean deplacemntSpecial) {
+        this.deplacemntSpecial = deplacemntSpecial;
+    }
 }
