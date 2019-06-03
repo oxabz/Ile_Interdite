@@ -26,10 +26,12 @@ public abstract class Aventurier extends ObjetIdentifie {
 
     public Aventurier() {
         position = new Vector2(0,0);
+        carteItems = new ArrayList<>();
     }
 
     public Aventurier(Vector2 position) {
         this.position = position;
+        carteItems = new ArrayList<>();
     }
 
     /*

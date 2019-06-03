@@ -1,7 +1,7 @@
 package Project.Modele.Cartes.CartesItem;
 
-public class CarteHelicopeter extends CarteBonus {
-    public CarteHelicopeter(String image) {
+public class CarteHelicoptere extends CarteBonus {
+    public CarteHelicoptere(String image) {
         super(image);
     }
 
