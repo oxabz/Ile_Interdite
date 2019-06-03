@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Controleur implements Observeur {
+
     /*
     ATTRIBUTES
      */
@@ -34,19 +35,18 @@ public class Controleur implements Observeur {
     /*
     SINGLETON THINGY
      */
-
     private Controleur() {
         grille = new Grille();
-        aventuriers  = new ArrayList<>();
+        aventuriers = new ArrayList<>();
         boolean[][] testVal = {
-                {false,false,true,true,false,false},
-                {false,true,true,true,true,false},
-                {true,true,true,true,true,true},
-                {true,true,true,true,true,true},
-                {false,true,true,true,true,false},
-                {false,false,true,true,false,false}
+            {false, false, true, true, false, false},
+            {false, true, true, true, true, false},
+            {true, true, true, true, true, true},
+            {true, true, true, true, true, true},
+            {false, true, true, true, true, false},
+            {false, false, true, true, false, false}
         };
-        vueGrille=new VueGrille(grille.getSizeX(),grille.getSizeY(),testVal);
+        vueGrille = new VueGrille(grille.getSizeX(), grille.getSizeY(), testVal);
         vueGrille.setObserveur(this);
 
         vuesAventurier = new ArrayList<>();
@@ -61,26 +61,24 @@ public class Controleur implements Observeur {
     /*
     METHODS
      */
-
-
     //Retourne une position selectioné dans les clickable
-    public Vector2 getPosClick(ArrayList<Vector2> clickables){
+    public Vector2 getPosClick(ArrayList<Vector2> clickables) {
         //placeholder
 
         System.out.println("Choisissez une case (dans la fenetre):");
 
-        if (clickables.size()!=0){
+        if (clickables.size() != 0) {
             vueGrille.allumerTuiles(clickables);
 
-            Vector2 pos = new Vector2(0,0);
+            Vector2 pos = new Vector2(0, 0);
             boolean done = false;
-            while (!done){
+            while (!done) {
                 System.out.print("");
-                while (!messages.isEmpty()){
+                while (!messages.isEmpty()) {
                     Message m = messages.poll();
-                    if(m.type == MessageType.POSITION){
+                    if (m.type == MessageType.POSITION) {
                         done = true;
-                        pos =  m.position;
+                        pos = m.position;
                     }
                 }
             }
@@ -89,7 +87,6 @@ public class Controleur implements Observeur {
             return pos;
         }
         return null;
-
 
         //Console based I/O deprecated
         /*
@@ -123,26 +120,25 @@ public class Controleur implements Observeur {
         //return null;
     }
 
-
     //Retourne une action selectioné par l'aventurier d'index aventurierIndex
-    Utils.Action getSelectedAction(int aventurierIndex){
+    Utils.Action getSelectedAction(int aventurierIndex) {
 
-        vuesAventurier.get(aventurierIndex).setMode(1,"");
+        vuesAventurier.get(aventurierIndex).setMode(1, "");
 
         Utils.Action act = Utils.Action.SE_DEPLACER;
         boolean done = false;
-        while (!done){
+        while (!done) {
             System.out.print("");
-            while (!messages.isEmpty()){
+            while (!messages.isEmpty()) {
                 Message m = messages.poll();
-                if(m.type == MessageType.ACTION){
+                if (m.type == MessageType.ACTION) {
                     done = true;
-                    act =  m.action;
+                    act = m.action;
                 }
             }
         }
 
-        vuesAventurier.get(aventurierIndex).setMode(0,"");
+        vuesAventurier.get(aventurierIndex).setMode(0, "");
 
         return act;
 
@@ -170,30 +166,29 @@ public class Controleur implements Observeur {
     }
 
     //Permet de selectionner un aventurier un aventurier
-    public Aventurier getAventurier(int indexAventurier){
-        vuesAventurier.get(indexAventurier).setMode(2,"veuillez entrer un nom d'aventurier : ");
+    public Aventurier getAventurier(int indexAventurier) {
+        vuesAventurier.get(indexAventurier).setMode(2, "veuillez entrer un nom d'aventurier : ");
 
         String s = "";
         boolean done = false;
-        while (!done){
+        while (!done) {
             System.out.print("");
-            while (!messages.isEmpty()){
+            while (!messages.isEmpty()) {
                 Message m = messages.poll();
-                if(m.type == MessageType.PARAMETRE){
+                if (m.type == MessageType.PARAMETRE) {
                     done = true;
                     s = m.parametre;
                 }
             }
         }
 
-        vuesAventurier.get(indexAventurier).setMode(0,"");
-        for (Aventurier av :
-                aventuriers) {
+        vuesAventurier.get(indexAventurier).setMode(0, "");
+        for (Aventurier av
+                : aventuriers) {
             if (av.getNom() == s) {
                 return av;
             }
         }
-
 
         return null;
     }
@@ -201,26 +196,25 @@ public class Controleur implements Observeur {
     //Permet de selectinner une carte
     public Carte getCarteSelectionne(int currentAventurier) {
 
-        vuesAventurier.get(currentAventurier).setMode(2,"veuillez entrer le nom d'une carte : ");
+        vuesAventurier.get(currentAventurier).setMode(2, "veuillez entrer le nom d'une carte : ");
 
         String s = "";
         boolean done = false;
-        while (!done){
+        while (!done) {
             System.out.print("");
-            while (!messages.isEmpty()){
+            while (!messages.isEmpty()) {
                 Message m = messages.poll();
-                if(m.type == MessageType.PARAMETRE){
+                if (m.type == MessageType.PARAMETRE) {
                     done = true;
                     s = m.parametre;
                 }
             }
         }
 
-
         ArrayList<CarteItem> cartes = aventuriers.get(currentAventurier).getCarteItems();
-        vuesAventurier.get(currentAventurier).setMode(0,"");
-        for (CarteItem c :
-                cartes) {
+        vuesAventurier.get(currentAventurier).setMode(0, "");
+        for (CarteItem c
+                : cartes) {
             if (c.getNom() == s) {
                 return c;
             }
@@ -228,33 +222,30 @@ public class Controleur implements Observeur {
 
         return null;
 
-         
     }
 
     /*
     GAME LOOP
      */
-
     //Gere le tour de jeu
-    void gameLoop(){
-        while(true){//Berk
-            for (int i = 0;i<aventuriers.size();i++) {
+    void gameLoop() {
+        while (true) {//Berk
+            for (int i = 0; i < aventuriers.size(); i++) {
                 Aventurier av = aventuriers.get(i);
                 currentAventurier = i;
 
                 //Actions Tour
-
                 //Initialisation du tour
                 int nbAction = 0;
                 boolean finT = false;
-                if(av instanceof Pilot){
-                    ((Pilot)av).setDeplacemntSpecial(true);
+                if (av instanceof Pilot) {
+                    ((Pilot) av).setDeplacemntSpecial(true);
                 }
 
                 //Phase d'action
                 System.out.println("Tour de : " + av.getJoueur());
-                while(nbAction<3&&!finT){
-                    switch (getSelectedAction(i)){
+                while (nbAction < 3 && !finT) {
+                    switch (getSelectedAction(i)) {
                         case SE_DEPLACER:
                             nbAction++;
                             av.seDeplacer();
@@ -282,56 +273,53 @@ public class Controleur implements Observeur {
                 }
 
                 //phase de pioche
+                CarteItem cIt1 = (CarteItem) cartesItem.getPioche().poll();
+                CarteItem cIt2 = (CarteItem) cartesItem.getPioche().poll();
 
-                CarteItem cIt1 = (CarteItem)cartesItem.getPioche().poll();
-                CarteItem cIt2 = (CarteItem)cartesItem.getPioche().poll();
-
-                if(cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau){
+                if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     gameState.incrementNiveau();
                     cartesInnondation.addCarteDefausseDebut(cIt1);
                     cartesInnondation.addCarteDefausseDebut(cIt2);
-                }else if(cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau){
+                } else if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
-                    if (cIt1 instanceof CarteMEau){
+                    if (cIt1 instanceof CarteMEau) {
                         av.addCarteItem(cIt2);
                         cartesInnondation.addCarteDefausseDebut(cIt1);
-                    }else {
+                    } else {
                         av.addCarteItem(cIt1);
                         cartesInnondation.addCarteDefausseDebut(cIt2);
                     }
-                }else {
+                } else {
                     av.addCarteItem(cIt1);
                     av.addCarteItem(cIt2);
                 }
 
                 //phase d'innondation
-
                 faireInnondation();
-            }            
+            }
         }
-
 
     }
 
-    private void faireMonteDesEau(){
+    private void faireMonteDesEau() {
         cartesInnondation.melangerCartesDefausse();
-        LinkedList<Carte>  defausse = cartesInnondation.getDefausse();
+        LinkedList<Carte> defausse = cartesInnondation.getDefausse();
         cartesInnondation.addCartesPiocheDebut(defausse);
         defausse.clear();
         faireInnondation();
         gameState.incrementNiveau();
     }
 
-    private void faireInnondation(){
+    private void faireInnondation() {
         int nbCarteInnondation = gameState.getNbDeCarte();
         LinkedList<Carte> cartesInnondationPioche = cartesInnondation.getPioche();
 
         for (int j = 0; j < nbCarteInnondation; j++) {
-            CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll() ;
-            if(cIn.getTuile().isInnondee()){
+            CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll();
+            if (cIn.getTuile().isInnondee()) {
                 grille.removeTuile(cIn.getTuile());
-            }else {
+            } else {
                 cIn.getTuile().setInnondee(true);
             }
             cartesInnondation.addCarteDefausseDebut(cIn);
@@ -339,7 +327,7 @@ public class Controleur implements Observeur {
     }
 
     //Permet de demarer une partie
-    public void initialiserPartie(){
+    public void initialiserPartie() {
 
         //Ajout des joueurs
         ArrayList<Aventurier> dispoAventuriers = new ArrayList<>();
@@ -358,17 +346,17 @@ public class Controleur implements Observeur {
 
         for (int i = 0; i < nbJ; i++) {
             //Initialiser aventurier
-            System.out.print("nom joueur "+i+" : ");
+            System.out.print("nom joueur " + i + " : ");
             String nomJ = s.nextLine();
-            int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size()-1);
+            int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size() - 1);
             Aventurier av = dispoAventuriers.get(r);
             aventuriers.add(av);
             dispoAventuriers.remove(r);
             av.setJoueur(nomJ);
-            System.out.println(av.getJoueur()+" sera "+av.getNom());
+            System.out.println(av.getJoueur() + " sera " + av.getNom());
 
             //initialisation des interface
-            VueAventurier vueAventurier =new VueAventurier(nomJ,av.getNom());
+            VueAventurier vueAventurier = new VueAventurier(nomJ, av.getNom());
             vueAventurier.setObserveur(this);
             vuesAventurier.add(vueAventurier);
 
@@ -392,12 +380,11 @@ public class Controleur implements Observeur {
     public void recevoirMessage(Message m) {
         messages.add(m);
     }
-    
+
 
     /*
     GETTER SETTER
      */
-
     public Grille getGrille() {
         return grille;
     }
@@ -441,6 +428,5 @@ public class Controleur implements Observeur {
     public int getCurrentAventurier() {
         return currentAventurier;
     }
-
 
 }
