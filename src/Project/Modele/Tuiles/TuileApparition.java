@@ -9,13 +9,13 @@ public class TuileApparition extends Tuile {
 	 * ATTRIBUTES
 	 */
 
-	private Aventurier aventurier;
+	private String aventurier;
 
 	/**
 	 * CONSTRUCTOR
 	 */
 
-	public TuileApparition(String nom, Aventurier aventurier) {
+	public TuileApparition(String nom, String aventurier) {
 		super(nom);
 		setAventurier(aventurier);
 	}
@@ -24,11 +24,11 @@ public class TuileApparition extends Tuile {
 	 * GETTERS/SETTERS
 	 */
 
-	public Aventurier getAventurier() {
+	public String getAventurier() {
 		return aventurier;
 	}
 
-	private void setAventurier(Aventurier aventurier) {
+	private void setAventurier(String aventurier) {
 		this.aventurier = aventurier;
 	}
 }

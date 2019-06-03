@@ -12,6 +12,10 @@ public class Pilot extends Aventurier {
     public Pilot() {
     }
 
+    public Pilot(Vector2 position) {
+        super(position);
+    }
+
     private boolean deplacemntSpecial = true;
 
     private static final String NOM  = "Pilote";

@@ -11,6 +11,10 @@ public class Explorateur extends Aventurier {
 
     private static final String NOM  = "Explorateur";
 
+    public Explorateur(Vector2 position) {
+        super(position);
+    }
+
     @Override
     protected ArrayList<Vector2> getPosDeplacement(){
         ArrayList<Vector2> pos = new ArrayList<>();

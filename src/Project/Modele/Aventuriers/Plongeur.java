@@ -12,6 +12,10 @@ public class Plongeur extends Aventurier {
 
     private static final String NOM  = "Plongeur";
 
+    public Plongeur(Vector2 position) {
+        super(position);
+    }
+
     @Override
     public void seDeplacer(){
 
