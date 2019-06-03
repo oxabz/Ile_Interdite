@@ -14,25 +14,38 @@ public class Pilot extends Aventurier {
 
     private boolean deplacemntSpecial = true;
 
+    private static final String NOM  = "Pilote";
 
-    //BERK
     @Override
     public void seDeplacer() {
         if (deplacemntSpecial){
             Controleur c = Controleur.getControleur();
             ArrayList<Vector2> pos = new ArrayList<>();
             Grille grille = c.getGrille();
-            for (int i = 0; i < 6; i++) {  //BERK
-                for (int j = 0; j < 6; j++) { //BERK
+            for (int i = 0; i < grille.getSizeX(); i++) {
+                for (int j = 0; j < grille.getSizeY(); j++) {
                     Tuile t = grille.getTuile(i,j);
                     if (t!=null && (position.x != i|| position.y != j)){
                         pos.add(new Vector2(i,j));
                     }
                 }
             }
-            position = c.getPosClick(pos);
+            Vector2 p = c.getPosClick(pos);
+            if (p!=null){
+                position = p;
+                deplacemntSpecial = false;
+            }
         }else {
             super.seDeplacer();
         }
+    }
+
+    @Override
+    public String getNom() {
+        return NOM;
+    }
+
+    public void setDeplacemntSpecial(boolean deplacemntSpecial) {
+        this.deplacemntSpecial = deplacemntSpecial;
     }
 }

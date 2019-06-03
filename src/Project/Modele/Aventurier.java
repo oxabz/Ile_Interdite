@@ -11,19 +11,25 @@ import java.util.Iterator;
  *
  * @author IUT2-Dept Info
  */
-public class Aventurier extends ObjetIdentifie {
+public abstract class Aventurier extends ObjetIdentifie {
     /*
     ATTRIBUTES
      */
 
     protected Vector2 position;
     private ArrayList<CarteItem> carteItems;
+    private String joueur;
 
     /*
     CONSTRUCTOR
      */
 
     public Aventurier() {
+        position = new Vector2(0,0);
+    }
+
+    public Aventurier(Vector2 position) {
+        this.position = position;
     }
 
     /*
@@ -46,7 +52,10 @@ public class Aventurier extends ObjetIdentifie {
                 iterator.remove();
             }
         }
-        position = c.getPosClick(pos);
+        Vector2 p = c.getPosClick(pos);
+        if (p!=null){
+            position = p;
+        }
     }
 
     //Retourne les position de deplacemnt du joueur
@@ -72,10 +81,19 @@ public class Aventurier extends ObjetIdentifie {
             }
         }
         Vector2 aAssecher = c.getPosClick(pos);
-        g.getTuile(aAssecher).setInnondee(false);
+        if(aAssecher != null){
+
+            g.getTuile(aAssecher).setInnondee(false);
+        }
     }
 
     public void donnerCarte(){
+        System.out.println("Choisissezun aventurier");
+        Controleur c = Controleur.getControleur();
+
+        Aventurier av = c.getAventurier(c.getCurrentAventurier());
+
+        Carte carte = c.getCarteSelectionne(c.getCurrentAventurier());
 
     }
 
@@ -96,10 +114,29 @@ public class Aventurier extends ObjetIdentifie {
     }
 
     public void addCarteItem(CarteItem carte){
+        Controleur controleur = Controleur.getControleur();
+
         carteItems.add(carte);
+        if(carteItems.size()>5){
+            this.carteItems.remove(controleur.getCarteSelectionne(controleur.getCurrentAventurier()));
+        }
     }
 
     public void removeCarteItem(CarteItem carteItem){
         carteItems.remove(carteItem);
     }
+
+    public void setCarteItems(ArrayList<CarteItem> carteItems) {
+        this.carteItems = carteItems;
+    }
+
+    public String getJoueur() {
+        return joueur;
+    }
+
+    public void setJoueur(String joueur) {
+        this.joueur = joueur;
+    }
+
+    public abstract String getNom();
 }

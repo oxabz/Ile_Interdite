@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 public class Explorateur extends Aventurier {
 
+    private static final String NOM  = "Explorateur";
 
     @Override
     protected ArrayList<Vector2> getPosDeplacement(){
@@ -37,6 +38,13 @@ public class Explorateur extends Aventurier {
 
         }
         Vector2 aAssecher = c.getPosClick(pos);
-        g.getTuile(aAssecher).setInnondee(false);
+        if(aAssecher != null){
+            g.getTuile(aAssecher).setInnondee(false);
+        }
+    }
+
+    @Override
+    public String getNom() {
+        return NOM;
     }
 }

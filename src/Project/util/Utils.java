@@ -104,4 +104,14 @@ public class Utils {
     public static void afficherInformation(String message) {
         JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.OK_OPTION);
     }
+
+    public enum Action{
+        SE_DEPLACER,
+        ASSECHER,
+        PRENDRE_TRESOR,
+        DON_CARTE,
+        UTILISER_CARTE,
+        ACTION_SPECIALE,
+        FIN_TOUR
+    }
 }

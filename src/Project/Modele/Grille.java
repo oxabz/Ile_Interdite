@@ -54,6 +54,30 @@ public class Grille {
 
     }
 
+    public void removeTuile(Tuile tuile){
+        boolean found = false;
+        int i = 0;
+        while(i<tuiles.length && !found){
+            int j = 0;
+            while (j<tuiles[i].length && !found){
+                if(tuiles[i][j]==tuile){
+                    tuiles[i][j] = null;
+                    found = true;
+                }
+                j++;
+            }
+            i++;
+        }
+    }
+
+    /*
+    GETTER SETTER
+     */
+
+    public Tuile[][] getTuiles() {
+        return tuiles;
+    }
+
     public int getSizeX() {
         return GRILLE_TAILLE_X;
     }
