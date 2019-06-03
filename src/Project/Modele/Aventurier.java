@@ -114,7 +114,12 @@ public abstract class Aventurier extends ObjetIdentifie {
     }
 
     public void addCarteItem(CarteItem carte){
+        Controleur controleur = Controleur.getControleur();
+
         carteItems.add(carte);
+        if(carteItems.size()>5){
+            this.carteItems.remove(controleur.getCarteSelectionne(controleur.getCurrentAventurier()));
+        }
     }
 
     public void removeCarteItem(CarteItem carteItem){

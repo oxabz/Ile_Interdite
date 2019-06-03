@@ -29,6 +29,12 @@ public class Deck {
 		this.pioche.addFirst(carte);
 	}
 
+	public void addCartesPiocheDebut(LinkedList<Carte> cartes) {
+		for (int i = cartes.size()-1; i >= 0 ; i++) {
+			pioche.addFirst(cartes.get(i));
+		}
+	}
+
 	public void addCartePiocheFin(Carte carte) {
 		this.pioche.addLast(carte);
 	}

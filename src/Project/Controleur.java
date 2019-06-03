@@ -2,15 +2,14 @@ package Project;
 
 import Project.Modele.*;
 import Project.Modele.Aventuriers.*;
+import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CarteItem;
+import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.util.*;
 import Project.views.VueAventurier;
 import Project.views.VueGrille;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.Scanner;
+import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Controleur implements Observeur {
@@ -284,15 +283,63 @@ public class Controleur implements Observeur {
 
                 //phase de pioche
 
+                CarteItem cIt1 = (CarteItem)cartesItem.getPioche().poll();
+                CarteItem cIt2 = (CarteItem)cartesItem.getPioche().poll();
+
+                if(cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau){
+                    faireMonteDesEau();
+                    gameState.incrementNiveau();
+                    cartesInnondation.addCarteDefausseDebut(cIt1);
+                    cartesInnondation.addCarteDefausseDebut(cIt2);
+                }else if(cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau){
+                    faireMonteDesEau();
+                    if (cIt1 instanceof CarteMEau){
+                        av.addCarteItem(cIt2);
+                        cartesInnondation.addCarteDefausseDebut(cIt1);
+                    }else {
+                        av.addCarteItem(cIt1);
+                        cartesInnondation.addCarteDefausseDebut(cIt2);
+                    }
+                }else {
+                    av.addCarteItem(cIt1);
+                    av.addCarteItem(cIt2);
+                }
+
                 //phase d'innondation
+
+                faireInnondation();
             }            
         }
 
 
     }
 
+    private void faireMonteDesEau(){
+        cartesInnondation.melangerCartesDefausse();
+        LinkedList<Carte>  defausse = cartesInnondation.getDefausse();
+        cartesInnondation.addCartesPiocheDebut(defausse);
+        defausse.clear();
+        faireInnondation();
+        gameState.incrementNiveau();
+    }
+
+    private void faireInnondation(){
+        int nbCarteInnondation = gameState.getNbDeCarte();
+        LinkedList<Carte> cartesInnondationPioche = cartesInnondation.getPioche();
+
+        for (int j = 0; j < nbCarteInnondation; j++) {
+            CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll() ;
+            if(cIn.getTuile().isInnondee()){
+                grille.removeTuile(cIn.getTuile());
+            }else {
+                cIn.getTuile().setInnondee(true);
+            }
+            cartesInnondation.addCarteDefausseDebut(cIn);
+        }
+    }
+
     //Permet de demarer une partie
-    void initialiserPartie(){
+    public void initialiserPartie(){
 
         //Ajout des joueurs
         ArrayList<Aventurier> dispoAventuriers = new ArrayList<>();
