@@ -5,7 +5,11 @@ import Project.util.Vector2;
 
 public class Navigateur extends Aventurier {
 
-    private static final String NOM  = "Navigateur";
+    private static final String NOM = "Navigateur";
+
+    public Navigateur() {
+        super();
+    }
 
     public Navigateur(Vector2 position) {
         super(position);

@@ -9,19 +9,23 @@ import java.util.ArrayList;
 
 public class Explorateur extends Aventurier {
 
-    private static final String NOM  = "Explorateur";
+    private static final String NOM = "Explorateur";
+
+    public Explorateur() {
+        super();
+    }
 
     public Explorateur(Vector2 position) {
         super(position);
     }
 
     @Override
-    protected ArrayList<Vector2> getPosDeplacement(){
+    protected ArrayList<Vector2> getPosDeplacement() {
         ArrayList<Vector2> pos = new ArrayList<>();
-        for (int i = -1 ; i < 2; i++) {
+        for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                if (0 != i|| 0 != j){
-                    pos.add(new Vector2(position.x+i,position.y +j));
+                if (0 != i || 0 != j) {
+                    pos.add(new Vector2(position.x + i, position.y + j));
                 }
             }
         }
@@ -29,20 +33,20 @@ public class Explorateur extends Aventurier {
     }
 
     @Override
-    public void assecher(){
+    public void assecher() {
         Controleur c = Controleur.getControleur();
         Grille g = c.getGrille();
         ArrayList<Vector2> pos = new ArrayList<>();
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                if (g.getTuile(position.add(i,j))!=null&&g.getTuile(position.add(i,0)).isInnondee()){
-                    pos.add(position.add(i,j));
+                if (g.getTuile(position.add(i, j)) != null && g.getTuile(position.add(i, 0)).isInnondee()) {
+                    pos.add(position.add(i, j));
                 }
             }
 
         }
         Vector2 aAssecher = c.getPosClick(pos);
-        if(aAssecher != null){
+        if (aAssecher != null) {
             g.getTuile(aAssecher).setInnondee(false);
         }
     }

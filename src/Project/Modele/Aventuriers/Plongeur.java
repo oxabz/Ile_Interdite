@@ -10,32 +10,36 @@ import java.util.Iterator;
 
 public class Plongeur extends Aventurier {
 
-    private static final String NOM  = "Plongeur";
+    private static final String NOM = "Plongeur";
+
+    public Plongeur() {
+        super();
+    }
 
     public Plongeur(Vector2 position) {
         super(position);
     }
 
     @Override
-    public void seDeplacer(){
+    public void seDeplacer() {
 
         //Declaration
         Controleur c = Controleur.getControleur();
         ArrayList<Vector2> pos;
         Grille grille = c.getGrille();
 
-        do{
+        do {
             pos = getPosDeplacement();
 
             Iterator<Vector2> iterator = pos.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Vector2 p = iterator.next();
-                if (grille.getTuile(p)==null){
+                if (grille.getTuile(p) == null) {
                     iterator.remove();
                 }
             }
             position = c.getPosClick(pos);
-        }while (grille.getTuile(position)==null);//non fini
+        } while (grille.getTuile(position) == null);//non fini
     }
 
     @Override

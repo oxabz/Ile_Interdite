@@ -47,7 +47,7 @@ public class FactoryAventurier {
                             aventuriers.add(new Navigateur(new Vector2(i,j)));
                             break;
                         case PILOT:
-                            aventuriers.add(new Pilot(new Vector2(i,j)));
+                            aventuriers.add(new Pilote(new Vector2(i,j)));
                             break;
                         case PLONGEUR:
                             aventuriers.add(new Plongeur(new Vector2(i,j)));

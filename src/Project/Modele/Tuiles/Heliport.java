@@ -8,7 +8,7 @@ public class Heliport extends TuileApparition {
 	 * CONSTRUCTOR
 	 */
 
-	public Heliport(Aventurier aventurier) {
+	public Heliport(String aventurier) {
 		super("Heliport", aventurier);
 	}
 }

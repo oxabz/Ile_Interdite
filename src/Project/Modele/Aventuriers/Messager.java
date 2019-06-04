@@ -5,7 +5,11 @@ import Project.util.Vector2;
 
 public class Messager extends Aventurier {
 
-    private static final String NOM  = "Messager";
+    private static final String NOM = "Messager";
+
+    public Messager() {
+        super();
+    }
 
     public Messager(Vector2 position) {
         super(position);
