@@ -23,7 +23,7 @@ public class FactoryAventurier {
     private static final String INGENIEUR = "Ingenieur";
     private static final String MESSAGER = "Messager";
     private static final String NAVIGATEUR = "Navigateur";
-    private static final String PILOT = "Pilot";
+    private static final String PILOTE = "Pilote";
     private static final String PLONGEUR = "Plongeur";
 
 
@@ -46,7 +46,7 @@ public class FactoryAventurier {
                         case NAVIGATEUR:
                             aventuriers.add(new Navigateur(new Vector2(i,j)));
                             break;
-                        case PILOT:
+                        case PILOTE:
                             aventuriers.add(new Pilote(new Vector2(i,j)));
                             break;
                         case PLONGEUR:

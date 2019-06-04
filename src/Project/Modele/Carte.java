@@ -1,6 +1,7 @@
 package Project.Modele;
 
 public abstract class Carte {
+
     /*
     ATTRIBUTES
      */
@@ -11,7 +12,6 @@ public abstract class Carte {
     /*
     CONSTRUCTOR
      */
-
     public Carte(String image) {
         this.image = image;
     }
@@ -20,10 +20,9 @@ public abstract class Carte {
     METHODS
      */
 
-    /*
+ /*
     GETTER SETTER
      */
-
     public String getImage() {
         return image;
     }
