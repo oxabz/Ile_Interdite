@@ -39,7 +39,12 @@ public class Pilote extends Aventurier {
             Vector2 p = c.getPosClick(pos);
             if (p != null) {
                 position = p;
-                deplacemntSpecial = false;
+                boolean b = false;
+                for (Vector2 posNormal :
+                        getPosDeplacement()) {
+                    b = b || posNormal.x == p.x && posNormal.y == p.y;
+                }
+                deplacemntSpecial = b;
             }
         } else {
             super.seDeplacer();

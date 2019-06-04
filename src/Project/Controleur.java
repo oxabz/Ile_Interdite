@@ -332,9 +332,13 @@ public class Controleur implements Observeur {
 
         Scanner s = new Scanner(System.in);
 
-        System.out.print("nb de joueur :");
-        int nbJ = s.nextInt();
-        s.nextLine();
+        int nbJ;
+        do{
+            System.out.print("nb de joueur :");
+            nbJ = s.nextInt();
+            s.nextLine();
+        }while (nbJ >= 2 && nbJ <= 4);
+
 
         for (int i = 0; i < nbJ; i++) {
             //Initialiser aventurier
@@ -361,8 +365,12 @@ public class Controleur implements Observeur {
         cartesInnondation = new Deck();
 
         //Initialisation du gamestate
-        System.out.println("Choisissez un niveau de jeu");
-        int lvl = s.nextInt();
+
+        int lvl;
+        do {
+            System.out.println("Choisissez un niveau de jeu");
+            lvl = s.nextInt();
+        }while (lvl>=1 && lvl<=4);
         gameState = new GameState(lvl);
 
     }
