@@ -21,9 +21,6 @@ import java.util.ArrayList;
  */
 public class FactoryDeck {
 
-    private static final Deck deckItems = new Deck();
-    private static final Deck deckInondations = new Deck();
-
     private final static CarteMEau CARTE_MONTEE_DES_EAUX = new CarteMEau("Montée des eaux");
     private final static CarteSacSable CARTE_SAC_DE_SABLE = new CarteSacSable("Sac de sable");
     private final static CarteHelicoptere CARTE_HELICOPTERE = new CarteHelicoptere("Hélicoptère");
@@ -32,13 +29,32 @@ public class FactoryDeck {
     private final static CarteTresor CARTE_TRESOR_PIERRE = new CarteTresor("carte Pierre", Utils.Tresor.PIERRE);
     private final static CarteTresor CARTE_TRESOR_STATUE = new CarteTresor("carte Statue", Utils.Tresor.STATUE);
 
-    public static void getDeck() {
+    public static Deck getDeck() {  
+        Deck deck = new Deck();
         for (int i = 0; i < 3; i++) {
-            deckItems.addCartePiocheDebut(CARTE_MONTEE_DES_EAUX);
+            deck.addCartePiocheDebut(CARTE_MONTEE_DES_EAUX);
         }
         for (int i = 0; i < 2; i++) {
-            deckItems.addCartePiocheDebut(CARTE_SAC_DE_SABLE);
+            deck.addCartePiocheDebut(CARTE_SAC_DE_SABLE);
         }
+        for (int i = 0; i < 5; i++) {
+            deck.addCartePiocheDebut(CARTE_TRESOR_COUPE);
+        }
+        for (int i = 0; i < 5; i++) {
+            deck.addCartePiocheDebut(CARTE_TRESOR_CRISTAL);
+        }
+        for (int i = 0; i < 5; i++) {
+            deck.addCartePiocheDebut(CARTE_TRESOR_PIERRE);
+        }
+        for (int i = 0; i < 5; i++) {
+            deck.addCartePiocheDebut(CARTE_TRESOR_STATUE);
+        }
+        for (int i = 0; i < 3; i++) {
+            deck.addCartePiocheDebut(CARTE_HELICOPTERE);
+        }
+        
+        return deck;
+        
     }
 
 }
