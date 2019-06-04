@@ -19,7 +19,7 @@ public class VueGrille extends Observe {
     private JFrame fenetre;
     private JButton tuiles[][];
 
-    public VueGrille(int sizeX, int sizeY, boolean[][] presente) {
+    public VueGrille(int sizeX, int sizeY, boolean[][] coulee, boolean[][] innondee) {
         fenetre = new JFrame();
         opened = true;
         fenetre.setSize(600,600);
@@ -60,13 +60,26 @@ public class VueGrille extends Observe {
                 });
 
                 tuiles[i][j] = b;
-                if (!presente[i][j]){
-                    b.setBackground(Color.BLACK);
+
+            }
+        }
+        resetColors(innondee,coulee);
+
+        fenetre.setVisible(true);
+    }
+
+    public void resetColors(boolean[][] inondee, boolean[][] coulee){
+        for (int i = 0; i < tuiles.length; i++) {
+            for (int j = 0; j < tuiles.length; j++) {
+                if (coulee[i][j]) {
+                    tuiles[i][j].setBackground(Color.BLACK);
+                }else if(inondee[i][j]){
+                    tuiles[i][j].setBackground(Color.BLUE);
+                }else {
+                    tuiles[i][j].setBackground(Color.WHITE);
                 }
             }
         }
-
-        fenetre.setVisible(true);
     }
 
     public void allumerTuiles(ArrayList<Vector2> positions){

@@ -22,15 +22,7 @@ public class Grille {
 
     public Grille(){
         tuiles = new Tuile[GRILLE_TAILLE_X][GRILLE_TAILLE_Y];
-
-        //Berk
-        for (int i = 0; i < GRILLE_TAILLE_X; i++) {
-            for (int j = 0; j < GRILLE_TAILLE_Y; j++) {
-                tuiles[i][j] = new Tuile("TRUC");
-            }
-        }
-        tuiles[5][5] = null;
-    }   //Fin Berk
+    }
 
     /*
     METHODS
@@ -68,6 +60,26 @@ public class Grille {
             }
             i++;
         }
+    }
+
+    public boolean[][] getCoulee(){
+        boolean[][] coulee = new boolean[getSizeX()][getSizeY()];
+        for (int i = 0; i < getSizeX(); i++) {
+            for (int j = 0; j < getSizeY(); j++) {
+                coulee[i][j] = tuiles[i][j] == null;
+            }
+        }
+        return coulee;
+    }
+
+    public boolean[][] getInnondee(){
+        boolean[][] innondee = new boolean[getSizeX()][getSizeY()];
+        for (int i = 0; i < getSizeX(); i++) {
+            for (int j = 0; j < getSizeY(); j++) {
+                innondee[i][j] = (tuiles[i][j] != null && tuiles[i][j].isInnondee());
+            }
+        }
+        return innondee;
     }
 
     /*

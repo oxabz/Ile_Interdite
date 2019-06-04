@@ -15,9 +15,9 @@ import java.util.ArrayList;
 
 public class VueAventurier extends Observe {
 
-    private static final int ACTION_MODE = 1;
-    private static final int PARAMETER_MODE = 2;
-    private static final int STOP_MODE = 0;
+    public static final int ACTION_MODE = 1;
+    public static final int PARAMETER_MODE = 2;
+    public static final int STOP_MODE = 0;
 
     private JFrame frame;
     private ArrayList<JButton> actionButtons;

@@ -36,17 +36,9 @@ public class Controleur implements Observeur {
     SINGLETON THINGY
      */
     private Controleur() {
-        grille = new Grille();
+        grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
-        boolean[][] testVal = {
-            {false, false, true, true, false, false},
-            {false, true, true, true, true, false},
-            {true, true, true, true, true, true},
-            {true, true, true, true, true, true},
-            {false, true, true, true, true, false},
-            {false, false, true, true, false, false}
-        };
-        vueGrille = new VueGrille(grille.getSizeX(), grille.getSizeY(), testVal);
+        vueGrille = new VueGrille(grille.getSizeX(), grille.getSizeY(), grille.getCoulee(),grille.getInnondee());
         vueGrille.setObserveur(this);
 
         vuesAventurier = new ArrayList<>();
@@ -253,6 +245,7 @@ public class Controleur implements Observeur {
                         case ASSECHER:
                             nbAction++;
                             av.assecher();
+                            vueGrille.resetColors(grille.getInnondee(),grille.getCoulee());
                             break;
                         case DON_CARTE:
                             nbAction++;
@@ -271,6 +264,8 @@ public class Controleur implements Observeur {
                             break;
                     }
                 }
+
+                /*
 
                 //phase de pioche
                 CarteItem cIt1 = (CarteItem) cartesItem.getPioche().poll();
@@ -297,6 +292,8 @@ public class Controleur implements Observeur {
 
                 //phase d'innondation
                 faireInnondation();
+
+                 */
             }
         }
 
@@ -330,13 +327,7 @@ public class Controleur implements Observeur {
     public void initialiserPartie() {
 
         //Ajout des joueurs
-        ArrayList<Aventurier> dispoAventuriers = new ArrayList<>();
-        dispoAventuriers.add(new Explorateur());
-        dispoAventuriers.add(new Ingenieur());
-        dispoAventuriers.add(new Messager());
-        dispoAventuriers.add(new Navigateur());
-        dispoAventuriers.add(new Pilot());
-        dispoAventuriers.add(new Plongeur());
+        ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
 
         Scanner s = new Scanner(System.in);
 
@@ -346,7 +337,7 @@ public class Controleur implements Observeur {
 
         for (int i = 0; i < nbJ; i++) {
             //Initialiser aventurier
-            System.out.print("nom joueur " + i + " : ");
+            System.out.print("nom joueur " + (i+1) + " : ");
             String nomJ = s.nextLine();
             int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size() - 1);
             Aventurier av = dispoAventuriers.get(r);
@@ -363,7 +354,6 @@ public class Controleur implements Observeur {
         }
 
         //Initialisation de la grille
-        grille = new Grille();
 
         //Initialiser decks
         cartesItem = new Deck();
