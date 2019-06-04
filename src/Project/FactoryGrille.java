@@ -10,5 +10,4 @@ package Project;
  * @author seiglebq
  */
 public class FactoryGrille {
-    
 }
