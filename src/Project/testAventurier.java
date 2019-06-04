@@ -2,7 +2,7 @@ package Project;
 
 import Project.Modele.Aventurier;
 import Project.Modele.Aventuriers.Explorateur;
-import Project.Modele.Aventuriers.Pilot;
+import Project.Modele.Aventuriers.Pilote;
 import Project.util.Vector2;
 
 public class testAventurier {

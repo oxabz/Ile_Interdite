@@ -230,8 +230,8 @@ public class Controleur implements Observeur {
                 //Initialisation du tour
                 int nbAction = 0;
                 boolean finT = false;
-                if (av instanceof Pilot) {
-                    ((Pilot) av).setDeplacemntSpecial(true);
+                if (av instanceof Pilote) {
+                    ((Pilote) av).setDeplacemntSpecial(true);
                 }
 
                 //Phase d'action
@@ -327,6 +327,7 @@ public class Controleur implements Observeur {
     public void initialiserPartie() {
 
         //Ajout des joueurs
+
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
 
         Scanner s = new Scanner(System.in);

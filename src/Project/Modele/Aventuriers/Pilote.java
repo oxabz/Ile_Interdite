@@ -8,38 +8,40 @@ import Project.util.Vector2;
 
 import java.util.ArrayList;
 
-public class Pilot extends Aventurier {
-    public Pilot() {
+public class Pilote extends Aventurier {
+
+    public Pilote() {
+        super();
     }
 
-    public Pilot(Vector2 position) {
+    public Pilote(Vector2 position) {
         super(position);
     }
 
     private boolean deplacemntSpecial = true;
 
-    private static final String NOM  = "Pilote";
+    private static final String NOM = "Pilote";
 
     @Override
     public void seDeplacer() {
-        if (deplacemntSpecial){
+        if (deplacemntSpecial) {
             Controleur c = Controleur.getControleur();
             ArrayList<Vector2> pos = new ArrayList<>();
             Grille grille = c.getGrille();
             for (int i = 0; i < grille.getSizeX(); i++) {
                 for (int j = 0; j < grille.getSizeY(); j++) {
-                    Tuile t = grille.getTuile(i,j);
-                    if (t!=null && (position.x != i|| position.y != j)){
-                        pos.add(new Vector2(i,j));
+                    Tuile t = grille.getTuile(i, j);
+                    if (t != null && (position.x != i || position.y != j)) {
+                        pos.add(new Vector2(i, j));
                     }
                 }
             }
             Vector2 p = c.getPosClick(pos);
-            if (p!=null){
+            if (p != null) {
                 position = p;
                 deplacemntSpecial = false;
             }
-        }else {
+        } else {
             super.seDeplacer();
         }
     }
