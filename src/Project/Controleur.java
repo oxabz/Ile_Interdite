@@ -58,7 +58,7 @@ public class Controleur implements Observeur {
 
         System.out.println("Choisissez une case (dans la fenetre):");
 
-        if (clickables.size() != 0) {
+        if (!clickables.isEmpty()) {
             vueGrille.allumerTuiles(clickables);
 
             Vector2 pos = new Vector2(0, 0);
@@ -176,7 +176,7 @@ public class Controleur implements Observeur {
         vuesAventurier.get(indexAventurier).setMode(0, "");
         for (Aventurier av
                 : aventuriers) {
-            if (av.getNom() == s) {
+            if (av.getNom().equals(s)) {
                 return av;
             }
         }
@@ -206,7 +206,7 @@ public class Controleur implements Observeur {
         vuesAventurier.get(currentAventurier).setMode(0, "");
         for (CarteItem c
                 : cartes) {
-            if (c.getNom() == s) {
+            if (c.getNom().equals(s)) {
                 return c;
             }
         }

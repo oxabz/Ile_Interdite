@@ -1,6 +1,6 @@
 package Project;
 
-public class TestGameloop {
+public class Main {
     public static void main(String[] args) {
         Controleur c = Controleur.getControleur();
         c.initialiserPartie();
