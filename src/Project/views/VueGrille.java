@@ -49,7 +49,7 @@ public class VueGrille extends Observe {
                         JButton b = ((JButton)actionEvent.getSource());
                         for (int i = 0; i < tuiles.length; i++) {
                             for (int j = 0; j < tuiles[i].length; j++) {
-                                if(tuiles[i][j]==b){
+                                if(tuiles[i][j]==b){                                    
                                     Message message = new Message(MessageType.POSITION);
                                     message.position=new Vector2(i,j);
                                     notifierObserver(message);
@@ -86,6 +86,7 @@ public class VueGrille extends Observe {
         for (Vector2 p :
                 positions) {
             tuiles[p.x][p.y].setEnabled(true);
+            tuiles[p.x][p.y].setForeground(Color.RED);
         }
     }
 

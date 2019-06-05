@@ -246,7 +246,6 @@ public class Controleur implements Observeur {
                         case ASSECHER:
                             nbAction++;
                             av.assecher();
-                            vueGrille.resetColors(grille.getInnondee(), grille.getCoulee());
                             break;
                         case DON_CARTE:
                             nbAction++;
@@ -264,6 +263,7 @@ public class Controleur implements Observeur {
                             nbAction++;
                             break;
                     }
+                    vueGrille.resetColors(grille.getInnondee(), grille.getCoulee());
                 }
 
                 /*
