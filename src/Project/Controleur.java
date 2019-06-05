@@ -337,7 +337,7 @@ public class Controleur implements Observeur {
             System.out.print("nb de joueur :");
             nbJ = s.nextInt();
             s.nextLine();
-        }while (!(nbJ >= 2 && nbJ <= 6));
+        }while (!(nbJ >= 2 && nbJ <= 4));
 
 
         for (int i = 0; i < nbJ; i++) {
