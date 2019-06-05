@@ -17,7 +17,6 @@ public class Controleur implements Observeur {
     /*
     ATTRIBUTES
      */
-
     private Grille grille;
     private Deck cartesItem;
     private Deck cartesInnondation;
@@ -38,7 +37,7 @@ public class Controleur implements Observeur {
     private Controleur() {
         grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
-        vueGrille = new VueGrille(grille.getSizeX(), grille.getSizeY(), grille.getCoulee(),grille.getInnondee());
+        vueGrille = new VueGrille(grille.getSizeX(), grille.getSizeY(), grille.getCoulee(), grille.getInnondee());
         vueGrille.setObserveur(this);
 
         vuesAventurier = new ArrayList<>();
@@ -236,16 +235,18 @@ public class Controleur implements Observeur {
 
                 //Phase d'action
                 System.out.println("Tour de : " + av.getJoueur());
+                System.out.println("Position du pion : " + av.getPosition().toString());
                 while (nbAction < 3 && !finT) {
                     switch (getSelectedAction(i)) {
                         case SE_DEPLACER:
                             nbAction++;
                             av.seDeplacer();
+                            System.out.println("Position du pion : " + av.getPosition().toString());
                             break;
                         case ASSECHER:
                             nbAction++;
                             av.assecher();
-                            vueGrille.resetColors(grille.getInnondee(),grille.getCoulee());
+                            vueGrille.resetColors(grille.getInnondee(), grille.getCoulee());
                             break;
                         case DON_CARTE:
                             nbAction++;
@@ -327,24 +328,22 @@ public class Controleur implements Observeur {
     public void initialiserPartie() {
 
         //Ajout des joueurs
-
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
 
         Scanner s = new Scanner(System.in);
 
         int nbJ;
-        do{
+        do {
             System.out.print("nb de joueur :");
             nbJ = s.nextInt();
             s.nextLine();
-        }while (!(nbJ >= 2 && nbJ <= 4));
-
+        } while (!(nbJ >= 2 && nbJ <= 4));
 
         for (int i = 0; i < nbJ; i++) {
             //Initialiser aventurier
-            System.out.print("nom joueur " + (i+1) + " : ");
+            System.out.print("nom joueur " + (i + 1) + " : ");
             String nomJ = s.nextLine();
-            int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size() );
+            int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size());
             Aventurier av = dispoAventuriers.get(r);
             aventuriers.add(av);
             dispoAventuriers.remove(r);
@@ -359,18 +358,16 @@ public class Controleur implements Observeur {
         }
 
         //Initialisation de la grille
-
         //Initialiser decks
         cartesItem = new Deck();
         cartesInnondation = new Deck();
 
         //Initialisation du gamestate
-
         int lvl;
         do {
             System.out.println("Choisissez un niveau de jeu");
             lvl = s.nextInt();
-        }while (!(lvl>=1 && lvl<=4));
+        } while (!(lvl >= 1 && lvl <= 4));
         gameState = new GameState(lvl);
 
     }

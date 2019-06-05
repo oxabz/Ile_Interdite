@@ -15,4 +15,11 @@ public class Vector2 {
     public Vector2 add(int x, int y){
         return new Vector2(this.x+x,this.y+y);
     }
+
+    @Override
+    public String toString() {
+        return this.x+","+this.y;
+    }
+    
+    
 }
