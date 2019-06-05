@@ -14,7 +14,7 @@ public class Grille {
     ATTRIBUTES
      */
 
-    private Tuile[][] tuiles;
+    private final Tuile[][] tuiles;
 
     /*
     CONSTRUCTOR
