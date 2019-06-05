@@ -11,6 +11,7 @@ import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.Modele.Cartes.CartesItem.CarteSacSable;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Deck;
+import Project.Modele.Grille;
 import Project.Modele.Tuile;
 import Project.util.Utils;
 
@@ -57,9 +58,10 @@ public class FactoryDeck {
     }
 
     public static Deck getDeckInondations() {
-        Controleur c = Controleur.getControleur();
+        FactoryGrille g = new FactoryGrille();
         Deck deck = new Deck();
-        for (Tuile[] uneLigne : c.getGrille().getTuiles()) {
+        
+        for (Tuile[] uneLigne : g.getGrilleTest().getTuiles()) {
             for (Tuile uneTuile : uneLigne) {
                 deck.addCartePiocheDebut(new CarteInondation(uneTuile.getNom(), uneTuile));
             }
