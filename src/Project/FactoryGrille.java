@@ -68,7 +68,7 @@ public class FactoryGrille {
                     t = new TuileApparition(nom, "Explorateur");
                     break;
                 case "Heliport":
-                    t = new Heliport("Pilot");
+                    t = new Heliport("Pilote");
                     break;
                 default:
                     t = new Tuile(nom);

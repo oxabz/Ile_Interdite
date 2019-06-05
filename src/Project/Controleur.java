@@ -337,14 +337,14 @@ public class Controleur implements Observeur {
             System.out.print("nb de joueur :");
             nbJ = s.nextInt();
             s.nextLine();
-        }while (nbJ >= 2 && nbJ <= 4);
+        }while (!(nbJ >= 2 && nbJ <= 6));
 
 
         for (int i = 0; i < nbJ; i++) {
             //Initialiser aventurier
             System.out.print("nom joueur " + (i+1) + " : ");
             String nomJ = s.nextLine();
-            int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size() - 1);
+            int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size() );
             Aventurier av = dispoAventuriers.get(r);
             aventuriers.add(av);
             dispoAventuriers.remove(r);
@@ -370,7 +370,7 @@ public class Controleur implements Observeur {
         do {
             System.out.println("Choisissez un niveau de jeu");
             lvl = s.nextInt();
-        }while (lvl>=1 && lvl<=4);
+        }while (!(lvl>=1 && lvl<=4));
         gameState = new GameState(lvl);
 
     }

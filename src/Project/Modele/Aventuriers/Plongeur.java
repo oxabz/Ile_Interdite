@@ -28,8 +28,10 @@ public class Plongeur extends Aventurier {
         ArrayList<Vector2> pos;
         Grille grille = c.getGrille();
 
+        boolean fini = false;
         do {
             pos = getPosDeplacement();
+            pos.add(position);
 
             Iterator<Vector2> iterator = pos.iterator();
             while (iterator.hasNext()) {
@@ -38,8 +40,10 @@ public class Plongeur extends Aventurier {
                     iterator.remove();
                 }
             }
-            position = c.getPosClick(pos);
-        } while (grille.getTuile(position) == null);//non fini
+            Vector2 positionSelected = c.getPosClick(pos);
+            fini = positionSelected == position;
+            position = positionSelected;
+        } while (grille.getTuile(position) == null&&!fini);//non fini
     }
 
     @Override
