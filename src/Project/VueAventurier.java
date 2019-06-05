@@ -27,7 +27,9 @@ public class VueAventurier  {
     private final JButton btnAutreAction;
     private final JButton btnTerminerTour;
     private JTextField position;
-   
+
+
+    //debug
    
    
     

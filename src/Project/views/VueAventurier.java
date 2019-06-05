@@ -24,6 +24,8 @@ public class VueAventurier extends Observe {
     private JButton okButton;
     private JLabel parametreLabel;
 
+    private JButton seDeplacer;
+
     public VueAventurier(String nomJoueur, String nomAventurier) {
         this.frame = new JFrame();
         frame.setSize(400,200);
@@ -77,6 +79,7 @@ public class VueAventurier extends Observe {
             }
         });
         actionButtons.add(seDeplacerButon);
+        seDeplacer = seDeplacerButon;
 
         JButton assecherButon = new JButton("assecher");
         bottomPanel.add(assecherButon);
