@@ -39,7 +39,7 @@ public class Explorateur extends Aventurier {
         ArrayList<Vector2> pos = new ArrayList<>();
         for (int i = -1; i < 2; i++) {
             for (int j = -1; j < 2; j++) {
-                if (g.getTuile(position.add(i, j)) != null && g.getTuile(position.add(i, 0)).isInnondee()) {
+                if (g.getTuile(position.add(i, j)) != null && g.getTuile(position.add(i, j)).isInnondee()) {
                     pos.add(position.add(i, j));
                 }
             }
