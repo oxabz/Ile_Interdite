@@ -23,7 +23,7 @@ public class Pilote extends Aventurier {
     private static final String NOM = "Pilote";
 
     @Override
-    public void seDeplacer() {
+    public boolean seDeplacer() {
         if (deplacemntSpecial) {
             Controleur c = Controleur.getControleur();
             ArrayList<Vector2> pos = new ArrayList<>();
@@ -38,16 +38,18 @@ public class Pilote extends Aventurier {
             }
             Vector2 p = c.getPosClick(pos);
             if (p != null) {
-                position = p;
                 boolean b = false;
                 for (Vector2 posNormal :
                         getPosDeplacement()) {
                     b = b || posNormal.x == p.x && posNormal.y == p.y;
                 }
+                position = p;
                 deplacemntSpecial = b;
-            }
+                return true;
+            }else {return false;}
         } else {
-            super.seDeplacer();
+            return super.seDeplacer();
+
         }
     }
 

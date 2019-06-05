@@ -239,13 +239,14 @@ public class Controleur implements Observeur {
                 while (nbAction < 3 && !finT) {
                     switch (getSelectedAction(i)) {
                         case SE_DEPLACER:
-                            nbAction++;
-                            av.seDeplacer();
-                            System.out.println("Position du pion : " + av.getPosition().toString());
+                            if(av.seDeplacer()){
+                                nbAction++;
+                            }
                             break;
                         case ASSECHER:
-                            nbAction++;
-                            av.assecher();
+                            if (av.assecher()){
+                                nbAction++;
+                            }
                             break;
                         case DON_CARTE:
                             nbAction++;
@@ -328,12 +329,13 @@ public class Controleur implements Observeur {
     public void initialiserPartie() {
 
         //Ajout des joueurs
+
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
 
         Scanner s = new Scanner(System.in);
 
         int nbJ;
-        do {
+        do{
             System.out.print("nb de joueur :");
             nbJ = s.nextInt();
             s.nextLine();
@@ -358,16 +360,18 @@ public class Controleur implements Observeur {
         }
 
         //Initialisation de la grille
+
         //Initialiser decks
         cartesItem = new Deck();
         cartesInnondation = new Deck();
 
         //Initialisation du gamestate
+
         int lvl;
         do {
             System.out.println("Choisissez un niveau de jeu");
             lvl = s.nextInt();
-        } while (!(lvl >= 1 && lvl <= 4));
+        }while (!(lvl>=1 && lvl<=4));
         gameState = new GameState(lvl);
 
     }

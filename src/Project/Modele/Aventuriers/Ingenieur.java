@@ -16,9 +16,10 @@ public class Ingenieur extends Aventurier {
     }
 
     @Override
-    public void assecher() {
-        super.assecher();//Berk
+    public boolean assecher() {
+        boolean b = super.assecher();//Berk
         super.assecher();
+        return b;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class Explorateur extends Aventurier {
     }
 
     @Override
-    public void assecher() {
+    public boolean assecher() {
         Controleur c = Controleur.getControleur();
         Grille g = c.getGrille();
         ArrayList<Vector2> pos = new ArrayList<>();
@@ -48,6 +48,9 @@ public class Explorateur extends Aventurier {
         Vector2 aAssecher = c.getPosClick(pos);
         if (aAssecher != null) {
             g.getTuile(aAssecher).setInnondee(false);
+            return true;
+        }else {
+            return false;
         }
     }
 
