@@ -1,12 +1,8 @@
 package Project.views;
 
-import Project.views.Elements.EActions;
-import Project.views.Elements.EDeck;
-import Project.views.Elements.EGrille;
-import Project.views.Elements.EInfo;
-import Project.views.Elements.EJoueur;
-import Project.views.Elements.EMain;
-import Project.views.Elements.ENiveauDEau;
+import Project.util.Vector2;
+import Project.views.Elements.*;
+
 import java.util.HashMap;
 import javax.swing.JFrame;
 
@@ -29,6 +25,8 @@ public class Vue {
         window = new JFrame("L'Île interdite");
         this.configureWindow(window);
         window.setVisible(true);
+
+        window.add(new ECase("Heliport",new Vector2(1,1)));
     }
 
     private void configureWindow(JFrame window) {
