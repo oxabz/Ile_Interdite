@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class VueGrille extends Observe {
 
     private boolean opened;
-    private JFrame fenetre;
+    private final JFrame fenetre;
     private JButton tuiles[][];
 
     public VueGrille(int sizeX, int sizeY, boolean[][] coulee, boolean[][] innondee) {
@@ -97,11 +97,6 @@ public class VueGrille extends Observe {
                 b.setEnabled(false);
             }
         }
-    }
-    
-    public void paintComponent(Graphics g) {
-        Dimension dimension = new Dimension().getSize();
-        System.out.println(dimension.getWidth()+"+"+dimension.getHeight());
     }
 
     public boolean isOpen() {
