@@ -74,7 +74,7 @@ public class Controleur implements Observeur {
                 }
             }
 
-            vueGrille.etteindreTuiles();
+            vueGrille.eteindreTuiles();
             return pos;
         }
         return null;
