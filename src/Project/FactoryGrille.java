@@ -80,6 +80,11 @@ public class FactoryGrille {
     }
 
     static public Grille getGrille(){
+        for (Tuile t:
+             getTuiles().values()) {
+
+        }
+
         return null;
     }
 

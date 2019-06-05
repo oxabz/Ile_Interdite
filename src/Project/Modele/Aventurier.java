@@ -38,7 +38,7 @@ public abstract class Aventurier extends ObjetIdentifie {
     METHODS
      */
 
-    public void seDeplacer(){
+    public boolean seDeplacer(){
 
         //Declaration
         Controleur c = Controleur.getControleur();
@@ -57,6 +57,9 @@ public abstract class Aventurier extends ObjetIdentifie {
         Vector2 p = c.getPosClick(pos);
         if (p!=null){
             position = p;
+            return true;
+        }else {
+            return false;
         }
     }
 
@@ -70,7 +73,7 @@ public abstract class Aventurier extends ObjetIdentifie {
         return pos;
     }
 
-    public void assecher(){
+    public boolean assecher(){
         Controleur c = Controleur.getControleur();
         Grille g = c.getGrille();
         ArrayList<Vector2> pos = new ArrayList<>();
@@ -86,6 +89,9 @@ public abstract class Aventurier extends ObjetIdentifie {
         if(aAssecher != null){
 
             g.getTuile(aAssecher).setInnondee(false);
+            return true;
+        }else {
+            return false;
         }
     }
 
