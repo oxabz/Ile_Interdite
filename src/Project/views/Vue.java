@@ -9,6 +9,7 @@ import Project.views.Elements.EMain;
 import Project.views.Elements.ENiveauDEau;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.io.IOException;
 import java.util.HashMap;
 import javax.swing.JFrame;
 
@@ -27,7 +28,7 @@ public class Vue {
     private EMain main;
     private EActions actions;
 
-    public Vue() {        
+    public Vue() throws IOException {        
         this.configureWindow(window);
         deck = new EDeck();
         window.add(deck, BorderLayout.CENTER);
@@ -73,7 +74,7 @@ public class Vue {
         return WINDOW_SIZE_Y;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Vue fenetre = new Vue();
     }
 
