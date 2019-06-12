@@ -7,6 +7,9 @@ import Project.views.Elements.EInfo;
 import Project.views.Elements.EJoueur;
 import Project.views.Elements.EMain;
 import Project.views.Elements.ENiveauDEau;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.io.IOException;
 import java.util.HashMap;
 import javax.swing.JFrame;
 
@@ -14,7 +17,7 @@ public class Vue {
 
     private final static int WINDOW_SIZE_X = 980;
     private final static int WINDOW_SIZE_Y = 600;
-    private JFrame window;
+    private JFrame window = new JFrame("L'Île interdite");
 
     //Elements
     private EGrille grille;
@@ -25,13 +28,15 @@ public class Vue {
     private EMain main;
     private EActions actions;
 
-    public Vue() {
-        window = new JFrame("L'Île interdite");
+    public Vue() throws IOException {        
         this.configureWindow(window);
+        deck = new EDeck();
+        window.add(deck, BorderLayout.CENTER);
         window.setVisible(true);
     }
 
     private void configureWindow(JFrame window) {
+        window.setBackground(Color.WHITE);
         window.setSize(getWINDOW_SIZE_X(), getWINDOW_SIZE_Y());
         window.getContentPane().setLayout(new java.awt.BorderLayout());
         window.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
@@ -69,8 +74,8 @@ public class Vue {
         return WINDOW_SIZE_Y;
     }
 
-    public static void main(String[] args) {
-        Vue ihme = new Vue();
+    public static void main(String[] args) throws IOException {
+        Vue fenetre = new Vue();
     }
 
 }
