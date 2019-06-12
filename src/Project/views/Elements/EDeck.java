@@ -27,8 +27,8 @@ public class EDeck extends JPanel {
     private final static JLabel LABEL_INNONDATION = new JLabel("Innondation");
     private final static int NOMBRE_FRAMES_ANIMATION = 30;
     /* ATTRIBUTS */
-    private Deck deckInnondation;
-    private Deck deckItems;
+    private final Deck deckInnondation;
+    private final Deck deckItems;
     private final JPanel sideInondation;
     private final JPanel sideItem;
     private final JPanel itemPioche;
@@ -44,15 +44,15 @@ public class EDeck extends JPanel {
     private final BufferedImage dosItemBleu;
     private final BufferedImage dosInnondationBleu;
     private BufferedImage imageItem;
-
-    private JLabel labelImagePiocheItem;
-    private JLabel labelImageDefausseItem;
-    private JLabel labelImagePiocheInnondation;
-    private JLabel labelImageDefausseInnondation;
+    private BufferedImage imageInnondation;
+    private final JLabel labelImagePiocheItem;
+    private final JLabel labelImageDefausseItem;
+    private final JLabel labelImagePiocheInnondation;
+    private final JLabel labelImageDefausseInnondation;
 
     /* CONSTRUCTEURS */
     public EDeck() throws IOException {
-        //deckInnondation = FactoryDeck.getDeckInondations();
+        deckInnondation = FactoryDeck.getDeckInondations();
         deckItems = FactoryDeck.getDeckItems();
         // Définition des paramètres propre à l'EDeck
         this.setLayout(new GridLayout(1, 2, 5, 0));
@@ -81,8 +81,8 @@ public class EDeck extends JPanel {
         innodationDefausse.setBackground(Color.MAGENTA);
          */
         // Création des JLabels
-        itemPiocheNombre = new JLabel(Integer.toString(deckItems.getPioche().size()));
-        itemDefausseNombre = new JLabel(Integer.toString(deckItems.getDefausse().size()));
+        itemPiocheNombre = new JLabel(Integer.toString(this.getDeckItems().getPioche().size()));
+        itemDefausseNombre = new JLabel(Integer.toString(this.getDeckItems().getDefausse().size()));
         innondationPiocheNombre = new JLabel("0");
         innondationDefausseNombre = new JLabel("0");
         // Aménagement des JLabels
@@ -111,6 +111,7 @@ public class EDeck extends JPanel {
         dosInnondationBleu = ImageIO.read(new File(IMAGE_PREFIXE_DECK + "dosDefausseBleu" + IMAGE_EXTENSION));
 
         imageItem = dosItem;
+        imageInnondation = dosInnondation;
         // Création des JPanels contenant les images (& Override paintComponent)
         labelImagePiocheItem = new JLabel(new ImageIcon(imageItem)) {
             @Override
@@ -130,7 +131,7 @@ public class EDeck extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(dosInnondation, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                g.drawImage(imageInnondation, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
             }
         };
         labelImageDefausseInnondation = new JLabel() {
@@ -151,21 +152,62 @@ public class EDeck extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        itemPiocheNombre.setText(Integer.toString(deckItems.getPioche().size()));
-        itemDefausseNombre.setText(Integer.toString(deckItems.getDefausse().size()));
+        itemPiocheNombre.setText(Integer.toString(this.getDeckItems().getPioche().size()));
+        itemDefausseNombre.setText(Integer.toString(this.getDeckItems().getDefausse().size()));
         //innondationPiocheNombre.setText(Integer.toString(deckInnondation.getPioche().size()));
         //innondationDefausseNombre.setText(Integer.toString(deckInnondation.getPioche().size()));
     }
 
     /**
-     * Animation qui retourne la première carte de la pioche Toujours du dos
-     * vers la face et joue un son en même temps
+     * Animation qui retourne la première carte de la pioche (Items) Toujours du
+     * dos vers la face et joue un son en même temps
+     *
      *
      * @throws java.io.IOException
      */
     public void retournerCartePioche() throws IOException {
-        imageItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + deckItems.getPioche().get(0).getImage() + IMAGE_EXTENSION));
+        imageItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + this.getDeckItems().getPioche().get(0).getImage() + IMAGE_EXTENSION));
         Sound.play("src/sons/carte/carteFlip.wav");
+    }
+
+    /**
+     * Animation qui retourne la première carte de la pioche (Innondation)
+     * Toujours du dos vers la face et joue un son en même temps
+     *
+     * @throws IOException
+     */
+    public void retournerCarteInnondation() throws IOException {
+        imageInnondation = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + deckInnondation.getPioche().get(0).getImage() + IMAGE_EXTENSION)); // ERREUR ICI, VOIR AVEC LE NOM DU FICHIER
+        Sound.play("src/sons/carte/carteFlip.wav");
+    }
+
+    /**
+     * Animation qui fait piocher dans le deck Item
+     *
+     * @throws java.io.IOException
+     * @throws java.lang.InterruptedException
+     */
+    public void piocherItem() throws IOException, InterruptedException {
+        this.retournerCartePioche();
+        this.repaint();
+        TimeUnit.SECONDS.sleep(1);
+        this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
+        this.getDeckItems().retirerCartePioche(0);
+        imageItem = dosItem;
+        this.repaint();
+        TimeUnit.SECONDS.sleep(1);
+    }
+
+    public void piocherInnondation() throws IOException, InterruptedException {
+        this.retournerCarteInnondation();
+        this.repaint();
+        TimeUnit.SECONDS.sleep(1);
+        this.getDeckInnondation().addCarteDefausseDebut(this.getDeckInnondation().getPioche().get(0));
+        this.getDeckItems().retirerCartePioche(0);
+        imageInnondation = dosInnondation;
+        this.repaint();
+        TimeUnit.SECONDS.sleep(1);
+
     }
 
     /**
@@ -175,19 +217,25 @@ public class EDeck extends JPanel {
      * @throws java.lang.InterruptedException
      */
     public void test() throws IOException, InterruptedException {
-        int nbTour = deckItems.getPioche().size();
+        int nbTour = this.getDeckItems().getPioche().size();
         for (int i = 0; i < nbTour; i++) {
-            this.retournerCartePioche();            
-            deckItems.addCarteDefausseDebut(deckItems.getPioche().get(0));
-            deckItems.retirerCartePioche(0);     
-            this.repaint();
-            TimeUnit.SECONDS.sleep(1);
-            imageItem = dosItem;
-            this.repaint();
-            TimeUnit.SECONDS.sleep(1);
+            this.piocherItem();
 
+        }
+        nbTour = this.getDeckInnondation().getPioche().size();
+        for (int i = 0; i < nbTour; i++) {
+            this.piocherInnondation();
         }
 
     }
+
     /* GETTERS & SETTERS */
+    public Deck getDeckItems() {
+        return deckItems;
+    }
+
+    public Deck getDeckInnondation() {
+        return deckInnondation;
+    }
+
 }
