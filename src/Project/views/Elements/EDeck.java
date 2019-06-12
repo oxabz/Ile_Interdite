@@ -2,6 +2,7 @@ package Project.views.Elements;
 
 import Project.FactoryDeck;
 import Project.Modele.Deck;
+import Project.util.Sound;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -158,12 +159,13 @@ public class EDeck extends JPanel {
 
     /**
      * Animation qui retourne la première carte de la pioche Toujours du dos
-     * vers la face
+     * vers la face et joue un son en même temps
      *
      * @throws java.io.IOException
      */
     public void retournerCartePioche() throws IOException {
         imageItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + deckItems.getPioche().get(0).getImage() + IMAGE_EXTENSION));
+        Sound.play("src/sons/carte/carteFlip.wav");
     }
 
     /**
