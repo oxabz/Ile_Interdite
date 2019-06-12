@@ -7,8 +7,12 @@ public abstract class CarteItem extends Carte {
     CONSTRUCTOR
      */
 
-    public CarteItem(String image) {
-        super(image);
+    public CarteItem(String nom) {
+        super(nom);
+    }
+    
+    public CarteItem(String nom, String image) {
+        super(nom, image);
     }
 
 

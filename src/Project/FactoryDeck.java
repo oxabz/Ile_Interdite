@@ -21,13 +21,13 @@ import Project.util.Utils;
  */
 public class FactoryDeck {
 
-    private final static CarteMEau CARTE_MONTEE_DES_EAUX = new CarteMEau("Montée des eaux");
-    private final static CarteSacSable CARTE_SAC_DE_SABLE = new CarteSacSable("Sac de sable");
-    private final static CarteHelicoptere CARTE_HELICOPTERE = new CarteHelicoptere("Hélicoptère");
-    private final static CarteTresor CARTE_TRESOR_COUPE = new CarteTresor("carte Coupe", Utils.Tresor.COUPE);
-    private final static CarteTresor CARTE_TRESOR_CRISTAL = new CarteTresor("carte Cristal", Utils.Tresor.CRISTAL);
-    private final static CarteTresor CARTE_TRESOR_PIERRE = new CarteTresor("carte Pierre", Utils.Tresor.PIERRE);
-    private final static CarteTresor CARTE_TRESOR_STATUE = new CarteTresor("carte Statue", Utils.Tresor.STATUE);
+    private final static CarteMEau CARTE_MONTEE_DES_EAUX = new CarteMEau("Montée des eaux", "MonteeDesEaux");
+    private final static CarteSacSable CARTE_SAC_DE_SABLE = new CarteSacSable("Sac de sable", "SacsDeSable");
+    private final static CarteHelicoptere CARTE_HELICOPTERE = new CarteHelicoptere("Hélicoptère","Helicoptere");
+    private final static CarteTresor CARTE_TRESOR_COUPE = new CarteTresor("carte Coupe","Calice", Utils.Tresor.COUPE);
+    private final static CarteTresor CARTE_TRESOR_CRISTAL = new CarteTresor("carte Cristal","Cristal", Utils.Tresor.CRISTAL);
+    private final static CarteTresor CARTE_TRESOR_PIERRE = new CarteTresor("carte Pierre","Pierre", Utils.Tresor.PIERRE);
+    private final static CarteTresor CARTE_TRESOR_STATUE = new CarteTresor("carte Statue","Zephyr", Utils.Tresor.STATUE);
 
     public static Deck getDeckItems() {
         Deck deck = new Deck();
@@ -61,7 +61,7 @@ public class FactoryDeck {
         FactoryGrille g = new FactoryGrille();
         Deck deck = new Deck();
         
-        for (Tuile[] uneLigne : g.getGrilleTest().getTuiles()) {
+        for (Tuile[] uneLigne : FactoryGrille.getGrilleTest().getTuiles()) {
             for (Tuile uneTuile : uneLigne) {
                 deck.addCartePiocheDebut(new CarteInondation(uneTuile.getNom(), uneTuile));
             }

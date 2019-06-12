@@ -15,8 +15,13 @@ public class CarteTresor  extends CarteItem {
     CONSTRUCTOR
      */
 
-    public CarteTresor(String image, Utils.Tresor tresor) {
-        super(image);
+    public CarteTresor(String nom, Utils.Tresor tresor) {
+        super(nom);
+        this.tresor = tresor;
+    }
+    
+    public CarteTresor(String nom, String image, Utils.Tresor tresor) {
+        super(nom, image);
         this.tresor = tresor;
     }
 

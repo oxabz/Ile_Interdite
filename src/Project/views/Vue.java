@@ -15,24 +15,26 @@ import javax.swing.JFrame;
 
 public class Vue {
 
-    private final static int WINDOW_SIZE_X = 980;
+    private final static int WINDOW_SIZE_X = 500;
     private final static int WINDOW_SIZE_Y = 600;
-    private JFrame window = new JFrame("L'Île interdite");
+    private final JFrame window = new JFrame("L'Île interdite");
 
     //Elements
     private EGrille grille;
     private EInfo informations;
     private ENiveauDEau niveauEau;
-    private EDeck deck;
+    private final EDeck deck;
     private HashMap<String, EJoueur> listeJoueurs;
     private EMain main;
     private EActions actions;
 
-    public Vue() throws IOException {        
+    public Vue() throws IOException, InterruptedException {        
         this.configureWindow(window);
-        deck = new EDeck();
+        deck = new EDeck();        
         window.add(deck, BorderLayout.CENTER);
-        window.setVisible(true);
+        window.setVisible(true);       
+        deck.test();
+        
     }
 
     private void configureWindow(JFrame window) {
@@ -41,24 +43,31 @@ public class Vue {
         window.getContentPane().setLayout(new java.awt.BorderLayout());
         window.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
         window.addWindowListener(new java.awt.event.WindowListener() {
+            @Override
             public void windowOpened(java.awt.event.WindowEvent e) {
             }
 
+            @Override
             public void windowClosed(java.awt.event.WindowEvent e) {
             }
 
+            @Override
             public void windowIconified(java.awt.event.WindowEvent e) {
             }
 
+            @Override
             public void windowDeiconified(java.awt.event.WindowEvent e) {
             }
 
+            @Override
             public void windowActivated(java.awt.event.WindowEvent e) {
             }
 
+            @Override
             public void windowDeactivated(java.awt.event.WindowEvent e) {
             }
 
+            @Override
             public void windowClosing(java.awt.event.WindowEvent e) {
                 System.exit(0);
             }
@@ -74,7 +83,7 @@ public class Vue {
         return WINDOW_SIZE_Y;
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, InterruptedException {
         Vue fenetre = new Vue();
     }
 

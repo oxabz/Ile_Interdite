@@ -1,8 +1,13 @@
 package Project.Modele.Cartes.CartesItem;
 
 public class CarteSacSable extends CarteBonus {
-    public CarteSacSable(String image) {
-        super(image);
+    /* CONSTRUCTEURS */
+    public CarteSacSable(String nom) {
+        super(nom);
+    }
+    
+    public CarteSacSable(String nom, String image) {
+        super(nom,image);
     }
 
     @Override
