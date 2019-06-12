@@ -57,11 +57,9 @@ public class FactoryDeck {
 
     }
 
-    public static Deck getDeckInondations() {
-        FactoryGrille g = new FactoryGrille();
-        Deck deck = new Deck();
-        
-        for (Tuile[] uneLigne : FactoryGrille.getGrilleTest().getTuiles()) {
+    public static Deck getDeckInondations() {        
+        Deck deck = new Deck();        
+        for (Tuile[] uneLigne : FactoryGrille.getGrille().getTuiles()) {
             for (Tuile uneTuile : uneLigne) {
                 deck.addCartePiocheDebut(new CarteInondation(uneTuile.getNom(), uneTuile));
             }
