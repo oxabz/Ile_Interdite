@@ -5,237 +5,391 @@ import Project.Modele.Deck;
 import Project.util.Sound;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
-import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class EDeck extends JPanel {
+public final class EDeck extends JPanel {
 
     /* CONSTANTES */
-    private final static String IMAGE_PREFIXE_DECK = "src/images/decks/";
     private final static String IMAGE_PREFIXE_CARTE = "src/images/cartes/";
     private final static String IMAGE_EXTENSION = ".png";
+    private final static String SON_CARTE_FLIP_CHEMIN = "src/sons/carte/carteFlip.wav";
     private final static JLabel LABEL_ITEM = new JLabel("Items");
-    private final static JLabel LABEL_INNONDATION = new JLabel("Innondation");
+    private final static JLabel LABEL_INONDATION = new JLabel("Innondation");
     private final static int NOMBRE_FRAMES_ANIMATION = 30;
+    private final static int DELAI_ANIMATION = 1;
     /* ATTRIBUTS */
-    private final Deck deckInnondation;
+    private final Deck deckInondation;
     private final Deck deckItems;
     private final JPanel sideInondation;
     private final JPanel sideItem;
     private final JPanel itemPioche;
     private final JPanel itemDefausse;
-    private final JPanel innondationPioche;
-    private final JPanel innodationDefausse;
+    private final JPanel inondationPioche;
+    private final JPanel inondationDefausse;
     private final JLabel itemPiocheNombre;
     private final JLabel itemDefausseNombre;
-    private final JLabel innondationPiocheNombre;
-    private final JLabel innondationDefausseNombre;
-    private final BufferedImage dosItem;
-    private final BufferedImage dosInnondation;
-    private final BufferedImage dosItemBleu;
-    private final BufferedImage dosInnondationBleu;
-    private BufferedImage imageItem;
-    private BufferedImage imageInnondation;
+    private final JLabel inondationPiocheNombre;
+    private final JLabel inondationDefausseNombre;
     private final JLabel labelImagePiocheItem;
     private final JLabel labelImageDefausseItem;
     private final JLabel labelImagePiocheInnondation;
     private final JLabel labelImageDefausseInnondation;
+    private final BufferedImage dosItem;
+    private final BufferedImage dosInondation;
+    private BufferedImage imageItem;
+    private BufferedImage imageInondationPioche;
+    private BufferedImage imageInondationDefausse;
 
     /* CONSTRUCTEURS */
     public EDeck() throws IOException {
-        deckInnondation = FactoryDeck.getDeckInondations();
+        deckInondation = FactoryDeck.getDeckInondations();
         deckItems = FactoryDeck.getDeckItems();
         // Définition des paramètres propre à l'EDeck
         this.setLayout(new GridLayout(1, 2, 5, 0));
         // Création des JPanels
         sideInondation = new JPanel(new GridLayout(2, 1));
         sideItem = new JPanel(new GridLayout(2, 1));
-        innondationPioche = new JPanel(new BorderLayout());
-        innodationDefausse = new JPanel(new BorderLayout());
+        inondationPioche = new JPanel(new BorderLayout());
+        inondationDefausse = new JPanel(new BorderLayout());
         itemPioche = new JPanel(new BorderLayout());
         itemDefausse = new JPanel(new BorderLayout());
         // Aménagement des JPanels
-        this.add(sideInondation);
-        this.add(sideItem);
-        sideInondation.add(innondationPioche);
-        sideInondation.add(innodationDefausse);
-        sideItem.add(itemPioche);
-        sideItem.add(itemDefausse);
-        // Couleur d'arrière plan pour tests
-        /*
-        this.setBackground(Color.DARK_GRAY);
-        sideInondation.setBackground(Color.RED);
-        sideItem.setBackground(Color.BLUE);
-        itemPioche.setBackground(Color.YELLOW);
-        itemDefausse.setBackground(Color.ORANGE);
-        innondationPioche.setBackground(Color.PINK);
-        innodationDefausse.setBackground(Color.MAGENTA);
-         */
+        this.add(this.getSideInondation());
+        this.add(this.getSideItem());
+        this.getSideInondation().add(this.getInondationPioche());
+        this.getSideInondation().add(this.getInondationDefausse());
+        this.getSideItem().add(this.getItemPioche());
+        this.getSideItem().add(this.getItemDefausse());
         // Création des JLabels
-        itemPiocheNombre = new JLabel(Integer.toString(this.getDeckItems().getPioche().size()));
-        itemDefausseNombre = new JLabel(Integer.toString(this.getDeckItems().getDefausse().size()));
-        innondationPiocheNombre = new JLabel("0");
-        innondationDefausseNombre = new JLabel("0");
+        itemPiocheNombre = new JLabel();
+        itemDefausseNombre = new JLabel();
+        inondationPiocheNombre = new JLabel();
+        inondationDefausseNombre = new JLabel();
         // Aménagement des JLabels
-        LABEL_ITEM.setHorizontalAlignment(JLabel.CENTER);
-        LABEL_ITEM.setVerticalAlignment(JLabel.CENTER);
-        LABEL_INNONDATION.setHorizontalAlignment(JLabel.CENTER);
-        LABEL_INNONDATION.setVerticalAlignment(JLabel.CENTER);
-        itemPiocheNombre.setHorizontalAlignment(JLabel.CENTER);
-        itemPiocheNombre.setVerticalAlignment(JLabel.CENTER);
-        itemDefausseNombre.setHorizontalAlignment(JLabel.CENTER);
-        itemDefausseNombre.setVerticalAlignment(JLabel.CENTER);
-        innondationPiocheNombre.setHorizontalAlignment(JLabel.CENTER);
-        innondationPiocheNombre.setVerticalAlignment(JLabel.CENTER);
-        innondationDefausseNombre.setHorizontalAlignment(JLabel.CENTER);
-        innondationDefausseNombre.setVerticalAlignment(JLabel.CENTER);
-        itemPioche.add(LABEL_ITEM, BorderLayout.NORTH);
-        itemPioche.add(itemPiocheNombre, BorderLayout.SOUTH);
-        itemDefausse.add(itemDefausseNombre, BorderLayout.SOUTH);
-        innondationPioche.add(LABEL_INNONDATION, BorderLayout.NORTH);
-        innondationPioche.add(innondationPiocheNombre, BorderLayout.SOUTH);
-        innodationDefausse.add(innondationDefausseNombre, BorderLayout.SOUTH);
+        EDeck.getLABEL_ITEM().setHorizontalAlignment(JLabel.CENTER);
+        EDeck.getLABEL_ITEM().setVerticalAlignment(JLabel.CENTER);
+        EDeck.getLABEL_INONDATION().setHorizontalAlignment(JLabel.CENTER);
+        EDeck.getLABEL_INONDATION().setVerticalAlignment(JLabel.CENTER);
+        this.getItemPiocheNombre().setHorizontalAlignment(JLabel.CENTER);
+        this.getItemPiocheNombre().setVerticalAlignment(JLabel.CENTER);
+        this.getItemDefausseNombre().setHorizontalAlignment(JLabel.CENTER);
+        this.getItemDefausseNombre().setVerticalAlignment(JLabel.CENTER);
+        this.getInondationPiocheNombre().setHorizontalAlignment(JLabel.CENTER);
+        this.getInondationPiocheNombre().setVerticalAlignment(JLabel.CENTER);
+        this.getInondationDefausseNombre().setHorizontalAlignment(JLabel.CENTER);
+        this.getInondationDefausseNombre().setVerticalAlignment(JLabel.CENTER);
+        this.getItemPioche().add(LABEL_ITEM, BorderLayout.NORTH);
+        this.getItemPioche().add(itemPiocheNombre, BorderLayout.SOUTH);
+        this.getItemDefausse().add(itemDefausseNombre, BorderLayout.SOUTH);
+        this.getInondationPioche().add(LABEL_INONDATION, BorderLayout.NORTH);
+        this.getInondationPioche().add(inondationPiocheNombre, BorderLayout.SOUTH);
+        this.getInondationDefausse().add(inondationDefausseNombre, BorderLayout.SOUTH);
         // Création et chargement des images de base
-        dosItem = ImageIO.read(new File(IMAGE_PREFIXE_DECK + "dosPioche" + IMAGE_EXTENSION));
-        dosItemBleu = ImageIO.read(new File(IMAGE_PREFIXE_DECK + "dosPiocheBleu" + IMAGE_EXTENSION));
-        dosInnondation = ImageIO.read(new File(IMAGE_PREFIXE_DECK + "dosDefausse" + IMAGE_EXTENSION));
-        dosInnondationBleu = ImageIO.read(new File(IMAGE_PREFIXE_DECK + "dosDefausseBleu" + IMAGE_EXTENSION));
-
-        imageItem = dosItem;
-        imageInnondation = dosInnondation;
+        dosItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "Fond rouge" + IMAGE_EXTENSION));
+        dosInondation = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "Fond bleu" + IMAGE_EXTENSION));
+        this.setImageItem(this.getDosItem());
+        this.setImageInondationPioche(this.getDosInondation());
+        this.setImageInondationDefausse(this.getImageInondationPioche()); // La défausse est (normalement) vide à l'initialisation donc ça ne gène en rien, on fait ça par précaution
         // Création des JPanels contenant les images (& Override paintComponent)
-        labelImagePiocheItem = new JLabel(new ImageIcon(imageItem)) {
+        labelImagePiocheItem = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(imageItem, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                g.drawImage(getImageItem(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
             }
         };
         labelImageDefausseItem = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(dosItemBleu, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                g.drawImage(getDosItem(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
             }
         };
         labelImagePiocheInnondation = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(imageInnondation, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                g.drawImage(getImageInondationPioche(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
             }
         };
         labelImageDefausseInnondation = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(dosInnondationBleu, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                g.drawImage(getImageInondationDefausse(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
             }
         };
         // Aménagement des images
-        itemPioche.add(labelImagePiocheItem);
-        itemDefausse.add(labelImageDefausseItem);
-        innondationPioche.add(labelImagePiocheInnondation);
-        innodationDefausse.add(labelImageDefausseInnondation);
+        this.getItemPioche().add(getLabelImagePiocheItem());
+        this.getItemDefausse().add(getLabelImageDefausseItem());
+        this.getInondationPioche().add(getLabelImagePiocheInnondation());
+        this.getInondationDefausse().add(getLabelImageDefausseInnondation());
     }
 
     /* METHODES */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        itemPiocheNombre.setText(Integer.toString(this.getDeckItems().getPioche().size()));
-        itemDefausseNombre.setText(Integer.toString(this.getDeckItems().getDefausse().size()));
-        //innondationPiocheNombre.setText(Integer.toString(deckInnondation.getPioche().size()));
-        //innondationDefausseNombre.setText(Integer.toString(deckInnondation.getPioche().size()));
+        this.getItemPiocheNombre().setText(Integer.toString(this.getDeckItems().getPioche().size()));
+        this.getItemDefausseNombre().setText(Integer.toString(this.getDeckItems().getDefausse().size()));
+        this.getInondationPiocheNombre().setText(Integer.toString(this.getDeckInondation().getPioche().size()));
+        this.getInondationDefausseNombre().setText(Integer.toString(this.getDeckInondation().getDefausse().size()));
     }
 
     /**
      * Animation qui retourne la première carte de la pioche (Items) Toujours du
-     * dos vers la face et joue un son en même temps
-     *
-     *
-     * @throws java.io.IOException
+     * dos vers la face et joue un son en même temps *
      */
-    public void retournerCartePioche() throws IOException {
-        imageItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + this.getDeckItems().getPioche().get(0).getImage() + IMAGE_EXTENSION));
-        Sound.play("src/sons/carte/carteFlip.wav");
+    private void retournerCartePioche() {
+        String location = IMAGE_PREFIXE_CARTE + this.getDeckItems().getPioche().get(0).getImage() + IMAGE_EXTENSION;
+        try {
+            this.setImageItem(ImageIO.read(new File(location)));
+            Sound.play(SON_CARTE_FLIP_CHEMIN);
+        } catch (IOException ex) {
+            System.out.println("Project.views.Elements.EDeck.retournerCartePioche()");
+            System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+        }
     }
 
     /**
-     * Animation qui retourne la première carte de la pioche (Innondation)
+     * Animation qui retourne la première carte de la pioche (Inondation)
      * Toujours du dos vers la face et joue un son en même temps
-     *
-     * @throws IOException
      */
-    public void retournerCarteInnondation() throws IOException {
-        imageInnondation = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + deckInnondation.getPioche().get(0).getImage() + IMAGE_EXTENSION)); // ERREUR ICI, VOIR AVEC LE NOM DU FICHIER
-        Sound.play("src/sons/carte/carteFlip.wav");
+    private void retournerCarteInnondation() {
+        String location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckInondation().getPioche().get(0).getNom()) + IMAGE_EXTENSION;
+        try {
+            this.setImageInondationPioche(ImageIO.read(new File(location)));
+            Sound.play(SON_CARTE_FLIP_CHEMIN);
+        } catch (IOException ex) {
+            System.out.println("Project.views.Elements.EDeck.retournerCarteInnondation()");
+            System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+        }
     }
 
     /**
      * Animation qui fait piocher dans le deck Item
-     *
-     * @throws java.io.IOException
-     * @throws java.lang.InterruptedException
      */
-    public void piocherItem() throws IOException, InterruptedException {
-        this.retournerCartePioche();
-        this.repaint();
-        TimeUnit.SECONDS.sleep(1);
-        this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
-        this.getDeckItems().retirerCartePioche(0);
-        imageItem = dosItem;
-        this.repaint();
-        TimeUnit.SECONDS.sleep(1);
+    private void piocherItem() {
+        try {
+            this.retournerCartePioche();
+            this.repaint();
+            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+            this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
+            this.setImageItem(dosItem);
+            this.animationDragPiocheToDefausseItem();
+            this.getDeckItems().retirerCartePioche(0);
+            this.repaint();
+            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(ex);
+        }
     }
 
-    public void piocherInnondation() throws IOException, InterruptedException {
-        this.retournerCarteInnondation();
-        this.repaint();
-        TimeUnit.SECONDS.sleep(1);
-        this.getDeckInnondation().addCarteDefausseDebut(this.getDeckInnondation().getPioche().get(0));
-        this.getDeckItems().retirerCartePioche(0);
-        imageInnondation = dosInnondation;
-        this.repaint();
-        TimeUnit.SECONDS.sleep(1);
+    /**
+     * Animation qui fait piocher dans le deck Inondation
+     */
+    private void piocherInondation() {
+        try {
+            this.retournerCarteInnondation();
+            this.repaint();
+            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+            this.getDeckInondation().addCarteDefausseDebut(this.getDeckInondation().getPioche().get(0));
+            this.getDeckInondation().retirerCartePioche(0);
+            this.setImageInondationPioche(dosInondation);
+            String location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckInondation().getDefausse().get(0).getNom()) + IMAGE_EXTENSION;
+            try {
+                this.setImageInondationDefausse(ImageIO.read(new File(location)));
+            } catch (IOException ex) {
+                System.out.println("Project.views.Elements.EDeck.piocherInondation()");
+                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+            }
+            this.repaint();
+            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+        } catch (InterruptedException ex) {
+            Thread.currentThread().interrupt();
+            throw new RuntimeException(ex);
+        }
+    }
 
+    /**
+     * Utilisé pour récupérer le nom de l'image associé à une carte
+     *
+     * @param string La chaîne de caractère à nettoyer
+     * @return la chaîne de caractère sans espace ni apostrophe
+     */
+    private String cleanString(String string) {
+        return string.replaceAll("\\s", "").replaceAll("\'", "");
     }
 
     /**
      * Utilisé pour voir si les JLabels et les images se mettent bien à jour
-     *
-     * @throws java.io.IOException
-     * @throws java.lang.InterruptedException
      */
-    public void test() throws IOException, InterruptedException {
+    public void test() {
         int nbTour = this.getDeckItems().getPioche().size();
         for (int i = 0; i < nbTour; i++) {
             this.piocherItem();
-
         }
-        nbTour = this.getDeckInnondation().getPioche().size();
+
+        nbTour = this.getDeckInondation().getPioche().size();
         for (int i = 0; i < nbTour; i++) {
-            this.piocherInnondation();
+            this.piocherInondation();
         }
 
+    }
+
+    /**
+     * Animation qui déplace la carte piochée dans la défausse (item)
+     */
+    private void animationDragPiocheToDefausseItem() {
+        Deck deck = this.getDeckItems();
+        Graphics g = this.getGraphics();
+        double deplacementY = (this.getLabelImageDefausseItem().getHeight() - this.getLabelImagePiocheItem().getHeight()) / EDeck.getNOMBRE_FRAMES_ANIMATION(); // pas de déplacement X car les JPanels sont alignés
+        
+        for (int i = 0; i < EDeck.getNOMBRE_FRAMES_ANIMATION(); i++) {
+            //g.drawImage(getImageItem(), this.getLabelImagePiocheItem().getWidth(), this.getLabelImageDefausseItem().getHeight() + (int) (deplacementY * i), (int) this.getLabelImagePiocheItem().getSize().getWidth(), (int) this.getLabelImagePiocheItem().getSize().getHeight(), null);
+            System.out.println("UPDATE"); // JE SUIS COINCE ALED
+            this.repaint();
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException ex) {
+                Thread.currentThread().interrupt();
+                throw new RuntimeException(ex);
+            }
+
+        }
     }
 
     /* GETTERS & SETTERS */
-    public Deck getDeckItems() {
+    private Deck getDeckItems() {
         return deckItems;
     }
 
-    public Deck getDeckInnondation() {
-        return deckInnondation;
+    private Deck getDeckInondation() {
+        return deckInondation;
+    }
+
+    public BufferedImage getImageInondationPioche() {
+        return imageInondationPioche;
+    }
+
+    public BufferedImage getImageInondationDefausse() {
+        return imageInondationDefausse;
+    }
+
+    public BufferedImage getImageItem() {
+        return imageItem;
+    }
+
+    public JLabel getItemDefausseNombre() {
+        return itemDefausseNombre;
+    }
+
+    public JLabel getItemPiocheNombre() {
+        return itemPiocheNombre;
+    }
+
+    public JLabel getInondationDefausseNombre() {
+        return inondationDefausseNombre;
+    }
+
+    public JLabel getInondationPiocheNombre() {
+        return inondationPiocheNombre;
+    }
+
+    public JPanel getSideInondation() {
+        return sideInondation;
+    }
+
+    public JPanel getSideItem() {
+        return sideItem;
+    }
+
+    public JPanel getItemPioche() {
+        return itemPioche;
+    }
+
+    public JPanel getItemDefausse() {
+        return itemDefausse;
+    }
+
+    public JPanel getInondationPioche() {
+        return inondationPioche;
+    }
+
+    public JPanel getInondationDefausse() {
+        return inondationDefausse;
+    }
+
+    public BufferedImage getDosItem() {
+        return dosItem;
+    }
+
+    public BufferedImage getDosInondation() {
+        return dosInondation;
+    }
+
+    public JLabel getLabelImagePiocheItem() {
+        return labelImagePiocheItem;
+    }
+
+    public JLabel getLabelImageDefausseItem() {
+        return labelImageDefausseItem;
+    }
+
+    public JLabel getLabelImagePiocheInnondation() {
+        return labelImagePiocheInnondation;
+    }
+
+    public JLabel getLabelImageDefausseInnondation() {
+        return labelImageDefausseInnondation;
+    }
+
+    public static String getIMAGE_PREFIXE_CARTE() {
+        return IMAGE_PREFIXE_CARTE;
+    }
+
+    public static String getIMAGE_EXTENSION() {
+        return IMAGE_EXTENSION;
+    }
+
+    public static JLabel getLABEL_ITEM() {
+        return LABEL_ITEM;
+    }
+
+    public static JLabel getLABEL_INONDATION() {
+        return LABEL_INONDATION;
+    }
+
+    public static int getNOMBRE_FRAMES_ANIMATION() {
+        return NOMBRE_FRAMES_ANIMATION;
+    }
+
+    public static String getSON_CARTE_FLIP_CHEMIN() {
+        return SON_CARTE_FLIP_CHEMIN;
+    }
+
+    public static int getDELAI_ANIMATION() {
+        return DELAI_ANIMATION;
+    }
+
+    public void setImageInondationPioche(BufferedImage imageInondationPioche) {
+        this.imageInondationPioche = imageInondationPioche;
+    }
+
+    public void setImageItem(BufferedImage imageItem) {
+        this.imageItem = imageItem;
+    }
+
+    public void setImageInondationDefausse(BufferedImage imageInondationDefausse) {
+        this.imageInondationDefausse = imageInondationDefausse;
     }
 
 }

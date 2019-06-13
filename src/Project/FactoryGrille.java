@@ -42,7 +42,7 @@ public class FactoryGrille {
             "Le Temple de La Lune",
             "Le Palais des Marees",
             "Le Val du Crepuscule",
-            "La Tour du Guet",
+            "La Tour de Guet",
             "Le Jardin des Murmures"
     };
 

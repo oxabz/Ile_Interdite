@@ -11,6 +11,8 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class Vue {
@@ -83,8 +85,12 @@ public class Vue {
         return WINDOW_SIZE_Y;
     }
 
-    public static void main(String[] args) throws IOException, InterruptedException {
-        Vue fenetre = new Vue();
+    public static void main(String[] args) throws IOException {
+        try {
+            Vue fenetre = new Vue();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Vue.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }
