@@ -3,18 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/views/Vue.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Cartes/CartesItem/CarteBonus.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Deck.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/util/Sound.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Cartes/CartesItem/CarteMEau.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Cartes/CarteItem.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Cartes/CartesItem/CarteTresor.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/FactoryDeck.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/views/Elements/EDeck.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Cartes/CartesItem/CarteSacSable.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Carte.java</file>
-            <file>file:/users/info/etu-s2/seiglebq/SB/ile_interdite/src/Project/Modele/Cartes/CartesItem/CarteHelicoptere.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/Modele/Cartes/CarteInondation.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/FactoryGrille.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/util/Sound.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/Modele/Tuile.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/Controleur.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/views/Elements/EDeck.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/FactoryDeck.java</file>
+            <file>file:/C:/Users/E570/SB/Ile_Interdite/src/Project/views/Vue.java</file>
         </group>
     </open-files>
 </project-private>

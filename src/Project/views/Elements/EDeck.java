@@ -6,10 +6,13 @@ import Project.util.Sound;
 import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -183,7 +186,7 @@ public final class EDeck extends JPanel {
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
             this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
             this.setImageItem(dosItem);
-            this.animationDragPiocheToDefausseItem();
+            this.animationDrag(this.getDeckItems().getDefausse().get(0).getImage(), this.getLabelImagePiocheItem().getLocationOnScreen(), this.getLabelImageDefausseItem().getLocationOnScreen(), this.getGraphics(), (int) this.getLabelImagePiocheItem().getSize().getWidth(), (int) this.getLabelImagePiocheItem().getSize().getHeight());
             this.getDeckItems().retirerCartePioche(0);
             this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
@@ -211,7 +214,6 @@ public final class EDeck extends JPanel {
                 System.out.println("Project.views.Elements.EDeck.piocherInondation()");
                 System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
             }
-            this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -246,26 +248,39 @@ public final class EDeck extends JPanel {
     }
 
     /**
-     * Animation qui déplace la carte piochée dans la défausse (item)
+     * Animation qui déplace l'image du premier point au second
      */
-    private void animationDragPiocheToDefausseItem() {
-        Deck deck = this.getDeckItems();
-        Graphics g = this.getGraphics();
-        double deplacementY = (this.getLabelImageDefausseItem().getHeight() - this.getLabelImagePiocheItem().getHeight()) / EDeck.getNOMBRE_FRAMES_ANIMATION(); // pas de déplacement X car les JPanels sont alignés
-        
-        for (int i = 0; i < EDeck.getNOMBRE_FRAMES_ANIMATION(); i++) {
-            //g.drawImage(getImageItem(), this.getLabelImagePiocheItem().getWidth(), this.getLabelImageDefausseItem().getHeight() + (int) (deplacementY * i), (int) this.getLabelImagePiocheItem().getSize().getWidth(), (int) this.getLabelImagePiocheItem().getSize().getHeight(), null);
-            System.out.println("UPDATE"); // JE SUIS COINCE ALED
-            this.repaint();
+    private void animationDrag(String imageString, Point pointDepart, Point pointArrive, Graphics g, int imageWidth, int imageHeight) {
+        double deplacementX;
+        double deplacementY;
+        double posX;
+        double posY;
+        BufferedImage image = null;
+        String location = EDeck.getIMAGE_PREFIXE_CARTE() + imageString + EDeck.getIMAGE_EXTENSION();
+        try {
+            image = ImageIO.read(new File(location));
+        } catch (IOException ex) {
+            System.out.println("Project.views.Elements.EDeck.animationDrag()");
+            System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+        }
+
+        deplacementX = pointArrive.getX() - pointDepart.getX();
+        deplacementY = pointArrive.getY() - pointDepart.getY();
+        posX = deplacementX / EDeck.getNOMBRE_FRAMES_ANIMATION();
+        posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
+
+        for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) { // Créer un JPanel qui override paintComponent() et qui se situe par dessus 2 autres jpanels sans les cacher ni modifier le comportement du LayoutManager
+            g.drawImage(image, (int) (j * posX + pointDepart.getX()), (int) (j * posY + pointDepart.getY()), imageWidth, imageHeight, null);
             try {
-                TimeUnit.SECONDS.sleep(1);
+                 TimeUnit.MILLISECONDS.sleep(500);
             } catch (InterruptedException ex) {
                 Thread.currentThread().interrupt();
                 throw new RuntimeException(ex);
             }
-
+            this.repaint();
         }
     }
+
 
     /* GETTERS & SETTERS */
     private Deck getDeckItems() {
