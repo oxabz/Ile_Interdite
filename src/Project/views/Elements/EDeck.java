@@ -4,8 +4,11 @@ import Project.FactoryDeck;
 import Project.Modele.Deck;
 import Project.util.Sound;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -219,7 +222,6 @@ public final class EDeck extends JPanel {
                 System.out.println("Project.views.Elements.EDeck.piocherInondation()");
                 System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
             }
-            this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -252,7 +254,6 @@ public final class EDeck extends JPanel {
         }
 
     }
-
 
     /* GETTERS & SETTERS */
     private Deck getDeckItems() {
@@ -378,6 +379,10 @@ public final class EDeck extends JPanel {
     public void setImageInondationDefausse(BufferedImage imageInondationDefausse) {
         this.imageInondationDefausse = imageInondationDefausse;
     }
+    
+    public EDeck getEDeck() {
+        return this;
+    }
 
     public LayerUI<JComponent> getLayerUIAnimationDrag() {
         return layerUIAnimationDrag;
@@ -386,25 +391,40 @@ public final class EDeck extends JPanel {
     public JLayer<JComponent> getJlayerAnimationDrag() {
         return jlayerAnimationDrag;
     }
-    
-    
-
+    /* Inner class LayerUI<JComponent> pour dessiner animation de drag d'une carte */
     class AnimationDrag extends LayerUI<JComponent> {
-
+        /* ATTRIBUTS */
+        EDeck edeck = getEDeck();
+        /* METHODES */
         @Override
         public void paint(Graphics g, JComponent c) {
             super.paint(g, c);
-            double deplacementY = (getLabelImageDefausseItem().getLocationOnScreen().getY() - getLabelImagePiocheItem().getLocationOnScreen().getY()) / EDeck.getNOMBRE_FRAMES_ANIMATION(); // pas de déplacement X car les JPanels sont alignés
-            for (int i = 0; i < EDeck.getNOMBRE_FRAMES_ANIMATION(); i++) {
-                g.drawImage(getImageItem(), (int) getLabelImagePiocheItem().getLocationOnScreen().getY(), getLabelImageDefausseItem().getHeight() + (int) (deplacementY * i), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
-                System.out.println("UPDATE");
+            double deplacementY;
+            double posY;
+            Point pointDepart;
+            Point pointArrive;
+            BufferedImage image = null;
+            String location = EDeck.getIMAGE_PREFIXE_CARTE() + getDeckItems().getDefausse().get(0).getImage() + EDeck.getIMAGE_EXTENSION();
+            try {
+                image = ImageIO.read(new File(location));
+            } catch (IOException ex) {
+                System.out.println("Project.views.Elements.EDeck.AnimationDrag.paint()");
+                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+            }
+            for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
+                
+                pointDepart = getLabelImagePiocheItem().getLocationOnScreen();
+                pointArrive = getLabelImageDefausseItem().getLocationOnScreen();
+                deplacementY = pointArrive.getY() - pointDepart.getY();
+                posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
+                g.drawImage(image, (int) (pointDepart.getX()), (int) ((j * posY) + pointDepart.getY()), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
                 try {
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 } catch (InterruptedException ex) {
                     Thread.currentThread().interrupt();
                     throw new RuntimeException(ex);
                 }
-
+                
             }
 
         }
