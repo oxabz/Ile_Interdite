@@ -11,8 +11,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
+import javax.swing.JLayer;
 import javax.swing.JPanel;
+import javax.swing.plaf.LayerUI;
 
 public final class EDeck extends JPanel {
 
@@ -43,6 +46,8 @@ public final class EDeck extends JPanel {
     private final JLabel labelImageDefausseInnondation;
     private final BufferedImage dosItem;
     private final BufferedImage dosInondation;
+    private final LayerUI<JComponent> layerUIAnimationDrag;
+    private final JLayer<JComponent> jlayerAnimationDrag;
     private BufferedImage imageItem;
     private BufferedImage imageInondationPioche;
     private BufferedImage imageInondationDefausse;
@@ -131,6 +136,9 @@ public final class EDeck extends JPanel {
         this.getItemDefausse().add(getLabelImageDefausseItem());
         this.getInondationPioche().add(getLabelImagePiocheInnondation());
         this.getInondationDefausse().add(getLabelImageDefausseInnondation());
+        // Layer
+        layerUIAnimationDrag = new AnimationDrag();
+        jlayerAnimationDrag = new JLayer<>(this, layerUIAnimationDrag);
     }
 
     /* METHODES */
@@ -183,7 +191,7 @@ public final class EDeck extends JPanel {
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
             this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
             this.setImageItem(dosItem);
-            this.animationDragPiocheToDefausseItem();
+            this.getJlayerAnimationDrag().paint(this.getGraphics());
             this.getDeckItems().retirerCartePioche(0);
             this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
@@ -245,27 +253,6 @@ public final class EDeck extends JPanel {
 
     }
 
-    /**
-     * Animation qui déplace la carte piochée dans la défausse (item)
-     */
-    private void animationDragPiocheToDefausseItem() {
-        Deck deck = this.getDeckItems();
-        Graphics g = this.getGraphics();
-        double deplacementY = (this.getLabelImageDefausseItem().getHeight() - this.getLabelImagePiocheItem().getHeight()) / EDeck.getNOMBRE_FRAMES_ANIMATION(); // pas de déplacement X car les JPanels sont alignés
-        
-        for (int i = 0; i < EDeck.getNOMBRE_FRAMES_ANIMATION(); i++) {
-            //g.drawImage(getImageItem(), this.getLabelImagePiocheItem().getWidth(), this.getLabelImageDefausseItem().getHeight() + (int) (deplacementY * i), (int) this.getLabelImagePiocheItem().getSize().getWidth(), (int) this.getLabelImagePiocheItem().getSize().getHeight(), null);
-            System.out.println("UPDATE"); // JE SUIS COINCE ALED
-            this.repaint();
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException ex) {
-                Thread.currentThread().interrupt();
-                throw new RuntimeException(ex);
-            }
-
-        }
-    }
 
     /* GETTERS & SETTERS */
     private Deck getDeckItems() {
@@ -390,6 +377,38 @@ public final class EDeck extends JPanel {
 
     public void setImageInondationDefausse(BufferedImage imageInondationDefausse) {
         this.imageInondationDefausse = imageInondationDefausse;
+    }
+
+    public LayerUI<JComponent> getLayerUIAnimationDrag() {
+        return layerUIAnimationDrag;
+    }
+
+    public JLayer<JComponent> getJlayerAnimationDrag() {
+        return jlayerAnimationDrag;
+    }
+    
+    
+
+    class AnimationDrag extends LayerUI<JComponent> {
+
+        @Override
+        public void paint(Graphics g, JComponent c) {
+            super.paint(g, c);
+            double deplacementY = (getLabelImageDefausseItem().getLocationOnScreen().getY() - getLabelImagePiocheItem().getLocationOnScreen().getY()) / EDeck.getNOMBRE_FRAMES_ANIMATION(); // pas de déplacement X car les JPanels sont alignés
+            for (int i = 0; i < EDeck.getNOMBRE_FRAMES_ANIMATION(); i++) {
+                g.drawImage(getImageItem(), (int) getLabelImagePiocheItem().getLocationOnScreen().getY(), getLabelImageDefausseItem().getHeight() + (int) (deplacementY * i), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
+                System.out.println("UPDATE");
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException(ex);
+                }
+
+            }
+
+        }
+
     }
 
 }
