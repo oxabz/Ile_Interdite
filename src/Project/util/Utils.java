@@ -118,6 +118,7 @@ public class Utils {
     public static class View {
         private final static String IMAGE_PREFIXE_CARTE = "src/images/cartes/";
         private final static String IMAGE_EXTENSION = ".png";
+        private final static String IMAGE_PREFIXE_TRESOR = "src/images/tresors/";
         private final static String CHEMIN_SON = "src/sons/";
         private final static int NOMBRE_FRAMES_ANIMATION = 30;
 
@@ -135,6 +136,10 @@ public class Utils {
 
         public static int getNombreFramesAnimation() {
             return NOMBRE_FRAMES_ANIMATION;
+        }
+
+        public static String getImagePrefixeTresor() {
+            return IMAGE_PREFIXE_TRESOR;
         }
     }
 }
