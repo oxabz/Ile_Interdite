@@ -42,7 +42,7 @@ public class Controleur implements Observeur {
         initialiserPartie();
 
         vue = new Vue();
-        vue.init
+        vue.initialiserGrille(grille.getNames());
     }
 
     private final static Controleur controleur = new Controleur();
@@ -61,7 +61,7 @@ public class Controleur implements Observeur {
         System.out.println("Choisissez une case (dans la fenetre):");
 
         if (!clickables.isEmpty()) {
-            vueGrille.allumerTuiles(clickables);
+            vue.getGrille().setClickables(clickables,true);
 
             Vector2 pos = new Vector2(0, 0);
             boolean done = false;
@@ -76,7 +76,7 @@ public class Controleur implements Observeur {
                 }
             }
 
-            vueGrille.eteindreTuiles();
+            vue.getGrille().setClickables(clickables,false);
             return pos;
         }
         return null;
@@ -266,7 +266,7 @@ public class Controleur implements Observeur {
                             nbAction++;
                             break;
                     }
-                    vueGrille.resetColors(grille.getInnondee(), grille.getCoulee());
+                    vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
                 }
 
                 /*

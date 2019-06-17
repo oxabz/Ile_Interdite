@@ -63,11 +63,11 @@ public class EGrille extends JPanel {
         vue.notifierObserver(m);
     }
 
-    public void setClickables(ArrayList<Vector2> positions){
+    public void setClickables(ArrayList<Vector2> positions,boolean aBoolean){
         for (Vector2 pos:
              positions) {
             ECase tuile = eCases[pos.x][pos.y];
-            tuile.setClickable(true);
+            tuile.setClickable(aBoolean);
         }
     }
 

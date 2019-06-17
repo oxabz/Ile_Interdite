@@ -85,5 +85,31 @@ public class Vue extends Observe {
     }
 
 
+    public EGrille getGrille(){
+        return grille;
+    }
 
+
+
+    public enum IhmMode{
+        POSITION,
+        AVENTURIER,
+        ACTION,
+        MAIN,
+    }
+
+    public void SetMode(IhmMode ihmMode){
+        switch (ihmMode){
+            case ACTION:
+                EActions.
+                break;
+            case POSITION:
+                break;
+            case MAIN:
+                break;
+            case AVENTURIER:
+                break;
+
+        }
+    }
 }
