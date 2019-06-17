@@ -35,6 +35,8 @@ public class EActions extends JPanel {
     /* CONSTRUCTEUR */
     public EActions(Vue vue) {
 
+        this.setLayout(new GridLayout(2,3));
+
         this.vue = vue;
         boutons = new ArrayList<>();
 

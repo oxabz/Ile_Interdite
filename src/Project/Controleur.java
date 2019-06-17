@@ -39,9 +39,11 @@ public class Controleur implements Observeur {
         grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
 
+
         initialiserPartie();
 
         vue = new Vue();
+        vue.setObserveur(this);
         vue.initialiserGrille(grille.getNames());
     }
 
@@ -57,6 +59,8 @@ public class Controleur implements Observeur {
     //Retourne une position selectioné dans les clickable
     public Vector2 getPosClick(ArrayList<Vector2> clickables) {
         //placeholder
+
+        vue.SetMode(Vue.IhmMode.POSITION);
 
         System.out.println("Choisissez une case (dans la fenetre):");
 
@@ -116,7 +120,7 @@ public class Controleur implements Observeur {
     //Retourne une action selectioné par l'aventurier d'index aventurierIndex
     Utils.Action getSelectedAction(int aventurierIndex) {
 
-        vuesAventurier.get(aventurierIndex).setMode(1, "");
+        vue.SetMode(Vue.IhmMode.ACTION);
 
         Utils.Action act = Utils.Action.SE_DEPLACER;
         boolean done = false;
@@ -130,9 +134,6 @@ public class Controleur implements Observeur {
                 }
             }
         }
-
-        vuesAventurier.get(aventurierIndex).setMode(0, "");
-
         return act;
 
         //Console based I/O deprecated
@@ -160,7 +161,7 @@ public class Controleur implements Observeur {
 
     //Permet de selectionner un aventurier un aventurier
     public Aventurier getAventurier(int indexAventurier) {
-        vuesAventurier.get(indexAventurier).setMode(2, "veuillez entrer un nom d'aventurier : ");
+        vue.SetMode(Vue.IhmMode.AVENTURIER);
 
         String s = "";
         boolean done = false;
@@ -175,7 +176,6 @@ public class Controleur implements Observeur {
             }
         }
 
-        vuesAventurier.get(indexAventurier).setMode(0, "");
         for (Aventurier av
                 : aventuriers) {
             if (av.getNom().equals(s)) {
@@ -188,8 +188,7 @@ public class Controleur implements Observeur {
 
     //Permet de selectinner une carte
     public Carte getCarteSelectionne(int currentAventurier) {
-
-        vuesAventurier.get(currentAventurier).setMode(2, "veuillez entrer le nom d'une carte : ");
+        vue.SetMode(Vue.IhmMode.MAIN);
 
         String s = "";
         boolean done = false;
@@ -205,7 +204,6 @@ public class Controleur implements Observeur {
         }
 
         ArrayList<CarteItem> cartes = aventuriers.get(currentAventurier).getCarteItems();
-        vuesAventurier.get(currentAventurier).setMode(0, "");
         for (CarteItem c
                 : cartes) {
             if (c.getNom().equals(s)) {
@@ -354,10 +352,7 @@ public class Controleur implements Observeur {
             av.setJoueur(nomJ);
             System.out.println(av.getJoueur() + " sera " + av.getNom());
 
-            //initialisation des interface
-            VueAventurier vueAventurier = new VueAventurier(nomJ, av.getNom());
-            vueAventurier.setObserveur(this);
-            vuesAventurier.add(vueAventurier);
+
 
         }
 
