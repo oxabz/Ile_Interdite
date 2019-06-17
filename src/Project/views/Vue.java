@@ -32,13 +32,11 @@ public class Vue {
 
     public Vue() throws IOException, InterruptedException {        
         this.configureWindow(window);
-        //deck = new EDeck();    
-        //actions = new EActions();
-        main = new EMain();
-        window.add(main, BorderLayout.CENTER);
-        window.setVisible(true);       
-        //deck.test();
-        
+        /*deck = new EDeck();
+        window.add(deck, BorderLayout.CENTER);*/
+        informations = new EInfo();
+        window.add(informations, BorderLayout.CENTER);
+        window.setVisible(true);
     }
 
     private void configureWindow(JFrame window) {
@@ -93,6 +91,10 @@ public class Vue {
         } catch (InterruptedException ex) {
             Logger.getLogger(Vue.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public EInfo getInformations() {
+        return informations;
     }
 
 }
