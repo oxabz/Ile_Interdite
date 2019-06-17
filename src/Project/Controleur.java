@@ -6,9 +6,11 @@ import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.util.*;
+import Project.views.Vue;
 import Project.views.VueAventurier;
 import Project.views.VueGrille;
 
+import javax.naming.InitialContext;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,8 +25,7 @@ public class Controleur implements Observeur {
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState;
 
-    private VueGrille vueGrille;
-    private ArrayList<VueAventurier> vuesAventurier;
+    private Vue vue;
 
     private Deque<Message> messages = new ArrayDeque<>();
 
@@ -37,10 +38,11 @@ public class Controleur implements Observeur {
     private Controleur() {
         grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
-        vueGrille = new VueGrille(grille.getSizeX(), grille.getSizeY(), grille.getCoulee(), grille.getInnondee());
-        vueGrille.setObserveur(this);
 
-        vuesAventurier = new ArrayList<>();
+        initialiserPartie();
+
+        vue = new Vue();
+        vue.init
     }
 
     private final static Controleur controleur = new Controleur();
