@@ -1,23 +1,25 @@
 package Project.views;
 
-import Project.views.Elements.EActions;
-import Project.views.Elements.EDeck;
-import Project.views.Elements.EGrille;
-import Project.views.Elements.EInfo;
-import Project.views.Elements.EJoueur;
-import Project.views.Elements.EMain;
-import Project.views.Elements.ENiveauDEau;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.io.IOException;
-import java.util.HashMap;
-import javax.swing.JFrame;
+import Project.Controleur;
+import Project.Modele.Deck;
+import Project.Modele.Grille;
+import Project.util.Observe;
+import Project.util.Vector2;
+import Project.views.Elements.*;
 
-public class Vue {
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+
+public class Vue extends Observe {
 
     private final static int WINDOW_SIZE_X = 980;
     private final static int WINDOW_SIZE_Y = 600;
-    private JFrame window = new JFrame("L'Île interdite");
+    private JFrame window;
+    private GridBagConstraints constraints;
 
     //Elements
     private EGrille grille;
@@ -28,10 +30,36 @@ public class Vue {
     private EMain main;
     private EActions actions;
 
-    public Vue() throws IOException {        
+
+
+    public Vue()  {
+        window = new JFrame("L'Île interdite");
         this.configureWindow(window);
+
+        constraints = new GridBagConstraints();
+        constraints.fill = GridBagConstraints.BOTH;
+        constraints.weightx = 1;
+        constraints.weighty = 1;
+        window.setLayout(new GridBagLayout());
+
+        listeJoueurs = new HashMap<>();
         deck = new EDeck();
-        window.add(deck, BorderLayout.CENTER);
+        actions = new EActions(this);
+        main = new EMain();
+
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        constraints.gridx = 2;
+        constraints.gridy = 4;
+        window.add(deck,constraints);
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 4;
+        window.add(actions,constraints);
+
+
+
         window.setVisible(true);
     }
 
@@ -74,8 +102,80 @@ public class Vue {
         return WINDOW_SIZE_Y;
     }
 
-    public static void main(String[] args) throws IOException {
-        Vue fenetre = new Vue();
+    public static void main(String[] args) {
+        Vue ihme = new Vue();
+        ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
+        ihme.grille.updateGrid(Controleur.getControleur().getGrille().getInnondee(),Controleur.getControleur().getGrille().getCoulee());
     }
 
+    public void initialiserGrille(String [][] names){
+        grille = new EGrille(names[0].length, names.length,names,this);
+
+        constraints.gridwidth = 3;
+        constraints.gridheight = 4;
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        window.add(grille,constraints);
+
+        grille.paint(window.getGraphics());
+
+    }
+
+
+    public EGrille getGrille(){
+        return grille;
+    }
+
+
+
+    public enum IhmMode{
+        POSITION,
+        AVENTURIER,
+        ACTION,
+        MAIN,
+    }
+
+    public void SetMode(IhmMode ihmMode){
+        switch (ihmMode){
+            case ACTION:
+                actions.setEnabled(true);
+                grille.setEnabled(false);
+                main.setEnabled(false);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
+                break;
+            case POSITION:
+                actions.setEnabled(false);
+                grille.setEnabled(true);
+                main.setEnabled(false);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
+                break;
+            case MAIN:
+
+                actions.setEnabled(false);
+                grille.setEnabled(false);
+                main.setEnabled(true);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
+                break;
+            case AVENTURIER:
+
+                actions.setEnabled(false);
+                grille.setEnabled(false);
+                main.setEnabled(false);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
+                break;
+
+        }
+    }
 }

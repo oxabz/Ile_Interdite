@@ -1,4 +1,123 @@
 package Project.views.Elements;
 
-public class EActions {
+import Project.util.Message;
+import Project.util.MessageType;
+import Project.util.Observe;
+import Project.util.Utils;
+import Project.views.Vue;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class EActions extends JPanel {
+
+    /* CONSTANTES */
+    private static final JPanel PANEL = new JPanel();
+    public static final int ACTION_MODE = 1;
+    public static final int PARAMETER_MODE = 2;
+    public static final int STOP_MODE = 0;
+    /* ATTRIBUTS */
+
+    private final ArrayList<JButton> boutons;
+    private Vue vue;
+
+
+    /* CONSTRUCTEUR */
+    public EActions(Vue vue) {
+
+        this.setLayout(new GridLayout(2,3));
+
+        this.vue = vue;
+        boutons = new ArrayList<>();
+
+        JButton seDeplacerButon = new JButton("se deplacer");
+        this.add(seDeplacerButon);
+        seDeplacerButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.SE_DEPLACER;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(seDeplacerButon);
+
+        JButton assecherButon = new JButton("assecher");
+        this.add(assecherButon);
+        assecherButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.ASSECHER;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(assecherButon);
+
+        JButton donnerCarteButon = new JButton("donner carte");
+        this.add(donnerCarteButon);
+        donnerCarteButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.DON_CARTE;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(donnerCarteButon);
+
+        JButton prendreTresorButon = new JButton("prendre tresor");
+        this.add(prendreTresorButon);
+        prendreTresorButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.PRENDRE_TRESOR;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(prendreTresorButon);
+
+        JButton finDeTourButon = new JButton("fin de tour");
+        this.add(finDeTourButon);
+        finDeTourButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.FIN_TOUR;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(finDeTourButon);
+
+        JButton utiliserCarteButon = new JButton("utiliser carte");
+        this.add(utiliserCarteButon);
+        utiliserCarteButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.UTILISER_CARTE;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(utiliserCarteButon);
+
+        for (JButton unBouton : boutons) {
+            unBouton.setEnabled(true);
+
+        }
+
+        this.setVisible(true);
+    }
+
 }

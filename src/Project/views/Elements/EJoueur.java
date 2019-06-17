@@ -1,4 +1,6 @@
 package Project.views.Elements;
 
-public class EJoueur {
+import javax.swing.*;
+
+public class EJoueur extends JPanel {
 }

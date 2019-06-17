@@ -6,9 +6,11 @@ import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.util.*;
+import Project.views.Vue;
 import Project.views.VueAventurier;
 import Project.views.VueGrille;
 
+import javax.naming.InitialContext;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -23,8 +25,7 @@ public class Controleur implements Observeur {
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState;
 
-    private VueGrille vueGrille;
-    private ArrayList<VueAventurier> vuesAventurier;
+    private Vue vue;
 
     private Deque<Message> messages = new ArrayDeque<>();
 
@@ -37,10 +38,13 @@ public class Controleur implements Observeur {
     private Controleur() {
         grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
-        vueGrille = new VueGrille(grille.getSizeX(), grille.getSizeY(), grille.getCoulee(), grille.getInnondee());
-        vueGrille.setObserveur(this);
 
-        vuesAventurier = new ArrayList<>();
+
+        initialiserPartie();
+
+        vue = new Vue();
+        vue.setObserveur(this);
+        vue.initialiserGrille(grille.getNames());
     }
 
     private final static Controleur controleur = new Controleur();
@@ -56,10 +60,12 @@ public class Controleur implements Observeur {
     public Vector2 getPosClick(ArrayList<Vector2> clickables) {
         //placeholder
 
+        vue.SetMode(Vue.IhmMode.POSITION);
+
         System.out.println("Choisissez une case (dans la fenetre):");
 
         if (!clickables.isEmpty()) {
-            vueGrille.allumerTuiles(clickables);
+            vue.getGrille().setClickables(clickables,true);
 
             Vector2 pos = new Vector2(0, 0);
             boolean done = false;
@@ -74,7 +80,7 @@ public class Controleur implements Observeur {
                 }
             }
 
-            vueGrille.eteindreTuiles();
+            vue.getGrille().setClickables(clickables,false);
             return pos;
         }
         return null;
@@ -114,7 +120,7 @@ public class Controleur implements Observeur {
     //Retourne une action selectioné par l'aventurier d'index aventurierIndex
     Utils.Action getSelectedAction(int aventurierIndex) {
 
-        vuesAventurier.get(aventurierIndex).setMode(1, "");
+        vue.SetMode(Vue.IhmMode.ACTION);
 
         Utils.Action act = Utils.Action.SE_DEPLACER;
         boolean done = false;
@@ -128,9 +134,6 @@ public class Controleur implements Observeur {
                 }
             }
         }
-
-        vuesAventurier.get(aventurierIndex).setMode(0, "");
-
         return act;
 
         //Console based I/O deprecated
@@ -158,7 +161,7 @@ public class Controleur implements Observeur {
 
     //Permet de selectionner un aventurier un aventurier
     public Aventurier getAventurier(int indexAventurier) {
-        vuesAventurier.get(indexAventurier).setMode(2, "veuillez entrer un nom d'aventurier : ");
+        vue.SetMode(Vue.IhmMode.AVENTURIER);
 
         String s = "";
         boolean done = false;
@@ -173,7 +176,6 @@ public class Controleur implements Observeur {
             }
         }
 
-        vuesAventurier.get(indexAventurier).setMode(0, "");
         for (Aventurier av
                 : aventuriers) {
             if (av.getNom().equals(s)) {
@@ -186,8 +188,7 @@ public class Controleur implements Observeur {
 
     //Permet de selectinner une carte
     public Carte getCarteSelectionne(int currentAventurier) {
-
-        vuesAventurier.get(currentAventurier).setMode(2, "veuillez entrer le nom d'une carte : ");
+        vue.SetMode(Vue.IhmMode.MAIN);
 
         String s = "";
         boolean done = false;
@@ -203,7 +204,6 @@ public class Controleur implements Observeur {
         }
 
         ArrayList<CarteItem> cartes = aventuriers.get(currentAventurier).getCarteItems();
-        vuesAventurier.get(currentAventurier).setMode(0, "");
         for (CarteItem c
                 : cartes) {
             if (c.getNom().equals(s)) {
@@ -264,7 +264,7 @@ public class Controleur implements Observeur {
                             nbAction++;
                             break;
                     }
-                    vueGrille.resetColors(grille.getInnondee(), grille.getCoulee());
+                    vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
                 }
 
                 /*
@@ -352,10 +352,7 @@ public class Controleur implements Observeur {
             av.setJoueur(nomJ);
             System.out.println(av.getJoueur() + " sera " + av.getNom());
 
-            //initialisation des interface
-            VueAventurier vueAventurier = new VueAventurier(nomJ, av.getNom());
-            vueAventurier.setObserveur(this);
-            vuesAventurier.add(vueAventurier);
+
 
         }
 
