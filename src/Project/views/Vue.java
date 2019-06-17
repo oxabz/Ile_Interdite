@@ -8,7 +8,8 @@ import Project.views.Elements.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 
 public class Vue extends Observe {
@@ -29,11 +30,13 @@ public class Vue extends Observe {
     public Vue()  {
         window = new JFrame("L'Île interdite");
         this.configureWindow(window);
+        deck = new EDeck();
+        window.add(deck, BorderLayout.CENTER);
         window.setVisible(true);
-
     }
 
     private void configureWindow(JFrame window) {
+        window.setBackground(Color.WHITE);
         window.setSize(getWINDOW_SIZE_X(), getWINDOW_SIZE_Y());
         window.getContentPane().setLayout(new java.awt.BorderLayout());
         window.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);

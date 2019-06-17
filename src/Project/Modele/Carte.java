@@ -5,14 +5,18 @@ public abstract class Carte {
     /*
     ATTRIBUTES
      */
-
     private String nom;
     private String image;
 
     /*
     CONSTRUCTOR
      */
-    public Carte(String image) {
+    public Carte(String nom) {
+        this.nom = nom;
+    }
+
+    public Carte(String nom, String image) {
+        this.nom = nom;
         this.image = image;
     }
 
@@ -20,7 +24,7 @@ public abstract class Carte {
     METHODS
      */
 
- /*
+    /*
     GETTER SETTER
      */
     public String getImage() {
@@ -34,4 +38,9 @@ public abstract class Carte {
     public void setNom(String nom) {
         this.nom = nom;
     }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
 }
