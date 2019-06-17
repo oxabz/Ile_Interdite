@@ -45,16 +45,16 @@ public final class EDeck extends JPanel {
     private final JLabel labelImageDefausseItem;
     private final JLabel labelImagePiocheInnondation;
     private final JLabel labelImageDefausseInnondation;
-    private final BufferedImage dosItem;
-    private final BufferedImage dosInondation;
     private final LayerUI<JComponent> layerUIAnimationDrag;
     private final JLayer<JComponent> jlayerAnimationDrag;
+    private BufferedImage dosItem;
+    private BufferedImage dosInondation;
     private BufferedImage imageItem;
     private BufferedImage imageInondationPioche;
     private BufferedImage imageInondationDefausse;
 
     /* CONSTRUCTEURS */
-    public EDeck() throws IOException {
+    public EDeck() {
         deckInondation = FactoryDeck.getDeckInondations();
         deckItems = FactoryDeck.getDeckItems();
         // Définition des paramètres propre à l'EDeck
@@ -98,8 +98,16 @@ public final class EDeck extends JPanel {
         this.getInondationPioche().add(inondationPiocheNombre, BorderLayout.SOUTH);
         this.getInondationDefausse().add(inondationDefausseNombre, BorderLayout.SOUTH);
         // Création et chargement des images de base
-        dosItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "Fond rouge" + IMAGE_EXTENSION));
-        dosInondation = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "Fond bleu" + IMAGE_EXTENSION));
+        dosItem = null;
+        dosInondation = null;
+        try {
+            dosItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "Fond rouge" + IMAGE_EXTENSION));
+            dosInondation = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "Fond bleu" + IMAGE_EXTENSION));
+        } catch (IOException ex) {
+            System.out.println("Project.views.Elements.EDeck.<init>()");
+            System.out.println("Erreur fichier : " + ex.getMessage() + " pour dos des cartes");
+
+        }
         this.setImageItem(this.getDosItem());
         this.setImageInondationPioche(this.getDosInondation());
         this.setImageInondationDefausse(this.getImageInondationPioche()); // La défausse est (normalement) vide à l'initialisation donc ça ne gène en rien, on fait ça par précaution
@@ -144,6 +152,7 @@ public final class EDeck extends JPanel {
         layerUIAnimationDrag = new AnimationDrag();
         jlayerAnimationDrag = new JLayer<>(this, layerUIAnimationDrag);
     }
+
 
     /* METHODES */
     @Override
@@ -233,7 +242,6 @@ public final class EDeck extends JPanel {
 
             });
             paintThread.start();
-                 
 
             this.getDeckItems()
                     .retirerCartePioche(0);
