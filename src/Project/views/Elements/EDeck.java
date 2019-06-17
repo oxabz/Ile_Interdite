@@ -4,11 +4,9 @@ import Project.FactoryDeck;
 import Project.Modele.Deck;
 import Project.util.Sound;
 import java.awt.BorderLayout;
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -194,7 +192,39 @@ public final class EDeck extends JPanel {
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
             this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
             this.setImageItem(dosItem);
-            this.getJlayerAnimationDrag().paint(this.getGraphics());
+            /**
+             *
+             */
+            Point pointDepart = new Point(getSideInondation().getWidth() + 5, getLABEL_ITEM().getHeight()); // On récupère les coordonnées comme ça car getLocationOnScreen() ne retourne pas les bonnes valeurs
+            Point pointArrive = new Point(getSideInondation().getWidth() + 5, getItemPioche().getHeight() + getLABEL_ITEM().getHeight()); // Voir commentaire de dessus
+
+            Double deplacementY = pointArrive.getY() - pointDepart.getY();
+            Double posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
+
+            String location = EDeck.getIMAGE_PREFIXE_CARTE() + getDeckItems().getDefausse().get(0).getImage() + EDeck.getIMAGE_EXTENSION();
+
+            BufferedImage image = null;
+            try {
+                image = ImageIO.read(new File(location));
+            } catch (IOException ex) {
+                System.out.println("Project.views.Elements.EDeck.AnimationDrag.paint()");
+                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+            }
+            /**
+             *
+             */
+            AnimationDrag animation = new AnimationDrag(image, pointDepart, pointArrive);
+            for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
+                animation.move(0, j * posY);
+                try {
+                    TimeUnit.MILLISECONDS.sleep(500);
+                } catch (InterruptedException ex) {
+                    Thread.currentThread().interrupt();
+                    throw new RuntimeException(ex);
+                }
+
+            }
+
             this.getDeckItems().retirerCartePioche(0);
             this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
@@ -205,7 +235,8 @@ public final class EDeck extends JPanel {
     }
 
     /**
-     * Animation qui fait piocher dans le deck Inondation
+     * Animation qui fait piocher dans le deck
+     * InondationgetSideItem().getLocationOnScreen();
      */
     private void piocherInondation() {
         try {
@@ -236,7 +267,7 @@ public final class EDeck extends JPanel {
      * @return la chaîne de caractère sans espace ni apostrophe
      */
     private String cleanString(String string) {
-        return string.replaceAll("\\s", "").replaceAll("\'", "");
+        return string.replaceAll(" d","D").replaceAll("\\s", "").replaceAll("\'", "");
     }
 
     /**
@@ -379,7 +410,7 @@ public final class EDeck extends JPanel {
     public void setImageInondationDefausse(BufferedImage imageInondationDefausse) {
         this.imageInondationDefausse = imageInondationDefausse;
     }
-    
+
     public EDeck getEDeck() {
         return this;
     }
@@ -391,43 +422,86 @@ public final class EDeck extends JPanel {
     public JLayer<JComponent> getJlayerAnimationDrag() {
         return jlayerAnimationDrag;
     }
+
     /* Inner class LayerUI<JComponent> pour dessiner animation de drag d'une carte */
     class AnimationDrag extends LayerUI<JComponent> {
+
         /* ATTRIBUTS */
-        EDeck edeck = getEDeck();
+        private double posY;
+        private double posX;
+        private Point pointDepart;
+        private Point pointArrive;
+        private BufferedImage image;
+
+        /* CONSTRUCTEURS */
+        /**
+         *
+         * @param image l'image qui doit être animée
+         * @param pointDepart point en haut à gauche du départ de l'animation
+         * @param pointArrive point en bas à gauche de la fin de l'animation         
+         * 
+         */
+        public AnimationDrag(BufferedImage image, Point pointDepart, Point pointArrive) {
+            this.pointDepart = pointDepart;
+            this.pointArrive = pointArrive;
+            this.image = image;
+            
+        }
+
+        public AnimationDrag() {
+        }
+
         /* METHODES */
         @Override
         public void paint(Graphics g, JComponent c) {
             super.paint(g, c);
-            double deplacementY;
-            double posY;
-            Point pointDepart;
-            Point pointArrive;
-            BufferedImage image = null;
-            String location = EDeck.getIMAGE_PREFIXE_CARTE() + getDeckItems().getDefausse().get(0).getImage() + EDeck.getIMAGE_EXTENSION();
-            try {
-                image = ImageIO.read(new File(location));
-            } catch (IOException ex) {
-                System.out.println("Project.views.Elements.EDeck.AnimationDrag.paint()");
-                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
-            }
-            for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
-                
-                pointDepart = getLabelImagePiocheItem().getLocationOnScreen();
-                pointArrive = getLabelImageDefausseItem().getLocationOnScreen();
-                deplacementY = pointArrive.getY() - pointDepart.getY();
-                posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
-                g.drawImage(image, (int) (pointDepart.getX()), (int) ((j * posY) + pointDepart.getY()), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
-                try {
-                    TimeUnit.MILLISECONDS.sleep(500);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException(ex);
-                }
-                
-            }
+            g.drawImage(image, (int) (pointDepart.getX()), (int) (posY + pointDepart.getY()), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
 
         }
+
+        @Override
+        public void installUI(JComponent c) {
+            super.installUI(c);
+            
+        }
+
+        @Override
+        public void uninstallUI(JComponent c) {
+            super.uninstallUI(c); 
+            
+        }
+        
+        
+        /**
+         * 
+         * @param posX quantité de pixels à 'traverser' en X (à chaque itération)
+         * @param posY quantité de pixels à 'traverser' en Y (à chaque itération)
+         */
+        public void move(double posX, double posY) {
+            this.setPosX(posX);
+            this.setPosY(posY);
+            this.paint(getEDeck().getGraphics(), getEDeck());
+        }
+
+        /* GETTERS & SETTERS */
+        
+        private Double getPosY() {
+            return this.posY;
+        }
+        
+        private Double getPosX() {
+            return this.posX;
+        }
+
+        private void setPosX(double posX) {
+            this.posX = posX;
+        }
+
+        private void setPosY(double posY) {
+            this.posY = posY;
+        }
+        
+        
 
     }
 

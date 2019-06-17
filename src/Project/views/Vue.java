@@ -84,7 +84,7 @@ public class Vue {
     public static int getWINDOW_SIZE_Y() {
         return WINDOW_SIZE_Y;
     }
-
+ 
     public static void main(String[] args) throws IOException {
         try {
             Vue fenetre = new Vue();
