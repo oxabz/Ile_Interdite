@@ -1,12 +1,17 @@
 package Project.views;
 
+import Project.Controleur;
+import Project.Modele.Grille;
+import Project.util.Observe;
 import Project.util.Vector2;
 import Project.views.Elements.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 import javax.swing.JFrame;
 
-public class Vue {
+public class Vue extends Observe {
 
     private final static int WINDOW_SIZE_X = 980;
     private final static int WINDOW_SIZE_Y = 600;
@@ -21,12 +26,11 @@ public class Vue {
     private EMain main;
     private EActions actions;
 
-    public Vue() {
+    public Vue()  {
         window = new JFrame("L'Île interdite");
         this.configureWindow(window);
         window.setVisible(true);
 
-        window.add(new ECase("Heliport",new Vector2(1,1)));
     }
 
     private void configureWindow(JFrame window) {
@@ -69,6 +73,17 @@ public class Vue {
 
     public static void main(String[] args) {
         Vue ihme = new Vue();
+        ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
+        ihme.grille.updateGrid(Controleur.getControleur().getGrille().getInnondee(),Controleur.getControleur().getGrille().getCoulee());
     }
+
+    public void initialiserGrille(String [][] names){
+        grille = new EGrille(names[0].length, names.length,names,this);
+        window.add(grille);
+
+        grille.paint(window.getGraphics());
+    }
+
+
 
 }

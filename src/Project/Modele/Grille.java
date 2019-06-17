@@ -82,6 +82,20 @@ public class Grille {
         return innondee;
     }
 
+    public String[][] getNames(){
+        String[][] names = new String[getSizeX()][getSizeY()];
+        for (int i = 0; i < getSizeX(); i++) {
+            for (int j = 0; j < getSizeY(); j++) {
+                if(tuiles[i][j] != null){
+                    names[i][j] = tuiles[i][j].getNom();
+                }else {
+                    names[i][j] = "";
+                }
+            }
+        }
+        return names;
+    }
+
     /*
     GETTER SETTER
      */
