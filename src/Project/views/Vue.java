@@ -60,7 +60,7 @@ public class Vue extends Observe {
 
 
 
-        window.setVisible(true);
+
     }
 
     private void configureWindow(JFrame window) {
@@ -120,7 +120,7 @@ public class Vue extends Observe {
         grille.setVisible(true);
         grille.paintComponents(window.getGraphics());
 
-
+        window.setVisible(true);
     }
 
 
