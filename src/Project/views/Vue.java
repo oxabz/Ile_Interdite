@@ -33,8 +33,9 @@ public class Vue {
     public Vue() throws IOException, InterruptedException {        
         this.configureWindow(window);
         //deck = new EDeck();    
-        actions = new EActions();
-        window.add(actions, BorderLayout.CENTER);
+        //actions = new EActions();
+        main = new EMain();
+        window.add(main, BorderLayout.CENTER);
         window.setVisible(true);       
         //deck.test();
         
