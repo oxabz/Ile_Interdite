@@ -25,17 +25,18 @@ public class Vue {
     private EGrille grille;
     private EInfo informations;
     private ENiveauDEau niveauEau;
-    private final EDeck deck;
+    private EDeck deck;
     private HashMap<String, EJoueur> listeJoueurs;
     private EMain main;
     private EActions actions;
 
     public Vue() throws IOException, InterruptedException {        
         this.configureWindow(window);
-        deck = new EDeck();        
-        window.add(deck, BorderLayout.CENTER);
+        //deck = new EDeck();    
+        actions = new EActions();
+        window.add(actions, BorderLayout.CENTER);
         window.setVisible(true);       
-        deck.test();
+        //deck.test();
         
     }
 

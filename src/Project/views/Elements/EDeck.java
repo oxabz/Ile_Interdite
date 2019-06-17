@@ -116,6 +116,7 @@ public final class EDeck extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(getDosItem(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+
             }
         };
         labelImagePiocheInnondation = new JLabel() {
@@ -123,6 +124,7 @@ public final class EDeck extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(getImageInondationPioche(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+
             }
         };
         labelImageDefausseInnondation = new JLabel() {
@@ -130,6 +132,7 @@ public final class EDeck extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(getImageInondationDefausse(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+
             }
         };
         // Aménagement des images
@@ -214,19 +217,29 @@ public final class EDeck extends JPanel {
              *
              */
             AnimationDrag animation = new AnimationDrag(image, pointDepart, pointArrive);
-            for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
-                animation.move(0, j * posY);
-                try {
-                    TimeUnit.MILLISECONDS.sleep(500);
-                } catch (InterruptedException ex) {
-                    Thread.currentThread().interrupt();
-                    throw new RuntimeException(ex);
+            Thread paintThread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
+                        animation.move(0, j * posY);
+                        try {
+                            TimeUnit.MILLISECONDS.sleep(50);
+                        } catch (InterruptedException ex) {
+                            Thread.currentThread().interrupt();
+                            throw new RuntimeException(ex);
+                        }
+                    }
                 }
 
-            }
+            });
+            paintThread.start();
+                 
 
-            this.getDeckItems().retirerCartePioche(0);
+            this.getDeckItems()
+                    .retirerCartePioche(0);
+
             this.repaint();
+
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -267,7 +280,7 @@ public final class EDeck extends JPanel {
      * @return la chaîne de caractère sans espace ni apostrophe
      */
     private String cleanString(String string) {
-        return string.replaceAll(" d","D").replaceAll("\\s", "").replaceAll("\'", "");
+        return string.replaceAll(" d", "D").replaceAll("\\s", "").replaceAll("\'", "");
     }
 
     /**
@@ -438,14 +451,14 @@ public final class EDeck extends JPanel {
          *
          * @param image l'image qui doit être animée
          * @param pointDepart point en haut à gauche du départ de l'animation
-         * @param pointArrive point en bas à gauche de la fin de l'animation         
-         * 
+         * @param pointArrive point en bas à gauche de la fin de l'animation
+         *
          */
         public AnimationDrag(BufferedImage image, Point pointDepart, Point pointArrive) {
             this.pointDepart = pointDepart;
             this.pointArrive = pointArrive;
             this.image = image;
-            
+
         }
 
         public AnimationDrag() {
@@ -462,20 +475,21 @@ public final class EDeck extends JPanel {
         @Override
         public void installUI(JComponent c) {
             super.installUI(c);
-            
+
         }
 
         @Override
         public void uninstallUI(JComponent c) {
-            super.uninstallUI(c); 
-            
+            super.uninstallUI(c);
+
         }
-        
-        
+
         /**
-         * 
-         * @param posX quantité de pixels à 'traverser' en X (à chaque itération)
-         * @param posY quantité de pixels à 'traverser' en Y (à chaque itération)
+         *
+         * @param posX quantité de pixels à 'traverser' en X (à chaque
+         * itération)
+         * @param posY quantité de pixels à 'traverser' en Y (à chaque
+         * itération)
          */
         public void move(double posX, double posY) {
             this.setPosX(posX);
@@ -484,11 +498,10 @@ public final class EDeck extends JPanel {
         }
 
         /* GETTERS & SETTERS */
-        
         private Double getPosY() {
             return this.posY;
         }
-        
+
         private Double getPosX() {
             return this.posX;
         }
@@ -500,8 +513,6 @@ public final class EDeck extends JPanel {
         private void setPosY(double posY) {
             this.posY = posY;
         }
-        
-        
 
     }
 
