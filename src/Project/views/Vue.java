@@ -25,20 +25,16 @@ public class Vue {
     private EGrille grille;
     private EInfo informations;
     private ENiveauDEau niveauEau;
-    private EDeck deck;
+    // private EDeck deck;
     private HashMap<String, EJoueur> listeJoueurs;
     private EMain main;
     private EActions actions;
 
-    public Vue() throws IOException, InterruptedException {        
+    public Vue() throws IOException, InterruptedException {
         this.configureWindow(window);
-        //deck = new EDeck();    
-        //actions = new EActions();
-        main = new EMain();
-        window.add(main, BorderLayout.CENTER);
-        window.setVisible(true);       
-        //deck.test();
-        
+        niveauEau = new ENiveauDEau(1);
+        window.add(niveauEau, BorderLayout.CENTER);
+        window.setVisible(true);
     }
 
     private void configureWindow(JFrame window) {
@@ -86,7 +82,7 @@ public class Vue {
     public static int getWINDOW_SIZE_Y() {
         return WINDOW_SIZE_Y;
     }
- 
+
     public static void main(String[] args) throws IOException {
         try {
             Vue fenetre = new Vue();
