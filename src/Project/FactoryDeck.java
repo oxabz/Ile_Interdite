@@ -5,12 +5,14 @@
  */
 package Project;
 
-
+import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CartesItem.CarteHelicoptere;
 import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.Modele.Cartes.CartesItem.CarteSacSable;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Deck;
+import Project.Modele.Grille;
+import Project.Modele.Tuile;
 import Project.util.Utils;
 
 /**
@@ -27,7 +29,7 @@ public class FactoryDeck {
     private final static CarteTresor CARTE_TRESOR_PIERRE = new CarteTresor("carte Pierre", Utils.Tresor.PIERRE);
     private final static CarteTresor CARTE_TRESOR_STATUE = new CarteTresor("carte Statue", Utils.Tresor.STATUE);
 
-    public static Deck getDeck() {  
+    public static Deck getDeckItems() {
         Deck deck = new Deck();
         for (int i = 0; i < 3; i++) {
             deck.addCartePiocheDebut(CARTE_MONTEE_DES_EAUX);
@@ -50,9 +52,22 @@ public class FactoryDeck {
         for (int i = 0; i < 3; i++) {
             deck.addCartePiocheDebut(CARTE_HELICOPTERE);
         }
-        
+        deck.melangerCartesPioche();
         return deck;
+
+    }
+
+    public static Deck getDeckInondations() {
+        FactoryGrille g = new FactoryGrille();
+        Deck deck = new Deck();
         
+        for (Tuile[] uneLigne : g.getGrilleTest().getTuiles()) {
+            for (Tuile uneTuile : uneLigne) {
+                deck.addCartePiocheDebut(new CarteInondation(uneTuile.getNom(), uneTuile));
+            }
+        }
+        deck.melangerCartesPioche();
+        return deck;
     }
 
 }
