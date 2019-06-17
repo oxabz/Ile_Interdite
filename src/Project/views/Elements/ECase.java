@@ -88,7 +88,9 @@ public class ECase extends JPanel {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 ECase eCase = ((ECase)mouseEvent.getComponent());
-                eCase.getGrille().messageCase(eCase.getPosition());
+                if(eCase.isEnabled()){
+                    eCase.getGrille().messageCase(eCase.getPosition());
+                }
             }
 
             @Override
