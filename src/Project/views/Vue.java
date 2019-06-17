@@ -1,11 +1,13 @@
 package Project.views;
 
 import Project.Controleur;
+import Project.Modele.Deck;
 import Project.Modele.Grille;
 import Project.util.Observe;
 import Project.util.Vector2;
 import Project.views.Elements.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -30,8 +32,8 @@ public class Vue extends Observe {
     public Vue()  {
         window = new JFrame("L'Île interdite");
         this.configureWindow(window);
-        deck = new EDeck();
-        window.add(deck, BorderLayout.CENTER);
+
+
         window.setVisible(true);
     }
 
@@ -104,13 +106,42 @@ public class Vue extends Observe {
     public void SetMode(IhmMode ihmMode){
         switch (ihmMode){
             case ACTION:
-                EActions.
+                actions.setEnabled(true);
+                grille.setEnabled(false);
+                main.setEnabled(false);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
                 break;
             case POSITION:
+                actions.setEnabled(false);
+                grille.setEnabled(true);
+                main.setEnabled(false);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
                 break;
             case MAIN:
+
+                actions.setEnabled(false);
+                grille.setEnabled(false);
+                main.setEnabled(true);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
                 break;
             case AVENTURIER:
+
+                actions.setEnabled(false);
+                grille.setEnabled(false);
+                main.setEnabled(false);
+                for (EJoueur j :
+                        listeJoueurs.values()) {
+                    j.setEnabled(false);
+                }
                 break;
 
         }

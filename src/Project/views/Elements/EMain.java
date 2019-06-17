@@ -5,10 +5,12 @@
  */
 package Project.views.Elements;
 
+import javax.swing.*;
+
 /**
  *
  * @author seiglebq
  */
-public class EMain {
+public class EMain extends JPanel {
     
 }

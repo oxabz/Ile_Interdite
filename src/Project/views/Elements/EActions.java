@@ -4,6 +4,8 @@ import Project.util.Message;
 import Project.util.MessageType;
 import Project.util.Observe;
 import Project.util.Utils;
+import Project.views.Vue;
+
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -17,7 +19,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-public class EActions extends Observe {
+public class EActions extends JPanel {
 
     /* CONSTANTES */
     private static final JPanel PANEL = new JPanel();
@@ -27,38 +29,93 @@ public class EActions extends Observe {
     /* ATTRIBUTS */
 
     private final ArrayList<JButton> boutons;
+    private Vue vue;
 
-    private final JButton button_Deplacer = new JButton("Se déplacer");
-    private final JButton button_Assecher = new JButton("Assécher");
-    private final JButton button_DonnerCarte = new JButton("Donner une carte");
-    private final JButton button_RecupererTresor = new JButton("Récupérer un trésor");
-    private final JButton button_Special = new JButton("Action spéciale");
-    private final JButton button_FinTour = new JButton("Fin du tour");
 
     /* CONSTRUCTEUR */
-    public EActions() {
+    public EActions(Vue vue) {
 
-        PANEL.setLayout(new GridLayout(2, 3));
-        PANEL.add(button_Deplacer);
-        PANEL.add(button_Assecher);
-        PANEL.add(button_DonnerCarte);
-        PANEL.add(button_Special);
-        PANEL.add(button_RecupererTresor);
-        PANEL.add(button_FinTour);
+        this.vue = vue;
         boutons = new ArrayList<>();
-        boutons.add(button_Deplacer);
-        boutons.add(button_Assecher);
-        boutons.add(button_DonnerCarte);
-        boutons.add(button_Special);
-        boutons.add(button_RecupererTresor);
-        boutons.add(button_FinTour);
+
+        JButton seDeplacerButon = new JButton("se deplacer");
+        this.add(seDeplacerButon);
+        seDeplacerButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.SE_DEPLACER;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(seDeplacerButon);
+
+        JButton assecherButon = new JButton("assecher");
+        this.add(assecherButon);
+        assecherButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.ASSECHER;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(assecherButon);
+
+        JButton donnerCarteButon = new JButton("donner carte");
+        this.add(donnerCarteButon);
+        donnerCarteButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.DON_CARTE;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(donnerCarteButon);
+
+        JButton prendreTresorButon = new JButton("prendre tresor");
+        this.add(prendreTresorButon);
+        prendreTresorButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.PRENDRE_TRESOR;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(prendreTresorButon);
+
+        JButton finDeTourButon = new JButton("fin de tour");
+        this.add(finDeTourButon);
+        finDeTourButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.FIN_TOUR;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(finDeTourButon);
+
+        JButton utiliserCarteButon = new JButton("utiliser carte");
+        this.add(utiliserCarteButon);
+        utiliserCarteButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.UTILISER_CARTE;
+                vue.notifierObserver(m);
+            }
+        });
+        boutons.add(utiliserCarteButon);
 
         for (JButton unBouton : boutons) {
             unBouton.setEnabled(true);
 
         }
 
-        PANEL.setVisible(true);
+        this.setVisible(true);
     }
 
 }
