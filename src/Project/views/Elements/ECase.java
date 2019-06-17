@@ -121,6 +121,7 @@ public class ECase extends JPanel {
             case SEC:
                 g.drawImage(imageNormale,0,0,(int)this.getSize().getWidth(),(int)this.getSize().getHeight(),null);
                 break;
+            default:
             case COULEE:
                 break;
             case INNONDEE:

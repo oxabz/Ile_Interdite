@@ -117,7 +117,9 @@ public class Vue extends Observe {
         constraints.gridy = 0;
         window.add(grille,constraints);
 
-        grille.paint(window.getGraphics());
+        grille.setVisible(true);
+        grille.paintComponents(window.getGraphics());
+
 
     }
 

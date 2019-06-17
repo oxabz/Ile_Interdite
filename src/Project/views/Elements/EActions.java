@@ -120,4 +120,12 @@ public class EActions extends JPanel {
         this.setVisible(true);
     }
 
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        for (JButton bouton:
+             boutons) {
+            bouton.setEnabled(enabled);
+        }
+    }
 }
