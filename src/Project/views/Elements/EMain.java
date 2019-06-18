@@ -16,7 +16,7 @@ import javax.swing.JPanel;
  *
  * @author seiglebq
  */
-public final class EMain extends JPanel {
+public class EMain extends JPanel {
     // Carte du perso, liseret de couleur autour du Panel
     // Sa main, son nom    
 

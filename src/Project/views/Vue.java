@@ -9,6 +9,7 @@ import Project.views.Elements.EMain;
 import Project.views.Elements.ENiveauDEau;
 import java.awt.BorderLayout;
 import java.awt.Color;
+
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -35,6 +36,7 @@ public class Vue {
         deck = new EDeck();
         window.add(deck, BorderLayout.CENTER);
         window.setVisible(true);
+        deck.test();
     }
 
     private void configureWindow(JFrame window) {
