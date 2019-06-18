@@ -16,8 +16,8 @@ import javax.swing.*;
 
 public class Vue extends Observe {
 
-    private final static int WINDOW_SIZE_X = 980;
-    private final static int WINDOW_SIZE_Y = 600;
+    private final static int WINDOW_SIZE_X = 1715;
+    private final static int WINDOW_SIZE_Y = 1050;
     private JFrame window;
     private GridBagConstraints constraints;
 
@@ -104,11 +104,20 @@ public class Vue extends Observe {
 
     public static void main(String[] args) {
         Vue ihme = new Vue();
-        ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
+        //ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
         ihme.grille.updateGrid(Controleur.getControleur().getGrille().getInnondee(),Controleur.getControleur().getGrille().getCoulee());
     }
 
-    public void initialiserGrille(String [][] names){
+    public void initialiserNiveauEau(int level){
+        niveauEau = new ENiveauDEau(level);
+        constraints.gridwidth = 1;
+        constraints.gridheight = 4;
+        constraints.gridx = 3;
+        constraints.gridy = 0;
+        window.add(niveauEau,constraints);
+    }
+
+    public void initialiserGrille(String [][] names, boolean[][] inondee, boolean[][] coulee){
         grille = new EGrille(names[0].length, names.length,names,this);
 
         constraints.gridwidth = 3;
@@ -120,12 +129,22 @@ public class Vue extends Observe {
         grille.setVisible(true);
         grille.paintComponents(window.getGraphics());
 
+
+
+
+    }
+
+    public void initialiserVue(){
         window.setVisible(true);
     }
 
 
     public EGrille getGrille(){
         return grille;
+    }
+
+    public ENiveauDEau getNiveauEau(){
+        return niveauEau;
     }
 
 

@@ -61,4 +61,8 @@ public class GameState {
             return 0;
         }
     }
+
+    public int getNiveauEau() {
+        return niveauEau;
+    }
 }
