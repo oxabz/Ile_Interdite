@@ -26,7 +26,6 @@ public class Controleur implements Observeur {
     private GameState gameState;
 
     private Vue vue;
-
     private Deque<Message> messages = new ArrayDeque<>();
 
     private int currentAventurier;
@@ -42,8 +41,7 @@ public class Controleur implements Observeur {
         cartesItem = FactoryDeck.getDeckItems();
         cartesInondation = FactoryDeck.getDeckInondations();
 
-        initialiserPartie();
-
+        initialiserPartie();        
         vue = new Vue();
         vue.setObserveur(this);
         vue.getEjeu().initialiserNiveauEau(gameState.getNiveauEau());

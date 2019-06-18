@@ -76,7 +76,7 @@ public class EJeu extends JPanel {
 
     }
 
-    public void initialiserVue() {
+    public void initialiserPanel() {
         Panel.setVisible(true);
     }
 

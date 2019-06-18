@@ -11,19 +11,34 @@ public class Vue extends Observe {
 
     private final static int WINDOW_SIZE_X = 1715;
     private final static int WINDOW_SIZE_Y = 1050;
+    private static JPanel cards;
+    private static CardLayout cardLayout;
+    private JFrame frame;
     private JPanel card_initialisation;
     private JPanel card_jeu;
     private JPanel card_fin;
-    private CardLayout card;
-    private JFrame window;
 
     //Elements
     private EJeu ejeu;
 
     public Vue() {
-        window = new JFrame("L'Île interdite");
-        this.configureWindow(window);
+        ejeu = new EJeu(this);
+        frame = new JFrame("L'Île Interdite");
         
+        card_initialisation = new JPanel();
+        card_jeu = new JPanel();
+        card_fin = new JPanel();
+
+        cards = new JPanel(new CardLayout());
+        cards.add(card_jeu);
+        cards.add(card_initialisation);
+        cards.add(card_fin);
+        cards.setOpaque(true);
+        cardLayout = (CardLayout) cards.getLayout();
+        cardLayout.first(cards);
+
+        frame.add(cards);
+        this.configureWindow(frame);
 
     }
 
@@ -67,7 +82,7 @@ public class Vue extends Observe {
     }
 
     public void initialiserVue() {
-        window.setVisible(true);
+        frame.setVisible(true);
     }
 
     public enum IhmMode {
