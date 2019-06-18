@@ -77,7 +77,7 @@ public class ECarte extends JPanel {
 
     public void setCarte(Carte carte){
         this.carte=carte;
-        String name = carte.getNom();
+        String name = (carte!=null ? carte.getNom() : "");
         name = name.replaceAll(" d\u0027","d");
         name = name.replaceAll(" d","D");
         name = name.replaceAll(" l\u0027","L");
@@ -86,7 +86,12 @@ public class ECarte extends JPanel {
         try {
             image = ImageIO.read(new File(IMAGE_PREFIX + name + IMAGE_EXTENTION));
         } catch (IOException e) {
-            System.out.println("Erreur chargement carte");
+            System.out.println("");
+            try {
+                image = ImageIO.read(new File(IMAGE_PREFIX + "Fondrouge" + IMAGE_EXTENTION));
+            } catch (IOException f) {
+                System.out.println("Erreur chargement carte");
+            }
         }
         repaint();
     }

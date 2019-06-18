@@ -241,7 +241,7 @@ public class Controleur implements Observeur {
                 //Phase d'action
                 System.out.println("Tour de : " + av.getJoueur());
                 System.out.println("Position du pion : " + av.getPosition().toString());
-                vue.getMain().setCartesItems(av.getCarteItems());
+                vue.getMain().setAventurier(av);
                 while (nbAction < 3 && !finT) {
                     switch (getSelectedAction(i)) {
                         case SE_DEPLACER:

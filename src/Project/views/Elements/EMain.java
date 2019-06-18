@@ -5,14 +5,19 @@
  */
 package Project.views.Elements;
 
+import Project.Modele.Aventurier;
 import Project.Modele.Carte;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.util.Utils;
 import Project.views.Vue;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -20,9 +25,16 @@ import java.util.ArrayList;
  * @author seiglebq
  */
 public class EMain extends JPanel {
+    private JLabel nomJoueur;
+    private JLabel nbAction;
+    private JLabel nombreCarte;
+    private ECarteAventurier carteAventurier;
     private ArrayList<JPanel> panels;
     private ArrayList<CarteItem> cartesItems;
+    private Aventurier aventurier;
     private Vue vue;
+
+
 
     public EMain(Vue vue) {
         this.vue = vue;
@@ -39,17 +51,35 @@ public class EMain extends JPanel {
             this.add(p);
         }
 
+        carteAventurier = new ECarteAventurier();
+
+        this.add(carteAventurier);
+        carteAventurier.paint(this.getGraphics());
+
+        nomJoueur = new JLabel("");
+        nbAction = new JLabel("");
+        nombreCarte = new JLabel("");
 
         JPanel panelJoueur = new JPanel();
-        panelJoueur.add(new JLabel("test"));
-        panelJoueur.add(new JLabel("test"));
+        panelJoueur.add(nomJoueur);
+        panelJoueur.add(nbAction);
+        panelJoueur.add(nombreCarte);
         this.add(panelJoueur);
     }
 
     public void setCartesItems(ArrayList<CarteItem> cartesItems) {
         this.cartesItems = cartesItems;
-        for (int i = 0; i < cartesItems.size(); i++) {
-            ((ECarte)panels.get(i)).setCarte(cartesItems.get(i));
+        for (int i = 0; i < 6; i++) {
+            ((ECarte)panels.get(i)).setCarte((i<cartesItems.size() ? cartesItems.get(i):null));
+
         }
+    }
+
+    public void setAventurier(Aventurier aventurier){
+        this.aventurier = aventurier;
+        setCartesItems(aventurier.getCarteItems());
+        nomJoueur.setText(aventurier.getJoueur());
+        nombreCarte.setText(Integer.toString(aventurier.getCarteItems().size()));
+        carteAventurier.setAv(aventurier);
     }
 }
