@@ -241,6 +241,7 @@ public class Controleur implements Observeur {
                 //Phase d'action
                 System.out.println("Tour de : " + av.getJoueur());
                 System.out.println("Position du pion : " + av.getPosition().toString());
+                vue.getMain().setCartesItems(av.getCarteItems());
                 while (nbAction < 3 && !finT) {
                     switch (getSelectedAction(i)) {
                         case SE_DEPLACER:
@@ -281,16 +282,16 @@ public class Controleur implements Observeur {
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     gameState.incrementNiveau();
-                    cartesInnondation.addCarteDefausseDebut(cIt1);
-                    cartesInnondation.addCarteDefausseDebut(cIt2);
+                    cartesItem.addCarteDefausseDebut(cIt1);
+                    cartesItem.addCarteDefausseDebut(cIt2);
                 } else if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     if (cIt1 instanceof CarteMEau) {
                         av.addCarteItem(cIt2);
-                        cartesInnondation.addCarteDefausseDebut(cIt1);
+                        cartesItem.addCarteDefausseDebut(cIt1);
                     } else {
                         av.addCarteItem(cIt1);
-                        cartesInnondation.addCarteDefausseDebut(cIt2);
+                        cartesItem.addCarteDefausseDebut(cIt2);
                     }
                     vue.getNiveauEau().setNiveau(gameState.getNiveauEau());
                 } else {

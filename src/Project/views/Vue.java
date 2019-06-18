@@ -1,9 +1,11 @@
 package Project.views;
 
 import Project.Controleur;
+import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Deck;
 import Project.Modele.Grille;
 import Project.util.Observe;
+import Project.util.Utils;
 import Project.util.Vector2;
 import Project.views.Elements.*;
 
@@ -45,7 +47,7 @@ public class Vue extends Observe {
         listeJoueurs = new HashMap<>();
         deck = new EDeck();
         actions = new EActions(this);
-        main = new EMain();
+        main = new EMain(this);
 
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
@@ -57,9 +59,11 @@ public class Vue extends Observe {
         constraints.gridx = 0;
         constraints.gridy = 4;
         window.add(actions,constraints);
-
-
-
+        constraints.gridwidth = 4;
+        constraints.gridheight = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        window.add(main,constraints);
 
     }
 
@@ -147,7 +151,9 @@ public class Vue extends Observe {
         return niveauEau;
     }
 
-
+    public EMain getMain() {
+        return main;
+    }
 
     public enum IhmMode{
         POSITION,
