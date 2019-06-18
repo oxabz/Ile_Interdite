@@ -36,7 +36,7 @@ public class Vue {
         deck = new EDeck();
         window.add(deck, BorderLayout.CENTER);
         window.setVisible(true);
-        deck.test();
+        //deck.test();
     }
 
     private void configureWindow(JFrame window) {
