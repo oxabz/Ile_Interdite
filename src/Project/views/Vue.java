@@ -25,15 +25,15 @@ public class Vue {
     private EGrille grille;
     private EInfo informations;
     private ENiveauDEau niveauEau;
-    // private EDeck deck;
+    private EDeck deck;
     private HashMap<String, EJoueur> listeJoueurs;
     private EMain main;
     private EActions actions;
 
     public Vue() throws IOException, InterruptedException {
         this.configureWindow(window);
-        niveauEau = new ENiveauDEau(1);
-        window.add(niveauEau, BorderLayout.CENTER);
+        deck = new EDeck();
+        window.add(deck, BorderLayout.CENTER);
         window.setVisible(true);
     }
 
@@ -89,6 +89,10 @@ public class Vue {
         } catch (InterruptedException ex) {
             Logger.getLogger(Vue.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    public EInfo getInformations() {
+        return informations;
     }
 
 }
