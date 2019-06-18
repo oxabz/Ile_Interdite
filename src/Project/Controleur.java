@@ -46,10 +46,10 @@ public class Controleur implements Observeur {
 
         vue = new Vue();
         vue.setObserveur(this);
-        vue.initialiserNiveauEau(gameState.getNiveauEau());
-        vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
+        vue.getEjeu().initialiserNiveauEau(gameState.getNiveauEau());
+        vue.getEjeu().initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
         vue.initialiserVue();
-        vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+        vue.getEjeu().getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
     }
 
     private final static Controleur controleur = new Controleur();
@@ -74,7 +74,7 @@ public class Controleur implements Observeur {
         System.out.println("Choisissez une case (dans la fenetre):");
 
         if (!clickables.isEmpty()) {
-            vue.getGrille().setClickables(clickables, true);
+            vue.getEjeu().getGrille().setClickables(clickables, true);
 
             Vector2 pos = new Vector2(0, 0);
             boolean done = false;
@@ -89,7 +89,7 @@ public class Controleur implements Observeur {
                 }
             }
 
-            vue.getGrille().setClickables(clickables, false);
+            vue.getEjeu().getGrille().setClickables(clickables, false);
             return pos;
         }
         return null;
@@ -263,7 +263,7 @@ public class Controleur implements Observeur {
                 while (nbAction < 3 && !finT) {
 
                     // Update de la case d'affichage des informations
-                    vue.getInformations().update(
+                    vue.getEjeu().getInformations().update(
                         gameState.getTresors(),
                         3-(nbAction+1)+1,
                         getRateTuilesNonInondees(),
@@ -298,7 +298,7 @@ public class Controleur implements Observeur {
                             nbAction++;
                             break;
                     }
-                    vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+                    vue.getEjeu().getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
                 }
 
                 //phase de pioche
@@ -319,7 +319,7 @@ public class Controleur implements Observeur {
                         av.addCarteItem(cIt1);
                         cartesInondation.addCarteDefausseDebut(cIt2);
                     }
-                    vue.getNiveauEau().setNiveau(gameState.getNiveauEau());
+                    vue.getEjeu().getNiveauEau().setNiveau(gameState.getNiveauEau());
                 } else {
                     av.addCarteItem(cIt1);
                     av.addCarteItem(cIt2);
@@ -328,7 +328,7 @@ public class Controleur implements Observeur {
                 //phase d'innondation
                 faireInnondation();
 
-                vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+                vue.getEjeu().getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
             }
         }
 
