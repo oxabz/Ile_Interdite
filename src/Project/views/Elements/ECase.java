@@ -10,8 +10,6 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
-import java.awt.image.BufferedImageOp;
-import java.awt.image.ColorConvertOp;
 import java.io.File;
 import java.io.IOException;
 
@@ -134,7 +132,7 @@ public class ECase extends JPanel {
 
     public void changeEtat(Etat newEtat){
         this.etat = newEtat;
-        this.paint(getGraphics());
+        this.repaint();
     }
 
     public EGrille getGrille() {

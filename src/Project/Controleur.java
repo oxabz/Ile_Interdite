@@ -445,6 +445,9 @@ public class Controleur implements Observeur {
     private boolean isGameOver() {
         return isJoueursCoince() || isTuilesTresorCoince() ||isHeliportCoule() || isTeteDeMort();
     }
+    
+    /* Méthodes liées aux conditions de défaite */
+    
     @Override
     public void recevoirMessage(Message m) {
         messages.add(m);
