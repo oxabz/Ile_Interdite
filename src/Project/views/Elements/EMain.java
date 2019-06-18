@@ -72,4 +72,25 @@ public class EMain extends JPanel {
         nombreCarte.setText(Integer.toString(aventurier.getCarteItems().size()));
         carteAventurier.setAv(aventurier);
     }
+
+    public void removeListeners(){
+        for (JPanel jp :
+                panels) {
+            if (jp instanceof ECarte) {
+                jp.removeMouseListener(jp.getMouseListeners()[0]);
+            }
+        }
+    }
+
+    @Override
+    public void setEnabled(boolean enabled) {
+        super.setEnabled(enabled);
+        for (JPanel jp :
+                panels) {
+            if (jp instanceof ECarte) {
+                jp.setEnabled(enabled);
+            }
+        }
+
+    }
 }

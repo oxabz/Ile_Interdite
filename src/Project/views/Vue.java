@@ -65,6 +65,7 @@ public class Vue extends Observe {
         constraints.gridy = 5;
         window.add(main,constraints);
 
+
     }
 
     private void configureWindow(JFrame window) {
