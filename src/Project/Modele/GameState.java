@@ -38,8 +38,7 @@ public class GameState {
 
     //Sert à sauvegarder la recuperation d'un tresor
     public void recupererTresor(Utils.Tresor tresor){
-        Boolean t = tresors.get(tresor);
-        t = true;
+        tresors.put(tresor, true);
     }
 
     //Sert a incrementer le niveau d'eau
