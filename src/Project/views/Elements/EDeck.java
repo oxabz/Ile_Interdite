@@ -21,6 +21,7 @@ import javax.swing.plaf.LayerUI;
 public final class EDeck extends JPanel {
 
     /* CONSTANTES */
+    private static final BufferedImage NULL = null;
     private final static String IMAGE_PREFIXE_CARTE = "src/images/cartes/";
     private final static String IMAGE_EXTENSION = ".png";
     private final static String SON_CARTE_FLIP_CHEMIN = "src/sons/carte/carteFlip.wav";
@@ -49,7 +50,8 @@ public final class EDeck extends JPanel {
     private final JLayer<JComponent> jlayerAnimationDrag;
     private BufferedImage dosItem;
     private BufferedImage dosInondation;
-    private BufferedImage imageItem;
+    private BufferedImage imageItemDefausse;
+    private BufferedImage imageItemPioche;
     private BufferedImage imageInondationPioche;
     private BufferedImage imageInondationDefausse;
 
@@ -108,22 +110,22 @@ public final class EDeck extends JPanel {
             System.out.println("Erreur fichier : " + ex.getMessage() + " pour dos des cartes");
 
         }
-        this.setImageItem(this.getDosItem());
+        this.setImageItemPioche(this.getDosItem());
         this.setImageInondationPioche(this.getDosInondation());
-        this.setImageInondationDefausse(this.getImageInondationPioche()); // La défausse est (normalement) vide à l'initialisation donc ça ne gène en rien, on fait ça par précaution
+        this.setImageInondationDefausse(EDeck.getNULL());
         // Création des JPanels contenant les images (& Override paintComponent)
         labelImagePiocheItem = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(getImageItem(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                g.drawImage(getImageItemPioche(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
             }
         };
         labelImageDefausseItem = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(getDosItem(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                g.drawImage(getImageItemDefausse(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
 
             }
         };
@@ -171,7 +173,7 @@ public final class EDeck extends JPanel {
     private void retournerCartePioche() {
         String location = IMAGE_PREFIXE_CARTE + this.getDeckItems().getPioche().get(0).getImage() + IMAGE_EXTENSION;
         try {
-            this.setImageItem(ImageIO.read(new File(location)));
+            this.setImageItemPioche(ImageIO.read(new File(location)));
             Sound.play(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
             System.out.println("Project.views.Elements.EDeck.retournerCartePioche()");
@@ -203,7 +205,7 @@ public final class EDeck extends JPanel {
             this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
             this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
-            this.setImageItem(dosItem);
+            this.setImageItemPioche(dosItem);
             /**
              *
              */
@@ -239,15 +241,10 @@ public final class EDeck extends JPanel {
                         }
                     }
                 }
-
             });
             paintThread.start();
-
-            this.getDeckItems()
-                    .retirerCartePioche(0);
-
+            this.getDeckItems().retirerCartePioche(0);
             this.repaint();
-
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -324,8 +321,8 @@ public final class EDeck extends JPanel {
         return imageInondationDefausse;
     }
 
-    public BufferedImage getImageItem() {
-        return imageItem;
+    public BufferedImage getImageItemPioche() {
+        return imageItemPioche;
     }
 
     public JLabel getItemDefausseNombre() {
@@ -424,8 +421,8 @@ public final class EDeck extends JPanel {
         this.imageInondationPioche = imageInondationPioche;
     }
 
-    public void setImageItem(BufferedImage imageItem) {
-        this.imageItem = imageItem;
+    public void setImageItemPioche(BufferedImage imageItemPioche) {
+        this.imageItemPioche = imageItemPioche;
     }
 
     public void setImageInondationDefausse(BufferedImage imageInondationDefausse) {
@@ -442,6 +439,14 @@ public final class EDeck extends JPanel {
 
     public JLayer<JComponent> getJlayerAnimationDrag() {
         return jlayerAnimationDrag;
+    }
+
+    public static BufferedImage getNULL() {
+        return NULL;
+    }
+
+    public BufferedImage getImageItemDefausse() {
+        return imageItemDefausse;
     }
 
     /* Inner class LayerUI<JComponent> pour dessiner animation de drag d'une carte */
@@ -466,7 +471,6 @@ public final class EDeck extends JPanel {
             this.pointDepart = pointDepart;
             this.pointArrive = pointArrive;
             this.image = image;
-
         }
 
         public AnimationDrag() {
@@ -476,20 +480,21 @@ public final class EDeck extends JPanel {
         @Override
         public void paint(Graphics g, JComponent c) {
             super.paint(g, c);
-            g.drawImage(image, (int) (pointDepart.getX()), (int) (posY + pointDepart.getY()), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
-
+            try {
+                g.drawImage(image, (int) (pointDepart.getX()), (int) (posY + pointDepart.getY()), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
         }
 
         @Override
         public void installUI(JComponent c) {
             super.installUI(c);
-
         }
 
         @Override
         public void uninstallUI(JComponent c) {
             super.uninstallUI(c);
-
         }
 
         /**

@@ -134,7 +134,7 @@ public class ECase extends JPanel {
 
     public void changeEtat(Etat newEtat){
         this.etat = newEtat;
-        paintComponent(this.getGraphics());
+        this.paint(getGraphics());
     }
 
     public EGrille getGrille() {

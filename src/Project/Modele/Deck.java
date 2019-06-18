@@ -27,7 +27,7 @@ public class Deck {
     }
 
     public void addCartesPiocheDebut(LinkedList<Carte> cartes) {
-        for (int i = cartes.size() - 1; i >= 0; i++) {
+        for (int i = cartes.size() - 1; i >= 0; i--) {
             pioche.addFirst(cartes.get(i));
         }
     }

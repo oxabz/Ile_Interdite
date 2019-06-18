@@ -39,12 +39,17 @@ public class Controleur implements Observeur {
         grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
 
+        cartesItem = FactoryDeck.getDeckItems();
+        cartesInnondation = FactoryDeck.getDeckInondations();
 
         initialiserPartie();
 
         vue = new Vue();
         vue.setObserveur(this);
-        vue.initialiserGrille(grille.getNames());
+        vue.initialiserNiveauEau(gameState.getNiveauEau());
+        vue.initialiserGrille(grille.getNames(),grille.getInnondee(),grille.getCoulee());
+        vue.initialiserVue();
+        vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
     }
 
     private final static Controleur controleur = new Controleur();
@@ -267,7 +272,7 @@ public class Controleur implements Observeur {
                     vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
                 }
 
-                /*
+
 
                 //phase de pioche
                 CarteItem cIt1 = (CarteItem) cartesItem.getPioche().poll();
@@ -287,6 +292,7 @@ public class Controleur implements Observeur {
                         av.addCarteItem(cIt1);
                         cartesInnondation.addCarteDefausseDebut(cIt2);
                     }
+                    vue.getNiveauEau().setNiveau(gameState.getNiveauEau());
                 } else {
                     av.addCarteItem(cIt1);
                     av.addCarteItem(cIt2);
@@ -295,7 +301,7 @@ public class Controleur implements Observeur {
                 //phase d'innondation
                 faireInnondation();
 
-                 */
+                vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
             }
         }
 
@@ -316,7 +322,7 @@ public class Controleur implements Observeur {
 
         for (int j = 0; j < nbCarteInnondation; j++) {
             CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll();
-            if (cIn.getTuile().isInnondee()) {
+            if ( cIn.getTuile().isInnondee()) {
                 grille.removeTuile(cIn.getTuile());
             } else {
                 cIn.getTuile().setInnondee(true);
@@ -355,12 +361,6 @@ public class Controleur implements Observeur {
 
 
         }
-
-        //Initialisation de la grille
-
-        //Initialiser decks
-        cartesItem = new Deck();
-        cartesInnondation = new Deck();
 
         //Initialisation du gamestate
 
