@@ -32,13 +32,23 @@ public class EGrille extends JPanel {
                 eCases[j][i] = c;
                 add(c);
                 c.setClickable(false);
+                c.setVisible(true);
             }
         }
 
-        this.paintComponents(this.getGraphics());
 
         this.vue = vue;
 
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        for (int i = 0; i < eCases.length; i++) {
+            for (int j = 0; j < eCases[i].length; j++) {
+                eCases[i][j].paintComponent(g);
+            }
+        }
     }
 
     public void updateGrid(boolean[][] inondee, boolean[][] coulee) {
@@ -51,7 +61,7 @@ public class EGrille extends JPanel {
                 } else {
                     eCases[i][j].changeEtat(ECase.Etat.SEC);
                 }
-                eCases[i][j].setClickable(true);
+                eCases[i][j].setClickable(false);
             }
         }
     }
