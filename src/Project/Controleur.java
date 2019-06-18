@@ -4,13 +4,13 @@ import Project.Modele.*;
 import Project.Modele.Aventuriers.*;
 import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CarteItem;
+import Project.Modele.Cartes.CartesItem.CarteHelicoptere;
 import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.Modele.Tuiles.Heliport;
 import Project.Modele.Tuiles.TuileTresor;
 import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
-
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -21,7 +21,7 @@ public class Controleur implements Observeur {
      */
     private Grille grille;
     private Deck cartesItem;
-    private Deck cartesInnondation;
+    private Deck cartesInondation;
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState;
 
@@ -40,7 +40,7 @@ public class Controleur implements Observeur {
         aventuriers = new ArrayList<>();
 
         cartesItem = FactoryDeck.getDeckItems();
-        cartesInnondation = FactoryDeck.getDeckInondations();
+        cartesInondation = FactoryDeck.getDeckInondations();
 
         initialiserPartie();
 
@@ -61,7 +61,11 @@ public class Controleur implements Observeur {
     /*
     METHODS
      */
-    //Retourne une position selectioné dans les clickable
+    /**
+     *
+     * @param clickables la liste des positions clickables
+     * @return retourne une position sélectionée dans les clickables
+     */
     public Vector2 getPosClick(ArrayList<Vector2> clickables) {
         //placeholder
 
@@ -122,7 +126,13 @@ public class Controleur implements Observeur {
         //return null;
     }
 
-    //Retourne une action selectioné par l'aventurier d'index aventurierIndex
+    //
+    /**
+     *
+     * @param aventurierIndex l'index de l'aventurier
+     * @return Retourne une action sélectionée par l'aventurier d'index
+     * aventurierIndex
+     */
     Utils.Action getSelectedAction(int aventurierIndex) {
 
         vue.SetMode(Vue.IhmMode.ACTION);
@@ -164,7 +174,11 @@ public class Controleur implements Observeur {
         }*/
     }
 
-    //Permet de selectionner un aventurier un aventurier
+    /**
+     *
+     * @param indexAventurier l'index de l'aventurier
+     * @return Retourne l'aventurier d'index indexAventurier
+     */
     public Aventurier getAventurier(int indexAventurier) {
         vue.SetMode(Vue.IhmMode.AVENTURIER);
 
@@ -191,8 +205,11 @@ public class Controleur implements Observeur {
         return null;
     }
 
-    //Permet de selectinner une carte
-    public Carte getCarteSelectionne(int currentAventurier) {
+    /**
+     *
+     * @return Retourne la carte que l'aventurier sélectionne
+     */
+    public Carte getCarteSelectionne() {
         vue.SetMode(Vue.IhmMode.MAIN);
 
         String s = "";
@@ -208,7 +225,7 @@ public class Controleur implements Observeur {
             }
         }
 
-        ArrayList<CarteItem> cartes = aventuriers.get(currentAventurier).getCarteItems();
+        ArrayList<CarteItem> cartes = aventuriers.get(this.getCurrentAventurier()).getCarteItems();
         for (CarteItem c
                 : cartes) {
             if (c.getNom().equals(s)) {
@@ -223,7 +240,9 @@ public class Controleur implements Observeur {
     /*
     GAME LOOP
      */
-    //Gere le tour de jeu
+ /*
+    Gère la game loop du jeu
+     */
     void gameLoop() {
         while (true) {//Berk
             for (int i = 0; i < aventuriers.size(); i++) {
@@ -289,16 +308,16 @@ public class Controleur implements Observeur {
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     gameState.incrementNiveau();
-                    cartesInnondation.addCarteDefausseDebut(cIt1);
-                    cartesInnondation.addCarteDefausseDebut(cIt2);
+                    cartesInondation.addCarteDefausseDebut(cIt1);
+                    cartesInondation.addCarteDefausseDebut(cIt2);
                 } else if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     if (cIt1 instanceof CarteMEau) {
                         av.addCarteItem(cIt2);
-                        cartesInnondation.addCarteDefausseDebut(cIt1);
+                        cartesInondation.addCarteDefausseDebut(cIt1);
                     } else {
                         av.addCarteItem(cIt1);
-                        cartesInnondation.addCarteDefausseDebut(cIt2);
+                        cartesInondation.addCarteDefausseDebut(cIt2);
                     }
                     vue.getNiveauEau().setNiveau(gameState.getNiveauEau());
                 } else {
@@ -315,18 +334,25 @@ public class Controleur implements Observeur {
 
     }
 
+    /**
+     * Incrémente le niveau de l'eau, l'appel d'innondation et mélange/vide la
+     * défausse des cartes inondation
+     */
     private void faireMonteDesEau() {
-        cartesInnondation.melangerCartesDefausse();
-        LinkedList<Carte> defausse = cartesInnondation.getDefausse();
-        cartesInnondation.addCartesPiocheDebut(defausse);
+        cartesInondation.melangerCartesDefausse();
+        LinkedList<Carte> defausse = cartesInondation.getDefausse();
+        cartesInondation.addCartesPiocheDebut(defausse);
         defausse.clear();
         faireInnondation();
         gameState.incrementNiveau();
     }
 
+    /**
+     * Pioche x cartes inondation et met à jour les tuiles (inondées/coulées)
+     */
     private void faireInnondation() {
         int nbCarteInnondation = gameState.getNbDeCarte();
-        LinkedList<Carte> cartesInnondationPioche = cartesInnondation.getPioche();
+        LinkedList<Carte> cartesInnondationPioche = cartesInondation.getPioche();
 
         for (int j = 0; j < nbCarteInnondation; j++) {
             CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll();
@@ -335,11 +361,14 @@ public class Controleur implements Observeur {
             } else {
                 cIn.getTuile().setInnondee(true);
             }
-            cartesInnondation.addCarteDefausseDebut(cIn);
+            cartesInondation.addCarteDefausseDebut(cIn);
         }
     }
 
-    //Permet de demarer une partie
+    /**
+     * Méthode qui permet de démarrer une partie en récupérant les inputs de
+     * l'utilisateur
+     */
     public void initialiserPartie() {
 
         //Ajout des joueurs
@@ -378,6 +407,10 @@ public class Controleur implements Observeur {
     }
 
     /* Méthodes liées aux conditions de défaite */
+    /**
+     *
+     * @return la liste des aventuriers qui sont sur une case coulée
+     */
     private ArrayList<Aventurier> listeJoueursCoule() {
         ArrayList<Aventurier> aventuriersCoule = new ArrayList<>();
         for (Aventurier unAventurier : this.getAventuriers()) {
@@ -390,6 +423,11 @@ public class Controleur implements Observeur {
         return aventuriersCoule;
     }
 
+    /**
+     *
+     * @return true si le joueur est sur une case coulée et ne peut pas se
+     * déplacer ailleurs
+     */
     private boolean isJoueursCoince() {
         int i = 0;
         if (listeJoueursCoule().size() > 0) {
@@ -410,6 +448,11 @@ public class Controleur implements Observeur {
         return false;
     }
 
+    /**
+     *
+     * @param tresor le type de trésor que l'on veut vérifier les tuiles
+     * @return true si les tuiles du trésor tresor sont coulées
+     */
     private boolean isTuilesTresorCoule(Utils.Tresor tresor) {
         int i = 0;
         Grille grilleJeu = this.getGrille();
@@ -423,40 +466,95 @@ public class Controleur implements Observeur {
         }
         return i == 0;
     }
-
+    /**
+     * 
+     * @return true si au moins l'un des trésors n'est plus récupérable (plus de case & pas récupéré à temps)
+     */
     private boolean isTuilesTresorCoince() {
         Utils.Tresor[] listeTresors = Utils.Tresor.values();
         for (Utils.Tresor unTresor : listeTresors) {
-            if (isTuilesTresorCoule(unTresor)) {
+            if (isTuilesTresorCoule(unTresor) && !(this.getGameState().getTresors().get(unTresor))) {
                 return true;
             }
         }
         return false;
     }
-
+    /**
+     * 
+     * @return true si l'héliport est coulé
+     */
     private boolean isHeliportCoule() {
         int i = 0;
         Tuile[][] listeTuiles = this.getGrille().getTuiles();
         for (Tuile[] uneColonne : listeTuiles) {
             for (Tuile uneTuile : uneColonne) {
-                if(uneTuile.getNom().equals("Heliport")) {
+                if (uneTuile instanceof Heliport) {
                     i++;
                 }
             }
         }
         return i == 0;
     }
-    
+    /**
+     * 
+     * @return true si le niveau d'eau dépasse le niveau 5 (>= 10 dans le code)
+     */
     private boolean isTeteDeMort() {
         return this.getGameState().getNiveauEau() >= 10;
     }
-
+    /**
+     * 
+     * @return true si au moins l'une des conditions de défaite est respectée
+     */
     private boolean isGameOver() {
-        return isJoueursCoince() || isTuilesTresorCoince() ||isHeliportCoule() || isTeteDeMort();
+        return isJoueursCoince() || isTuilesTresorCoince() || isHeliportCoule() || isTeteDeMort();
+    }
+
+    /* Méthodes liées aux conditions de victoire */
+    
+    /**
+     * 
+     * @return true si tout les joueurs se situent sur la tuile hélicoptère
+     */
+    private boolean isToutLeMondeSurTuileHelicopetere() {
+        int i = 0;
+        ArrayList<Aventurier> listeAventuriers = this.getAventuriers();
+        for (Aventurier unAventurier : listeAventuriers) {
+            if (this.getGrille().getTuile(unAventurier.getPosition()) instanceof Heliport) {
+                i++;
+            }
+        }
+        return i == listeAventuriers.size();
     }
     
-    /* Méthodes liées aux conditions de défaite */
-    
+    /**
+     * 
+     * @return true si tout les trésors ont été récupérés
+     */
+    private boolean isToutlestresorsrecuperes() {
+        int i = 0;
+        for (Map.Entry<Utils.Tresor, Boolean> entry : this.getGameState().getTresors().entrySet()) {
+            boolean value = entry.getValue();
+            if (value) {
+                i++;
+            }
+        }
+        return i == 4;
+    }
+    /**
+     * 
+     * @return true si les conditions nécessaires à la victoire sont respectées
+     */
+    private boolean isVictoire() {
+        boolean carteHelico = false;
+        for (Carte uneCarte : this.getAventurier(this.getCurrentAventurier()).getCarteItems()) {
+            if (uneCarte instanceof CarteHelicoptere) {
+                carteHelico = true;
+            }
+        }
+        return this.isToutLeMondeSurTuileHelicopetere() && this.isToutlestresorsrecuperes() && carteHelico;
+    }
+
     @Override
     public void recevoirMessage(Message m) {
         messages.add(m);
@@ -590,12 +688,12 @@ public class Controleur implements Observeur {
         this.cartesItem = cartesItem;
     }
 
-    public Deck getCartesInnondation() {
-        return cartesInnondation;
+    public Deck getCartesInondation() {
+        return cartesInondation;
     }
 
-    public void setCartesInnondation(Deck cartesInnondation) {
-        this.cartesInnondation = cartesInnondation;
+    public void setCartesInondation(Deck cartesInondation) {
+        this.cartesInondation = cartesInondation;
     }
 
     public ArrayList<Aventurier> getAventuriers() {

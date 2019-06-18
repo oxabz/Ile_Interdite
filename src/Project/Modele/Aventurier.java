@@ -101,7 +101,7 @@ public abstract class Aventurier extends ObjetIdentifie {
 
         Aventurier av = c.getAventurier(c.getCurrentAventurier());
 
-        Carte carte = c.getCarteSelectionne(c.getCurrentAventurier());
+        Carte carte = c.getCarteSelectionne();
 
     }
 
@@ -126,7 +126,7 @@ public abstract class Aventurier extends ObjetIdentifie {
 
         carteItems.add(carte);
         if(carteItems.size()>5){
-            this.carteItems.remove(controleur.getCarteSelectionne(controleur.getCurrentAventurier()));
+            this.carteItems.remove(controleur.getCarteSelectionne());
         }
     }
 
