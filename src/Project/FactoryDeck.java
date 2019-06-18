@@ -60,11 +60,12 @@ public class FactoryDeck {
     public static Deck getDeckInondations() {
         Deck deck = new Deck();
         Grille g;
-        g = FactoryGrille.getGrilleTest();
-        for (Tuile[] uneLigne : g.getTuiles()) {
-            for (Tuile uneTuile : uneLigne) {
-                if (uneTuile != null) {
-                    deck.addCartePiocheDebut(new CarteInondation(uneTuile.getNom(), uneTuile));
+        g = FactoryGrille.getLastFactoryDeck();
+        Tuile[][] tuiles = g.getTuiles();
+        for (int i = 0; i < g.getSizeX(); i++) {
+            for (int j = 0; j < g.getSizeY(); j++) {
+                if (tuiles[i][j] != null) {
+                    deck.addCartePiocheDebut(new CarteInondation(tuiles[i][j].getNom(), tuiles[i][j]));
                 }
             }
         }
