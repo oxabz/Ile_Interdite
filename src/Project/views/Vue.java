@@ -1,17 +1,11 @@
 package Project.views;
 
 import Project.Controleur;
-import Project.Modele.Deck;
-import Project.Modele.Grille;
 import Project.util.Observe;
-import Project.util.Vector2;
 import Project.views.Elements.*;
 
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Vue extends Observe {
@@ -46,17 +40,23 @@ public class Vue extends Observe {
         deck = new EDeck();
         actions = new EActions(this);
         main = new EMain();
+        informations = new EInfo();
 
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
         constraints.gridx = 2;
         constraints.gridy = 4;
         window.add(deck,constraints);
-        constraints.gridwidth = 2;
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
         constraints.gridx = 0;
         constraints.gridy = 4;
         window.add(actions,constraints);
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        constraints.gridx = 1;
+        constraints.gridy = 4;
+        window.add(informations,constraints);
 
 
 
@@ -198,5 +198,9 @@ public class Vue extends Observe {
                 break;
 
         }
+    }
+
+    public EInfo getInformations() {
+        return informations;
     }
 }
