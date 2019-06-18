@@ -65,4 +65,12 @@ public class GameState {
     public int getNiveauEau() {
         return niveauEau;
     }
+
+    /* 
+    GETTER 
+     */
+
+	public HashMap<Utils.Tresor, Boolean> getTresors() {
+		return tresors;
+	}
 }
