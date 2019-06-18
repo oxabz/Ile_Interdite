@@ -3,10 +3,14 @@ package Project.views.Elements;
 import Project.FactoryDeck;
 import Project.Modele.Deck;
 import Project.util.Sound;
+import java.awt.BasicStroke;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.GridLayout;
 import java.awt.Point;
+import java.awt.Stroke;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -104,9 +108,10 @@ public final class EDeck extends JPanel {
         } catch (IOException ex) {
             System.out.println("Project.views.Elements.EDeck.<init>()");
             System.out.println("Erreur fichier : " + ex.getMessage() + " pour dos des cartes");
-            
+
         }
         this.setImageItemPioche(this.getDosItem());
+        this.setImageItemDefausse(EDeck.getNULL());
         this.setImageInondationPioche(this.getDosInondation());
         this.setImageInondationDefausse(EDeck.getNULL());
         // Création des JPanels contenant les images (& Override paintComponent)
@@ -121,8 +126,17 @@ public final class EDeck extends JPanel {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(getImageItemDefausse(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
-                
+                if (getImageItemDefausse() == null) {
+                    Graphics2D g2d = (Graphics2D) g.create();
+                    Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+                    g2d.setStroke(dashed);
+                    g2d.setColor(Color.RED);
+                    g2d.drawRoundRect(0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), 20, 20);
+                    g2d.dispose();
+                } else {
+                    g.drawImage(getImageItemDefausse(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                }
+
             }
         };
         labelImagePiocheInnondation = new JLabel() {
@@ -130,15 +144,24 @@ public final class EDeck extends JPanel {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
                 g.drawImage(getImageInondationPioche(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
-                
+
             }
         };
         labelImageDefausseInnondation = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                g.drawImage(getImageInondationDefausse(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
-                
+                if (getImageInondationDefausse() == null) {
+                    Graphics2D g2d = (Graphics2D) g.create();
+                    Stroke dashed = new BasicStroke(3, BasicStroke.CAP_BUTT, BasicStroke.JOIN_BEVEL, 0, new float[]{9}, 0);
+                    g2d.setStroke(dashed);
+                    g2d.setColor(Color.BLUE);
+                    g2d.drawRoundRect(0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), 20, 20);
+                    g2d.dispose();
+                } else {
+                    g.drawImage(getImageInondationDefausse(), 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
+                }
+
             }
         };
         // Aménagement des images
@@ -158,8 +181,9 @@ public final class EDeck extends JPanel {
         this.getInondationPiocheNombre().setText(Integer.toString(this.getDeckInondation().getPioche().size()));
         this.getInondationDefausseNombre().setText(Integer.toString(this.getDeckInondation().getDefausse().size()));
     }
+
     /**
-     * 
+     *
      * @param g
      * @param image l'image à animer
      * @param pointDepart le point en haut à gauche du début de l'animation
@@ -179,7 +203,7 @@ public final class EDeck extends JPanel {
             Thread.currentThread().interrupt();
             throw new RuntimeException(ex);
         }
-        
+
     }
 
     /**
@@ -231,9 +255,9 @@ public final class EDeck extends JPanel {
 
             Double deplacementY = pointArrive.getY() - pointDepart.getY();
             Double posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
-            
+
             String location = EDeck.getIMAGE_PREFIXE_CARTE() + this.cleanString(getDeckItems().getDefausse().get(0).getImage()) + EDeck.getIMAGE_EXTENSION();
-            
+
             BufferedImage image = null;
             try {
                 image = ImageIO.read(new File(location));
@@ -255,7 +279,7 @@ public final class EDeck extends JPanel {
             /**
              *
              */
-            
+
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
@@ -283,9 +307,9 @@ public final class EDeck extends JPanel {
 
             Double deplacementY = pointArrive.getY() - pointDepart.getY();
             Double posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
-            
+
             String location = EDeck.getIMAGE_PREFIXE_CARTE() + this.cleanString(getDeckInondation().getDefausse().get(0).getNom()) + EDeck.getIMAGE_EXTENSION();
-            
+
             BufferedImage image = null;
             try {
                 image = ImageIO.read(new File(location));
@@ -294,7 +318,7 @@ public final class EDeck extends JPanel {
                 System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
             }
             for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
-                paintAnimation(getEDeck().getGraphics(), image, pointDepart, pointArrive, 0, j * posY);                
+                paintAnimation(getEDeck().getGraphics(), image, pointDepart, pointArrive, 0, j * posY);
             }
             /**
              *
@@ -331,153 +355,153 @@ public final class EDeck extends JPanel {
         for (int i = 0; i < nbTour; i++) {
             //  this.piocherItem();
         }
-        
+
         nbTour = this.getDeckInondation().getPioche().size();
         for (int i = 0; i < nbTour; i++) {
             this.piocherInondation();
         }
-        
+
     }
 
     /* GETTERS & SETTERS */
     private Deck getDeckItems() {
         return deckItems;
     }
-    
+
     private Deck getDeckInondation() {
         return deckInondation;
     }
-    
+
     public BufferedImage getImageInondationPioche() {
         return imageInondationPioche;
     }
-    
+
     public BufferedImage getImageInondationDefausse() {
         return imageInondationDefausse;
     }
-    
+
     public BufferedImage getImageItemPioche() {
         return imageItemPioche;
     }
-    
+
     public JLabel getItemDefausseNombre() {
         return itemDefausseNombre;
     }
-    
+
     public JLabel getItemPiocheNombre() {
         return itemPiocheNombre;
     }
-    
+
     public JLabel getInondationDefausseNombre() {
         return inondationDefausseNombre;
     }
-    
+
     public JLabel getInondationPiocheNombre() {
         return inondationPiocheNombre;
     }
-    
+
     public JPanel getSideInondation() {
         return sideInondation;
     }
-    
+
     public JPanel getSideItem() {
         return sideItem;
     }
-    
+
     public JPanel getItemPioche() {
         return itemPioche;
     }
-    
+
     public JPanel getItemDefausse() {
         return itemDefausse;
     }
-    
+
     public JPanel getInondationPioche() {
         return inondationPioche;
     }
-    
+
     public JPanel getInondationDefausse() {
         return inondationDefausse;
     }
-    
+
     public BufferedImage getDosItem() {
         return dosItem;
     }
-    
+
     public BufferedImage getDosInondation() {
         return dosInondation;
     }
-    
+
     public JLabel getLabelImagePiocheItem() {
         return labelImagePiocheItem;
     }
-    
+
     public JLabel getLabelImageDefausseItem() {
         return labelImageDefausseItem;
     }
-    
+
     public JLabel getLabelImagePiocheInnondation() {
         return labelImagePiocheInnondation;
     }
-    
+
     public JLabel getLabelImageDefausseInnondation() {
         return labelImageDefausseInnondation;
     }
-    
+
     public static String getIMAGE_PREFIXE_CARTE() {
         return IMAGE_PREFIXE_CARTE;
     }
-    
+
     public static String getIMAGE_EXTENSION() {
         return IMAGE_EXTENSION;
     }
-    
+
     public static JLabel getLABEL_ITEM() {
         return LABEL_ITEM;
     }
-    
+
     public static JLabel getLABEL_INONDATION() {
         return LABEL_INONDATION;
     }
-    
+
     public static int getNOMBRE_FRAMES_ANIMATION() {
         return NOMBRE_FRAMES_ANIMATION;
     }
-    
+
     public static String getSON_CARTE_FLIP_CHEMIN() {
         return SON_CARTE_FLIP_CHEMIN;
     }
-    
+
     public static int getDELAI_ANIMATION() {
         return DELAI_ANIMATION;
     }
-    
+
     public void setImageInondationPioche(BufferedImage imageInondationPioche) {
         this.imageInondationPioche = imageInondationPioche;
     }
-    
+
     public void setImageItemPioche(BufferedImage imageItemPioche) {
         this.imageItemPioche = imageItemPioche;
     }
-    
+
     public void setImageInondationDefausse(BufferedImage imageInondationDefausse) {
         this.imageInondationDefausse = imageInondationDefausse;
     }
-    
+
     public void setImageItemDefausse(BufferedImage imageItemDefausse) {
         this.imageItemDefausse = imageItemDefausse;
     }
-    
+
     public EDeck getEDeck() {
         return this;
     }
-    
+
     public static BufferedImage getNULL() {
         return NULL;
     }
-    
+
     public BufferedImage getImageItemDefausse() {
         return imageItemDefausse;
     }
-    
+
 }
