@@ -21,7 +21,7 @@ public final class EFormulaire extends JPanel {
 
     private final static JLabel tableauJoueurs[] = {new JLabel("Joueur 1") , new JLabel("Joueur 2") , new JLabel("Joueur 3") , new JLabel("Joueur 4") };
     private final static JTextField tableauNomJoueurs[] = {new JTextField(15) , new JTextField(15) ,new JTextField(15) , new JTextField(15)} ;
-    private final static String tableauDifficulté [] = {"novice" , "normale" , "élite" , "légendaire" ) ;
+    private final static String tableauDifficulté [] = {"novice" , "normale" , "élite" , "légendaire" } ;
 
     // A MODIFIER POUR MORTEL DIFICULTY ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
