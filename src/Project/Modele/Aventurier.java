@@ -64,7 +64,7 @@ public abstract class Aventurier extends ObjetIdentifie {
     }
 
     //Retourne les position de deplacemnt du joueur
-    protected ArrayList<Vector2> getPosDeplacement(){
+    public ArrayList<Vector2> getPosDeplacement(){
         ArrayList<Vector2> pos = new ArrayList<>();
         pos.add( position.add(-1,0));
         pos.add( position.add(1,0));

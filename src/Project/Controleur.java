@@ -5,6 +5,7 @@ import Project.Modele.Aventuriers.*;
 import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteMEau;
+import Project.Modele.Tuiles.TuileTresor;
 import Project.util.*;
 import Project.views.Vue;
 import Project.views.VueAventurier;
@@ -47,9 +48,9 @@ public class Controleur implements Observeur {
         vue = new Vue();
         vue.setObserveur(this);
         vue.initialiserNiveauEau(gameState.getNiveauEau());
-        vue.initialiserGrille(grille.getNames(),grille.getInnondee(),grille.getCoulee());
+        vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
         vue.initialiserVue();
-        vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
+        vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
     }
 
     private final static Controleur controleur = new Controleur();
@@ -70,7 +71,7 @@ public class Controleur implements Observeur {
         System.out.println("Choisissez une case (dans la fenetre):");
 
         if (!clickables.isEmpty()) {
-            vue.getGrille().setClickables(clickables,true);
+            vue.getGrille().setClickables(clickables, true);
 
             Vector2 pos = new Vector2(0, 0);
             boolean done = false;
@@ -85,7 +86,7 @@ public class Controleur implements Observeur {
                 }
             }
 
-            vue.getGrille().setClickables(clickables,false);
+            vue.getGrille().setClickables(clickables, false);
             return pos;
         }
         return null;
@@ -244,12 +245,12 @@ public class Controleur implements Observeur {
                 while (nbAction < 3 && !finT) {
                     switch (getSelectedAction(i)) {
                         case SE_DEPLACER:
-                            if(av.seDeplacer()){
+                            if (av.seDeplacer()) {
                                 nbAction++;
                             }
                             break;
                         case ASSECHER:
-                            if (av.assecher()){
+                            if (av.assecher()) {
                                 nbAction++;
                             }
                             break;
@@ -269,10 +270,8 @@ public class Controleur implements Observeur {
                             nbAction++;
                             break;
                     }
-                    vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
+                    vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
                 }
-
-
 
                 //phase de pioche
                 CarteItem cIt1 = (CarteItem) cartesItem.getPioche().poll();
@@ -301,7 +300,7 @@ public class Controleur implements Observeur {
                 //phase d'innondation
                 faireInnondation();
 
-                vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
+                vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
             }
         }
 
@@ -322,7 +321,7 @@ public class Controleur implements Observeur {
 
         for (int j = 0; j < nbCarteInnondation; j++) {
             CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll();
-            if ( cIn.getTuile().isInnondee()) {
+            if (cIn.getTuile().isInnondee()) {
                 grille.removeTuile(cIn.getTuile());
             } else {
                 cIn.getTuile().setInnondee(true);
@@ -335,13 +334,12 @@ public class Controleur implements Observeur {
     public void initialiserPartie() {
 
         //Ajout des joueurs
-
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
 
         Scanner s = new Scanner(System.in);
 
         int nbJ;
-        do{
+        do {
             System.out.print("nb de joueur :");
             nbJ = s.nextInt();
             s.nextLine();
@@ -358,21 +356,95 @@ public class Controleur implements Observeur {
             av.setJoueur(nomJ);
             System.out.println(av.getJoueur() + " sera " + av.getNom());
 
-
-
         }
 
         //Initialisation du gamestate
-
         int lvl;
         do {
             System.out.println("Choisissez un niveau de jeu");
             lvl = s.nextInt();
-        }while (!(lvl>=1 && lvl<=4));
+        } while (!(lvl >= 1 && lvl <= 4));
         gameState = new GameState(lvl);
 
     }
 
+    /* Méthodes liées aux conditions de défaite */
+    private ArrayList<Aventurier> listeJoueursCoule() {
+        ArrayList<Aventurier> aventuriersCoule = new ArrayList<>();
+        for (Aventurier unAventurier : this.getAventuriers()) {
+            Vector2 positionJoueur = unAventurier.getPosition();
+            Tuile tuileJoueur = this.getGrille().getTuile(positionJoueur);
+            if (tuileJoueur == null) {
+                aventuriersCoule.add(unAventurier);
+            }
+        }
+        return aventuriersCoule;
+    }
+
+    private boolean isJoueursCoince() {
+        int i = 0;
+        if (listeJoueursCoule().size() > 0) {
+            for (Aventurier unAventurier : listeJoueursCoule()) {
+                ArrayList<Vector2> listeDeplacements = unAventurier.getPosDeplacement();
+                for (Vector2 unDeplacement : listeDeplacements) {
+                    if (this.getGrille().getTuile(unDeplacement) == null) {
+                        i++;
+                    }
+                }
+                if (i == listeDeplacements.size()) {
+                    return true;
+                }
+                i = 0;
+            }
+
+        }
+        return false;
+    }
+
+    private boolean isTuilesTresorCoule(Utils.Tresor tresor) {
+        int i = 0;
+        Grille grilleJeu = this.getGrille();
+        Tuile[][] listeTuiles = grilleJeu.getTuiles();
+        for (Tuile[] uneColonne : listeTuiles) {
+            for (Tuile uneTuile : uneColonne) {
+                if (uneTuile.isTuileTresor()) {
+                    i++;
+                }
+            }
+        }
+        return i == 0;
+    }
+
+    private boolean isTuilesTresorCoince() {
+        Utils.Tresor[] listeTresors = Utils.Tresor.values();
+        for (Utils.Tresor unTresor : listeTresors) {
+            if (isTuilesTresorCoule(unTresor)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isHeliportCoule() {
+        int i = 0;
+        Tuile[][] listeTuiles = this.getGrille().getTuiles();
+        for (Tuile[] uneColonne : listeTuiles) {
+            for (Tuile uneTuile : uneColonne) {
+                if(uneTuile.getNom().equals("Heliport")) {
+                    i++;
+                }
+            }
+        }
+        return i == 0;
+    }
+    
+    private boolean isTeteDeMort() {
+        return this.getGameState().getNiveauEau() >= 10;
+    }
+
+    private boolean isGameOver() {
+        return isJoueursCoince() || isTuilesTresorCoince() ||isHeliportCoule() || isTeteDeMort();
+    }
     @Override
     public void recevoirMessage(Message m) {
         messages.add(m);
