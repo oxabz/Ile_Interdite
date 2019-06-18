@@ -6,18 +6,10 @@
 package Project.views.Elements;
 
 import Project.Modele.Aventurier;
-import Project.Modele.Carte;
 import Project.Modele.Cartes.CarteItem;
-import Project.Modele.Cartes.CartesItem.CarteTresor;
-import Project.util.Utils;
 import Project.views.Vue;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -25,6 +17,7 @@ import java.util.ArrayList;
  * @author seiglebq
  */
 public class EMain extends JPanel {
+
     private JLabel nomJoueur;
     private JLabel nbAction;
     private JLabel nombreCarte;
@@ -34,8 +27,6 @@ public class EMain extends JPanel {
     private Aventurier aventurier;
     private Vue vue;
 
-
-
     public EMain(Vue vue) {
         this.vue = vue;
         panels = new ArrayList<>();
@@ -44,10 +35,9 @@ public class EMain extends JPanel {
         }
         cartesItems = new ArrayList<>();
 
-        this.setLayout(new GridLayout(1,8));
+        this.setLayout(new GridLayout(1, 8));
 
-        for (JPanel p :
-                panels) {
+        for (JPanel p : panels) {
             this.add(p);
         }
 
@@ -70,12 +60,12 @@ public class EMain extends JPanel {
     public void setCartesItems(ArrayList<CarteItem> cartesItems) {
         this.cartesItems = cartesItems;
         for (int i = 0; i < 6; i++) {
-            ((ECarte)panels.get(i)).setCarte((i<cartesItems.size() ? cartesItems.get(i):null));
+            ((ECarte) panels.get(i)).setCarte((i < cartesItems.size() ? cartesItems.get(i) : null));
 
         }
     }
 
-    public void setAventurier(Aventurier aventurier){
+    public void setAventurier(Aventurier aventurier) {
         this.aventurier = aventurier;
         setCartesItems(aventurier.getCarteItems());
         nomJoueur.setText(aventurier.getJoueur());

@@ -19,6 +19,9 @@ import java.util.HashMap;
  * @author seiglebq
  */
 public class FactoryGrille {
+    
+    private static Grille lastFactoryDeck;
+    
     private static final String[] TUILES_NAMES = {
             "Le Pont des Abimes",
             "La Porte de Bronze",
@@ -122,6 +125,13 @@ public class FactoryGrille {
         tuilesG[3][5] = tuiles.get("Le Jardin des Murmures");
         tuilesG[3][5].setInnondee(true);
 
+        lastFactoryDeck = g;
         return g;
     }
+
+    public static Grille getLastFactoryDeck() {
+        return lastFactoryDeck;
+    }
+    
+    
 }
