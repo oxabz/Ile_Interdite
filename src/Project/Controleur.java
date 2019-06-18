@@ -290,7 +290,10 @@ public class Controleur implements Observeur {
                             finT = true;
                             break;
                         case PRENDRE_TRESOR:
-                            nbAction++;
+                            // Si le joueur a peut prendre le trésor alors il a fait une action
+                            if(av.prendreTresor()) {
+                                nbAction++;
+                            }
                             break;
                         case UTILISER_CARTE:
                             break;

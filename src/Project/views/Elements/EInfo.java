@@ -172,6 +172,7 @@ public class EInfo extends JPanel  {
 	 */
 	private BufferedImage ImageGrisee(BufferedImage image)
 	{
+		if(image == null) return null;
 		// On récupère la largeur de l'image
 		int width = image.getWidth();
 		// On récupère la hauteur de l'image
