@@ -11,6 +11,8 @@ import Project.Modele.Grille;
 import Project.Modele.Tuile;
 import Project.Modele.Tuiles.Heliport;
 import Project.Modele.Tuiles.TuileApparition;
+import Project.Modele.Tuiles.TuileTresor;
+import Project.util.Utils.Tresor;
 
 import java.util.HashMap;
 
@@ -70,6 +72,23 @@ public class FactoryGrille {
                 case "Heliport":
                     t = new Heliport("Pilote");
                     break;
+                case "La Caverne des Ombres":
+                case "La Caverne du Brasier":
+                    t = new TuileTresor(nom, Tresor.CRISTAL);
+                    break;
+                case "Le Jardin des Hurlements":
+                case "Le Jardin des Murmures":
+                    t = new TuileTresor(nom, Tresor.STATUE);
+                    break;
+                case "Le Palais de Corail":
+                case "Le Palais des Marees":
+                    t = new TuileTresor(nom, Tresor.COUPE);
+                    break;
+                case "Le Temple de La Lune":
+                case "Le Temple du Soleil":
+                    t = new TuileTresor(nom, Tresor.PIERRE);
+                    break;
+
                 default:
                     t = new Tuile(nom);
                     break;
