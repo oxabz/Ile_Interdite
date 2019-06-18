@@ -44,17 +44,26 @@ public class Vue extends Observe {
         deck = new EDeck();
         actions = new EActions(this);
         main = new EMain();
+        informations = new EInfo();
 
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
         constraints.gridx = 2;
         constraints.gridy = 4;
-        window.add(deck, constraints);
-        constraints.gridwidth = 2;
+        window.add(deck,constraints);
+        constraints.gridwidth = 1;
         constraints.gridheight = 1;
         constraints.gridx = 0;
         constraints.gridy = 4;
-        window.add(actions, constraints);
+        window.add(actions,constraints);
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        constraints.gridx = 1;
+        constraints.gridy = 4;
+        window.add(informations,constraints);
+
+
+
 
     }
 
@@ -192,5 +201,4 @@ public class Vue extends Observe {
     public EInfo getInformations() {
         return informations;
     }
-
 }
