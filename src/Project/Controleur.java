@@ -467,19 +467,26 @@ public class Controleur implements Observeur {
      * @return Nombre entier correspondant au pourcentage de tuiles non inondées
      */
     private int getRateTuilesNonInondees() {
+        // On initialise une variable cartes qui fera le cumul des cartes existantes
         int cartes = 0;
+        // On initialise une variable cartes_non_inondees qui fera le cumul des cartes non inondées
         int cartes_non_inondees = 0;
         
+        // Pour toutes les cartes
         for(int x = 0; x < grille.getSizeX(); x++) {
             for(int y = 0; y < grille.getSizeX(); y++) {
+                // On récupère la tuile
                 Tuile tuile = grille.getTuile(x, y);
+                // Si la tuile existe alors on l'ajoute aux tuiles existentes 
                 if(tuile != null) {
                     cartes++;
+                    // Si la tuile n'est pas inondée, on ajoute la tuile aux tuiles non inondées
                     if(!tuile.isInnondee()) cartes_non_inondees++;
                 }
             }   
         }
         
+        // cartes non inondées/cartes restantes (ici 24) x 100 (pour l'avoir en pourcentage)
         return (int) Math.round(((double) cartes_non_inondees/cartes)*100);
     }
 
@@ -488,17 +495,22 @@ public class Controleur implements Observeur {
      * @return Nombre entier correspondant au pourcentage de tuiles restantes
      */
     private int getRateTuilesRestantes() {
+        // On initialise une variable cartes qui fera le cumul des cartes existantes
         int cartes = 0;
         
+        // Pour toutes les cases de la grille
         for(int x = 0; x < grille.getSizeX(); x++) {
             for(int y = 0; y < grille.getSizeX(); y++) {
+                // On récupère la grille
                 Tuile tuile = grille.getTuile(x, y);
+                // Si elle existe, on ajoute la carte
                 if(tuile != null) {
                     cartes++;
                 }
             }   
         }
         
+        // cartes restantes/cartes totales (ici 24) x 100 (pour l'avoir en pourcentage)
         return (int) Math.round(((double) cartes/24)*100);
     }
 
@@ -511,18 +523,24 @@ public class Controleur implements Observeur {
      * @return Chaîne de caractère correspondant au message d'alerte
      */
     private String getAlerteMessage() {
+        // HashMap avec tous les tresors et leur nombre de tuile sur la grille
         HashMap<Tresor, Integer> tresors = new HashMap<>();
         for(Tresor tresor : Tresor.values()) {
+            // On initialise à 0
             tresors.put(tresor, 0);
         }
 
+        // On parcours toute la grille
         for(int x = 0; x < grille.getSizeX(); x++) {
             for(int y = 0; y < grille.getSizeX(); y++) {
+                // On récupère chaque tuile
                 Tuile tuile = grille.getTuile(x, y);
                 if(tuile != null) {
+                    // S'il s'agit de l'héliport et qu'il est inondé, on affiche un message
                     if(tuile instanceof Heliport && tuile.isInnondee()) {
                         return "HÉLIPORT INONDÉ";
                     }
+                    // S'il s'agit d'une tuile tresor, on l'ajoute à l'HashMap
                     if(tuile instanceof TuileTresor) {
                         Tresor tresor = ((TuileTresor) tuile).getTresor();
                         tresors.put(tresor, tresors.get(tresor) + 1);
@@ -531,17 +549,24 @@ public class Controleur implements Observeur {
             }   
         }
 
+        // Pour tous les tresors
         for(Tresor tresor : Tresor.values()) {
-            if(tresors.get(tresor) == 1) return "ULTIME TUILE " + tresor.toString() + " RESTANT";
+            // Si il reste plus qu'une tuile trésor et qu'il n'a pas été récupéré, on envoie un message
+            if(tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue()) 
+            return "1 TUILE TRESOR " + tresor.toString() + " RESTANTE";
         }
 
         for(Aventurier aventurier : getAventuriers()) {
+            // On récupère la tuile de chaque aventurier
             Tuile tuile = grille.getTuile(aventurier.getPosition());
+            // Si la tuile est inondé, on averti que le joueur est sur une tuile inondée
             if(tuile != null && tuile.isInnondee()) return aventurier.getNom() + " sur tuile inondé";
         }
 
+        // Si on est à deux pallier de finir la partie, on affiche un avertissement
         if(gameState.getNiveauEau() >= 8) return "Niveau d'eau critique";
 
+        // Sinon on affiche rien
         return "";
     }
 
