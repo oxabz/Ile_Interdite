@@ -178,7 +178,7 @@ public abstract class Aventurier extends ObjetIdentifie {
 
         carteItems.add(carte);
         if(carteItems.size()>5){
-            this.carteItems.remove(controleur.getCarteSelectionne());
+            this.carteItems.remove(controleur.getCarteSelectionne(this));
         }
     }
 

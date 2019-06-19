@@ -217,9 +217,11 @@ public class Controleur implements Observeur {
      * @return Retourne la carte que l'aventurier sélectionne
      */
     public Carte getCarteSelectionne() {
+
+        vue.getMain().setAventurier(aventuriers.get(currentAventurier));
         vue.SetMode(Vue.IhmMode.MAIN);
 
-        String s = "";
+        Carte c = null;
         boolean done = false;
         while (!done) {
             try {
@@ -229,22 +231,45 @@ public class Controleur implements Observeur {
             }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
-                if (m.type == MessageType.PARAMETRE) {
+                if (m.type == MessageType.CARTE) {
                     done = true;
-                    s = m.parametre;
+                    c = m.carte;
                 }
             }
         }
 
-        ArrayList<CarteItem> cartes = aventuriers.get(this.getCurrentAventurier()).getCarteItems();
-        for (CarteItem c
-                : cartes) {
-            if (c.getNom().equals(s)) {
-                return c;
+        return c;
+
+    }
+
+    /**
+     *
+     * @param av Qui doit sélectionner une carte à défausser
+     * @return retourne la carte selectionné
+     */
+    public Carte getCarteSelectionne(Aventurier av) {
+
+        vue.getMain().setAventurier(av);
+        vue.SetMode(Vue.IhmMode.MAIN);
+
+        Carte c = null;
+        boolean done = false;
+        while (!done) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            while (!messages.isEmpty()) {
+                Message m = messages.poll();
+                if (m.type == MessageType.CARTE) {
+                    done = true;
+                    c = m.carte;
+                }
             }
         }
 
-        return null;
+        return c;
 
     }
 
