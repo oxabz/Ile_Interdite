@@ -24,10 +24,10 @@ public class FactoryDeck {
     private final static CarteMEau CARTE_MONTEE_DES_EAUX = new CarteMEau("Montée des eaux", "MonteeDesEaux");
     private final static CarteSacSable CARTE_SAC_DE_SABLE = new CarteSacSable("Sac de sable", "SacsDeSable");
     private final static CarteHelicoptere CARTE_HELICOPTERE = new CarteHelicoptere("Hélicoptère", "Helicoptere");
-    private final static CarteTresor CARTE_TRESOR_COUPE = new CarteTresor("carte Coupe", "Calice", Utils.Tresor.COUPE);
-    private final static CarteTresor CARTE_TRESOR_CRISTAL = new CarteTresor("carte Cristal", "Cristal", Utils.Tresor.CRISTAL);
-    private final static CarteTresor CARTE_TRESOR_PIERRE = new CarteTresor("carte Pierre", "Pierre", Utils.Tresor.PIERRE);
-    private final static CarteTresor CARTE_TRESOR_STATUE = new CarteTresor("carte Statue", "Zephyr", Utils.Tresor.STATUE);
+    private final static CarteTresor CARTE_TRESOR_COUPE = new CarteTresor("Carte Coupe", "Calice", Utils.Tresor.COUPE);
+    private final static CarteTresor CARTE_TRESOR_CRISTAL = new CarteTresor("Carte Cristal", "Cristal", Utils.Tresor.CRISTAL);
+    private final static CarteTresor CARTE_TRESOR_PIERRE = new CarteTresor("Carte Pierre", "Pierre", Utils.Tresor.PIERRE);
+    private final static CarteTresor CARTE_TRESOR_STATUE = new CarteTresor("Carte Statue", "Zephyr", Utils.Tresor.STATUE);
 
     public static Deck getDeckItems() {
         Deck deck = new Deck();
@@ -60,7 +60,7 @@ public class FactoryDeck {
     public static Deck getDeckInondations() {
         Deck deck = new Deck();
         Grille g;
-        g = FactoryGrille.getGrilleTest();
+        g = FactoryGrille.getDerniereGrille();
         for (Tuile[] uneLigne : g.getTuiles()) {
             for (Tuile uneTuile : uneLigne) {
                 if (uneTuile != null) {

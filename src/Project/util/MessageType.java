@@ -4,5 +4,7 @@ public enum MessageType {
     POSITION,
     ACTION,
     PARAMETRE,
-    VALIDER_FOMULAIRE
+    VALIDER_FOMULAIRE,
+    CARTE,
+    AVENTURIER
 }

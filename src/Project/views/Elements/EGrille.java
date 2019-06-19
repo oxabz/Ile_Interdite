@@ -1,5 +1,6 @@
 package Project.views.Elements;
 
+import Project.FactoryDeck;
 import Project.util.Message;
 import Project.util.MessageType;
 import Project.util.Observe;
@@ -14,7 +15,7 @@ public class EGrille extends JPanel {
     /*
     ATTRIBUTES
      */
-
+    
     private ECase[][] eCases;
     private Vue vue;
 
@@ -46,14 +47,14 @@ public class EGrille extends JPanel {
         super.paintComponent(g);
         for (int i = 0; i < eCases.length; i++) {
             for (int j = 0; j < eCases[i].length; j++) {
-                eCases[i][j].paintComponent(g);
+                eCases[i][j].repaint();
             }
         }
     }
 
     public void updateGrid(boolean[][] inondee, boolean[][] coulee) {
         for (int i = 0; i < eCases.length; i++) {
-            for (int j = 0; j < eCases[0].length; j++) {
+            for (int j = 0; j < eCases[i].length; j++) {
                 if (coulee[i][j]) {
                     eCases[i][j].changeEtat(ECase.Etat.COULEE);
                 } else if (inondee[i][j]) {
@@ -80,5 +81,7 @@ public class EGrille extends JPanel {
             tuile.setClickable(aBoolean);
         }
     }
+
+
 
 }
