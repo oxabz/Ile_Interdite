@@ -28,9 +28,9 @@ public class ECarte extends JPanel {
         this.vue = vue;
 
         try {
-            image = ImageIO.read(new File(IMAGE_PREFIX + "Fondrouge" + IMAGE_EXTENTION));
+            image = ImageIO.read(new File(IMAGE_PREFIX + "fondrouge" + IMAGE_EXTENTION));
         } catch (IOException e) {
-            System.out.println("Erreur chargement carte");
+            System.out.println("Erreur chargement carte ");
         }
         this.addMouseListener(new MouseListener() {
             @Override
@@ -77,20 +77,16 @@ public class ECarte extends JPanel {
 
     public void setCarte(Carte carte){
         this.carte=carte;
-        String name = (carte!=null ? carte.getNom() : "");
-        name = name.replaceAll(" d\u0027","d");
-        name = name.replaceAll(" d","D");
-        name = name.replaceAll(" l\u0027","L");
-        name = name.replaceAll(" ","");
-        name = name.replaceAll("Carte","");
+        String name = (carte!=null ? carte.getImage() : "");
+        name = name.replaceAll("\\s+","").replaceAll("\'","").replaceAll("Carte","").toLowerCase();
         try {
             image = ImageIO.read(new File(IMAGE_PREFIX + name + IMAGE_EXTENTION));
         } catch (IOException e) {
-            System.out.println("");
+            System.out.println("not found image"+name);
             try {
-                image = ImageIO.read(new File(IMAGE_PREFIX + "Fondrouge" + IMAGE_EXTENTION));
+                image = ImageIO.read(new File(IMAGE_PREFIX + "fondrouge" + IMAGE_EXTENTION));
             } catch (IOException f) {
-                System.out.println("Erreur chargement carte");
+                System.out.println("Erreur chargement fallback");
             }
         }
         repaint();

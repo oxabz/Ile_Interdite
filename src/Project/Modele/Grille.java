@@ -52,7 +52,6 @@ public class Grille {
             while (j < tuiles[i].length && !found) {
                 if (tuiles[i][j] == null ? tuile == null : tuiles[i][j].getNom().equals(tuile.getNom())) {
                     tuiles[i][j] = null;
-                    System.out.println("Tu m'as trouvé !");
                     found = true;
                 }
                 j++;

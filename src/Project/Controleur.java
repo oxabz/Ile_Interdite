@@ -11,8 +11,12 @@ import Project.Modele.Tuiles.TuileTresor;
 import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
+
+import java.awt.desktop.SystemSleepEvent;
+import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.concurrent.TimeUnit;
 
 public class Controleur implements Observeur {
 
@@ -140,7 +144,11 @@ public class Controleur implements Observeur {
         Utils.Action act = Utils.Action.SE_DEPLACER;
         boolean done = false;
         while (!done) {
-            System.out.print("");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
                 if (m.type == MessageType.ACTION) {
@@ -182,27 +190,25 @@ public class Controleur implements Observeur {
     public Aventurier getAventurier(int indexAventurier) {
         vue.SetMode(Vue.IhmMode.AVENTURIER);
 
-        String s = "";
+        Aventurier av = null;
         boolean done = false;
         while (!done) {
-            System.out.print("");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
-                if (m.type == MessageType.PARAMETRE) {
+                if (m.type == MessageType.AVENTURIER) {
                     done = true;
-                    s = m.parametre;
+                    av = m.av;
                 }
             }
         }
 
-        for (Aventurier av
-                : aventuriers) {
-            if (av.getNom().equals(s)) {
-                return av;
-            }
-        }
 
-        return null;
+        return av;
     }
 
     /**
@@ -215,7 +221,11 @@ public class Controleur implements Observeur {
         String s = "";
         boolean done = false;
         while (!done) {
-            System.out.print("");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
                 if (m.type == MessageType.PARAMETRE) {

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class ECarteAventurier extends JPanel {
 
-    private static final String IMAGE_PREFIX = "images/personnages/";
+    private static final String IMAGE_PREFIX = "src/images/personnages/";
     private static final String IMAGE_EXTENTION = ".png";
 
     private Aventurier av;
@@ -28,7 +28,7 @@ public class ECarteAventurier extends JPanel {
             try {
                 image = ImageIO.read(new File(IMAGE_PREFIX + av.getNom().toLowerCase() + IMAGE_EXTENTION));
             } catch (IOException e) {
-                System.out.println("Erreur chargement carte");
+                System.out.println("Erreur chargement carte aventurier");
             }
         }
         g.drawImage(image,0,0,this.getWidth(),this.getHeight(), null );
