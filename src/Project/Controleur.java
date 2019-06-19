@@ -578,7 +578,7 @@ public class Controleur implements Observeur {
      * Récupère le pourcentage de tuiles non inondées parmi les tuiles restantes
      * @return Nombre entier correspondant au pourcentage de tuiles non inondées
      */
-    private int getRateTuilesNonInondees() {
+    public int getRateTuilesNonInondees() {
         // On initialise une variable cartes qui fera le cumul des cartes existantes
         int cartes = 0;
         // On initialise une variable cartes_non_inondees qui fera le cumul des cartes non inondées
