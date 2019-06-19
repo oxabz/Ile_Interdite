@@ -7,7 +7,6 @@ import javax.swing.*;
 
 public class EJeu extends JPanel {
 
-    private final JPanel Panel;
     private final GridBagConstraints constraints;
 
     //Elements
@@ -21,13 +20,12 @@ public class EJeu extends JPanel {
     private final Vue vue;
 
     public EJeu(Vue vue) {
-        this.vue = vue;
-        Panel = new JPanel();
+        this.vue = vue;        
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.BOTH;
         constraints.weightx = 1;
         constraints.weighty = 1;
-        Panel.setLayout(new GridBagLayout());
+        this.setLayout(new GridBagLayout());
 
         listeJoueurs = new HashMap<>();
         deck = new EDeck();
@@ -39,17 +37,17 @@ public class EJeu extends JPanel {
         constraints.gridheight = 1;
         constraints.gridx = 2;
         constraints.gridy = 4;
-        Panel.add(deck, constraints);
+        this.add(deck, constraints);
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
         constraints.gridx = 0;
         constraints.gridy = 4;
-        Panel.add(actions, constraints);
+        this.add(actions, constraints);
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
         constraints.gridx = 1;
         constraints.gridy = 4;
-        Panel.add(informations, constraints);
+        this.add(informations, constraints);
 
     }
 
@@ -59,7 +57,7 @@ public class EJeu extends JPanel {
         constraints.gridheight = 4;
         constraints.gridx = 3;
         constraints.gridy = 0;
-        Panel.add(niveauEau, constraints);
+        this.add(niveauEau, constraints);
     }
 
     public void initialiserGrille(String[][] names, boolean[][] inondee, boolean[][] coulee) {
@@ -69,15 +67,15 @@ public class EJeu extends JPanel {
         constraints.gridheight = 4;
         constraints.gridx = 0;
         constraints.gridy = 0;
-        Panel.add(grille, constraints);
+        this.add(grille, constraints);
 
         grille.setVisible(true);
-        grille.paintComponents(Panel.getGraphics());
+        grille.paintComponents(this.getGraphics());
 
     }
 
     public void initialiserPanel() {
-        Panel.setVisible(true);
+        this.setVisible(true);
     }
 
     public EGrille getGrille() {
@@ -93,7 +91,7 @@ public class EJeu extends JPanel {
     }
 
     public JPanel getPanel() {
-        return Panel;
+        return this;
     }
 
     public GridBagConstraints getConstraints() {

@@ -3,6 +3,7 @@ package Project.views;
 import Project.util.Observe;
 import Project.views.Elements.EJeu;
 import Project.views.Elements.EJoueur;
+import java.awt.BorderLayout;
 import java.awt.CardLayout;
 import java.awt.Color;
 import javax.swing.*;
@@ -24,21 +25,30 @@ public class Vue extends Observe {
     public Vue() {
         ejeu = new EJeu(this);
         frame = new JFrame("L'Île Interdite");
-        
-        card_initialisation = new JPanel();
-        card_jeu = new JPanel();
-        card_fin = new JPanel();
+        this.configureWindow(frame);
 
-        cards = new JPanel(new CardLayout());
-        cards.add(card_jeu);
+        card_initialisation = new JPanel();
+        card_initialisation.setBackground(Color.red);
+        card_initialisation.add(new JLabel("initialisation"));
+
+        card_jeu = new JPanel(new BorderLayout());
+        card_jeu.add(ejeu, BorderLayout.CENTER);
+        card_jeu.setBackground(Color.BLUE);
+
+        card_fin = new JPanel();
+        card_fin.setBackground(Color.GREEN);
+        card_fin.add(new JLabel("FIN"));
+        
+        cards = new JPanel(new CardLayout());        
         cards.add(card_initialisation);
+        cards.add(card_jeu);
         cards.add(card_fin);
         cards.setOpaque(true);
         cardLayout = (CardLayout) cards.getLayout();
         cardLayout.first(cards);
-
         frame.add(cards);
-        this.configureWindow(frame);
+         
+        //this.initialiserVue();
 
     }
 
@@ -136,4 +146,5 @@ public class Vue extends Observe {
     public EJeu getEjeu() {
         return ejeu;
     }
+ 
 }
