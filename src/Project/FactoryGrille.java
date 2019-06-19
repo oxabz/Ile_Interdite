@@ -11,8 +11,12 @@ import Project.Modele.Grille;
 import Project.Modele.Tuile;
 import Project.Modele.Tuiles.Heliport;
 import Project.Modele.Tuiles.TuileApparition;
+import Project.Modele.Tuiles.TuileTresor;
+import Project.util.Utils.Tresor;
 
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 /**
  *
@@ -28,7 +32,7 @@ public class FactoryGrille {
             "Les Falaises de l\u0027Oubli",
             "Le Palais de Corail",
             "La Porte d\u0027Argent",
-            "Les Dunes de l’Illusion",
+            "Les Dunes de l\u0027Illusion",
             "Heliport",
             "La Porte de Cuivre",
             "Le Jardin des Hurlements",
@@ -70,6 +74,23 @@ public class FactoryGrille {
                 case "Heliport":
                     t = new Heliport("Pilote");
                     break;
+                case "La Caverne des Ombres":
+                case "La Caverne du Brasier":
+                    t = new TuileTresor(nom, Tresor.CRISTAL);
+                    break;
+                case "Le Jardin des Hurlements":
+                case "Le Jardin des Murmures":
+                    t = new TuileTresor(nom, Tresor.STATUE);
+                    break;
+                case "Le Palais de Corail":
+                case "Le Palais des Marees":
+                    t = new TuileTresor(nom, Tresor.COUPE);
+                    break;
+                case "Le Temple de La Lune":
+                case "Le Temple du Soleil":
+                    t = new TuileTresor(nom, Tresor.PIERRE);
+                    break;
+
                 default:
                     t = new Tuile(nom);
                     break;
@@ -86,6 +107,56 @@ public class FactoryGrille {
         }
 
         return null;
+    }
+
+    /**
+     * Génère une grille avec des tuiles
+     * @return
+     */
+    static public Grille GenererGrilleAleatoire() {
+        // Créer la grille
+        Grille g = new Grille();
+        // Créer toutes les instances de tuiles et la stock dans une variable
+        HashMap<String,Tuile> tuiles = getTuiles();
+        // Récupère toutes les tuiles vides de la grille
+        Tuile[][] tuilesG = g.getTuiles();
+
+        // Création d'un array list qui contiendra tous les noms de tuile à ajouter
+        LinkedList<String> distribution_tuiles = new LinkedList<>();
+
+        // On ajoute tous les noms des tuiles
+        for(String nom : TUILES_NAMES) {
+            distribution_tuiles.add(nom);
+        }
+
+        // On met la liste des noms dans un ordre aléatoire
+        Collections.shuffle(distribution_tuiles);
+
+        // Tableau correspondant à l'index début de la colonne pour chaque ligne
+        final int[] debut_colonne = {2,1,0,0,1,2};
+        // La fin est calculée en retirant l'index de début au nombre de colonne dans une ligne
+
+        // Pour toutes les lignes
+        for(int y = 0; y < g.getSizeX(); y++) {
+
+            // Pour toutes les colonnes selon les indexs ci-dessus
+            for(int x = debut_colonne[y]; x < g.getSizeX()-debut_colonne[y]; x++) {
+
+                // À la position x, y...
+                tuilesG[x][y] =
+                // ..on récupère l'instance créée dans la liste tuiles
+                tuiles.get(
+                    // ..avec un nom aléatoire qu'on retire de la liste chapinée
+                    distribution_tuiles.poll()
+                );
+
+            }
+        }
+
+        // Sauvegarde de la grille
+        derniereGrille = g;
+
+        return g;
     }
 
     static public Grille getGrilleTest(){
@@ -122,6 +193,17 @@ public class FactoryGrille {
         tuilesG[3][5] = tuiles.get("Le Jardin des Murmures");
         tuilesG[3][5].setInnondee(true);
 
+        // Sauvegarde de la grille
+        derniereGrille = g;
+
         return g;
     }
+
+    private static Grille derniereGrille;
+
+    public static Grille getDerniereGrille() {
+        return derniereGrille;
+    }
 }
+
+

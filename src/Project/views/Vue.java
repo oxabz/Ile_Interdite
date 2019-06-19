@@ -1,23 +1,30 @@
 package Project.views;
 
 import Project.Controleur;
+import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Deck;
 import Project.Modele.Grille;
 import Project.util.Observe;
+import Project.util.Utils;
 import Project.util.Vector2;
 import Project.views.Elements.*;
 
 import java.awt.*;
-import java.util.ArrayList;
+import Project.views.Elements.EActions;
+import Project.views.Elements.EDeck;
+import Project.views.Elements.EGrille;
+import Project.views.Elements.EInfo;
+import Project.views.Elements.EJoueur;
+import Project.views.Elements.EMain;
+import Project.views.Elements.ENiveauDEau;
+import java.awt.Color;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.*;
 
 public class Vue extends Observe {
 
-    private final static int WINDOW_SIZE_X = 980;
-    private final static int WINDOW_SIZE_Y = 600;
+    private final static int WINDOW_SIZE_X = 1715;
+    private final static int WINDOW_SIZE_Y = 1050;
     private JFrame window;
     private GridBagConstraints constraints;
 
@@ -30,9 +37,7 @@ public class Vue extends Observe {
     private EMain main;
     private EActions actions;
 
-
-
-    public Vue()  {
+    public Vue() {
         window = new JFrame("L'Île interdite");
         this.configureWindow(window);
 
@@ -45,11 +50,12 @@ public class Vue extends Observe {
         listeJoueurs = new HashMap<>();
         deck = new EDeck();
         actions = new EActions(this);
-        main = new EMain();
+        main = new EMain(this);
+        informations = new EInfo();
 
-        constraints.gridwidth = 2;
-        constraints.gridheight = 1;
-        constraints.gridx = 2;
+        constraints.gridwidth = 4;
+        constraints.gridheight = 2;
+        constraints.gridx = 4;
         constraints.gridy = 4;
         window.add(deck,constraints);
         constraints.gridwidth = 2;
@@ -57,7 +63,17 @@ public class Vue extends Observe {
         constraints.gridx = 0;
         constraints.gridy = 4;
         window.add(actions,constraints);
+        constraints.gridwidth = 2;
+        constraints.gridheight = 1;
+        constraints.gridx = 2;
+        constraints.gridy = 4;
+        window.add(informations,constraints);
 
+        constraints.gridwidth = 4;
+        constraints.gridheight = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        window.add(main,constraints);
 
 
 
@@ -104,47 +120,64 @@ public class Vue extends Observe {
 
     public static void main(String[] args) {
         Vue ihme = new Vue();
-        ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
-        ihme.grille.updateGrid(Controleur.getControleur().getGrille().getInnondee(),Controleur.getControleur().getGrille().getCoulee());
+        //ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
+        ihme.grille.updateGrid(Controleur.getControleur().getGrille().getInnondee(), Controleur.getControleur().getGrille().getCoulee());
     }
 
-    public void initialiserGrille(String [][] names){
-        grille = new EGrille(names[0].length, names.length,names,this);
+    public void initialiserNiveauEau(int level) {
+        niveauEau = new ENiveauDEau(level);
+        constraints.gridwidth = 1;
+        constraints.gridheight = 4;
+        constraints.gridx = 3;
+        constraints.gridy = 0;
+        window.add(niveauEau, constraints);
+    }
+
+    public void initialiserGrille(String[][] names, boolean[][] inondee, boolean[][] coulee) {
+        grille = new EGrille(names[0].length, names.length, names, this);
 
         constraints.gridwidth = 3;
         constraints.gridheight = 4;
         constraints.gridx = 0;
         constraints.gridy = 0;
-        window.add(grille,constraints);
+        window.add(grille, constraints);
 
         grille.setVisible(true);
         grille.paintComponents(window.getGraphics());
 
+    }
+
+    public void initialiserVue() {
         window.setVisible(true);
     }
 
-
-    public EGrille getGrille(){
+    public EGrille getGrille() {
         return grille;
     }
 
+    public ENiveauDEau getNiveauEau() {
+        return niveauEau;
+    }
 
-
-    public enum IhmMode{
+    public enum IhmMode {
         POSITION,
         AVENTURIER,
         ACTION,
         MAIN,
     }
 
-    public void SetMode(IhmMode ihmMode){
-        switch (ihmMode){
+    public EMain getMain() {
+        return main;
+    }
+
+    public void SetMode(IhmMode ihmMode) {
+        switch (ihmMode) {
             case ACTION:
                 actions.setEnabled(true);
                 grille.setEnabled(false);
                 main.setEnabled(false);
-                for (EJoueur j :
-                        listeJoueurs.values()) {
+                for (EJoueur j
+                        : listeJoueurs.values()) {
                     j.setEnabled(false);
                 }
                 break;
@@ -152,8 +185,8 @@ public class Vue extends Observe {
                 actions.setEnabled(false);
                 grille.setEnabled(true);
                 main.setEnabled(false);
-                for (EJoueur j :
-                        listeJoueurs.values()) {
+                for (EJoueur j
+                        : listeJoueurs.values()) {
                     j.setEnabled(false);
                 }
                 break;
@@ -162,8 +195,8 @@ public class Vue extends Observe {
                 actions.setEnabled(false);
                 grille.setEnabled(false);
                 main.setEnabled(true);
-                for (EJoueur j :
-                        listeJoueurs.values()) {
+                for (EJoueur j
+                        : listeJoueurs.values()) {
                     j.setEnabled(false);
                 }
                 break;
@@ -172,12 +205,16 @@ public class Vue extends Observe {
                 actions.setEnabled(false);
                 grille.setEnabled(false);
                 main.setEnabled(false);
-                for (EJoueur j :
-                        listeJoueurs.values()) {
+                for (EJoueur j
+                        : listeJoueurs.values()) {
                     j.setEnabled(false);
                 }
                 break;
 
         }
+    }
+
+    public EInfo getInformations() {
+        return informations;
     }
 }

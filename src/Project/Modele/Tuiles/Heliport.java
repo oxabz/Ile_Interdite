@@ -4,11 +4,11 @@ import Project.Modele.Aventurier;
 
 public class Heliport extends TuileApparition {
 
-	/**
-	 * CONSTRUCTOR
-	 */
+    /**
+     * CONSTRUCTOR
+     */
+    public Heliport(String aventurier) {
+        super("Heliport", aventurier);
+    }
 
-	public Heliport(String aventurier) {
-		super("Heliport", aventurier);
-	}
 }

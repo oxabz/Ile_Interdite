@@ -38,8 +38,7 @@ public class GameState {
 
     //Sert à sauvegarder la recuperation d'un tresor
     public void recupererTresor(Utils.Tresor tresor){
-        Boolean t = tresors.get(tresor);
-        t = true;
+        tresors.put(tresor, true);
     }
 
     //Sert a incrementer le niveau d'eau
@@ -61,4 +60,16 @@ public class GameState {
             return 0;
         }
     }
+
+    public int getNiveauEau() {
+        return niveauEau;
+    }
+
+    /* 
+    GETTER 
+     */
+
+	public HashMap<Utils.Tresor, Boolean> getTresors() {
+		return tresors;
+	}
 }
