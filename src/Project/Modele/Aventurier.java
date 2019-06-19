@@ -42,6 +42,10 @@ public abstract class Aventurier extends ObjetIdentifie {
     METHODS
      */
 
+    /**
+     *
+     * @return true si l
+     */
     public boolean seDeplacer(){
 
         //Declaration
