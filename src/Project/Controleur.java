@@ -33,7 +33,7 @@ public class Controleur implements Observeur {
     private Deck cartesItem;
     private Deck cartesInondation;
     private ArrayList<Aventurier> aventuriers;
-    private GameState gameState = new GameState(1);
+    private GameState gameState;
     private Vue vue;
     private VueFormulaire vueFormulaire;
     private Deque<Message> messages = new ArrayDeque<>();
@@ -404,12 +404,18 @@ public class Controleur implements Observeur {
 
         for (int j = 0; j < nbCarteInondation; j++) {
             CarteInondation cIn = (CarteInondation) cartesInondation.piocher();
-            if (cIn.getTuile().isInnondee()) {
-                grille.removeTuile(cIn.getTuile());
+
+            if(cIn == null) {
+                System.err.println("Pioche d'inondation vide.");
             } else {
-                cartesInondation.addCarteDefausseDebut(cIn);
-                cIn.getTuile().setInnondee(true);
+                if (cIn.getTuile().isInnondee()) {
+                    grille.removeTuile(cIn.getTuile());
+                } else {
+                    cartesInondation.addCarteDefausseDebut(cIn);
+                    cIn.getTuile().setInnondee(true);
+                }
             }
+            
         }
     }
 
@@ -435,9 +441,6 @@ public class Controleur implements Observeur {
 
         }
         //Initialisation du gamestate
-
-        cartesItem = new Deck();
-        cartesInondation = new Deck();
 
         gameState = new GameState(m.difficulte);
 

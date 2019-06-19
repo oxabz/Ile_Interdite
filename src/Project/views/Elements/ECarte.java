@@ -84,11 +84,11 @@ public class ECarte extends JPanel {
         } catch (IOException e) {
             if(!name.equals("")){
                 System.out.println("not found image"+name);
-                try {
-                    image = ImageIO.read(new File(IMAGE_PREFIX + "fondrouge" + IMAGE_EXTENTION));
-                } catch (IOException f) {
-                    System.out.println("Erreur chargement fallback");
-                }
+            }
+            try {
+                image = ImageIO.read(new File(IMAGE_PREFIX + "fondrouge" + IMAGE_EXTENTION));
+            } catch (IOException f) {
+                System.out.println("Erreur chargement fallback");
             }
         }
         repaint();
