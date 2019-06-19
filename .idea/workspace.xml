@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="634db893-f018-44b3-a58f-0940b4a6825d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Controleur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -72,8 +71,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="246">
-              <caret line="180" column="73" selection-start-line="180" selection-start-column="73" selection-end-line="180" selection-end-column="73" />
+            <state relative-caret-position="396">
+              <caret line="76" column="66" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -93,8 +92,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarte.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="41" selection-start-line="41" selection-end-line="41" />
+            <state relative-caret-position="1050">
+              <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -150,6 +149,8 @@
       <find>con</find>
       <find>upd</find>
       <find>pioche</find>
+      <find>de</find>
+      <find>not found image</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -202,7 +203,6 @@
         <option value="$PROJECT_DIR$/src/Project/views/Elements/ECarteAventurier.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Grille.java" />
         <option value="$PROJECT_DIR$/src/Project/FactoryDeck.java" />
-        <option value="$PROJECT_DIR$/src/Project/views/Elements/ECarte.java" />
         <option value="$PROJECT_DIR$/src/Project/views/Vue.java" />
         <option value="$PROJECT_DIR$/src/Project/views/Elements/EPion.java" />
         <option value="$PROJECT_DIR$/src/Project/views/Elements/ECase.java" />
@@ -217,6 +217,7 @@
         <option value="$PROJECT_DIR$/src/Project/util/Vector2.java" />
         <option value="$PROJECT_DIR$/src/Project/util/MultiMap.java" />
         <option value="$PROJECT_DIR$/src/Project/Controleur.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/Elements/ECarte.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" />
       </list>
     </option>
@@ -554,11 +555,25 @@
       <option name="project" value="LOCAL" />
       <updated>1560932791176</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Fix de la selection de carte&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation.">
+      <created>1560951381335</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1560951381335</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Fix Eror Message&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation.">
+      <created>1560952047388</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1560952047388</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="116923000" />
+    <option name="totallyTimeSpent" value="117875000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -651,7 +666,9 @@
     <MESSAGE value="Implementation main et aventurier&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
     <MESSAGE value="Ajout de Main et aventurier et implementation de main&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
     <MESSAGE value="Creation et implementation des pions&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Creation et implementation des pions&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
+    <MESSAGE value="Fix de la selection de carte&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
+    <MESSAGE value="Fix Eror Message&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix Eror Message&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -682,7 +699,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java</url>
-          <line>44</line>
+          <line>48</line>
           <properties />
           <option name="timeStamp" value="24" />
         </line-breakpoint>
@@ -1122,13 +1139,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarte.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="41" selection-start-line="41" selection-end-line="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/util/Observe.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
@@ -1155,10 +1165,17 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarte.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="246">
-          <caret line="180" column="73" selection-start-line="180" selection-start-column="73" selection-end-line="180" selection-end-column="73" />
+        <state relative-caret-position="396">
+          <caret line="76" column="66" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>

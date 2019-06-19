@@ -43,8 +43,8 @@ public abstract class Aventurier extends ObjetIdentifie {
      */
 
     /**
-     *
-     * @return true si l
+     *Déplace le joueur Selon son type et l'input
+     * @return true si l'action a été effectué
      */
     public boolean seDeplacer(){
 
@@ -71,6 +71,11 @@ public abstract class Aventurier extends ObjetIdentifie {
         }
     }
 
+
+    /**
+     *
+     * @return Les position de deplacement selon le type du joueur
+     */
     //Retourne les position de deplacemnt du joueur
     public ArrayList<Vector2> getPosDeplacement(){
         ArrayList<Vector2> pos = new ArrayList<>();
@@ -81,6 +86,10 @@ public abstract class Aventurier extends ObjetIdentifie {
         return pos;
     }
 
+    /**
+     *asseche une case selon son type et l'input
+     * @return true si l'action a été effectué
+     */
     public boolean assecher(){
         Controleur c = Controleur.getControleur();
         Grille g = c.getGrille();
