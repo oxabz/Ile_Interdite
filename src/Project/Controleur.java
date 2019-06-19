@@ -635,6 +635,11 @@ public class Controleur implements Observeur {
      * @return Chaîne de caractère correspondant au message d'alerte
      */
     private String getAlerteMessage() {
+        // Chaîne de caractère du message
+        String msg = new String();
+        // Liste des tresor où il ne reste plus qu'une tuile sur la grille
+        Tresor[] tresors_critiques = new Tresor[4];
+
         // HashMap avec tous les tresors et leur nombre de tuile sur la grille
         HashMap<Tresor, Integer> tresors = new HashMap<>();
         for(Tresor tresor : Tresor.values()) {
@@ -650,7 +655,7 @@ public class Controleur implements Observeur {
                 if(tuile != null) {
                     // S'il s'agit de l'héliport et qu'il est inondé, on affiche un message
                     if(tuile instanceof Heliport && tuile.isInnondee()) {
-                        return "HÉLIPORT INONDÉ";
+                        msg = "HÉLIPORT INONDÉ";
                     }
                     // S'il s'agit d'une tuile tresor, on l'ajoute à l'HashMap
                     if(tuile instanceof TuileTresor) {
@@ -661,21 +666,94 @@ public class Controleur implements Observeur {
             }
         }
 
+        // S'il y a un message, on retourne
+        if(msg.length() > 0) return msg;
+
+        // On initialise une variable qui va récupérer le nombre de tresors critiques
+        int nb_tresors = 0;
+
         // Pour tous les tresors
         for(Tresor tresor : Tresor.values()) {
             // Si il reste plus qu'une tuile trésor et qu'il n'a pas été récupéré, on envoie un message
-            if(tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue())
-            return "1 TUILE TRESOR " + tresor.toString() + " RESTANTE";
+            if(tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue()) {
+                // On incrémente la variable cumule
+                nb_tresors++;
+            }
         }
+
+        // S'il y a des trésors critiques, on va construire le message séquentiellement
+        if(nb_tresors > 0) {
+            // On initialise une variable qui permet de savoir combien de trésor nous reste
+            int index = 0;
+    
+            // On refait la boucle permettant d'obtenir les tuiles trésors critiques non récupérées
+            for(Tresor tresor : Tresor.values()) {
+                if(tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue()) {
+                    index++;
+                    // Pour la première itération, on consuit le début de la boucle
+                    if(index == 1) {
+                        msg = "1 TUILE TRESOR " + tresor.toString();
+                    }
+                    // Pour la dernière itération, on ajoute un & avant le dernier trésor et on finit la string
+                    else if(index == nb_tresors) {
+                        msg += " & " + tresor.toString();
+                    }
+                    // Sinon, on sépare par des virgules
+                    else {
+                        msg += ", " + tresor.toString();
+                    }
+                }
+            }
+
+            // On ajoute la fin du message
+            msg += " RESTANTE";
+
+            // On retourne donc la chaîne créée
+            return msg;
+        }
+
+        // On initialise une variable pour récupérer le nombre d'aventurier sur une tuile
+        int nb_aventuriers_inondes = 0;
 
         for(Aventurier aventurier : getAventuriers()) {
             // On récupère la tuile de chaque aventurier
             Tuile tuile = grille.getTuile(aventurier.getPosition());
             // Si la tuile est inondé, on averti que le joueur est sur une tuile inondée
-            if(tuile != null && tuile.isInnondee()) return aventurier.getNom() + " sur tuile inondé";
+            if(tuile != null && tuile.isInnondee()) nb_aventuriers_inondes++;
         }
 
-        // Si on est à deux pallier de finir la partie, on affiche un avertissement
+        // S'il y a des aventuriers sur une case inondé
+        if(nb_aventuriers_inondes > 0) {
+
+            int index = 0;
+
+            // On répète la boucle précédente
+            for(Aventurier aventurier : getAventuriers()) {
+                Tuile tuile = grille.getTuile(aventurier.getPosition());
+                if(tuile != null && tuile.isInnondee()) {
+
+                    index++;
+                    // Pour la première itération, on ajoute le joueur
+                    if(index == 1) {
+                        msg = aventurier.getJoueur();
+                    }
+                    // Si c'est la fin, on met un & devant le joueur
+                    else if(index == nb_aventuriers_inondes) {
+                        msg += " & " + aventurier.getJoueur();
+                    }
+                    // Sinon, on met des virgules
+                    else {
+                        msg += ", " + aventurier.getJoueur();
+                    }
+                }
+            }
+            // On ajoute la fin du message
+            msg += " sur tuile inondé.";
+
+            return msg;
+        }
+
+        // Si on est à deux palliers de finir la partie, on affiche un avertissement
         if(gameState.getNiveauEau() >= 8) return "Niveau d'eau critique";
 
         // Sinon on affiche rien
