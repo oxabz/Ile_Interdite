@@ -11,6 +11,12 @@ import Project.Modele.Tuiles.TuileTresor;
 import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
+
+import Project.views.VueAventurier;
+import Project.views.VueFormulaire;
+import Project.views.VueGrille;
+
+import javax.naming.InitialContext;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -33,7 +39,7 @@ public class Controleur implements Observeur {
     /*
     SINGLETON THINGY
      */
-    private Controleur() {        
+    private Controleur() {
         grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
 
@@ -58,7 +64,6 @@ public class Controleur implements Observeur {
     /*
     METHODS
      */
-    
     /**
      *
      * @param clickables la liste des positions clickables
@@ -88,6 +93,7 @@ public class Controleur implements Observeur {
             }
 
             vue.getEjeu().getGrille().setClickables(clickables, false);
+
             return pos;
         }
         return null;
@@ -297,6 +303,7 @@ public class Controleur implements Observeur {
                             break;
                     }
                     vue.getEjeu().getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+
                 }
 
                 //phase de pioche
@@ -371,20 +378,11 @@ public class Controleur implements Observeur {
 
         //Ajout des joueurs
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
-
-        Scanner s = new Scanner(System.in);
-
-        int nbJ;
-        do {
-            System.out.print("nb de joueur :");
-            nbJ = s.nextInt();
-            s.nextLine();
-        } while (!(nbJ >= 2 && nbJ <= 4));
-
-        for (int i = 0; i < nbJ; i++) {
-            //Initialiser aventurier
-            System.out.print("nom joueur " + (i + 1) + " : ");
-            String nomJ = s.nextLine();
+        Message m = this.recevoirFormulaire();
+        
+        for (int i = 0; i < m.nbJoueurs; i++) {
+            //Initialiser aventurier            
+            String nomJ = m.nomDesJoueurs.get(i);
             int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size());
             Aventurier av = dispoAventuriers.get(r);
             aventuriers.add(av);
@@ -393,14 +391,12 @@ public class Controleur implements Observeur {
             System.out.println(av.getJoueur() + " sera " + av.getNom());
 
         }
-
         //Initialisation du gamestate
-        int lvl;
-        do {
-            System.out.println("Choisissez un niveau de jeu");
-            lvl = s.nextInt();
-        } while (!(lvl >= 1 && lvl <= 4));
-        gameState = new GameState(lvl);
+
+        cartesItem = new Deck();
+        cartesInondation = new Deck();
+
+        gameState = new GameState(m.difficulte);
 
     }
 
@@ -653,6 +649,22 @@ public class Controleur implements Observeur {
         }
 
         return "";
+    }
+
+    public Message recevoirFormulaire() {
+        Message message = null;
+        boolean done = false;
+        while (!done) {
+            System.out.print("");
+            while (!messages.isEmpty()) {
+                Message m = messages.poll();
+                if (m.type == MessageType.VALIDER_FOMULAIRE) {
+                    done = true;
+                    message = m;
+                }
+            }
+        }
+        return message;
     }
 
 

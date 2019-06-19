@@ -3,5 +3,6 @@ package Project.util;
 public enum MessageType {
     POSITION,
     ACTION,
-    PARAMETRE
+    PARAMETRE,
+    VALIDER_FOMULAIRE
 }

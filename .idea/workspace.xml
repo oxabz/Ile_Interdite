@@ -1,8 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="634db893-f018-44b3-a58f-0940b4a6825d" name="Default Changelist" comment="Adding all decks and drawing&#10;&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+=======
+    <list default="true" id="634db893-f018-44b3-a58f-0940b4a6825d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Ile_Interdite.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Project/views/VueFormulaire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Controleur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Aventurier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Aventuriers/Explorateur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Aventuriers/Ingenieur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Aventuriers/Messager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Aventuriers/Navigateur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Aventuriers/Plongeur.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Carte.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Cartes/CarteInondation.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Cartes/CarteItem.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Cartes/CartesItem/CarteBonus.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Cartes/CartesItem/CarteMEau.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Cartes/CartesItem/CarteSacSable.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Cartes/CartesItem/CarteTresor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Deck.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/GameState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Grille.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/ObjetIdentifie.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Tuile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Tuiles/Heliport.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Tuiles/TuileApparition.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/Modele/Tuiles/TuileTresor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/VueAventurier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/testAventurier.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/util/Parameters.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/util/Utils$EtatTuile.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/util/Utils$Pion.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/util/Utils$Tresor.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/util/Utils.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/projetFinS2/Project/util/Vector2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/util/Message.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/util/Message.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/util/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/util/MessageType.java" afterDir="false" />
+>>>>>>> featur-initialisation-chat-ihm
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -11,12 +51,16 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="15" />
+  </component>
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="212">
@@ -24,81 +68,174 @@
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+=======
+        <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="136">
+              <caret line="8" selection-start-line="8" selection-end-line="8" />
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EJoueur.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="75">
               <caret line="5" column="1" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+=======
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="193">
+              <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1219#1220#0" expanded="true" />
+                <element signature="e#1252#1253#0" expanded="true" />
+              </folding>
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Deck.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="420">
               <caret line="29" column="51" selection-start-line="29" selection-start-column="51" selection-end-line="29" selection-end-column="51" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Project/util/Message.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#83#84#0" expanded="true" />
+                <element signature="e#115#116#0" expanded="true" />
+              </folding>
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Cartes/CarteInondation.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Project/util/MessageType.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="21" />
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Project/FactoryDeck.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="915">
               <caret line="75" selection-start-line="75" selection-end-line="75" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Project/views/Vue.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="159">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EGrille.java">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret line="83" selection-start-line="83" selection-end-line="83" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/images/Niveau.png">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/VueFormulaire.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="289">
+              <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Project/views/Vue.java">
           <provider selected="true" editor-type-id="text-editor">
             <state>
               <caret line="201" selection-start-line="201" selection-end-line="201" />
               <folding>
                 <element signature="imports" expanded="true" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Project/util/Observe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="102">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="e#167#168#0" expanded="true" />
+>>>>>>> featur-initialisation-chat-ihm
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+<<<<<<< HEAD
         <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
               <caret line="4" selection-start-line="4" selection-end-line="4" />
+=======
+        <entry file="file://$PROJECT_DIR$/src/Project/views/VueAventurier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="340">
+              <caret line="77" column="36" lean-forward="true" selection-start-line="75" selection-start-column="16" selection-end-line="77" selection-end-column="36" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file pinned="false" current-in-tab="false">
         <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.desktop/java/awt/Component.class">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="17940">
               <caret line="1418" column="16" selection-start-line="1418" selection-start-column="16" selection-end-line="1418" selection-end-column="16" />
+=======
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="363">
+              <caret line="23" column="103" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="103" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+>>>>>>> featur-initialisation-chat-ihm
             </state>
           </provider>
         </entry>
@@ -117,14 +254,26 @@
     <findStrings>
       <find>Avent</find>
       <find>setEna</find>
+<<<<<<< HEAD
+=======
+      <find>PANEL</find>
+      <find>formulaire</find>
+      <find>VueForm</find>
+>>>>>>> featur-initialisation-chat-ihm
     </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="feature_ihm" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/src/Modele/Tresor.java" />
         <option value="$PROJECT_DIR$/src/Modele/Carte.java" />
         <option value="$PROJECT_DIR$/src/Modele/Deck.java" />
@@ -135,6 +284,8 @@
         <option value="$PROJECT_DIR$/src/Modele/Cartes/CartesItem/CarteSacSable.java" />
         <option value="$PROJECT_DIR$/src/Modele/Cartes/CartesItem/CarteHelicopeter.java" />
         <option value="$PROJECT_DIR$/src/Modele/Cartes/CartesItem/CarteTresor.java" />
+=======
+>>>>>>> featur-initialisation-chat-ihm
         <option value="$PROJECT_DIR$/src/Modele/Cartes/CarteInondation.java" />
         <option value="$PROJECT_DIR$/src/util/Vector2.java" />
         <option value="$PROJECT_DIR$/src/Modele/Tuile.java" />
@@ -153,8 +304,6 @@
         <option value="$PROJECT_DIR$/src/Project/util/Observe.java" />
         <option value="$PROJECT_DIR$/src/Project/util/AventurierFactory.java" />
         <option value="$PROJECT_DIR$/src/Project/util/AventurierGrille.java" />
-        <option value="$PROJECT_DIR$/src/Project/util/MessageType.java" />
-        <option value="$PROJECT_DIR$/src/Project/util/Message.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Carte.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Deck.java" />
         <option value="$PROJECT_DIR$/src/Project/util/Utils.java" />
@@ -176,6 +325,22 @@
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java" />
         <option value="$PROJECT_DIR$/src/Project/VueAventurier.java" />
         <option value="$PROJECT_DIR$/src/Project/views/VueAventurier.java" />
+<<<<<<< HEAD
+=======
+        <option value="$PROJECT_DIR$/src/Project/views/Elements/EJoueur.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/Elements/EMain.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controleur.java" />
+        <option value="$PROJECT_DIR$/src/Project/Main.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/Elements/EActions.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/Elements/EGrille.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/Vue.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/Elements/ECase.java" />
+        <option value="$PROJECT_DIR$/src/Project/util/MessageType.java" />
+        <option value="$PROJECT_DIR$/src/Project/util/Difficulte.java" />
+        <option value="$PROJECT_DIR$/src/Project/util/Message.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/VueFormulaire.java" />
+        <option value="$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java" />
+>>>>>>> featur-initialisation-chat-ihm
       </list>
     </option>
   </component>
@@ -186,19 +351,74 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="19" />
-    <option name="y" value="22" />
-    <option name="width" value="1882" />
-    <option name="height" value="1016" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="width" value="977" />
+    <option name="height" value="1038" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+<<<<<<< HEAD
       <pane id="ProjectPane" />
+=======
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+              <item name="Elements" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane" />
+>>>>>>> featur-initialisation-chat-ihm
       <pane id="Scope" />
       <pane id="PackagesPane" />
     </panes>
@@ -207,6 +427,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+<<<<<<< HEAD
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -214,6 +435,20 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
+=======
+    <property name="jdk.selected.JAVA_MODULE" value="13" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15332031" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="restartRequiresConfirmation" value="false" />
+>>>>>>> featur-initialisation-chat-ihm
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RecentsManager">
@@ -234,7 +469,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.VueFormulaire">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Project.Main" />
       <module name="Ile_Interdite" />
@@ -252,19 +487,6 @@
         <ENTRIES>
           <ENTRY IS_ENABLED="true" PARSER="runconfig" />
         </ENTRIES>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MessageBox" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Project.stockage.view.MessageBox" />
-      <module name="projetFinS2" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Project.stockage.view.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
       </extension>
       <method v="2">
         <option name="Make" enabled="true" />
@@ -296,6 +518,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VueFormulaire" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Project.views.VueFormulaire" />
+      <module name="Ile_Interdite" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Project.views.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="testAventurier" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Project.testAventurier" />
       <module name="projetFinS2" />
@@ -310,19 +545,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MessageBox" />
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.testAventurier" />
       <item itemvalue="Application.TestGameloop" />
       <item itemvalue="Application.VueAventurier" />
+      <item itemvalue="Application.VueFormulaire" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.VueFormulaire" />
         <item itemvalue="Application.Main" />
         <item itemvalue="Application.TestGameloop" />
         <item itemvalue="Application.VueAventurier" />
         <item itemvalue="Application.testAventurier" />
-        <item itemvalue="Application.MessageBox" />
       </list>
     </recent_temporary>
   </component>
@@ -509,7 +744,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="97437000" />
+=======
+    <option name="totallyTimeSpent" value="125600000" />
+>>>>>>> featur-initialisation-chat-ihm
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -521,10 +760,16 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="19" y="22" width="1882" height="1016" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49251246" visible="true" weight="0.16484717" />
       <window_info id="Structure" order="1" sideWeight="0.50748754" side_tool="true" weight="0.16484717" />
+=======
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49665552" visible="true" weight="0.13691275" />
+      <window_info id="Structure" order="1" sideWeight="0.5033445" side_tool="true" weight="0.13755459" />
+>>>>>>> featur-initialisation-chat-ihm
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
@@ -532,14 +777,20 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Run" order="2" weight="0.32735425" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.40134528" />
+=======
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.75272924" weight="0.32719547" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40084985" />
+>>>>>>> featur-initialisation-chat-ihm
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295964" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3286119" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3295964" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3286119" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
+<<<<<<< HEAD
       <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32849163" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.3295964" />
@@ -584,6 +835,22 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
     </layout-to-restore>
+=======
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49836245" weight="0.3295964" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5016376" side_tool="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4954751" weight="0.3286119" />
+      <window_info anchor="right" id="Coverage" order="0" side_tool="true" visible="true" weight="0.030872483" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="1" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="3" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="4" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="right" id="Maven" order="6" />
+      <window_info anchor="right" id="Capture Analysis" order="7" />
+      <window_info anchor="right" id="Palette&#9;" order="8" />
+      <window_info anchor="right" id="Database" order="9" />
+    </layout>
+>>>>>>> featur-initialisation-chat-ihm
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -599,6 +866,11 @@
     <MESSAGE value="fix initialisation jeu&#10;&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
     <MESSAGE value="fix action usage&#10;&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
     <option name="LAST_COMMIT_MESSAGE" value="fix action usage&#10;&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="338" height="388" key="Git.Branch.Popup" />
+    <state width="338" height="388" key="Git.Branch.Popup/1920.1080" />
+    <state width="338" height="388" key="Git.Branch.Popup@1920.1080@120dpi" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -668,6 +940,11 @@
       </breakpoints>
     </breakpoint-manager>
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Ile_Interdite$VueFormulaire.ic" NAME="VueFormulaire Coverage Results" MODIFIED="1560861915014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Project.views.*</FILTER>
+    </SUITE>
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
@@ -693,6 +970,7 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Cartes/CarteInondation.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="60">
@@ -824,6 +1102,8 @@
         </state>
       </provider>
     </entry>
+=======
+>>>>>>> featur-initialisation-chat-ihm
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Cartes/CarteItem.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
@@ -915,18 +1195,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/util/concurrent/ThreadLocalRandom.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="163" selection-start-line="163" selection-end-line="163" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/util/concurrent/ThreadLocalRandom.class" />
     <entry file="file://$PROJECT_DIR$/src/Project/util/NiveauDEau.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Explorateur.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="52" column="25" selection-start-line="52" selection-start-column="25" selection-end-line="52" selection-end-column="25" />
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="2" selection-end-line="8" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -989,12 +1263,116 @@
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="570">
           <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
           <folding>
             <element signature="e#1619#1620#0" expanded="true" />
+            <element signature="e#1744#1745#0" expanded="true" />
+=======
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/io/FileInputStream.class" />
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Grille.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="405">
+          <caret line="93" selection-start-line="93" selection-end-line="93" />
+          <folding>
+            <element signature="e#2065#2066#0" expanded="true" />
+>>>>>>> featur-initialisation-chat-ihm
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/Project/VueAventurier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="31" column="11" selection-start-line="31" selection-start-column="11" selection-end-line="31" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/VueAventurier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="900">
+          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Project/views/VueGrille.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/Grille.java" />
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/NiveauDEau.java" />
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/lang/Thread.class" />
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EActions.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="128" column="9" selection-start-line="128" selection-start-column="9" selection-end-line="128" selection-end-column="9" />
+>>>>>>> featur-initialisation-chat-ihm
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/io/FileInputStream.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="76" column="23" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
+=======
+    <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.desktop/javax/swing/JComponent.class" />
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EJoueur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/util/Parameters.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#641#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECase.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="91" column="71" selection-start-line="91" selection-start-column="71" selection-end-line="91" selection-end-column="71" />
+          <folding>
+            <element signature="class#Etat#0;class#ECase#0" />
+            <element signature="class#FiltreCouleur#0;class#ECase#0" />
+            <element signature="e#3820#3821#0" expanded="true" />
+            <element signature="e#3887#3888#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="48" column="32" selection-start-line="48" selection-start-column="32" selection-end-line="48" selection-end-column="32" />
+          <folding>
+            <element signature="e#1593#1594#0" expanded="true" />
+            <element signature="e#1619#1620#0" expanded="true" />
+            <element signature="e#1686#1687#0" expanded="true" />
             <element signature="e#1744#1745#0" expanded="true" />
           </folding>
         </state>
@@ -1007,25 +1385,71 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/VueAventurier.java">
+    <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EInfo.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EDeck.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1667">
+          <caret line="20" column="39" lean-forward="true" selection-start-line="20" selection-end-line="20" selection-end-column="39" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="e#14202#14203#0" expanded="true" />
+            <element signature="e#14248#14249#0" expanded="true" />
+            <element signature="e#15014#15015#0" expanded="true" />
+            <element signature="e#15053#15054#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/io/FileInputStream.class">
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ENiveauDEau.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="76" column="23" selection-start-line="76" selection-start-column="23" selection-end-line="76" selection-end-column="23" />
+        <state relative-caret-position="34">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/images/Niveau.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/jdk-13/lib/src.zip!/java.base/java/lang/ClassLoader.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="681" column="17" lean-forward="true" selection-start-line="681" selection-start-column="17" selection-end-line="681" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/Desktop/jdk-13/lib/src.zip!/java.desktop/java/awt/event/ActionListener.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="50" column="16" selection-start-line="50" selection-start-column="16" selection-end-line="50" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EGrille.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="48" column="44" selection-start-line="48" selection-start-column="44" selection-end-line="48" selection-end-column="44" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+>>>>>>> featur-initialisation-chat-ihm
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/util/Difficulte.java">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="60">
           <caret line="4" selection-start-line="4" selection-end-line="4" />
         </state>
@@ -1035,48 +1459,195 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="212">
           <caret line="324" selection-start-line="324" selection-end-line="324" />
+=======
+        <state relative-caret-position="136">
+          <caret line="8" selection-start-line="8" selection-end-line="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/util/Observe.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+          <folding>
+            <element signature="e#167#168#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/VueAventurier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="77" column="36" lean-forward="true" selection-start-line="75" selection-start-column="16" selection-end-line="77" selection-end-column="36" />
+>>>>>>> featur-initialisation-chat-ihm
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Grille.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="405">
           <caret line="93" selection-start-line="93" selection-end-line="93" />
-          <folding>
-            <element signature="e#2065#2066#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/VueGrille.java">
+=======
+    <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
+        <state relative-caret-position="193">
+          <caret line="27" column="13" lean-forward="true" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#1219#1220#0" expanded="true" />
+            <element signature="e#1252#1253#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/views/Vue.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+>>>>>>> featur-initialisation-chat-ihm
+          <folding>
+            <element signature="e#2065#2066#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/Project/views/VueGrille.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="508">
+          <caret line="87" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="imports" expanded="true" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Project/util/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="4" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/util/Message.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="31" lean-forward="true" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#83#84#0" expanded="true" />
+            <element signature="e#115#116#0" expanded="true" />
+>>>>>>> featur-initialisation-chat-ihm
+          </folding>
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Vue.java">
+      <provider selected="true" editor-type-id="text-editor">
         <state>
           <caret line="201" selection-start-line="201" selection-end-line="201" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Project/views/VueFormulaire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="27" lean-forward="true" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
+>>>>>>> featur-initialisation-chat-ihm
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/Grille.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/NiveauDEau.java" />
+=======
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="23" column="103" selection-start-line="23" selection-start-column="103" selection-end-line="23" selection-end-column="103" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+>>>>>>> featur-initialisation-chat-ihm
   </component>
   <component name="masterDetails">
     <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>Ile_Interdite</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
       <state key="ProjectJDKs.UI">
+        <settings>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
         <settings>
           <splitter-proportions>
             <option name="proportions">
