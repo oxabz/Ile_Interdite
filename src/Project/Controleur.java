@@ -606,7 +606,7 @@ public class Controleur implements Observeur {
      * Récupère le pourcentage de tuiles restantes dans la grille
      * @return Nombre entier correspondant au pourcentage de tuiles restantes
      */
-    private int getRateTuilesRestantes() {
+    public int getRateTuilesRestantes() {
         // On initialise une variable cartes qui fera le cumul des cartes existantes
         int cartes = 0;
 
@@ -634,7 +634,7 @@ public class Controleur implements Observeur {
      * * Niveau d'eau > 5 (>= 8 palliers)
      * @return Chaîne de caractère correspondant au message d'alerte
      */
-    private String getAlerteMessage() {
+    public String getAlerteMessage() {
         // Chaîne de caractère du message
         String msg = new String();
         // Liste des tresor où il ne reste plus qu'une tuile sur la grille
