@@ -40,6 +40,8 @@ public class ECase extends JPanel {
         }
     }
 
+
+
     /*
     CONSTANTS
      */

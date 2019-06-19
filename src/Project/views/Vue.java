@@ -53,9 +53,9 @@ public class Vue extends Observe {
         main = new EMain(this);
         informations = new EInfo();
 
-        constraints.gridwidth = 2;
-        constraints.gridheight = 1;
-        constraints.gridx = 2;
+        constraints.gridwidth = 4;
+        constraints.gridheight = 2;
+        constraints.gridx = 4;
         constraints.gridy = 4;
         window.add(deck,constraints);
         constraints.gridwidth = 2;
@@ -63,9 +63,9 @@ public class Vue extends Observe {
         constraints.gridx = 0;
         constraints.gridy = 4;
         window.add(actions,constraints);
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 2;
         constraints.gridheight = 1;
-        constraints.gridx = 1;
+        constraints.gridx = 2;
         constraints.gridy = 4;
         window.add(informations,constraints);
 
