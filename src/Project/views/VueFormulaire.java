@@ -23,4 +23,7 @@ public class VueFormulaire extends Observe {
         VueFormulaire v = new VueFormulaire() ;
     }
 
+    public JFrame getFrame() {
+        return f;
+    }
 }

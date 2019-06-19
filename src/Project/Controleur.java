@@ -35,6 +35,7 @@ public class Controleur implements Observeur {
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState = new GameState(1);
     private Vue vue;
+    private VueFormulaire vueFormulaire;
     private Deque<Message> messages = new ArrayDeque<>();
 
     private int currentAventurier;
@@ -49,6 +50,9 @@ public class Controleur implements Observeur {
 
         cartesItem = FactoryDeck.getDeckItems();
         cartesInondation = FactoryDeck.getDeckInondations();
+
+        vueFormulaire = new VueFormulaire();
+        vueFormulaire.setObserveur(this);
 
         this.initialiserPartie();
 
@@ -304,7 +308,7 @@ public class Controleur implements Observeur {
                 while (nbAction < 3 && !finT) {
 
                     // Update de la case d'affichage des informations
-                    vue.getEjeu().getInformations().update(
+                    vue.getInformations().update(
                             gameState.getTresors(),
                             3 - (nbAction + 1) + 1,
                             getRateTuilesNonInondees(),
