@@ -8,6 +8,7 @@ import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.util.*;
 import Project.views.Vue;
 import Project.views.VueAventurier;
+import Project.views.VueFormulaire;
 import Project.views.VueGrille;
 
 import javax.naming.InitialContext;
@@ -39,7 +40,6 @@ public class Controleur implements Observeur {
         grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
 
-
         initialiserPartie();
 
         vue = new Vue();
@@ -65,7 +65,7 @@ public class Controleur implements Observeur {
         System.out.println("Choisissez une case (dans la fenetre):");
 
         if (!clickables.isEmpty()) {
-            vue.getGrille().setClickables(clickables,true);
+            vue.getGrille().setClickables(clickables, true);
 
             Vector2 pos = new Vector2(0, 0);
             boolean done = false;
@@ -80,7 +80,7 @@ public class Controleur implements Observeur {
                 }
             }
 
-            vue.getGrille().setClickables(clickables,false);
+            vue.getGrille().setClickables(clickables, false);
             return pos;
         }
         return null;
@@ -239,12 +239,12 @@ public class Controleur implements Observeur {
                 while (nbAction < 3 && !finT) {
                     switch (getSelectedAction(i)) {
                         case SE_DEPLACER:
-                            if(av.seDeplacer()){
+                            if (av.seDeplacer()) {
                                 nbAction++;
                             }
                             break;
                         case ASSECHER:
-                            if (av.assecher()){
+                            if (av.assecher()) {
                                 nbAction++;
                             }
                             break;
@@ -264,7 +264,7 @@ public class Controleur implements Observeur {
                             nbAction++;
                             break;
                     }
-                    vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
+                    vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
                 }
 
                 /*
@@ -329,22 +329,13 @@ public class Controleur implements Observeur {
     public void initialiserPartie() {
 
         //Ajout des joueurs
-
+        VueFormulaire initialisation = new VueFormulaire();
+        Message m = recevoirFormulaire();
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
 
-        Scanner s = new Scanner(System.in);
-
-        int nbJ;
-        do{
-            System.out.print("nb de joueur :");
-            nbJ = s.nextInt();
-            s.nextLine();
-        } while (!(nbJ >= 2 && nbJ <= 4));
-
-        for (int i = 0; i < nbJ; i++) {
-            //Initialiser aventurier
-            System.out.print("nom joueur " + (i + 1) + " : ");
-            String nomJ = s.nextLine();
+        for (int i = 0; i < m.nbJoueurs; i++) {
+            //Initialiser aventurier            
+            String nomJ = m.nomDesJoueurs.get(i);
             int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size());
             Aventurier av = dispoAventuriers.get(r);
             aventuriers.add(av);
@@ -352,23 +343,17 @@ public class Controleur implements Observeur {
             av.setJoueur(nomJ);
             System.out.println(av.getJoueur() + " sera " + av.getNom());
 
-
-
         }
 
         //Initialisation de la grille
-
         //Initialiser decks
         cartesItem = new Deck();
         cartesInnondation = new Deck();
 
         //Initialisation du gamestate
-
         int lvl;
-        do {
-            System.out.println("Choisissez un niveau de jeu");
-            lvl = s.nextInt();
-        }while (!(lvl>=1 && lvl<=4));
+        System.out.println("Choisissez un niveau de jeu");
+        lvl = m.difficulte;
         gameState = new GameState(lvl);
 
     }
@@ -376,6 +361,22 @@ public class Controleur implements Observeur {
     @Override
     public void recevoirMessage(Message m) {
         messages.add(m);
+    }
+
+    public Message recevoirFormulaire() {
+        Message message = null;
+        boolean done = false;
+        while (!done) {
+            System.out.print("");
+            while (!messages.isEmpty()) {
+                Message m = messages.poll();
+                if (m.type == MessageType.VALIDER_FOMULAIRE) {
+                    done = true;
+                    message = m;
+                }
+            }
+        }
+        return message;
     }
 
 
