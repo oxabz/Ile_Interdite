@@ -2,22 +2,14 @@ package Project.views.Elements;
 
 import Project.util.Message;
 import Project.util.MessageType;
-import Project.util.Observe;
 import Project.util.Utils;
 import Project.views.Vue;
-
-import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 
 public class EActions extends JPanel {
 

@@ -14,13 +14,15 @@ import java.io.File;
 import java.io.IOException;
 
 public class ECase extends JPanel {
-    public enum Etat{
+
+    public enum Etat {
         SEC,
         INNONDEE,
         COULEE
     }
 
     public class FiltreCouleur extends LayerUI<JComponent> {
+
         private Color color;
 
         public FiltreCouleur(Color color) {
@@ -28,7 +30,7 @@ public class ECase extends JPanel {
         }
 
         public FiltreCouleur(Color color, float opacity) {
-            this.color = new Color(color.getRed()/256,color.getGreen()/256,color.getBlue()/256,opacity);
+            this.color = new Color(color.getRed() / 256, color.getGreen() / 256, color.getBlue() / 256, opacity);
         }
 
         @Override
@@ -41,7 +43,6 @@ public class ECase extends JPanel {
     /*
     CONSTANTS
      */
-
     private static final String IMAGE_PREFIX = "src/images/tuiles/";
     private static final String IMAGE_EXTENTION = ".png";
     private static final String IMAGE_INNONDEE_SUFIX = "_Inonde";
@@ -59,34 +60,39 @@ public class ECase extends JPanel {
     private EGrille grille;
     private boolean clickable;
 
-    public ECase(String name, Vector2 position,EGrille grille) {
+    public ECase(String name, Vector2 position, EGrille grille) {
         this.name = name;
-        name = name.replaceAll(" d\u0027","d");
-        name = name.replaceAll(" d","D");
-        name = name.replaceAll(" l\u0027","L");
-        name = name.replaceAll(" ","");
+        name = name.replaceAll(" d\u0027", "d");
+        name = name.replaceAll(" d", "D");
+        name = name.replaceAll(" l\u0027", "L");
+        name = name.replaceAll(" ", "");
         this.position = position;
         this.etat = Etat.SEC;
-        try {
-            imageNormale = ImageIO.read(new File(IMAGE_PREFIX+name.replaceAll(" ", "")+IMAGE_EXTENTION));
-        } catch (IOException e) {
-
+        if (!name.equals("")) {
+            String location = "JE SUIS VIDE C'EST PAS NORMAL";
+            try {
+                location = IMAGE_PREFIX + name.replaceAll(" ", "") + IMAGE_EXTENTION;
+                imageNormale = ImageIO.read(new File(location));
+            } catch (IOException e) {
+                System.out.println("Project.views.Elements.ECase.<init>()");
+                System.out.println(e.getMessage() + " pour " + location);
+            }
+            try {
+                location = IMAGE_PREFIX + name.replaceAll(" ", "") + IMAGE_INNONDEE_SUFIX + IMAGE_EXTENTION;
+                imageInnondee = ImageIO.read(new File(location));
+            } catch (IOException e) {
+                System.out.println("Project.views.Elements.ECase.<init>() INONDEE");
+                System.out.println(e.getMessage() + " pour " + location);
+            }
         }
-        try {
-            imageInnondee = ImageIO.read(new File(IMAGE_PREFIX+name.replaceAll(" ", "")+IMAGE_INNONDEE_SUFIX+IMAGE_EXTENTION));
-        } catch (IOException e) {
 
-        }
-
-
-        filter = new JLayer<>(this, new FiltreCouleur(Color.green,0.5f));
-
+        filter = new JLayer<>(this, new FiltreCouleur(Color.green, 0.5f));
 
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
-                ECase eCase = ((ECase)mouseEvent.getComponent());
-                if(eCase.isEnabled()){
+                ECase eCase = ((ECase) mouseEvent.getComponent());
+                if (eCase.isEnabled()) {
                     eCase.getGrille().messageCase(eCase.getPosition());
                 }
             }
@@ -117,20 +123,20 @@ public class ECase extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
-        switch (etat){
+        switch (etat) {
             case SEC:
-                g.drawImage(imageNormale,0,0,(int)this.getSize().getWidth(),(int)this.getSize().getHeight(),null);
+                g.drawImage(imageNormale, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
                 break;
             default:
             case COULEE:
                 break;
             case INNONDEE:
-                g.drawImage(imageInnondee,0,0,(int)this.getSize().getWidth(),(int)this.getSize().getHeight(),null);
+                g.drawImage(imageInnondee, 0, 0, (int) this.getSize().getWidth(), (int) this.getSize().getHeight(), null);
                 break;
         }
     }
 
-    public void changeEtat(Etat newEtat){
+    public void changeEtat(Etat newEtat) {
         this.etat = newEtat;
         this.repaint();
     }
@@ -145,14 +151,14 @@ public class ECase extends JPanel {
 
     public void setClickable(boolean clickable) {
         this.clickable = clickable;
-        if (clickable){
+        if (clickable) {
             setEnabled(true);
             /*
             filter.setVisible(true);
             filter.paint(this.getGraphics());*/
-            setBorder(BorderFactory.createLineBorder(Color.GREEN,4));
+            setBorder(BorderFactory.createLineBorder(Color.GREEN, 4));
 
-        }else {
+        } else {
             setEnabled(false);
             filter.setVisible(false);
             setBorder(null);

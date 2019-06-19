@@ -1,7 +1,14 @@
 package Project.views;
 
 import Project.Controleur;
+import Project.Modele.Cartes.CartesItem.CarteTresor;
+import Project.Modele.Deck;
+import Project.Modele.Grille;
 import Project.util.Observe;
+import Project.util.Utils;
+import Project.util.Vector2;
+import Project.views.Elements.*;
+
 import java.awt.*;
 import Project.views.Elements.EActions;
 import Project.views.Elements.EDeck;
@@ -43,7 +50,7 @@ public class Vue extends Observe {
         listeJoueurs = new HashMap<>();
         deck = new EDeck();
         actions = new EActions(this);
-        main = new EMain();
+        main = new EMain(this);
         informations = new EInfo();
 
         constraints.gridwidth = 2;
@@ -51,7 +58,7 @@ public class Vue extends Observe {
         constraints.gridx = 2;
         constraints.gridy = 4;
         window.add(deck,constraints);
-        constraints.gridwidth = 1;
+        constraints.gridwidth = 2;
         constraints.gridheight = 1;
         constraints.gridx = 0;
         constraints.gridy = 4;
@@ -62,6 +69,11 @@ public class Vue extends Observe {
         constraints.gridy = 4;
         window.add(informations,constraints);
 
+        constraints.gridwidth = 4;
+        constraints.gridheight = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 5;
+        window.add(main,constraints);
 
 
 
@@ -152,6 +164,10 @@ public class Vue extends Observe {
         AVENTURIER,
         ACTION,
         MAIN,
+    }
+
+    public EMain getMain() {
+        return main;
     }
 
     public void SetMode(IhmMode ihmMode) {

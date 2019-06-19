@@ -5,6 +5,8 @@
  */
 package Project;
 
+import Project.Modele.Aventurier;
+import Project.Modele.Aventuriers.Ingenieur;
 import Project.Modele.Grille;
 import Project.Modele.Tuile;
 import Project.Modele.Tuiles.Heliport;
@@ -122,7 +124,7 @@ public class FactoryGrille {
         // Création d'un array list qui contiendra tous les noms de tuile à ajouter
         LinkedList<String> distribution_tuiles = new LinkedList<>();
 
-        // On ajoute tous les noms des tuiles 
+        // On ajoute tous les noms des tuiles
         for(String nom : TUILES_NAMES) {
             distribution_tuiles.add(nom);
         }
@@ -133,7 +135,7 @@ public class FactoryGrille {
         // Tableau correspondant à l'index début de la colonne pour chaque ligne
         final int[] debut_colonne = {2,1,0,0,1,2};
         // La fin est calculée en retirant l'index de début au nombre de colonne dans une ligne
-        
+
         // Pour toutes les lignes
         for(int y = 0; y < g.getSizeX(); y++) {
 
@@ -141,8 +143,8 @@ public class FactoryGrille {
             for(int x = debut_colonne[y]; x < g.getSizeX()-debut_colonne[y]; x++) {
 
                 // À la position x, y...
-                tuilesG[x][y] = 
-                // ..on récupère l'instance créée dans la liste tuiles 
+                tuilesG[x][y] =
+                // ..on récupère l'instance créée dans la liste tuiles
                 tuiles.get(
                     // ..avec un nom aléatoire qu'on retire de la liste chapinée
                     distribution_tuiles.poll()

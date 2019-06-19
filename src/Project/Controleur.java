@@ -42,7 +42,7 @@ public class Controleur implements Observeur {
         cartesItem = FactoryDeck.getDeckItems();
         cartesInondation = FactoryDeck.getDeckInondations();
 
-        initialiserPartie();
+        this.initialiserPartie();
 
         vue = new Vue();
         vue.setObserveur(this);
@@ -260,6 +260,7 @@ public class Controleur implements Observeur {
                 //Phase d'action
                 System.out.println("Tour de : " + av.getJoueur());
                 System.out.println("Position du pion : " + av.getPosition().toString());
+                vue.getMain().setAventurier(av);
                 while (nbAction < 3 && !finT) {
 
                     // Update de la case d'affichage des informations
@@ -301,7 +302,7 @@ public class Controleur implements Observeur {
                             nbAction++;
                             break;
                     }
-                    vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+                    vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
                 }
 
                 //phase de pioche
@@ -311,16 +312,16 @@ public class Controleur implements Observeur {
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     gameState.incrementNiveau();
-                    cartesInondation.addCarteDefausseDebut(cIt1);
-                    cartesInondation.addCarteDefausseDebut(cIt2);
+                    cartesItem.addCarteDefausseDebut(cIt1);
+                    cartesItem.addCarteDefausseDebut(cIt2);
                 } else if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     if (cIt1 instanceof CarteMEau) {
                         av.addCarteItem(cIt2);
-                        cartesInondation.addCarteDefausseDebut(cIt1);
+                        cartesItem.addCarteDefausseDebut(cIt1);
                     } else {
                         av.addCarteItem(cIt1);
-                        cartesInondation.addCarteDefausseDebut(cIt2);
+                        cartesItem.addCarteDefausseDebut(cIt2);
                     }
                     vue.getNiveauEau().setNiveau(gameState.getNiveauEau());
                 } else {
@@ -470,7 +471,7 @@ public class Controleur implements Observeur {
         return i == 0;
     }
     /**
-     * 
+     *
      * @return true si au moins l'un des trésors n'est plus récupérable (plus de case & pas récupéré à temps)
      */
     private boolean isTuilesTresorCoince() {
@@ -483,7 +484,7 @@ public class Controleur implements Observeur {
         return false;
     }
     /**
-     * 
+     *
      * @return true si l'héliport est coulé
      */
     private boolean isHeliportCoule() {
@@ -499,14 +500,14 @@ public class Controleur implements Observeur {
         return i == 0;
     }
     /**
-     * 
+     *
      * @return true si le niveau d'eau dépasse le niveau 5 (>= 10 dans le code)
      */
     private boolean isTeteDeMort() {
         return this.getGameState().getNiveauEau() >= 10;
     }
     /**
-     * 
+     *
      * @return true si au moins l'une des conditions de défaite est respectée
      */
     private boolean isGameOver() {
@@ -514,9 +515,9 @@ public class Controleur implements Observeur {
     }
 
     /* Méthodes liées aux conditions de victoire */
-    
+
     /**
-     * 
+     *
      * @return true si tout les joueurs se situent sur la tuile hélicoptère
      */
     private boolean isToutLeMondeSurTuileHelicopetere() {
@@ -529,9 +530,9 @@ public class Controleur implements Observeur {
         }
         return i == listeAventuriers.size();
     }
-    
+
     /**
-     * 
+     *
      * @return true si tout les trésors ont été récupérés
      */
     private boolean isToutlestresorsrecuperes() {
@@ -545,7 +546,7 @@ public class Controleur implements Observeur {
         return i == 4;
     }
     /**
-     * 
+     *
      * @return true si les conditions nécessaires à la victoire sont respectées
      */
     private boolean isVictoire() {
@@ -572,21 +573,21 @@ public class Controleur implements Observeur {
         int cartes = 0;
         // On initialise une variable cartes_non_inondees qui fera le cumul des cartes non inondées
         int cartes_non_inondees = 0;
-        
+
         // Pour toutes les cartes
         for(int x = 0; x < grille.getSizeX(); x++) {
             for(int y = 0; y < grille.getSizeX(); y++) {
                 // On récupère la tuile
                 Tuile tuile = grille.getTuile(x, y);
-                // Si la tuile existe alors on l'ajoute aux tuiles existentes 
+                // Si la tuile existe alors on l'ajoute aux tuiles existentes
                 if(tuile != null) {
                     cartes++;
                     // Si la tuile n'est pas inondée, on ajoute la tuile aux tuiles non inondées
                     if(!tuile.isInnondee()) cartes_non_inondees++;
                 }
-            }   
+            }
         }
-        
+
         // cartes non inondées/cartes restantes (ici 24) x 100 (pour l'avoir en pourcentage)
         return (int) Math.round(((double) cartes_non_inondees/cartes)*100);
     }
@@ -598,7 +599,7 @@ public class Controleur implements Observeur {
     private int getRateTuilesRestantes() {
         // On initialise une variable cartes qui fera le cumul des cartes existantes
         int cartes = 0;
-        
+
         // Pour toutes les cases de la grille
         for(int x = 0; x < grille.getSizeX(); x++) {
             for(int y = 0; y < grille.getSizeX(); y++) {
@@ -608,9 +609,9 @@ public class Controleur implements Observeur {
                 if(tuile != null) {
                     cartes++;
                 }
-            }   
+            }
         }
-        
+
         // cartes restantes/cartes totales (ici 24) x 100 (pour l'avoir en pourcentage)
         return (int) Math.round(((double) cartes/24)*100);
     }
@@ -647,13 +648,13 @@ public class Controleur implements Observeur {
                         tresors.put(tresor, tresors.get(tresor) + 1);
                     }
                 }
-            }   
+            }
         }
 
         // Pour tous les tresors
         for(Tresor tresor : Tresor.values()) {
             // Si il reste plus qu'une tuile trésor et qu'il n'a pas été récupéré, on envoie un message
-            if(tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue()) 
+            if(tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue())
             return "1 TUILE TRESOR " + tresor.toString() + " RESTANTE";
         }
 
