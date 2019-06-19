@@ -60,7 +60,7 @@ public class FactoryDeck {
     public static Deck getDeckInondations() {
         Deck deck = new Deck();
         Grille g;
-        g = FactoryGrille.getGrilleTest();
+        g = FactoryGrille.getDerniereGrille();
         for (Tuile[] uneLigne : g.getTuiles()) {
             for (Tuile uneTuile : uneLigne) {
                 if (uneTuile != null) {
