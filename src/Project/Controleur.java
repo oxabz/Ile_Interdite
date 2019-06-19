@@ -343,8 +343,8 @@ public class Controleur implements Observeur {
                 }
 
                 //phase de pioche
-                CarteItem cIt1 = (CarteItem) cartesItem.getPioche().poll();
-                CarteItem cIt2 = (CarteItem) cartesItem.getPioche().poll();
+                CarteItem cIt1 = (CarteItem) cartesItem.piocher();
+                CarteItem cIt2 = (CarteItem) cartesItem.piocher();
 
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
@@ -392,17 +392,16 @@ public class Controleur implements Observeur {
      * Pioche x cartes inondation et met à jour les tuiles (inondées/coulées)
      */
     private void faireInnondation() {
-        int nbCarteInnondation = gameState.getNbDeCarte();
-        LinkedList<Carte> cartesInnondationPioche = cartesInondation.getPioche();
+        int nbCarteInondation = gameState.getNbDeCarte();
 
-        for (int j = 0; j < nbCarteInnondation; j++) {
-            CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll();
+        for (int j = 0; j < nbCarteInondation; j++) {
+            CarteInondation cIn = (CarteInondation) cartesInondation.piocher();
             if (cIn.getTuile().isInnondee()) {
                 grille.removeTuile(cIn.getTuile());
             } else {
+                cartesInondation.addCarteDefausseDebut(cIn);
                 cIn.getTuile().setInnondee(true);
             }
-            cartesInondation.addCarteDefausseDebut(cIn);
         }
     }
 
