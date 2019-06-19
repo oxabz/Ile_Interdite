@@ -54,6 +54,7 @@ public class Controleur implements Observeur {
         vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
         vue.initialiserVue();
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+        vue.getGrille().updatePion(getPosPion());
     }
 
     private final static Controleur controleur = new Controleur();
@@ -313,6 +314,7 @@ public class Controleur implements Observeur {
                             break;
                     }
                     vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
+                    vue.getGrille().updatePion(getPosPion());
                 }
 
                 //phase de pioche
@@ -680,6 +682,15 @@ public class Controleur implements Observeur {
 
         // Sinon on affiche rien
         return "";
+    }
+    
+    private MultiMap<Vector2, Utils.Pion> getPosPion(){
+        MultiMap<Vector2, Utils.Pion> posPion = new MultiMap<>();
+        for (Aventurier av :
+                aventuriers) {
+            posPion.put(av.getPosition(),av.getPion());
+        }
+        return posPion;
     }
 
 

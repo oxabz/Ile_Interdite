@@ -4,6 +4,7 @@ import Project.Controleur;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Tuiles.TuileTresor;
+import Project.util.Utils;
 import Project.util.Vector2;
 import Project.util.Utils.Tresor;
 
@@ -198,4 +199,6 @@ public abstract class Aventurier extends ObjetIdentifie {
     }
 
     public abstract String getNom();
+
+    public abstract Utils.Pion getPion();
 }

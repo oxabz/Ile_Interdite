@@ -6,8 +6,12 @@
 package Project.util;
 
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import Project.Modele.Aventurier;
 //import Project.stockage.view.Parameters;
@@ -47,15 +51,25 @@ public class Utils {
         BLEU("Bleu", new Color(55,194,198)),
         ORANGE("Orange", new Color(255, 148, 0)),
         VIOLET("Violet", new Color(204, 94, 255)),
-        JAUNE("Jaune", new Color(255, 255, 0)) ;    
+        JAUNE("Jaune", new Color(255, 255, 0)) ,
+        GRIS("Gris", new Color(100, 100, 100)) ,
+        NOIR("Noir", new Color(0, 0, 0)) ;
 
         private final String libelle ;
         private final Color couleur ;
+        private BufferedImage image;
 
 
         Pion (String libelle, Color couleur) {
             this.libelle = libelle ;
             this.couleur = couleur ;
+            try {
+                image = ImageIO.read(new File(Utils.View.getImagePrefixePion() +libelle+Utils.View.getImageExtension()));
+            } catch (IOException e) {
+                System.err.println("Erreur : Echec du chargement de l'image du pion "+libelle);
+                image = null;
+            }
+
         }
 
         @Override
@@ -75,6 +89,10 @@ public class Utils {
             if (VIOLET.name().equals(name)) return VIOLET ;
             if (JAUNE.name().equals(name)) return JAUNE ;
             return null ;
+        }
+
+        public BufferedImage getImage() {
+            return image;
         }
     }
 
@@ -119,6 +137,7 @@ public class Utils {
         private final static String IMAGE_PREFIXE_CARTE = "src/images/cartes/";
         private final static String IMAGE_EXTENSION = ".png";
         private final static String IMAGE_PREFIXE_TRESOR = "src/images/tresors/";
+        private final static String IMAGE_PREFIXE_PION = "src/images/pions/pion";
         private final static String CHEMIN_SON = "src/sons/";
         private final static int NOMBRE_FRAMES_ANIMATION = 30;
 
@@ -140,6 +159,10 @@ public class Utils {
 
         public static String getImagePrefixeTresor() {
             return IMAGE_PREFIXE_TRESOR;
+        }
+
+        public static String getImagePrefixePion() {
+            return IMAGE_PREFIXE_PION;
         }
     }
 }

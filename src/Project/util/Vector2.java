@@ -20,6 +20,18 @@ public class Vector2 {
     public String toString() {
         return this.x+","+this.y;
     }
-    
-    
+
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Vector2){
+            return x==((Vector2)obj).x&&y==((Vector2)obj).y;
+        }else {
+            return false;
+        }
+    }
+
+    @Override
+    public int hashCode() {
+        return x*y;
+    }
 }
