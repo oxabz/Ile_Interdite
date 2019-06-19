@@ -1,6 +1,7 @@
 package Project.views.Elements;
 
 import Project.Modele.Grille;
+import Project.util.Utils;
 import Project.util.Vector2;
 
 import javax.imageio.ImageIO;
@@ -12,6 +13,7 @@ import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ECase extends JPanel {
 
@@ -56,6 +58,7 @@ public class ECase extends JPanel {
     private BufferedImage imageNormale;
     private BufferedImage imageInnondee;
     private JLayer filter;
+    private EPion[] pions = new EPion[4];
 
     private Vector2 position;
     private Etat etat;
@@ -88,7 +91,26 @@ public class ECase extends JPanel {
             }
         }
 
-        filter = new JLayer<>(this, new FiltreCouleur(Color.green, 0.5f));
+
+        /*
+        *Ajout des pion
+         */
+
+        this.setLayout(new GridLayout(2,2));
+
+        pions[0] = new EPion();
+        pions[0].setVisible(false);
+        this.add(pions[0]);
+        pions[1] = new EPion();
+        pions[1].setVisible(false);
+        this.add(pions[1]);
+        pions[2] = new EPion();
+        pions[2].setVisible(false);
+        this.add(pions[2]);
+        pions[3] = new EPion();
+        pions[3].setVisible(false);
+        this.add(pions[3]);
+
 
         this.addMouseListener(new MouseListener() {
             @Override
@@ -162,8 +184,18 @@ public class ECase extends JPanel {
 
         } else {
             setEnabled(false);
-            filter.setVisible(false);
+//            filter.setVisible(false);
             setBorder(null);
+        }
+    }
+
+
+    public void setPions(ArrayList<Utils.Pion> pions){
+        for (int i = 0; i < this.pions.length; i++) {
+            this.pions[i].setVisible(i<pions.size());
+            if (i<pions.size()){
+                this.pions[i].setPion(pions.get(i));
+            }
         }
     }
 }

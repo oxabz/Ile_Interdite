@@ -3,6 +3,7 @@ package Project.Modele.Aventuriers;
 import Project.Controleur;
 import Project.Modele.Aventurier;
 import Project.Modele.Grille;
+import Project.util.Utils;
 import Project.util.Vector2;
 
 import java.util.ArrayList;
@@ -54,5 +55,12 @@ public class Plongeur extends Aventurier {
     @Override
     public String getNom() {
         return NOM;
+    }
+
+    private static final Utils.Pion PION = Utils.Pion.NOIR;
+
+    @Override
+    public Utils.Pion getPion() {
+        return PION;
     }
 }
