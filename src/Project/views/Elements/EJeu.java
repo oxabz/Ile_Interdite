@@ -4,7 +4,7 @@ import Project.views.Vue;
 import java.awt.*;
 import java.util.HashMap;
 import javax.swing.*;
-
+/*
 public class EJeu extends JPanel {
 
     private final GridBagConstraints constraints;
@@ -30,7 +30,7 @@ public class EJeu extends JPanel {
         listeJoueurs = new HashMap<>();
         deck = new EDeck();
         actions = new EActions(this.vue);
-        main = new EMain();
+        main = new EMain(this);
         informations = new EInfo();
 
         constraints.gridwidth = 2;
@@ -116,3 +116,6 @@ public class EJeu extends JPanel {
     
     
 }
+
+
+ */
