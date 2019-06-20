@@ -10,15 +10,33 @@ import java.util.ArrayList;
 
 public class Explorateur extends Aventurier {
 
+    /* ATTRIBUTS */
     private static final String NOM = "Explorateur";
+
+    /* CONSTRUCTEURS */
+    /**
+     * Créer un aventurier de type explorateur
+     *
+     * @deprecated utiliser {@link #Explorateur(Vector2)} à la place
+     */
+    @Deprecated
     public Explorateur() {
         super();
     }
 
+    /**
+     * Créer un aventurier de type explorateur
+     *
+     * @param position la position de départ de l'explorateur
+     */
     public Explorateur(Vector2 position) {
         super(position);
     }
 
+    /**
+     *
+     * @return la liste des positions de déplacement possible
+     */
     @Override
     public ArrayList<Vector2> getPosDeplacement() {
         ArrayList<Vector2> pos = new ArrayList<>();
@@ -32,6 +50,11 @@ public class Explorateur extends Aventurier {
         return pos;
     }
 
+    /**
+     * Permet à l'explorateur d'assécher
+     *
+     * @return true si l'action a été effectuée
+     */
     @Override
     public boolean assecher() {
         Controleur c = Controleur.getControleur();
@@ -49,7 +72,7 @@ public class Explorateur extends Aventurier {
         if (aAssecher != null) {
             g.getTuile(aAssecher).setInnondee(false);
             return true;
-        }else {
+        } else {
             return false;
         }
     }

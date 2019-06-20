@@ -11,19 +11,38 @@ import java.util.ArrayList;
 
 public class Pilote extends Aventurier {
 
+    /* ATTRIBUTS */
+    private boolean deplacementSpecial = true;
+    private static final String NOM = "Pilote";
+    private static final Utils.Pion PION = Utils.Pion.BLEU;
+
+    /* CONSTRUCTEURS */
+    /**
+     * Créer un aventurier de type pilote
+     *
+     * @deprecated utiliser {@link #Pilote(Vector2) à la place
+     */
+    @Deprecated
     public Pilote() {
         super();
     }
 
+    /**
+     * Créer un aventurier de type pilote
+     *
+     * @param position la position de départ du pilote
+     */
     public Pilote(Vector2 position) {
         super(position);
     }
 
-    private boolean deplacementSpecial = true;
-
-    private static final String NOM = "Pilote";
-    private static final Utils.Pion PION = Utils.Pion.BLEU;
-
+    /* MÉTHODES */
+    /**
+     * Permet de déplacer un aventurier
+     *
+     * @return true si le déplacement est réalisé *
+     *
+     */
     @Override
     public boolean seDeplacer() {
         if (deplacementSpecial) {
