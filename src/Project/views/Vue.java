@@ -252,7 +252,7 @@ public class Vue extends Observe {
         return main;
     }
 
-    public void SetMode(IhmMode ihmMode) {
+    public void setMode(IhmMode ihmMode) {
         switch (ihmMode) {
             case ACTION:
                 actions.setEnabled(true);
@@ -305,5 +305,9 @@ public class Vue extends Observe {
                 listeJoueurs) {
             j.updateJoueur();
         }
+    }
+
+    public EActions getActions() {
+        return actions;
     }
 }

@@ -1,7 +1,7 @@
 package Project;
 
 import Project.Modele.*;
-import Project.Modele.Aventuriers.*;
+import Project.Modele.Aventuriers.Navigateur;
 import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteHelicoptere;
@@ -71,7 +71,7 @@ public class Controleur implements Observeur {
      */
     public Vector2 getPosClic(ArrayList<Vector2> clickables) {
 
-        vue.SetMode(Vue.IhmMode.POSITION);
+        vue.setMode(Vue.IhmMode.POSITION);
 
         if (!clickables.isEmpty()) {
             vue.getGrille().setClickables(clickables, true);
@@ -135,7 +135,19 @@ public class Controleur implements Observeur {
      */
     Utils.Action getSelectedAction(int aventurierIndex) {
 
-        vue.SetMode(Vue.IhmMode.ACTION);
+        vue.setMode(Vue.IhmMode.ACTION);
+
+        ArrayList<Utils.Action> actions;
+        if (aventuriers.get(aventurierIndex).getNbAction()>0){
+            Utils.Action[] actionsList = {Utils.Action.SE_DEPLACER,Utils.Action.ASSECHER,Utils.Action.DON_CARTE,Utils.Action.FIN_TOUR,Utils.Action.UTILISER_CARTE,Utils.Action.PRENDRE_TRESOR};
+            actions = new ArrayList<>(Arrays.asList(actionsList));
+            if(aventuriers.get(aventurierIndex) instanceof Navigateur) actions.add(Utils.Action.ACTION_SPECIALE);
+        }else{
+            Utils.Action[] actionsList = {Utils.Action.FIN_TOUR,Utils.Action.UTILISER_CARTE};
+            actions = new ArrayList<>(Arrays.asList(actionsList));
+        }
+
+        vue.getActions().setEnabled(true, actions);
 
         Utils.Action act = Utils.Action.SE_DEPLACER;
         boolean done = false;
@@ -183,8 +195,8 @@ public class Controleur implements Observeur {
      * @param indexAventurier l'index de l'aventurier
      * @return Retourne l'aventurier d'index indexAventurier
      */
-    public Aventurier getSelectedAventurier(int indexAventurier) {
-        vue.SetMode(Vue.IhmMode.AVENTURIER);
+    public Aventurier getAventurier(int indexAventurier) {
+        vue.setMode(Vue.IhmMode.AVENTURIER);
 
         Aventurier av = null;
         boolean done = false;
@@ -213,7 +225,7 @@ public class Controleur implements Observeur {
     public Carte getCarteSelectionne() {
 
         vue.getMain().setAventurier(aventuriers.get(currentAventurier));
-        vue.SetMode(Vue.IhmMode.MAIN);
+        vue.setMode(Vue.IhmMode.MAIN);
 
         Carte c = null;
         boolean done = false;
@@ -244,7 +256,7 @@ public class Controleur implements Observeur {
     public Carte getCarteSelectionne(Aventurier av) {
 
         vue.getMain().setAventurier(av);
-        vue.SetMode(Vue.IhmMode.MAIN);
+        vue.setMode(Vue.IhmMode.MAIN);
 
         Carte c = null;
         boolean done = false;
@@ -273,73 +285,72 @@ public class Controleur implements Observeur {
  /*
     Gère la game loop du jeu
      */
-    void gameLoop() {
-        while (true) {
-            for (int i = 0; i < aventuriers.size(); i++) {
-                Aventurier av = aventuriers.get(i);
-                currentAventurier = i;
+    public void gameLoop() {
+        currentAventurier = 0;
+        boolean finDeTour = true;
+        Aventurier av = null;
+        while (!(isGameOver()||isVictoire())) {
 
-                //Actions Tour
-                //Initialisation du tour
-                int nbAction = 0;
-                boolean finT = false;
-                if (av instanceof Pilote) {
-                    ((Pilote) av).setDeplacementSpecial(true);
-                }
-
-                //Phase d'action
+            /*incrementer le joueur en fin de tour*/
+            if(finDeTour) {
+                av = aventuriers.get(currentAventurier);
+                av.initialiserTour();
                 System.out.println("Tour de : " + av.getJoueur());
                 System.out.println("Position du pion : " + av.getPosition().toString());
-                vue.getMain().setAventurier(av);
-                while (nbAction < 3 && !finT) {
+                finDeTour = false;
+            }
 
-                    // Update de la case d'affichage des informations
-                    vue.getInformations().update(
-                            gameState.getTresors(),
-                            3 - (nbAction + 1) + 1,
-                            getRateTuilesNonInondees(),
-                            getRateTuilesRestantes(),
-                            getAlerteMessage()
-                    );
+            //Phase d'action
 
-                    switch (getSelectedAction(i)) {
-                        case SE_DEPLACER:
-                            if (av.seDeplacer()) {
-                                nbAction++;
-                            }
-                            break;
-                        case ASSECHER:
-                            if (av.assecher()) {
-                                nbAction++;
-                            }
-                            break;
-                        case DON_CARTE:
-                            nbAction++;
-                            av.donnerCarte();
-                            break;
-                        case FIN_TOUR:
-                            finT = true;
-                            break;
-                        case PRENDRE_TRESOR:
-                            // Si le joueur a peut prendre le trésor alors il a fait une action
-                            if (av.prendreTresor()) {
-                                nbAction++;
-                            }
-                            break;
-                        case UTILISER_CARTE:
-                            if (av.utiliserCarte()) {
-                                nbAction++;
-                            }
-                            break;
-                        case ACTION_SPECIALE:
-                            if (av.actionSpeciale()){
-                                nbAction++;
-                            }
-                            break;
+            vue.getMain().setAventurier(av);
+
+
+            // Update de la case d'affichage des informations
+            vue.getInformations().update(
+                    gameState.getTresors(),
+                    av.getNbAction(),
+                    getRateTuilesNonInondees(),
+                    getRateTuilesRestantes(),
+                    getAlerteMessage()
+            );
+
+            switch (getSelectedAction(currentAventurier)) {
+                case SE_DEPLACER:
+                    if (av.seDeplacer()) {
+                        av.utiliserAction();
                     }
-                    vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
-                    vue.getGrille().updatePion(getPosPion());
-                }
+                    break;
+                case ASSECHER:
+                    if (av.assecher()) {
+                        av.utiliserAction();
+                    }
+                    break;
+                case DON_CARTE:
+                    av.utiliserAction();
+                    av.donnerCarte();
+                    break;
+                case FIN_TOUR:
+                    finDeTour = true;
+                    break;
+                case PRENDRE_TRESOR:
+                    // Si le joueur a peut prendre le trésor alors il a fait une action
+                    if (av.prendreTresor()) {
+                        av.utiliserAction();
+                    }
+                    break;
+                case UTILISER_CARTE:
+                    if (av.utiliserCarte()) {
+                        av.utiliserAction();
+                    }
+                    break;
+                case ACTION_SPECIALE:
+                    av.utiliserAction();
+                    break;
+            }
+            vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+            vue.getGrille().updatePion(getPosPion());
+
+            if(finDeTour){
 
                 //phase de pioche
                 CarteItem cIt1 = (CarteItem) cartesItem.piocher();
@@ -365,12 +376,14 @@ public class Controleur implements Observeur {
                     av.addCarteItem(cIt2);
                 }
 
+                currentAventurier = (currentAventurier!=aventuriers.size()-1?currentAventurier+1:0);
                 //phase d'innondation
                 faireInnondation();
 
                 vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
                 vue.updateJoueurs();
             }
+
         }
 
     }
@@ -588,7 +601,7 @@ public class Controleur implements Observeur {
      */
     private boolean isVictoire() {
         boolean carteHelico = false;
-        for (Carte uneCarte : this.getSelectedAventurier(this.getCurrentAventurier()).getCarteItems()) {
+        for (Carte uneCarte : this.getAventuriers().get(this.getCurrentAventurier()).getCarteItems()) {
             if (uneCarte instanceof CarteHelicoptere) {
                 carteHelico = true;
             }

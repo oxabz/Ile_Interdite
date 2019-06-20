@@ -21,7 +21,13 @@ public class EActions extends JPanel {
     /* ATTRIBUTS */
 
     private final ArrayList<JButton> boutons;
+    private final JButton seDeplacerButon;
     private final JButton actionSpecialButon;
+    private final JButton assecherButon;
+    private final JButton donnerCarteButon;
+    private final JButton prendreTresorButon;
+    private final JButton finDeTourButon;
+    private final JButton utiliserCarteButon;
     private final JButton annulerButon;
 
     private Vue vue;
@@ -35,7 +41,7 @@ public class EActions extends JPanel {
         this.vue = vue;
         boutons = new ArrayList<>();
 
-        JButton seDeplacerButon = new JButton("se deplacer");
+        seDeplacerButon = new JButton("se deplacer");
         this.add(seDeplacerButon);
         seDeplacerButon.addActionListener(new ActionListener() {
             @Override
@@ -47,7 +53,7 @@ public class EActions extends JPanel {
         });
         boutons.add(seDeplacerButon);
 
-        JButton assecherButon = new JButton("assecher");
+        assecherButon = new JButton("assecher");
         this.add(assecherButon);
         assecherButon.addActionListener(new ActionListener() {
             @Override
@@ -59,7 +65,7 @@ public class EActions extends JPanel {
         });
         boutons.add(assecherButon);
 
-        JButton donnerCarteButon = new JButton("donner carte");
+        donnerCarteButon = new JButton("donner carte");
         this.add(donnerCarteButon);
         donnerCarteButon.addActionListener(new ActionListener() {
             @Override
@@ -71,7 +77,7 @@ public class EActions extends JPanel {
         });
         boutons.add(donnerCarteButon);
 
-        JButton prendreTresorButon = new JButton("prendre tresor");
+        prendreTresorButon = new JButton("prendre tresor");
         this.add(prendreTresorButon);
         prendreTresorButon.addActionListener(new ActionListener() {
             @Override
@@ -83,7 +89,7 @@ public class EActions extends JPanel {
         });
         boutons.add(prendreTresorButon);
 
-        JButton finDeTourButon = new JButton("fin de tour");
+        finDeTourButon = new JButton("fin de tour");
         this.add(finDeTourButon);
         finDeTourButon.addActionListener(new ActionListener() {
             @Override
@@ -95,7 +101,7 @@ public class EActions extends JPanel {
         });
         boutons.add(finDeTourButon);
 
-        JButton utiliserCarteButon = new JButton("utiliser carte");
+        utiliserCarteButon = new JButton("utiliser carte");
         this.add(utiliserCarteButon);
         utiliserCarteButon.addActionListener(new ActionListener() {
             @Override
@@ -145,12 +151,37 @@ public class EActions extends JPanel {
         }
     }
 
-    public void setEnableActionSpecial(boolean enabled){
-        actionSpecialButon.setEnabled(enabled);
-    }
 
-    public void setEnableAnnuler(boolean enabled){
-        annulerButon.setEnabled(enabled);
+    public void setEnabled(boolean enabled, ArrayList<Utils.Action> actions){
+        setEnabled(false);
+        super.setEnabled(true);
+        for (Utils.Action ac:
+             actions ) {
+            switch (ac){
+                default:
+                case ACTION_SPECIALE:
+                    actionSpecialButon.setEnabled(enabled);
+                    break;
+                case UTILISER_CARTE:
+                    utiliserCarteButon.setEnabled(enabled);
+                    break;
+                case PRENDRE_TRESOR:
+                    prendreTresorButon.setEnabled(enabled);
+                    break;
+                case FIN_TOUR:
+                    finDeTourButon.setEnabled(enabled);
+                    break;
+                case SE_DEPLACER:
+                    seDeplacerButon.setEnabled(enabled);
+                    break;
+                case DON_CARTE:
+                    donnerCarteButon.setEnabled(enabled);
+                    break;
+                case ASSECHER:
+                    assecherButon.setEnabled(enabled);
+                    break;
+            }
+        }
     }
 
 }

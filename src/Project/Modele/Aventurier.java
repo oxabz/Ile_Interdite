@@ -23,6 +23,7 @@ public abstract class Aventurier {
     protected Vector2 position;
     private ArrayList<CarteItem> carteItems;
     private String joueur;
+    private int nbAction;
 
     /* CONSTRUCTEURS */
     /**
@@ -47,6 +48,11 @@ public abstract class Aventurier {
     }
 
     /* MÉTHODES */
+
+    public void initialiserTour(){
+        nbAction = 3;
+    }
+
     /**
      * Déplace le joueur
      *
@@ -249,6 +255,10 @@ public abstract class Aventurier {
         return pos;
     }
 
+    public void utiliserAction(){
+        nbAction--;
+    }
+
     /* GETTERS & SETTERS */
     public Vector2 getPosition() {
         return position;
@@ -296,4 +306,8 @@ public abstract class Aventurier {
     public abstract String getNom();
 
     public abstract Utils.Pion getPion();
+
+    public int getNbAction() {
+        return nbAction;
+    }
 }
