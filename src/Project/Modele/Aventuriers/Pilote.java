@@ -40,7 +40,7 @@ public class Pilote extends Aventurier {
     /**
      * Permet de déplacer un aventurier
      *
-     * @return true si le déplacement est réalisé *
+     * @return true si le déplacement a été effectuée
      *
      */
     @Override

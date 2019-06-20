@@ -1,13 +1,7 @@
 package Project.views;
 
 import Project.Controleur;
-import Project.Modele.Cartes.CartesItem.CarteTresor;
-import Project.Modele.Deck;
-import Project.Modele.Grille;
 import Project.util.Observe;
-import Project.util.Utils;
-import Project.util.Vector2;
-import Project.views.Elements.*;
 
 import java.awt.*;
 import Project.views.Elements.EActions;
@@ -117,13 +111,7 @@ public class Vue extends Observe {
     public static int getWINDOW_SIZE_Y() {
         return WINDOW_SIZE_Y;
     }
-
-    public static void main(String[] args) {
-        Vue ihme = new Vue();
-        //ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
-        ihme.grille.updateGrid(Controleur.getControleur().getGrille().getInnondee(), Controleur.getControleur().getGrille().getCoulee());
-    }
-
+    
     public void initialiserNiveauEau(int level) {
         niveauEau = new ENiveauDEau(level);
         constraints.gridwidth = 1;

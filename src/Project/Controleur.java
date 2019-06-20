@@ -11,18 +11,9 @@ import Project.Modele.Tuiles.TuileTresor;
 import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
-
-import Project.views.VueAventurier;
 import Project.views.VueFormulaire;
-import Project.views.VueGrille;
-
-import javax.naming.InitialContext;
-
-import java.awt.desktop.SystemSleepEvent;
-import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
 public class Controleur implements Observeur {
 
