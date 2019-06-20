@@ -150,8 +150,11 @@ public class EActions extends JPanel {
              boutons) {
             bouton.setEnabled(enabled);
         }
-        setEnableActionSpecial(enabled);
         setEnableAnnuler(!enabled);
+    }
+
+    public void setEnableAnnuler(boolean b) {
+        annulerButon.setEnabled(b);
     }
 
 

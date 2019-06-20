@@ -148,8 +148,7 @@ public abstract class Aventurier {
             }
 
         }
-
-
+        return false;
     }
 
     /**
