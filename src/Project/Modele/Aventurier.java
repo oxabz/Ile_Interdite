@@ -120,8 +120,17 @@ public abstract class Aventurier {
     @Deprecated
     public boolean  donnerCarte() {
         Controleur c = Controleur.getControleur();
-        Aventurier av = c.getSelectedAventurier(c.getCurrentAventurier());
-        Carte carte = c.getCarteSelectionne();
+        Aventurier av;
+        do {
+            av = c.getSelectedAventurier(c.getCurrentAventurier());
+        }while (!av.getPosition().equals( this.getPosition()));
+        System.out.println("yolo");
+        Carte carte;
+        do {
+            carte = c.getCarteSelectionne();
+            System.out.println("test");
+        }while (!(carte instanceof CarteTresor));
+        System.out.println("yoloy");
         this.removeCarteItem( (CarteItem) carte);
         av.getCarteItems().add((CarteItem) carte) ; // le déclancement de la mettre à la défose est à 6 auto ?
         if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem)carte) == true) {
@@ -258,11 +267,15 @@ public abstract class Aventurier {
 
         carteItems.add(carte);
         if (carteItems.size() > 5) {
-            this.carteItems.remove(controleur.getCarteSelectionne(this));
+            this.defausserCarteItem ((CarteItem) controleur.getCarteSelectionne(this));
         }
     }
 
     public void removeCarteItem(CarteItem carteItem) {
+        carteItems.remove(carteItem);
+    }
+
+    public void defausserCarteItem(CarteItem carteItem){
         carteItems.remove(carteItem);
         Controleur controleur = Controleur.getControleur() ;
         controleur.getCartesItem().getDefausse().add(carteItem) ;
