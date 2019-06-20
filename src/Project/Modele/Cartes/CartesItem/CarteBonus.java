@@ -19,5 +19,5 @@ public abstract class CarteBonus extends CarteItem {
     METHODS
      */
 
-    abstract void actionCarte();
+    public abstract void actionCarte();
 }
