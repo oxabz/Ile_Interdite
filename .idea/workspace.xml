@@ -3,45 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="634db893-f018-44b3-a58f-0940b4a6825d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Controleur$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Controleur$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Controleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Controleur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventurier.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventurier.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Explorateur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Explorateur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Ingenieur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Ingenieur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Messager.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Messager.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Navigateur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Navigateur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Pilote.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Pilote.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Plongeur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Aventuriers/Plongeur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Deck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/Modele/Deck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Message.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Message.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/MessageType.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/MessageType.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$Action.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$Action.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$EtatTuile.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$EtatTuile.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$Pion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$Pion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$Tresor.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$Tresor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$View.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils$View.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Utils.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Vector2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/util/Vector2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECarte.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECarte.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$Etat.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$Etat.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$FiltreCouleur.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase$FiltreCouleur.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/ECase.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EEcranVictoire.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EEcranVictoire.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EFormulaire$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EFormulaire$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EFormulaire$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EFormulaire$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EFormulaire.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EFormulaire.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EGrille.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EGrille.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EPion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/Elements/EPion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/VueFormulaire.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/VueFormulaire.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/VueVictoire.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Ile_Interdite/Project/views/VueVictoire.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Controleur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/util/MessageType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/util/MessageType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/views/Elements/EEcranVictoire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/views/Elements/EEcranVictoire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/views/VueFormulaire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/views/VueFormulaire.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Project/views/VueVictoire.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/views/VueVictoire.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,11 +17,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EEcranVictoire.java">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-42">
-              <caret line="59" column="117" selection-start-line="59" selection-start-column="117" selection-end-line="59" selection-end-column="117" />
+            <state relative-caret-position="309">
+              <caret line="251" column="37" lean-forward="true" selection-start-line="251" selection-start-column="37" selection-end-line="251" selection-end-column="37" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#1764#1765#0" expanded="true" />
+                <element signature="e#1797#1798#0" expanded="true" />
+                <element signature="e#16281#16282#0" expanded="true" />
+                <element signature="e#16344#16345#0" expanded="true" />
+                <element signature="e#18094#18095#0" expanded="true" />
+                <element signature="e#18125#18126#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EGrille.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="324">
+              <caret line="95" selection-start-line="95" selection-end-line="95" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,10 +48,82 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/views/VueVictoire.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+            <state relative-caret-position="60">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EMain.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1044">
+              <caret line="90" column="24" selection-start-line="90" selection-start-column="24" selection-end-line="90" selection-end-column="24" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="396">
+              <caret line="76" column="66" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="519">
+              <caret line="49" column="32" selection-start-line="49" selection-start-column="32" selection-end-line="49" selection-end-column="32" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarte.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1050">
+              <caret line="84" column="33" selection-start-line="84" selection-start-column="33" selection-end-line="84" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/util/Observe.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
+              <folding>
+                <element signature="e#167#168#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="309">
+              <caret line="52" column="5" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarteAventurier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="90">
+              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -116,6 +168,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/Modele/Cartes/CartesItem/CarteTresor.java" />
+        <option value="$PROJECT_DIR$/src/Modele/Cartes/CarteInondation.java" />
+        <option value="$PROJECT_DIR$/src/util/Vector2.java" />
+        <option value="$PROJECT_DIR$/src/Modele/Tuile.java" />
         <option value="$PROJECT_DIR$/src/Modele/Aventurier.java" />
         <option value="$PROJECT_DIR$/src/Modele/Grille.java" />
         <option value="$PROJECT_DIR$/src/ControleurP/Controleur.java" />
@@ -131,6 +187,7 @@
         <option value="$PROJECT_DIR$/src/Project/util/Observe.java" />
         <option value="$PROJECT_DIR$/src/Project/util/AventurierFactory.java" />
         <option value="$PROJECT_DIR$/src/Project/util/AventurierGrille.java" />
+        <option value="$PROJECT_DIR$/src/Project/util/MessageType.java" />
         <option value="$PROJECT_DIR$/src/Project/util/Message.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Carte.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Deck.java" />
@@ -159,14 +216,9 @@
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java" />
         <option value="$PROJECT_DIR$/src/Project/util/Vector2.java" />
         <option value="$PROJECT_DIR$/src/Project/util/MultiMap.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controleur.java" />
         <option value="$PROJECT_DIR$/src/Project/views/Elements/ECarte.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" />
-        <option value="$PROJECT_DIR$/src/Project/util/MessageType.java" />
-        <option value="$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controleur.java" />
-        <option value="$PROJECT_DIR$/src/Project/views/VueVictoire.java" />
-        <option value="$PROJECT_DIR$/src/Project/views/VueFormulaire.java" />
-        <option value="$PROJECT_DIR$/src/Project/views/Elements/EEcranVictoire.java" />
       </list>
     </option>
   </component>
@@ -177,14 +229,13 @@
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="952" />
-    <option name="width" value="977" />
-    <option name="height" value="1038" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="17" />
+    <option name="y" value="20" />
+    <option name="width" value="1886" />
+    <option name="height" value="1020" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
-    <ConfirmationsSetting value="2" id="Add" />
-  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -201,11 +252,6 @@
             <path>
               <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
               <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
-              <item name=".idea" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -218,6 +264,13 @@
               <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
               <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="images" type="462c0819:PsiDirectoryNode" />
+              <item name="cartes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Project" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -225,7 +278,15 @@
               <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Project" type="462c0819:PsiDirectoryNode" />
-              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="Modele" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="Modele" type="462c0819:PsiDirectoryNode" />
+              <item name="Aventuriers" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
@@ -254,16 +315,12 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../liste_francais.dic" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.spelling" />
   </component>
   <component name="RecentsManager">
@@ -284,7 +341,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.VueVictoire">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Project.Main" />
       <module name="Ile_Interdite" />
@@ -298,41 +355,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VueFormulaire" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Project.views.VueFormulaire" />
-      <module name="Ile_Interdite" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Project.views.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VueVictoire" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Project.views.VueVictoire" />
-      <module name="Ile_Interdite" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Project.views.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.VueVictoire" />
         <item itemvalue="Application.Main" />
-        <item itemvalue="Application.VueFormulaire" />
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="C:\Users\Maxime\IdeaProjects" CustomDictionaries="1" CustomDictionary0="$PROJECT_DIR$/../liste_francais.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="$PROJECT_DIR$/.." CustomDictionaries="1" CustomDictionary0="$PROJECT_DIR$/../liste_francais.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -544,7 +573,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125792000" />
+    <option name="totallyTimeSpent" value="117875000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -556,19 +585,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="17" y="20" width="1886" height="1020" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.87230515" visible="true" weight="0.1409396" />
-      <window_info id="Structure" order="1" sideWeight="0.12769486" side_tool="true" weight="0.166122" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.87230515" visible="true" weight="0.166122" />
+      <window_info id="Structure" order="1" sideWeight="0.12769486" side_tool="true" visible="true" weight="0.166122" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
       <window_info id="UI Designer" order="4" />
       <window_info id="Capture Tool" order="5" />
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3286119" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4945534" weight="0.32577905" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4945534" visible="true" weight="0.32700893" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.6922658" weight="0.40066963" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -576,9 +605,9 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49945533" weight="0.32924107" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.490991" weight="0.32577905" />
-      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5054466" side_tool="true" weight="0.32700893" />
-      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49774775" weight="0.3286119" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.490991" weight="0.32700893" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5054466" side_tool="true" visible="true" weight="0.32700893" />
+      <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.49774775" weight="0.32924107" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -589,6 +618,37 @@
       <window_info anchor="right" id="Palette&#9;" order="7" />
       <window_info anchor="right" id="Database" order="8" />
     </layout>
+    <layout-to-restore>
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28280544" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info id="Favorites" order="6" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.3295964" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32735425" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.40180588" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" weight="0.3295964" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.3295964" />
+      <window_info anchor="bottom" id="Database Changes" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3295964" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="12" weight="0.3295964" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info anchor="right" id="Maven" order="5" />
+      <window_info anchor="right" id="Capture Analysis" order="6" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="right" id="Database" order="8" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -667,6 +727,14 @@
           <properties />
           <option name="timeStamp" value="39" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/Project/Main.java</url>
+          <line>3</line>
+          <properties class="Project.Main" method="main">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
@@ -674,11 +742,6 @@
         <watch expression="pions.get(new Vector2(i,j))" language="JAVA" />
       </configuration>
     </watches-manager>
-  </component>
-  <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/Ile_Interdite$VueFormulaire.ic" NAME="VueFormulaire Coverage Results" MODIFIED="1560861915014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>Project.views.*</FILTER>
-    </SUITE>
   </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
@@ -710,6 +773,26 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Cartes/CartesItem/CarteTresor.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/util/Observeur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/AventurierFactory.java" />
+    <entry file="file://$PROJECT_DIR$/src/Project/util/AventurierFactory.java" />
+    <entry file="file://$PROJECT_DIR$/src/Project/util/AventurierGrille.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Deck.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
@@ -843,6 +926,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="825">
           <caret line="55" selection-start-line="55" selection-end-line="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/util/MessageType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="1" selection-start-line="8" selection-start-column="1" selection-end-line="8" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -994,7 +1084,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/javax/swing/JComponent.java" />
+    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/javax/swing/JComponent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="101">
+          <caret line="2704" column="16" selection-start-line="2704" selection-start-column="16" selection-end-line="2704" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EMain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1044">
@@ -1026,6 +1122,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EGrille.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="324">
@@ -1046,6 +1149,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="251" column="37" lean-forward="true" selection-start-line="251" selection-start-column="37" selection-end-line="251" selection-end-column="37" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1764#1765#0" expanded="true" />
+            <element signature="e#1797#1798#0" expanded="true" />
+            <element signature="e#16281#16282#0" expanded="true" />
+            <element signature="e#16344#16345#0" expanded="true" />
+            <element signature="e#18094#18095#0" expanded="true" />
+            <element signature="e#18125#18126#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarte.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1050">
@@ -1057,77 +1176,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="76" column="66" selection-start-line="76" selection-start-column="66" selection-end-line="76" selection-end-column="66" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Desktop/jdk-13/lib/src.zip!/java.desktop/javax/swing/event/ChangeListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="41" column="9" selection-start-line="41" selection-start-column="9" selection-end-line="41" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EFormulaire.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="37" lean-forward="true" selection-start-line="8" selection-start-column="37" selection-end-line="8" selection-end-column="37" />
-          <folding>
-            <element signature="e#3191#3192#0" expanded="true" />
-            <element signature="e#3251#3252#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/VueFormulaire.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="16" column="24" lean-forward="true" selection-start-line="16" selection-start-column="24" selection-end-line="16" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#509#510#0" expanded="true" />
-            <element signature="e#533#534#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/util/MessageType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="25" selection-start-line="2" selection-start-column="25" selection-end-line="2" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-85">
-          <caret line="433" column="44" selection-start-line="433" selection-start-column="44" selection-end-line="433" selection-end-column="44" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/VueVictoire.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="30" lean-forward="true" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EEcranVictoire.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-42">
-          <caret line="59" column="117" selection-start-line="59" selection-start-column="117" selection-end-line="59" selection-end-column="117" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
