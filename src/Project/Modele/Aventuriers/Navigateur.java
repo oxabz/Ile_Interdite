@@ -53,7 +53,7 @@ public class Navigateur extends Aventurier {
 
         ArrayList<Vector2> pos;
         Grille grille = controleur.getGrille();
-        pos = av.getPosDeplacement();
+        pos = Aventurier.getPosCroix(av);
         Iterator<Vector2> iterator = pos.iterator();
         while(iterator.hasNext()){
             Vector2 posPossible = iterator.next();
@@ -72,7 +72,7 @@ public class Navigateur extends Aventurier {
         // premier déplacement fini
 
         grille = controleur.getGrille();
-        pos = av.getPosDeplacement();
+    pos = Aventurier.getPosCroix(av);
         iterator = pos.iterator();
         while(iterator.hasNext()){
             Vector2 posPossible = iterator.next();

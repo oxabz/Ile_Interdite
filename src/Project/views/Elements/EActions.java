@@ -109,7 +109,7 @@ public class EActions extends JPanel {
 
         actionSpecialButon = new JButton("Action Special");
         this.add(actionSpecialButon);
-        utiliserCarteButon.addActionListener(new ActionListener() {
+        actionSpecialButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Message m = new Message(MessageType.ACTION);

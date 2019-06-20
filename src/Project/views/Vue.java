@@ -289,7 +289,7 @@ public class Vue extends Observe {
                 main.setEnabled(false);
                 for (EJoueur j
                         : listeJoueurs) {
-                    j.setEnabled(false);
+                    j.setEnabled(true);
                 }
                 break;
 

@@ -78,12 +78,7 @@ public abstract class Aventurier {
      * @return Les position de déplacement de l'aventurier de base
      */
     public ArrayList<Vector2> getPosDeplacement() {
-        ArrayList<Vector2> pos = new ArrayList<>();
-        pos.add(position.add(-1, 0));
-        pos.add(position.add(1, 0));
-        pos.add(position.add(0, -1));
-        pos.add(position.add(0, 1));
-        return pos;
+        return getPosCroix(this);
     }
 
     /**
@@ -195,7 +190,7 @@ public abstract class Aventurier {
      * @return true si la carte a pu être utilisée
     */
     public boolean actionSpeciale () {
-        return true ;
+        return false ;
     }
 
     /*
@@ -224,6 +219,15 @@ public abstract class Aventurier {
         }
 
         return false;
+    }
+
+    public static ArrayList<Vector2> getPosCroix(Aventurier av) {
+        ArrayList<Vector2> pos = new ArrayList<>();
+        pos.add(av.getPosition().add(-1, 0));
+        pos.add(av.getPosition().add(1, 0));
+        pos.add(av.getPosition().add(0, -1));
+        pos.add(av.getPosition().add(0, 1));
+        return pos;
     }
 
     /* GETTERS & SETTERS */

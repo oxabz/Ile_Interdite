@@ -54,6 +54,7 @@ public final class EFormulaire extends JPanel {
         choixNbJoueurs.setMinorTickSpacing(1);
         choixNbJoueurs.setPaintTicks(true);
         choixNbJoueurs.setPaintLabels(true);
+        choixNbJoueurs.setSnapToTicks(true) ;
 
         listeFormulaire.get(0).add(choixNbJoueurs);
 
@@ -65,6 +66,7 @@ public final class EFormulaire extends JPanel {
         });
 
         choixDifficulté = new JSlider(JSlider.HORIZONTAL,1, 4, 1); // création du slider de niveau de difficulté
+        choixDifficulté.setSnapToTicks(true) ;
         choixDifficulté.setMajorTickSpacing(1);
         choixDifficulté.setPaintTicks(true);
 
