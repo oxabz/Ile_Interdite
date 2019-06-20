@@ -1,8 +1,6 @@
 package Project.views.Elements;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.GridLayout;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -58,8 +56,8 @@ public class EInfo extends JPanel  {
 	 * CONSTRUCTOR
 	 */
 	public EInfo() {
-		
-		this.setLayout(new GridLayout(1, 2));
+
+		this.setLayout(new GridLayout(1,2));
 
 		this.panel_tresor = new JPanel[4];
 
@@ -68,7 +66,7 @@ public class EInfo extends JPanel  {
 		this.panel_groupe_tresor = new JPanel(new GridLayout(2, 2));
 		new AdaptativeDimension(
 				this,
-				null,
+				()->10,
 				()->(int)(panel_groupe_tresor.getWidth()*TRESOR_SIZE_RATIO),
 				panel_groupe_tresor);
 
@@ -113,6 +111,7 @@ public class EInfo extends JPanel  {
 
 			this.panel_groupe_tresor.add(this.panel_tresor[i]);
 		}
+
 
 		this.add(this.panel_groupe_tresor);
 
