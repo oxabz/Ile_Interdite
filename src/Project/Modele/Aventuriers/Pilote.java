@@ -4,6 +4,7 @@ import Project.Controleur;
 import Project.Modele.Aventurier;
 import Project.Modele.Grille;
 import Project.Modele.Tuile;
+import Project.util.Utils;
 import Project.util.Vector2;
 
 import java.util.ArrayList;
@@ -60,5 +61,12 @@ public class Pilote extends Aventurier {
 
     public void setDeplacemntSpecial(boolean deplacemntSpecial) {
         this.deplacemntSpecial = deplacemntSpecial;
+    }
+
+    private static final Utils.Pion PION = Utils.Pion.BLEU;
+
+    @Override
+    public Utils.Pion getPion() {
+        return PION;
     }
 }

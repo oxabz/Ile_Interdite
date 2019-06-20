@@ -4,6 +4,7 @@ import Project.Controleur;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Tuiles.TuileTresor;
+import Project.util.Utils;
 import Project.util.Vector2;
 import Project.util.Utils.Tresor;
 
@@ -41,6 +42,10 @@ public abstract class Aventurier extends ObjetIdentifie {
     METHODS
      */
 
+    /**
+     *Déplace le joueur Selon son type et l'input
+     * @return true si l'action a été effectué
+     */
     public boolean seDeplacer(){
 
         //Declaration
@@ -66,6 +71,11 @@ public abstract class Aventurier extends ObjetIdentifie {
         }
     }
 
+
+    /**
+     *
+     * @return Les position de deplacement selon le type du joueur
+     */
     //Retourne les position de deplacemnt du joueur
     public ArrayList<Vector2> getPosDeplacement(){
         ArrayList<Vector2> pos = new ArrayList<>();
@@ -76,6 +86,10 @@ public abstract class Aventurier extends ObjetIdentifie {
         return pos;
     }
 
+    /**
+     *asseche une case selon son type et l'input
+     * @return true si l'action a été effectué
+     */
     public boolean assecher(){
         Controleur c = Controleur.getControleur();
         Grille g = c.getGrille();
@@ -177,7 +191,7 @@ public abstract class Aventurier extends ObjetIdentifie {
 
         carteItems.add(carte);
         if(carteItems.size()>5){
-            this.carteItems.remove(controleur.getCarteSelectionne());
+            this.carteItems.remove(controleur.getCarteSelectionne(this));
         }
     }
 
@@ -198,4 +212,6 @@ public abstract class Aventurier extends ObjetIdentifie {
     }
 
     public abstract String getNom();
+
+    public abstract Utils.Pion getPion();
 }

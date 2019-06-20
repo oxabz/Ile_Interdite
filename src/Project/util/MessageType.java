@@ -3,8 +3,8 @@ package Project.util;
 public enum MessageType {
     POSITION,
     ACTION,
-    PARAMETRE,
-    VALIDER_FOMULAIRE,
     CARTE,
-    AVENTURIER
+    AVENTURIER,
+    PARAMETRE,
+    VALIDER_FOMULAIRE
 }

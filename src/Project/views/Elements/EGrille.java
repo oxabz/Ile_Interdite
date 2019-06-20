@@ -1,15 +1,14 @@
 package Project.views.Elements;
 
-import Project.FactoryDeck;
-import Project.util.Message;
-import Project.util.MessageType;
-import Project.util.Observe;
-import Project.util.Vector2;
+import Project.util.*;
 import Project.views.Vue;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EGrille extends JPanel {
     /*
@@ -37,6 +36,8 @@ public class EGrille extends JPanel {
             }
         }
 
+
+        eCases[0][0].setPions(new ArrayList<>(Arrays.asList(Utils.Pion.ROUGE, Utils.Pion.BLEU)));
 
         this.vue = vue;
 
@@ -74,6 +75,11 @@ public class EGrille extends JPanel {
         vue.notifierObserver(m);
     }
 
+    /**
+     * permet de changer la clickabiltié de certaine case
+     * @param positions positions a modifier
+     * @param aBoolean new state
+     */
     public void setClickables(ArrayList<Vector2> positions,boolean aBoolean){
         for (Vector2 pos:
              positions) {
@@ -82,6 +88,17 @@ public class EGrille extends JPanel {
         }
     }
 
+    /**
+     * Fonction permetant de metre a jour l'affichage des pions dans la grille
+     * @param pions liste des pions associé avec les position des pions
+     */
+    public void updatePion(MultiMap<Vector2, Utils.Pion> pions){
+        for (int i = 0; i < eCases.length; i++) {
+            for (int j = 0; j < eCases[0].length; j++) {
+                eCases[i][j].setPions(pions.get(new Vector2(i,j)));
+            }
+        }
+    }
 
 
 }

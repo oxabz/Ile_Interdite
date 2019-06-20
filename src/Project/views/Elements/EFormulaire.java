@@ -95,13 +95,15 @@ public final class EFormulaire extends JPanel {
                 Message m = new Message(MessageType.VALIDER_FOMULAIRE) ;
                 ArrayList<String> noms = new ArrayList<>() ;
                 for (int i = 1 ; i<listeFormulaire.size() ; i++) {
-                    noms.add(tableauNomJoueurs[i-1].getName()) ;
+                    noms.add(tableauNomJoueurs[i-1].getText()) ;
                 }
 
                 m.nomDesJoueurs = noms;
                 m.nbJoueurs = choixNbJoueurs.getSelectedIndex() + 2 ;
                 m.difficulte = choixDifficulté.getSelectedIndex() +1 ;
                 observe.notifierObserver(m);
+
+                ((VueFormulaire)observe).getFrame().dispose();
             }
         }) ;
         panel.add(valider , BorderLayout.SOUTH) ;

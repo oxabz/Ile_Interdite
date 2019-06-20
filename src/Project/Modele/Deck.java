@@ -61,6 +61,31 @@ public class Deck {
     }
 
     /**
+     * Permet de piocher ainsi que de mélanger la défausse et de remplacer la pioche par la défausse si elle est vide
+     * @return La carte a piocher
+     */
+    public Carte piocher() {
+        // S'il n'y a plus de cartes dans la pioche
+        if(this.getPioche().size() == 0) {
+            this.melangerCartesDefausse();
+            // On récupère la défausse
+            for(Carte carte : this.getDefausse()) {
+
+                // On place la défausse à la place de la pioche
+                addCartePiocheDebut(carte);
+                
+            }
+            
+            // On vide la défausse pour ne pas avoir de doublon
+            this.defausse.clear();
+        }
+
+        
+        // Tire la première carte de la pioche
+        return this.getPioche().poll();
+    }
+    
+    /**
      * GETTERS
      */
     public LinkedList<Carte> getPioche() {

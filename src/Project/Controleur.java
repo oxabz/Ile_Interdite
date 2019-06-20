@@ -12,6 +12,12 @@ import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
 
+import Project.views.VueAventurier;
+import Project.views.VueFormulaire;
+import Project.views.VueGrille;
+
+import javax.naming.InitialContext;
+
 import java.awt.desktop.SystemSleepEvent;
 import java.sql.Time;
 import java.util.*;
@@ -28,9 +34,8 @@ public class Controleur implements Observeur {
     private Deck cartesInondation;
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState;
-
     private Vue vue;
-
+    private VueFormulaire vueFormulaire;
     private Deque<Message> messages = new ArrayDeque<>();
 
     private int currentAventurier;
@@ -46,6 +51,9 @@ public class Controleur implements Observeur {
         cartesItem = FactoryDeck.getDeckItems();
         cartesInondation = FactoryDeck.getDeckInondations();
 
+        vueFormulaire = new VueFormulaire();
+        vueFormulaire.setObserveur(this);
+
         this.initialiserPartie();
 
         vue = new Vue();
@@ -54,6 +62,7 @@ public class Controleur implements Observeur {
         vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
         vue.initialiserVue();
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+        vue.getGrille().updatePion(getPosPion());
     }
 
     private final static Controleur controleur = new Controleur();
@@ -216,9 +225,11 @@ public class Controleur implements Observeur {
      * @return Retourne la carte que l'aventurier sélectionne
      */
     public Carte getCarteSelectionne() {
+
+        vue.getMain().setAventurier(aventuriers.get(currentAventurier));
         vue.SetMode(Vue.IhmMode.MAIN);
 
-        String s = "";
+        Carte c = null;
         boolean done = false;
         while (!done) {
             try {
@@ -228,22 +239,45 @@ public class Controleur implements Observeur {
             }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
-                if (m.type == MessageType.PARAMETRE) {
+                if (m.type == MessageType.CARTE) {
                     done = true;
-                    s = m.parametre;
+                    c = m.carte;
                 }
             }
         }
 
-        ArrayList<CarteItem> cartes = aventuriers.get(this.getCurrentAventurier()).getCarteItems();
-        for (CarteItem c
-                : cartes) {
-            if (c.getNom().equals(s)) {
-                return c;
+        return c;
+
+    }
+
+    /**
+     *
+     * @param av Qui doit sélectionner une carte à défausser
+     * @return retourne la carte selectionné
+     */
+    public Carte getCarteSelectionne(Aventurier av) {
+
+        vue.getMain().setAventurier(av);
+        vue.SetMode(Vue.IhmMode.MAIN);
+
+        Carte c = null;
+        boolean done = false;
+        while (!done) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            while (!messages.isEmpty()) {
+                Message m = messages.poll();
+                if (m.type == MessageType.CARTE) {
+                    done = true;
+                    c = m.carte;
+                }
             }
         }
 
-        return null;
+        return c;
 
     }
 
@@ -275,11 +309,11 @@ public class Controleur implements Observeur {
 
                     // Update de la case d'affichage des informations
                     vue.getInformations().update(
-                        gameState.getTresors(),
-                        3-(nbAction+1)+1,
-                        getRateTuilesNonInondees(),
-                        getRateTuilesRestantes(),
-                        getAlerteMessage()
+                            gameState.getTresors(),
+                            3 - (nbAction + 1) + 1,
+                            getRateTuilesNonInondees(),
+                            getRateTuilesRestantes(),
+                            getAlerteMessage()
                     );
 
                     switch (getSelectedAction(i)) {
@@ -313,11 +347,12 @@ public class Controleur implements Observeur {
                             break;
                     }
                     vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
+                    vue.getGrille().updatePion(getPosPion());
                 }
 
                 //phase de pioche
-                CarteItem cIt1 = (CarteItem) cartesItem.getPioche().poll();
-                CarteItem cIt2 = (CarteItem) cartesItem.getPioche().poll();
+                CarteItem cIt1 = (CarteItem) cartesItem.piocher();
+                CarteItem cIt2 = (CarteItem) cartesItem.piocher();
 
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
@@ -365,17 +400,22 @@ public class Controleur implements Observeur {
      * Pioche x cartes inondation et met à jour les tuiles (inondées/coulées)
      */
     private void faireInnondation() {
-        int nbCarteInnondation = gameState.getNbDeCarte();
-        LinkedList<Carte> cartesInnondationPioche = cartesInondation.getPioche();
+        int nbCarteInondation = gameState.getNbDeCarte();
 
-        for (int j = 0; j < nbCarteInnondation; j++) {
-            CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll();
-            if (cIn.getTuile().isInnondee()) {
-                grille.removeTuile(cIn.getTuile());
+        for (int j = 0; j < nbCarteInondation; j++) {
+            CarteInondation cIn = (CarteInondation) cartesInondation.piocher();
+
+            if(cIn == null) {
+                System.err.println("Pioche d'inondation vide.");
             } else {
-                cIn.getTuile().setInnondee(true);
+                if (cIn.getTuile().isInnondee()) {
+                    grille.removeTuile(cIn.getTuile());
+                } else {
+                    cartesInondation.addCarteDefausseDebut(cIn);
+                    cIn.getTuile().setInnondee(true);
+                }
             }
-            cartesInondation.addCarteDefausseDebut(cIn);
+            
         }
     }
 
@@ -387,20 +427,11 @@ public class Controleur implements Observeur {
 
         //Ajout des joueurs
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
+        Message m = this.recevoirFormulaire();
 
-        Scanner s = new Scanner(System.in);
-
-        int nbJ;
-        do {
-            System.out.print("nb de joueur :");
-            nbJ = s.nextInt();
-            s.nextLine();
-        } while (!(nbJ >= 2 && nbJ <= 4));
-
-        for (int i = 0; i < nbJ; i++) {
+        for (int i = 0; i < m.nbJoueurs; i++) {
             //Initialiser aventurier
-            System.out.print("nom joueur " + (i + 1) + " : ");
-            String nomJ = s.nextLine();
+            String nomJ = m.nomDesJoueurs.get(i);
             int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size());
             Aventurier av = dispoAventuriers.get(r);
             aventuriers.add(av);
@@ -409,14 +440,9 @@ public class Controleur implements Observeur {
             System.out.println(av.getJoueur() + " sera " + av.getNom());
 
         }
-
         //Initialisation du gamestate
-        int lvl;
-        do {
-            System.out.println("Choisissez un niveau de jeu");
-            lvl = s.nextInt();
-        } while (!(lvl >= 1 && lvl <= 4));
-        gameState = new GameState(lvl);
+
+        gameState = new GameState(m.difficulte);
 
     }
 
@@ -480,9 +506,11 @@ public class Controleur implements Observeur {
         }
         return i == 0;
     }
+
     /**
      *
-     * @return true si au moins l'un des trésors n'est plus récupérable (plus de case & pas récupéré à temps)
+     * @return true si au moins l'un des trésors n'est plus récupérable (plus de
+     * case & pas récupéré à temps)
      */
     private boolean isTuilesTresorCoince() {
         Utils.Tresor[] listeTresors = Utils.Tresor.values();
@@ -493,6 +521,7 @@ public class Controleur implements Observeur {
         }
         return false;
     }
+
     /**
      *
      * @return true si l'héliport est coulé
@@ -509,6 +538,7 @@ public class Controleur implements Observeur {
         }
         return i == 0;
     }
+
     /**
      *
      * @return true si le niveau d'eau dépasse le niveau 5 (>= 10 dans le code)
@@ -516,6 +546,7 @@ public class Controleur implements Observeur {
     private boolean isTeteDeMort() {
         return this.getGameState().getNiveauEau() >= 10;
     }
+
     /**
      *
      * @return true si au moins l'une des conditions de défaite est respectée
@@ -555,6 +586,7 @@ public class Controleur implements Observeur {
         }
         return i == 4;
     }
+
     /**
      *
      * @return true si les conditions nécessaires à la victoire sont respectées
@@ -606,7 +638,7 @@ public class Controleur implements Observeur {
      * Récupère le pourcentage de tuiles restantes dans la grille
      * @return Nombre entier correspondant au pourcentage de tuiles restantes
      */
-    private int getRateTuilesRestantes() {
+    public int getRateTuilesRestantes() {
         // On initialise une variable cartes qui fera le cumul des cartes existantes
         int cartes = 0;
 
@@ -634,7 +666,7 @@ public class Controleur implements Observeur {
      * * Niveau d'eau > 5 (>= 8 palliers)
      * @return Chaîne de caractère correspondant au message d'alerte
      */
-    private String getAlerteMessage() {
+    public String getAlerteMessage() {
         // Chaîne de caractère du message
         String msg = new String();
         // Liste des tresor où il ne reste plus qu'une tuile sur la grille
@@ -685,7 +717,7 @@ public class Controleur implements Observeur {
         if(nb_tresors > 0) {
             // On initialise une variable qui permet de savoir combien de trésor nous reste
             int index = 0;
-    
+
             // On refait la boucle permettant d'obtenir les tuiles trésors critiques non récupérées
             for(Tresor tresor : Tresor.values()) {
                 if(tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue()) {
@@ -758,6 +790,31 @@ public class Controleur implements Observeur {
 
         // Sinon on affiche rien
         return "";
+    }
+
+    private MultiMap<Vector2, Utils.Pion> getPosPion(){
+        MultiMap<Vector2, Utils.Pion> posPion = new MultiMap<>();
+        for (Aventurier av :
+                aventuriers) {
+            posPion.put(av.getPosition(),av.getPion());
+        }
+        return posPion;
+    }
+
+    public Message recevoirFormulaire() {
+        Message message = null;
+        boolean done = false;
+        while (!done) {
+            System.out.print("");
+            while (!messages.isEmpty()) {
+                Message m = messages.poll();
+                if (m.type == MessageType.VALIDER_FOMULAIRE) {
+                    done = true;
+                    message = m;
+                }
+            }
+        }
+        return message;
     }
 
 

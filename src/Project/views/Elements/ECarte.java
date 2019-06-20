@@ -82,7 +82,9 @@ public class ECarte extends JPanel {
         try {
             image = ImageIO.read(new File(IMAGE_PREFIX + name + IMAGE_EXTENTION));
         } catch (IOException e) {
-            System.out.println("not found image"+name);
+            if(!name.equals("")){
+                System.out.println("not found image"+name);
+            }
             try {
                 image = ImageIO.read(new File(IMAGE_PREFIX + "fondrouge" + IMAGE_EXTENTION));
             } catch (IOException f) {
