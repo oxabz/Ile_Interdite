@@ -7,5 +7,7 @@ public enum MessageType {
     AVENTURIER,
     PARAMETRE,
     VALIDER_FOMULAIRE,
-    ANNULER
+    ANNULER,
+    REJOUER,
+    QUITTER
 }

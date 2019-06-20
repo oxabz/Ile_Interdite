@@ -16,7 +16,7 @@ public class Message {
     public Vector2 position;
     public Utils.Action action;
     public String parametre;
-    public ArrayList<String> nomDesJoueurs ;
+    public ArrayList<String> nomDesJoueurs;
     public int nbJoueurs ;
     public int difficulte ;
     public Carte carte;
