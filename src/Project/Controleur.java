@@ -353,7 +353,7 @@ public class Controleur implements Observeur {
                     break;
                 case UTILISER_CARTE:
                     if (av.utiliserCarte()) {
-                        av.utiliserAction();
+
                     }
                     break;
                 case ACTION_SPECIALE:
