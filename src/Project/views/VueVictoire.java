@@ -9,7 +9,7 @@ public class VueVictoire extends Observe {
     private JFrame f ;
 
     public VueVictoire () {
-        f = new JFrame("meow") ;
+        f = new JFrame("Victoire") ;
         f.setSize(500   , 500);
 
         EEcranVictoire ecranVictoire = new EEcranVictoire(this) ;
