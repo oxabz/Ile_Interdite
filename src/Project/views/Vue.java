@@ -33,6 +33,13 @@ public class Vue extends Observe {
     private static final double DECK_SIZE_RATIO = 1.44191919192;
     private JFrame window;
     private GridBagConstraints constraints;
+    private GridBagConstraints constraintsbis;
+
+    //Panels
+    private JPanel grilleMainPanel;
+    private JPanel joueursPanel;
+    private JPanel bottomRightPanel;
+
 
     //Elements
     private EGrille grille;
@@ -46,6 +53,11 @@ public class Vue extends Observe {
     public Vue() {
         window = new JFrame("L'Île interdite");
         this.configureWindow(window);
+
+        grilleMainPanel = new JPanel();
+        grilleMainPanel.setLayout(new BorderLayout());
+        bottomRightPanel = new JPanel();
+        bottomRightPanel.setLayout(new GridBagLayout());
 
         constraints = new GridBagConstraints();
         constraints.fill = GridBagConstraints.NONE;
@@ -61,42 +73,34 @@ public class Vue extends Observe {
 
         constraints.fill = GridBagConstraints.VERTICAL;
         constraints.gridwidth = 1;
-        constraints.gridheight = 2;
-        constraints.gridx = 2;
-        constraints.gridy = 5;
-        window.add(deck,constraints);
+        constraints.gridheight = 1;
+        constraints.gridx = 0;
+        constraints.gridy = 1;
+        bottomRightPanel.add(deck,constraints);
         deck.setBorder(BorderFactory.createLineBorder(Color.RED,2));
         
 
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
-        constraints.weightx = 1;
-        constraints.weighty = 0;
         constraints.fill = GridBagConstraints.HORIZONTAL;
-        constraints.gridx = 1;
-        constraints.gridy = 4;
-        window.add(actions,constraints);
+        constraints.gridx = 0;
+        constraints.gridy = 0;
+        bottomRightPanel.add(actions,constraints);
         actions.setBorder(BorderFactory.createLineBorder(Color.GREEN,2));
 
         constraints.fill = GridBagConstraints.NONE;
         constraints.weightx = 0.5;
         constraints.gridwidth = 1;
-        constraints.gridheight = 2;
+        constraints.gridheight = 1;
         constraints.gridx = 1;
-        constraints.gridy = 5;
-        window.add(informations,constraints);
+        constraints.gridy = 1;
+        bottomRightPanel.add(informations,constraints);
         informations.setBorder(BorderFactory.createLineBorder(Color.YELLOW,2));
 
 
 
-        constraints.gridx = 0;
-        constraints.gridy = 6;
-        constraints.gridwidth = 1;
-        constraints.gridheight = 0;
-        constraints.weightx = 0;
-        constraints.anchor = GridBagConstraints.SOUTHWEST;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
-        window.add(main,constraints);
+
+        grilleMainPanel.add(main,BorderLayout.SOUTH);
         main.setBorder(BorderFactory.createLineBorder(Color.BLUE,2));
 
         
@@ -153,13 +157,12 @@ public class Vue extends Observe {
 
     public void initialiserNiveauEau(int level) {
         niveauEau = new ENiveauDEau(level);
-        constraints.weightx = 1;
         constraints.gridwidth = 1;
-        constraints.gridheight = 3;
-        constraints.gridx = 3;
-        constraints.gridy = 4;
+        constraints.gridheight = 2;
+        constraints.gridx = 2;
+        constraints.gridy = 0;
         constraints.fill = GridBagConstraints.BOTH;
-        window.add(niveauEau, constraints);
+        bottomRightPanel.add(niveauEau, constraints);
         niveauEau.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY,2));
 
     }
@@ -167,16 +170,7 @@ public class Vue extends Observe {
     public void initialiserGrille(String[][] names, boolean[][] inondee, boolean[][] coulee) {
         grille = new EGrille(names[0].length, names.length, names, this);
 
-        
-        constraints.gridwidth = 1;
-        constraints.gridheight = 6;
-        constraints.anchor = GridBagConstraints.NORTHWEST;
-        constraints.fill = GridBagConstraints.NONE;
-        constraints.weightx = 0;
-        constraints.weighty = 0;
-        constraints.gridx = 0;
-        constraints.gridy = 0;
-        window.add(grille, constraints);
+        grilleMainPanel.add(grille, BorderLayout.CENTER);
         grille.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 
 
@@ -186,16 +180,12 @@ public class Vue extends Observe {
     }
 
     public void initialiserJoueurs(ArrayList<Aventurier> joueurs){
-        constraints.weightx = 1;
-        constraints.gridwidth = 3;
-        constraints.gridheight = 1;
-        constraints.gridx = 1;
-        constraints.fill = GridBagConstraints.HORIZONTAL;
+        joueursPanel = new JPanel();
+        joueursPanel.setLayout(new GridLayout(4,1));
         for (int i = 0; i < 4; i++) {
             EJoueur eJoueur = new EJoueur(this,joueurs.get(i));
             this.listeJoueurs.add(eJoueur);
-            constraints.gridy = i;
-            window.add(eJoueur,constraints);
+            joueursPanel.add(eJoueur,constraints);
             eJoueur.updateJoueur();
             eJoueur.setBorder(BorderFactory.createLineBorder(Color.PINK,2));
             
@@ -225,6 +215,21 @@ public class Vue extends Observe {
     }
 
     public void initialiserVue() {
+        constraints.gridy = 0;
+        constraints.gridx = 0;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 2;
+        window.add(grilleMainPanel,constraints);
+        constraints.gridy = 0;
+        constraints.gridx = 1;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        window.add(joueursPanel,constraints);
+        constraints.gridy = 1;
+        constraints.gridx = 1;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 1;
+        window.add(bottomRightPanel,constraints);
         window.setVisible(true);
     }
 
