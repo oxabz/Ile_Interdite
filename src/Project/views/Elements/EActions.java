@@ -120,7 +120,7 @@ public class EActions extends JPanel {
 
         annulerButon = new JButton("Annuler");
         this.add(annulerButon);
-        utiliserCarteButon.addActionListener(new ActionListener() {
+        annulerButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Message m = new Message(MessageType.ANNULER);
@@ -143,6 +143,8 @@ public class EActions extends JPanel {
              boutons) {
             bouton.setEnabled(enabled);
         }
+        setEnableActionSpecial(enabled);
+        setEnableAnnuler(!enabled);
     }
 
     public void setEnableActionSpecial(boolean enabled){

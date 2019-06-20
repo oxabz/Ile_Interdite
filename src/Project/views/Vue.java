@@ -306,4 +306,8 @@ public class Vue extends Observe {
             j.updateJoueur();
         }
     }
+
+    public EActions getActions() {
+        return actions;
+    }
 }

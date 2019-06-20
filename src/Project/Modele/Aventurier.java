@@ -121,6 +121,10 @@ public abstract class Aventurier {
         Controleur c = Controleur.getControleur();
         Aventurier av = c.getSelectedAventurier(c.getCurrentAventurier());
         Carte carte = c.getCarteSelectionne();
+
+        if(carte != null) {
+            
+        }
     }
 
     /**
@@ -204,7 +208,7 @@ public abstract class Aventurier {
             // On récupère la carte séléctionné par le joueur dans la main du joueur.
             Carte carte = c.getCarteSelectionne();
 
-            if (carte instanceof CarteBonus) {
+            if (carte != null && carte instanceof CarteBonus) {
 
                 // On retire la carte de la main du joueur
                 this.getCarteItems().remove(carte);

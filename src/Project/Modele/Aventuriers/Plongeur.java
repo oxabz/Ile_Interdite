@@ -64,8 +64,12 @@ public class Plongeur extends Aventurier {
                 }
             }
             Vector2 positionSelected = c.getPosClic(pos);
-            fini = (positionSelected.x == position.x && positionSelected.y == position.y) && grille.getTuile(position) != null;
-            position = positionSelected;
+            if(positionSelected != null) {
+                fini = (positionSelected.x == position.x && positionSelected.y == position.y) && grille.getTuile(position) != null;
+                position = positionSelected;
+            } else {
+                fini = true;
+            }
         } while ((grille.getTuile(position) == null || grille.getTuile(position).isInnondee()) && !fini);
         return !(position.x == oldPosition.x && position.y == oldPosition.y);
     }

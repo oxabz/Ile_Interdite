@@ -86,6 +86,10 @@ public class Controleur implements Observeur {
                         done = true;
                         pos = m.position;
                     }
+                    if(m.type == MessageType.ANNULER) {
+                        done = true;
+                        pos = null;
+                    }
                 }
             }
 
@@ -229,6 +233,10 @@ public class Controleur implements Observeur {
                     done = true;
                     c = m.carte;
                 }
+                if(m.type == MessageType.ANNULER) {
+                    done = true;
+                    c = null;
+                }
             }
         }
 
@@ -245,6 +253,7 @@ public class Controleur implements Observeur {
 
         vue.getMain().setAventurier(av);
         vue.SetMode(Vue.IhmMode.MAIN);
+        vue.getActions().setEnableAnnuler(false);
 
         Carte c = null;
         boolean done = false;
