@@ -22,7 +22,7 @@ public class Vue extends Observe {
     private JFrame window;
     private GridBagConstraints constraints;
 
-    //Elements
+    //Éléments
     private EGrille grille;
     private EInfo informations;
     private ENiveauDEau niveauEau;
