@@ -214,7 +214,7 @@ public final class EDeck extends JPanel {
         String location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckItems().getPioche().get(0).getImage()) + IMAGE_EXTENSION;
         try {
             this.setImageItemPioche(ImageIO.read(new File(location)));
-            Sound.play(SON_CARTE_FLIP_CHEMIN);
+            Sound.jouer(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
             System.out.println("Project.views.Elements.EDeck.retournerCartePioche()");
             System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
@@ -229,7 +229,7 @@ public final class EDeck extends JPanel {
         String location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckInondation().getPioche().get(0).getNom()) + IMAGE_EXTENSION;
         try {
             this.setImageInondationPioche(ImageIO.read(new File(location)));
-            Sound.play(SON_CARTE_FLIP_CHEMIN);
+            Sound.jouer(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
             System.out.println("Project.views.Elements.EDeck.retournerCarteInondation()");
             System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);

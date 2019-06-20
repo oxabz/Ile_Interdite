@@ -21,52 +21,52 @@ import Project.Modele.Aventurier;
  * @author Eric
  */
 public class Utils {
-    public enum Tresor{
+
+    public enum Tresor {
         CRISTAL,
         COUPE,
         PIERRE,
         STATUE
     }
- 
+
     public static enum EtatTuile {
-        ASSECHEE("Asséchée"), 
+        ASSECHEE("Asséchée"),
         INONDEE("Inondée"),
         COULEE("Coulée");
 
-        String libelle ;
-        
+        String libelle;
+
         EtatTuile(String libelle) {
-            this.libelle = libelle ;
+            this.libelle = libelle;
         }
 
         @Override
         public String toString() {
-            return this.libelle ;
+            return this.libelle;
         }
     }
 
     public static enum Pion {
         ROUGE("Rouge", new Color(255, 0, 0)),
         VERT("Vert", new Color(0, 195, 0)),
-        BLEU("Bleu", new Color(55,194,198)),
+        BLEU("Bleu", new Color(55, 194, 198)),
         ORANGE("Orange", new Color(255, 148, 0)),
         VIOLET("Violet", new Color(204, 94, 255)),
-        JAUNE("Jaune", new Color(255, 255, 0)) ,
-        GRIS("Gris", new Color(100, 100, 100)) ,
-        NOIR("Noir", new Color(0, 0, 0)) ;
+        JAUNE("Jaune", new Color(255, 255, 0)),
+        GRIS("Gris", new Color(100, 100, 100)),
+        NOIR("Noir", new Color(0, 0, 0));
 
-        private final String libelle ;
-        private final Color couleur ;
+        private final String libelle;
+        private final Color couleur;
         private BufferedImage image;
 
-
-        Pion (String libelle, Color couleur) {
-            this.libelle = libelle ;
-            this.couleur = couleur ;
+        Pion(String libelle, Color couleur) {
+            this.libelle = libelle;
+            this.couleur = couleur;
             try {
-                image = ImageIO.read(new File(Utils.View.getImagePrefixePion() +libelle+Utils.View.getImageExtension()));
+                image = ImageIO.read(new File(Utils.View.getImagePrefixePion() + libelle + Utils.View.getImageExtension()));
             } catch (IOException e) {
-                System.err.println("Erreur : Echec du chargement de l'image du pion "+libelle);
+                System.err.println("Erreur : Echec du chargement de l'image du pion " + libelle);
                 image = null;
             }
 
@@ -74,21 +74,33 @@ public class Utils {
 
         @Override
         public String toString() {
-            return this.libelle ;
+            return this.libelle;
         }
 
         public Color getCouleur() {
-            return this.couleur ;
+            return this.couleur;
         }
 
         static Pion getFromName(String name) {
-            if (ROUGE.name().equals(name)) return ROUGE ;
-            if (VERT.name().equals(name)) return VERT ;
-            if (BLEU.name().equals(name)) return BLEU ;
-            if (ORANGE.name().equals(name)) return ORANGE ;
-            if (VIOLET.name().equals(name)) return VIOLET ;
-            if (JAUNE.name().equals(name)) return JAUNE ;
-            return null ;
+            if (ROUGE.name().equals(name)) {
+                return ROUGE;
+            }
+            if (VERT.name().equals(name)) {
+                return VERT;
+            }
+            if (BLEU.name().equals(name)) {
+                return BLEU;
+            }
+            if (ORANGE.name().equals(name)) {
+                return ORANGE;
+            }
+            if (VIOLET.name().equals(name)) {
+                return VIOLET;
+            }
+            if (JAUNE.name().equals(name)) {
+                return JAUNE;
+            }
+            return null;
         }
 
         public BufferedImage getImage() {
@@ -100,30 +112,33 @@ public class Utils {
         if (Parameters.ALEAS) {
             Collections.shuffle(arrayList);
         }
-        return arrayList ;
+        return arrayList;
     }
-    
+
     /**
-     * Permet de poser une question à laquelle l'utilisateur répond par oui ou non
+     * Permet de poser une question à laquelle l'utilisateur répond par oui ou
+     * non
+     *
      * @param question texte à afficher
      * @return true si l'utilisateur répond oui, false sinon
      */
     public static Boolean poserQuestion(String question) {
         System.out.println("Divers.poserQuestion(" + question + ")");
-        int reponse = JOptionPane.showConfirmDialog (null, question, "", JOptionPane.YES_NO_OPTION) ;
+        int reponse = JOptionPane.showConfirmDialog(null, question, "", JOptionPane.YES_NO_OPTION);
         System.out.println("\tréponse : " + (reponse == JOptionPane.YES_OPTION ? "Oui" : "Non"));
         return reponse == JOptionPane.YES_OPTION;
-    }    
-    
+    }
+
     /**
      * Permet d'afficher un message d'information avec un bouton OK
-     * @param message Message à afficher 
+     *
+     * @param message Message à afficher
      */
     public static void afficherInformation(String message) {
         JOptionPane.showMessageDialog(null, message, "Information", JOptionPane.OK_OPTION);
     }
 
-    public enum Action{
+    public enum Action {
         SE_DEPLACER,
         ASSECHER,
         PRENDRE_TRESOR,
@@ -134,11 +149,11 @@ public class Utils {
     }
 
     public static class View {
+
         private final static String IMAGE_PREFIXE_CARTE = "src/images/cartes/";
         private final static String IMAGE_EXTENSION = ".png";
         private final static String IMAGE_PREFIXE_TRESOR = "src/images/tresors/";
         private final static String IMAGE_PREFIXE_PION = "src/images/pions/pion";
-        private final static String CHEMIN_SON = "src/sons/";
         private final static int NOMBRE_FRAMES_ANIMATION = 30;
 
         public static String getImagePrefixeCarte() {
@@ -147,10 +162,6 @@ public class Utils {
 
         public static String getImageExtension() {
             return IMAGE_EXTENSION;
-        }
-
-        public static String getCheminSon() {
-            return CHEMIN_SON;
         }
 
         public static int getNombreFramesAnimation() {
@@ -163,6 +174,15 @@ public class Utils {
 
         public static String getImagePrefixePion() {
             return IMAGE_PREFIXE_PION;
+        }
+    }
+
+    public static class Son {
+
+        private final static String CHEMIN_SON = "src/sons/";
+
+        public static String getCheminSon() {
+            return CHEMIN_SON;
         }
     }
 }

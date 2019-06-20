@@ -7,14 +7,15 @@ import java.awt.event.ComponentListener;
 
 public class AdaptativeDimension {
 
-    public interface CalculatedExpression{
+    public interface CalculatedExpression {
+
         public int getResult();
     }
 
     private JFrame frame;
     private JComponent container;
-    private double width,height;
-    private CalculatedExpression calculatedWidth,calculatedHeight;
+    private double width, height;
+    private CalculatedExpression calculatedWidth, calculatedHeight;
     private JComponent component;
 
     public AdaptativeDimension(JFrame frame, double width, double height, JComponent component) {
@@ -23,23 +24,34 @@ public class AdaptativeDimension {
         this.height = height;
         this.component = component;
 
+        Dimension frameSize = frame.getSize();
+        component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+        component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+        component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+
         frame.addComponentListener(new ComponentListener() {
             @Override
             public void componentResized(ComponentEvent e) {
                 Dimension frameSize = e.getComponent().getSize();
-                component.setPreferredSize(new Dimension((int)(frameSize.width*width),(int)(frameSize.height*height)));
-                component.setMinimumSize(new Dimension((int)(frameSize.width*width),(int)(frameSize.height*height)));
-                component.setMaximumSize(new Dimension((int)(frameSize.width*width),(int)(frameSize.height*height)));
+                component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
             }
 
             @Override
             public void componentMoved(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
             }
 
             @Override
             public void componentShown(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
             }
 
             @Override
@@ -55,23 +67,34 @@ public class AdaptativeDimension {
         this.calculatedHeight = calculatedHeight;
         this.component = component;
 
+        Dimension frameSize = frame.getSize();
+        component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+        component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+        component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
+
         frame.addComponentListener(new ComponentListener() {
             @Override
             public void componentResized(ComponentEvent e) {
                 Dimension frameSize = e.getComponent().getSize();
-                component.setPreferredSize(new Dimension((calculatedWidth==null?component.getWidth():calculatedWidth.getResult()),(calculatedHeight==null?component.getWidth():calculatedHeight.getResult())));
-                component.setMinimumSize(new Dimension((calculatedWidth==null?0:calculatedWidth.getResult()),(calculatedHeight==null?0:calculatedHeight.getResult())));
-                component.setMaximumSize(new Dimension((calculatedWidth==null?frameSize.width:calculatedWidth.getResult()),(calculatedHeight==null?frameSize.height:calculatedHeight.getResult())));
+                component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+                component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+                component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
             }
 
             @Override
             public void componentMoved(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+                component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+                component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
             }
 
             @Override
             public void componentShown(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+                component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+                component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
             }
 
             @Override
@@ -87,23 +110,34 @@ public class AdaptativeDimension {
         this.height = height;
         this.component = component;
 
+        Dimension frameSize = container.getSize();
+        component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+        component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+        component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+
         container.addComponentListener(new ComponentListener() {
             @Override
             public void componentResized(ComponentEvent e) {
                 Dimension frameSize = e.getComponent().getSize();
-                component.setPreferredSize(new Dimension((int)(frameSize.width*width),(int)(frameSize.height*height)));
-                component.setMinimumSize(new Dimension((int)(frameSize.width*width),(int)(frameSize.height*height)));
-                component.setMaximumSize(new Dimension((int)(frameSize.width*width),(int)(frameSize.height*height)));
+                component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
             }
 
             @Override
             public void componentMoved(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
             }
 
             @Override
             public void componentShown(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMinimumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
+                component.setMaximumSize(new Dimension((int) (frameSize.width * width), (int) (frameSize.height * height)));
             }
 
             @Override
@@ -119,23 +153,34 @@ public class AdaptativeDimension {
         this.calculatedHeight = calculatedHeight;
         this.component = component;
 
+        Dimension frameSize = container.getSize();
+        component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+        component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+        component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
+
         container.addComponentListener(new ComponentListener() {
             @Override
             public void componentResized(ComponentEvent e) {
                 Dimension frameSize = e.getComponent().getSize();
-                component.setPreferredSize(new Dimension((calculatedWidth==null?component.getWidth():calculatedWidth.getResult()),(calculatedHeight==null?component.getWidth():calculatedHeight.getResult())));
-                component.setMinimumSize(new Dimension((calculatedWidth==null?0:calculatedWidth.getResult()),(calculatedHeight==null?0:calculatedHeight.getResult())));
-                component.setMaximumSize(new Dimension((calculatedWidth==null?frameSize.width:calculatedWidth.getResult()),(calculatedHeight==null?frameSize.height:calculatedHeight.getResult())));
+                component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+                component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+                component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
             }
 
             @Override
             public void componentMoved(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+                component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+                component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
             }
 
             @Override
             public void componentShown(ComponentEvent e) {
-
+                Dimension frameSize = e.getComponent().getSize();
+                component.setPreferredSize(new Dimension((calculatedWidth == null ? component.getWidth() : calculatedWidth.getResult()), (calculatedHeight == null ? component.getWidth() : calculatedHeight.getResult())));
+                component.setMinimumSize(new Dimension((calculatedWidth == null ? 0 : calculatedWidth.getResult()), (calculatedHeight == null ? 0 : calculatedHeight.getResult())));
+                component.setMaximumSize(new Dimension((calculatedWidth == null ? frameSize.width : calculatedWidth.getResult()), (calculatedHeight == null ? frameSize.height : calculatedHeight.getResult())));
             }
 
             @Override
