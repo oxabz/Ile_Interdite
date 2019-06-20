@@ -27,8 +27,8 @@ import javax.swing.border.LineBorder;
 
 public class Vue extends Observe {
 
-    private final static int WINDOW_SIZE_X = 1715;
-    private final static int WINDOW_SIZE_Y = 1050;
+    private final static int WINDOW_SIZE_X = 1520;
+    private final static int WINDOW_SIZE_Y = 920;
     private static final double CARD_SIZE_RATIO = 1.39191919192;
     private static final double DECK_SIZE_RATIO = 1.44191919192;
     private JFrame window;
@@ -66,11 +66,7 @@ public class Vue extends Observe {
         constraints.gridy = 5;
         window.add(deck,constraints);
         deck.setBorder(BorderFactory.createLineBorder(Color.RED,2));
-        new AdaptativeDimension(
-                window,
-                ()->(int) (deck.getHeight()/DECK_SIZE_RATIO),
-                null,
-                deck);
+        
 
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
@@ -82,7 +78,8 @@ public class Vue extends Observe {
         window.add(actions,constraints);
         actions.setBorder(BorderFactory.createLineBorder(Color.GREEN,2));
 
-
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.weightx = 0.5;
         constraints.gridwidth = 1;
         constraints.gridheight = 2;
         constraints.gridx = 1;
@@ -102,10 +99,7 @@ public class Vue extends Observe {
         window.add(main,constraints);
         main.setBorder(BorderFactory.createLineBorder(Color.BLUE,2));
 
-        new AdaptativeDimension(window,
-                null,
-                ()-> (int)(CARD_SIZE_RATIO*(double) main.getWidth()*0.125),
-                main);
+        
 
 
 
@@ -173,10 +167,7 @@ public class Vue extends Observe {
     public void initialiserGrille(String[][] names, boolean[][] inondee, boolean[][] coulee) {
         grille = new EGrille(names[0].length, names.length, names, this);
 
-        new AdaptativeDimension(window,
-                ()-> (int)(window.getWidth()*0.5< window.getHeight()*0.85 ? window.getWidth()*0.5: window.getHeight()*0.85),
-                ()->(int)grille.getSize().width,
-                grille);
+        
         constraints.gridwidth = 1;
         constraints.gridheight = 6;
         constraints.anchor = GridBagConstraints.NORTHWEST;
@@ -207,7 +198,29 @@ public class Vue extends Observe {
             window.add(eJoueur,constraints);
             eJoueur.updateJoueur();
             eJoueur.setBorder(BorderFactory.createLineBorder(Color.PINK,2));
-            new AdaptativeDimension(window, null ,()-> (int)(CARD_SIZE_RATIO*(double) eJoueur.getWidth()*0.125),eJoueur);
+            
+        }
+    }
+    
+    public void initialiserAdaptativeSize(){
+        new AdaptativeDimension(
+                window,
+                ()->(int) (deck.getHeight()/DECK_SIZE_RATIO),
+                null,
+                deck);
+        
+        new AdaptativeDimension(window,
+                null,
+                ()-> (int)(CARD_SIZE_RATIO*(double) main.getWidth()*0.125),
+                main);
+        
+        new AdaptativeDimension(window,
+                ()-> (int)(window.getWidth()*0.5< window.getHeight()*0.85 ? window.getWidth()*0.5: window.getHeight()*0.85),
+                ()->(int)grille.getSize().width,
+                grille);
+        
+        for (EJoueur joueur : listeJoueurs) {
+            new AdaptativeDimension(joueur, null ,()-> (int)(CARD_SIZE_RATIO*(double) joueur.getWidth()*0.125),joueur);
         }
     }
 

@@ -18,19 +18,46 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author seiglebq
  */
 public class Sound {
-    public static synchronized void play(final String fileName)
+    /**
+     * 
+     * @param fichier le nom du fichier à jouer
+     * joue le son une fois par appel de la méthode
+     */
+    public static synchronized void play(final String fichier)
     {
-        // Note: use .wav files            
+        // Note : fichier en .wav
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName));
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fichier));
                     clip.open(inputStream);
                     clip.start();
                 } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-                    System.out.println("Erreur son : " + e.getMessage() + " pour " + fileName);
+                    System.out.println("Erreur son : " + e.getMessage() + " pour " + fichier);
+                }
+            }
+        }).start();
+    }
+    /**
+     * 
+     * @param fichier le nom du fichier à jouer
+     * une fois la méthode appellée, le son se joue en boucle
+     */
+    public static synchronized void playMusic(final String fichier) {
+        // Note : fichier en .wav
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Clip clip = AudioSystem.getClip();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fichier));
+                    clip.open(inputStream);
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                    clip.start();
+                } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+                    System.out.println("Erreur son : " + e.getMessage() + " pour " + fichier);
                 }
             }
         }).start();

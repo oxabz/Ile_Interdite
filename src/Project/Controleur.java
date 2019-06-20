@@ -50,6 +50,7 @@ public class Controleur implements Observeur {
         vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
         vue.initialiserJoueurs(aventuriers);
         vue.initialiserVue();
+        vue.initialiserAdaptativeSize();
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
         vue.getGrille().updatePion(getPosPion());
         vue.updateJoueurs();
@@ -425,7 +426,6 @@ public class Controleur implements Observeur {
             aventuriers.add(av);
             dispoAventuriers.remove(r);
             av.setJoueur(nomJ);
-            System.out.println(av.getJoueur() + " sera " + av.getNom());
 
         }
         //Initialisation du gamestate
