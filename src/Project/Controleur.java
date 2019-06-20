@@ -484,7 +484,10 @@ public class Controleur implements Observeur {
         for (Tuile[] uneColonne : listeTuiles) {
             for (Tuile uneTuile : uneColonne) {
                 if (uneTuile.isTuileTresor()) {
-                    i++;
+                    TuileTresor uneTuileTresor = (TuileTresor) uneTuile;
+                    if (uneTuileTresor.getTresor() == tresor) {
+                        i++;
+                    }
                 }
             }
         }
