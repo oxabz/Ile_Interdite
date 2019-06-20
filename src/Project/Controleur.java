@@ -269,7 +269,7 @@ public class Controleur implements Observeur {
     Gère la game loop du jeu
      */
     void gameLoop() {
-        while (true) {//Berk
+        while (true) {
             for (int i = 0; i < aventuriers.size(); i++) {
                 Aventurier av = aventuriers.get(i);
                 currentAventurier = i;
@@ -483,10 +483,12 @@ public class Controleur implements Observeur {
         Tuile[][] listeTuiles = grilleJeu.getTuiles();
         for (Tuile[] uneColonne : listeTuiles) {
             for (Tuile uneTuile : uneColonne) {
-                if (uneTuile.isTuileTresor()) {
-                    TuileTresor uneTuileTresor = (TuileTresor) uneTuile;
-                    if (uneTuileTresor.getTresor() == tresor) {
-                        i++;
+                if (uneTuile != null) {
+                    if (uneTuile.isTuileTresor()) {
+                        TuileTresor uneTuileTresor = (TuileTresor) uneTuile;
+                        if (uneTuileTresor.getTresor() == tresor) {
+                            i++;
+                        }
                     }
                 }
             }
