@@ -431,7 +431,7 @@ public class Controleur implements Observeur {
 
         for (int i = 0; i < m.nbJoueurs; i++) {
             //Initialiser aventurier
-            String nomJ = m.nomDesJoueurs.get(i);
+            String nomJ = m.nomDesJoueurs.  get(i);
             int r = ThreadLocalRandom.current().nextInt(dispoAventuriers.size());
             Aventurier av = dispoAventuriers.get(r);
             aventuriers.add(av);
