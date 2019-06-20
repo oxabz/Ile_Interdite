@@ -125,6 +125,7 @@ public abstract class Aventurier extends ObjetIdentifie {
 
     /**
      * Permet de récupérer un tresor 
+     * @return true si le joueur a pu prendre le trésor
      */
     public boolean prendreTresor() {
         Controleur c = Controleur.getControleur();
@@ -153,16 +154,27 @@ public abstract class Aventurier extends ObjetIdentifie {
                     // On récupère le trésor
                     c.getGameState().recupererTresor(tresor);
 
+                    // Collection permettant de récupérer les cartes à retirer
+                    ArrayList<CarteItem> cartes_a_retirer = new ArrayList<>();
+
                     // Pour chaque carte que le joueur possède
                     for(CarteItem carte : this.carteItems) {
                         // Si la carte est une carte trésor et quelle correspond au trésor actuel
                         if(carte instanceof CarteTresor && ((CarteTresor) carte).getTresor().equals(tresor)) {
-                            // On retire la carte de la main du joueur
-                            removeCarteItem(carte);
+                            // On ajoute la carte aux cartes à retirer de la main du joueur
+                            cartes_a_retirer.add(carte);
+                            
+                            
                             // On l'ajoute dans la défausse
                             c.getCartesItem().addCarteDefausseDebut(carte);
                         }
                     }
+
+                    // On retire toutes les cartes à supprimer
+                    this.getCarteItems().removeAll(cartes_a_retirer);
+
+                    // On update la main du joueur dans la vue
+                    c.updateMain();
                 }
                 // On a réussi à prendre le trésor donc on a fait une action
                 return true;
