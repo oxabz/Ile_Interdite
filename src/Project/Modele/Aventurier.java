@@ -8,6 +8,8 @@ import Project.Modele.Tuiles.TuileTresor;
 import Project.util.Utils;
 import Project.util.Vector2;
 import Project.util.Utils.Tresor;
+
+import java.lang.constant.Constable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -116,11 +118,19 @@ public abstract class Aventurier {
      * @deprecated fuyez
      */
     @Deprecated
-    public void donnerCarte() {
-        System.out.println("Choisissez un aventurier");
+    public boolean  donnerCarte() {
         Controleur c = Controleur.getControleur();
         Aventurier av = c.getSelectedAventurier(c.getCurrentAventurier());
         Carte carte = c.getCarteSelectionne();
+        this.removeCarteItem( (CarteItem) carte);
+        av.getCarteItems().add((CarteItem) carte) ; // le déclancement de la mettre à la défose est à 6 auto ?
+        if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem)carte) == true) {
+            return true ;
+        }
+        else {
+            return false;
+        }
+
     }
 
     /**
@@ -254,6 +264,8 @@ public abstract class Aventurier {
 
     public void removeCarteItem(CarteItem carteItem) {
         carteItems.remove(carteItem);
+        Controleur controleur = Controleur.getControleur() ;
+        controleur.getCartesItem().getDefausse().add(carteItem) ;
     }
 
     public void setCarteItems(ArrayList<CarteItem> carteItems) {
