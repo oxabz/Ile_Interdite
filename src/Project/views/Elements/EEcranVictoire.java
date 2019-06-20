@@ -42,7 +42,7 @@ public final class EEcranVictoire extends JPanel {
         contrainte.weightx = 0.5;
         contrainte.weighty = 0.5 ;
 
-        JPanel pVide = new JPanel() ;
+        pVide = new JPanel() ;
         contrainte.fill = GridBagConstraints.BOTH ;
         contrainte.gridx = 0 ;
         contrainte.gridy = 0 ;
@@ -50,8 +50,6 @@ public final class EEcranVictoire extends JPanel {
 
 
         bravo = new JLabel();
-        bravo.setOpaque(true);
-        bravo.setBackground(Color.GREEN);
         contrainte.fill = GridBagConstraints.BOTH;
         contrainte.gridx = 1;
         contrainte.gridy = 0;
@@ -59,17 +57,14 @@ public final class EEcranVictoire extends JPanel {
 
 
         // création du label de bravo
-        bravo.setText("<html> <p style=\"text-align:center;\"> FÉLICITATION ! <br> <br> VOUS AVEZ SURVECU  <br> À L'ILE INTERDITE <p></html>");
+        bravo.setText("<html> <p style=\"text-align:center;\"> FÉLICITATION ! <br> <br> VOUS AVEZ SURVECU  <br> À L'ÎLE INTERDITE <p></html>");
         bravo.setFont(new Font("Arial",Font.BOLD,72));
         bravo.setHorizontalAlignment(JLabel.CENTER);
         bravo.setVerticalAlignment(JLabel.CENTER);
         contrainteText =  contrainte;
-        text.add(bravo , contrainteText);
 
         // création du label de score
         score = new JLabel( );
-        score.setOpaque(true);
-        score.setBackground(Color.GREEN);
         ArrayList<Aventurier> av = controleur.getAventuriers() ;
         String presentationJoueurs = "" ;
         String niveauDifficulté ;
@@ -88,9 +83,9 @@ public final class EEcranVictoire extends JPanel {
         for (int i = 0 ; i<av.size() ; i++) {
             presentationJoueurs = presentationJoueurs + av.get(i).getJoueur() + " en tant que " + av.get(i).getNom() + ". <br> <br>" ;
         }
-        score.setText("<html> Votre équipe était constituer de : <br><br>" + presentationJoueurs+
-                "a survécue à l'Ile Interdite au niveau de difficulté : " + niveauDifficulté + "<br>" +
-                "<br> avec " + (100-controleur.getRateTuilesNonInondees()) + "% de la cate inondée</html>");
+        score.setText("<html> Votre équipe était constituée de : <br><br>" + presentationJoueurs+
+                "a survécue à l'Île Interdite au niveau de difficulté : " + niveauDifficulté + "<br>" +
+                "<br> avec " + (100-controleur.getRateTuilesNonInondees()) + "% de l'île inondée</html>");
 
         score.setFont(new Font("Arial",Font.BOLD,30));
         score.setHorizontalAlignment(JLabel.CENTER);
@@ -98,16 +93,11 @@ public final class EEcranVictoire extends JPanel {
 
         // création du label de histoire
         histoire = new JLabel( );
-        histoire.setOpaque(true);
-        histoire.setBackground(Color.GREEN);
-        histoire.setText("<html>Après avoir passé toutes leurs épreuves en ayant réussi à survivre à la nature en et réussis a ramener tout les " +
-                "trésors de l'ile interdite : \"La Perre Sacrée\", \"La Statue du zéphyr\" , \"Le Cristal ardent\" et \"Le Calice de l'onde\" représentant les 4 éléments, " +
-                "soit respectivement la terre , le vent , le feux et l'eau. " +
-                "Meme si les rasemblé n'as pas été facile sur cette ile déchainner, évitant l'inondation totale afin de pouvoir accéder aux temples, " +
-                "contenant les divers reliques mais aussi en protégant leur seul issue, l'héliport grace auquel, nos " + controleur.getAventuriers().size() + " héros sont tous revenue vivant de leur" +
-                "expédition. " +
-                "Meme si nos Aventurier ne sont pas sortie indem de leur expérience, les liens qui les unisent, après une pareil épreuve se retrouvèrent renforcer et plus solide que jamais" +
-                "</html>");
+
+        histoire.setText("<html>Après avoir passé toutes leurs épreuves en ayant réussi à survivre à la nature et ramené tous les trésors de l'Île Interdite : \"La Pierre sacrée\", \"La Statue du zéphyr\", \"Le Cristal ardent\" et \"Le Calice de l'onde\" représentant les 4 éléments, soit respectivement la terre, le vent, le feu et l'eau. <br><br>" +
+                "Même si les rassembler n'a pas été facile sur cette île déchaînée, évitant l'inondation totale afin de pouvoir accéder aux temples contenant les diverses reliques mais aussi en protégeant leur seule issue, l'héliport, grâce auquel nos " + controleur.getAventuriers().size() + " héros sont tous revenus vivant de leur expédition. <br><br> " +
+                "Nos aventuriers ne sont certes pas sortis indemne de leur expérience cependant les liens qui les unissent, après une telle épreuve, se retrouvèrent renforcés et plus solides que jamais.</html>");
+
         histoire.setFont(new Font("Arial",Font.BOLD,20));
         histoire.setHorizontalAlignment(JLabel.LEFT);
         histoire.setVerticalAlignment(JLabel.CENTER);
@@ -118,12 +108,10 @@ public final class EEcranVictoire extends JPanel {
         cVide.gridx = 2;
         cVide.gridy = 0;
         cVide.weightx = 0.5;
-
         text.add(pVide, cVide);
-
+        text.add(bravo , contrainteText);
 
         this.add(text , BorderLayout.CENTER) ;
-
 
         contrainte = new GridBagConstraints() ;
         contrainte.weightx = 1;
@@ -131,8 +119,8 @@ public final class EEcranVictoire extends JPanel {
 
         // ajout de la partie boutton
 
+        pVide = new JPanel( );
         JPanel panelBouttons = new JPanel( new GridBagLayout()) ;
-
         contrainte.fill = GridBagConstraints.BOTH ;
         contrainte.gridx = 0 ;
         contrainte.gridy = 0 ;
@@ -144,6 +132,7 @@ public final class EEcranVictoire extends JPanel {
         contrainte.weightx = 0.75 ;
         panelBouttons.add(rejouer , contrainte) ;
 
+        pVide = new JPanel( );
         contrainte.fill = GridBagConstraints.BOTH ;
         contrainte.gridx = 2 ;
         contrainte.gridy = 0 ;
@@ -156,11 +145,14 @@ public final class EEcranVictoire extends JPanel {
         contrainte.weightx = 0.75 ;
         panelBouttons.add(quitter , contrainte) ;
 
+        pVide = new JPanel( );
         contrainte.fill = GridBagConstraints.BOTH ;
         contrainte.gridx = 4 ;
         contrainte.gridy = 0 ;
         contrainte.weightx = 1 ;
         panelBouttons.add(pVide , contrainte) ;
+
+        pVide = new JPanel( );
 
         this.add(panelBouttons , BorderLayout.SOUTH) ;
 
@@ -188,12 +180,14 @@ public final class EEcranVictoire extends JPanel {
 
     public void afficherText () { // méthode pour afficher les différents texte avec un intervalle de 15 secondes
 
+//        text.add(pVide, cVide);
 
         try {
-            Thread.sleep(15000);        // attente de 15 seconde avant le changement de texte
+            Thread.sleep(10000);        // attente de 15 seconde avant le changement de texte
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
+
         text.remove(bravo); // supression de l'ancien texte
         text.remove(pVide) ;
 
@@ -201,7 +195,7 @@ public final class EEcranVictoire extends JPanel {
         text.add(pVide , cVide) ;
 
         try {
-            Thread.sleep(15000);
+            Thread.sleep(10000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

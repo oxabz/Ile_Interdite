@@ -6,6 +6,8 @@ import Project.util.Observe;
 import Project.views.VueFormulaire;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,17 +19,15 @@ public final class EFormulaire extends JPanel {
     /* CONSTANTES */
     private final static JLabel tableauJoueurs[] = {new JLabel("Joueur 1") , new JLabel("Joueur 2") , new JLabel("Joueur 3") , new JLabel("Joueur 4") };
     private final static String tableauDifficulté [] = {"novice" , "normale" , "élite" , "légendaire" } ;
-    private final static String tableauNbJoueur [] = {"2" , "3" , "4"} ;
 
     /* ATTRIBUTS */
     private JTextField tableauNomJoueurs[] = {new JTextField("J1") , new JTextField("J2") ,new JTextField("J3") , new JTextField("J4")} ;
-    private JComboBox choixNbJoueurs ;
-    private JSlider choixNBJOUEURS ;
-    private JComboBox choixDifficulté ;
-    private JSlider choixDIFFICULTE ;
+    private JSlider choixNbJoueurs ;
+    private JSlider choixDifficulté ;
     private JButton valider ;
     private ArrayList<JPanel> listeFormulaire ; // contient les formulaire de nom pour les joueurs et aussi le panel qui contient le choix de difficulté et de nombre de joueurs
     private Observe observe;
+    private ENiveauDEau niveauEau ;
 
     /*CONSTRUCTEUR*/
 
@@ -39,7 +39,7 @@ public final class EFormulaire extends JPanel {
 
         this.observe = observe;
 
-        this.setLayout(new GridLayout(1,2));
+        this.setLayout(new GridLayout(1,2, 5 , 0)) ;
         JPanel formulaire = new JPanel( new GridLayout(5,1)) ;
 
         listeFormulaire = new ArrayList<>() ;
@@ -49,39 +49,44 @@ public final class EFormulaire extends JPanel {
 
         listeFormulaire.get(0).add(new JLabel("niveau de difficulté")) ;
 
-        choixNbJoueurs = new JComboBox() ;  // initialisation des valeurs du choix du nombre de joueurs
-        choixNBJOUEURS = new JSlider(JSlider.HORIZONTAL  , 2 , 4 , 4) ;
-        choixNBJOUEURS.setMajorTickSpacing(1);
-        choixNBJOUEURS.setMinorTickSpacing(1);
-        choixNBJOUEURS.setPaintTicks(true);
-        choixNBJOUEURS.setPaintLabels(true);
-        Hashtable labelTable = new Hashtable();
+        choixNbJoueurs = new JSlider(JSlider.HORIZONTAL  , 2 , 4 , 4) ; // création du slider du nombre de joeurs
+        choixNbJoueurs.setMajorTickSpacing(1);
+        choixNbJoueurs.setMinorTickSpacing(1);
+        choixNbJoueurs.setPaintTicks(true);
+        choixNbJoueurs.setPaintLabels(true);
 
-        for (int i = 0 ; i<3 ; i++){
-            labelTable.put( new Integer( i ), new JLabel(tableauNbJoueur[i]) );
-        }
-        choixNBJOUEURS.setLabelTable( labelTable );
-        choixNBJOUEURS.setPaintLabels(true);
+        listeFormulaire.get(0).add(choixNbJoueurs);
 
-
-        for (int i = 0 ; i<3 ; i++){
-            choixNbJoueurs.addItem(tableauNbJoueur[i]);
-        }
-        listeFormulaire.get(0).add(choixNBJOUEURS);
-        choixNbJoueurs.setSelectedIndex(2);
-
-        choixNbJoueurs.addActionListener (new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                dessinFormulaireNom(choixNbJoueurs.getSelectedIndex()+2); // si on change le nombre de joueurs appelle la méthode dessinFormualaireNom ayant en paramètre le nombre de joueurs
+        choixNbJoueurs.addChangeListener (new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                dessinFormulaireNom(choixNbJoueurs.getValue()); // si on change le nombre de joueurs appelle la méthode dessinFormualaireNom ayant en paramètre le nombre de joueurs
             }
         });
 
-        choixDifficulté = new JComboBox() ; // initialsation des valeurs du choix de difficulté
+        choixDifficulté = new JSlider(JSlider.HORIZONTAL,1, 4, 1); // création du slider de niveau de difficulté
+        choixDifficulté.setMajorTickSpacing(1);
+        choixDifficulté.setPaintTicks(true);
+
+        Hashtable labelTable = new Hashtable();
+
         for (int i = 0 ; i<4 ; i++){
-            choixDifficulté.addItem(tableauDifficulté[i]);
+            labelTable.put(  (Integer) i+1 , new JLabel((tableauDifficulté[i])) );;
         }
         listeFormulaire.get(0).add(choixDifficulté);
-        choixDifficulté.setSelectedIndex(0);
+        choixDifficulté.setLabelTable( labelTable );
+
+        choixDifficulté.setPaintLabels(true);
+        listeFormulaire.get(0).add(choixDifficulté);
+
+        choixDifficulté.addChangeListener (new ChangeListener() { // changement de l'affichage si niveau de difficulté changer
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                niveauEau.setNiveau(choixDifficulté.getValue());
+            }
+        });
+
+
 
         for (int i = 0 ; i<4 ; i++){    // création de tout les formulaires pour les joueurs
             JPanel panel = new JPanel(new GridLayout(2,1)) ;
@@ -89,14 +94,19 @@ public final class EFormulaire extends JPanel {
             panel.add(tableauNomJoueurs[i]) ;
             listeFormulaire.add(panel) ;
         }
-
-        dessinFormulaireNom(choixNbJoueurs.getSelectedIndex()+2);
+        dessinFormulaireNom(choixNbJoueurs.getValue());
 
         for (int i = 0 ; i<listeFormulaire.size() ; i++) { // ajout de tout les élements sur la partie visuel
             formulaire.add(listeFormulaire.get(i)) ;
         }
+
         this.add(formulaire) ;
+
         JPanel bouttons = new JPanel (new BorderLayout()) ;
+
+        niveauEau = new ENiveauDEau(1) ;
+        bouttons.add(niveauEau , BorderLayout.CENTER) ;
+
         valider = new JButton("Valider") ;
         valider.addActionListener (new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -107,8 +117,8 @@ public final class EFormulaire extends JPanel {
                 }
 
                 m.nomDesJoueurs = noms;
-                m.nbJoueurs = choixNbJoueurs.getSelectedIndex() + 2 ;
-                m.difficulte = choixDifficulté.getSelectedIndex() +1 ;
+                m.nbJoueurs = choixNbJoueurs.getValue() ;
+                m.difficulte = choixDifficulté.getValue() ;
                 observe.notifierObserver(m);
 
                 ((VueFormulaire)observe).getFrame().dispose();
