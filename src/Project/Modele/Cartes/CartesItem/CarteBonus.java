@@ -20,6 +20,11 @@ public abstract class CarteBonus extends CarteItem {
         super(nom, image);
     }
 
+
     /* MÉTHODES */
+
+    /**
+     * Permet de faire l'action d'effectuer l'action d'une carte bonus
+     */
     public abstract void actionCarte();
 }

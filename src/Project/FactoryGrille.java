@@ -110,7 +110,7 @@ public class FactoryGrille {
      * Génère une grille avec des tuiles
      * @return
      */
-    static public Grille GenererGrilleAleatoire() {
+    static public Grille genererGrilleAleatoire() {
         // Créer la grille
         Grille g = new Grille();
         // Créer toutes les instances de tuiles et la stock dans une variable
