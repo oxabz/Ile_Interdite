@@ -86,6 +86,10 @@ public class Controleur implements Observeur {
                         done = true;
                         pos = m.position;
                     }
+                    if(m.type == MessageType.ANNULER) {
+                        done = true;
+                        pos = null;
+                    }
                 }
             }
 
@@ -159,7 +163,7 @@ public class Controleur implements Observeur {
             }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
-                if (m.type == MessageType.ACTION) {
+                if (m.type == MessageType.ACTION || m.type == MessageType.ANNULER) {
                     done = true;
                     act = m.action;
                 }
@@ -212,6 +216,10 @@ public class Controleur implements Observeur {
                     done = true;
                     av = m.av;
                 }
+                if (m.type == MessageType.ANNULER) {
+                    done = true;
+                    av = null;
+                }
             }
         }
 
@@ -241,6 +249,10 @@ public class Controleur implements Observeur {
                     done = true;
                     c = m.carte;
                 }
+                if(m.type == MessageType.ANNULER) {
+                    done = true;
+                    c = null;
+                }
             }
         }
 
@@ -257,6 +269,7 @@ public class Controleur implements Observeur {
 
         vue.getMain().setAventurier(av);
         vue.setMode(Vue.IhmMode.MAIN);
+        vue.getActions().setEnableAnnuler(false);
 
         Carte c = null;
         boolean done = false;

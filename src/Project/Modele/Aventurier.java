@@ -129,22 +129,26 @@ public abstract class Aventurier {
         Aventurier av;
         do {
             av = c.getSelectedAventurier();
-        }while (!av.getPosition().equals( this.getPosition()));
-        System.out.println("yolo");
-        Carte carte;
-        do {
-            carte = c.getCarteSelectionne();
-            System.out.println("test");
-        }while (!(carte instanceof CarteTresor));
-        System.out.println("yoloy");
-        this.removeCarteItem( (CarteItem) carte);
-        av.getCarteItems().add((CarteItem) carte) ; // le déclancement de la mettre à la défose est à 6 auto ?
-        if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem)carte) == true) {
-            return true ;
+        }while (!av.getPosition().equals( this.getPosition())&&av!=null);
+        if(av!=null){
+            Carte carte;
+            do {
+                carte = c.getCarteSelectionne();
+                System.out.println("test");
+            }while (!(carte instanceof CarteTresor)&&carte != null);
+            if(carte!=null){
+                this.removeCarteItem( (CarteItem) carte);
+                av.getCarteItems().add((CarteItem) carte) ; // le déclancement de la mettre à la défose est à 6 auto ?
+                if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem)carte) == true) {
+                    return true ;
+                }
+                else {
+                    return false;
+                }
+            }
+
         }
-        else {
-            return false;
-        }
+
 
     }
 
@@ -229,7 +233,7 @@ public abstract class Aventurier {
             // On récupère la carte séléctionné par le joueur dans la main du joueur.
             Carte carte = c.getCarteSelectionne();
 
-            if (carte instanceof CarteBonus) {
+            if (carte != null && carte instanceof CarteBonus) {
 
                 // On retire la carte de la main du joueur
                 this.getCarteItems().remove(carte);
