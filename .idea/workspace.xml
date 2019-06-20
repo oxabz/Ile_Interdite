@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="634db893-f018-44b3-a58f-0940b4a6825d" name="Default Changelist" comment="Commente les fonction de aventurier&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
+    <list default="true" id="634db893-f018-44b3-a58f-0940b4a6825d" name="Default Changelist" comment="Tentative de merge ?">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Controleur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Controleur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,22 +20,36 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/VueVictoire.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6255">
-              <caret line="427" column="7" selection-start-line="427" selection-start-column="7" selection-end-line="427" selection-end-column="7" />
+            <state relative-caret-position="170">
+              <caret line="12" column="26" selection-start-line="12" selection-start-column="26" selection-end-line="12" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-14">
+              <caret line="67" column="14" lean-forward="true" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#658#659#0" expanded="true" />
+                <element signature="e#681#682#0" expanded="true" />
+                <element signature="e#848#849#0" expanded="true" />
+                <element signature="e#879#880#0" expanded="true" />
+                <element signature="e#923#924#0" expanded="true" />
+                <element signature="e#949#950#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Main.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="60">
-              <caret line="4" selection-start-line="4" selection-end-line="4" />
+              <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
             </state>
           </provider>
         </entry>
@@ -38,8 +57,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Messager.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
+            <state relative-caret-position="-65">
+              <caret line="11" selection-start-line="7" selection-end-line="41" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -48,65 +67,28 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Project/views/Vue.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="714">
-              <caret line="170" column="5" selection-start-line="170" selection-start-column="5" selection-end-line="170" selection-end-column="5" />
+            <state relative-caret-position="360">
+              <caret line="335" column="14" selection-start-line="335" selection-start-column="14" selection-end-line="335" selection-end-column="14" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4487#4488#0" expanded="true" />
-                <element signature="e#4533#4534#0" expanded="true" />
-                <element signature="e#4596#4597#0" expanded="true" />
-                <element signature="e#4632#4633#0" expanded="true" />
-                <element signature="e#4676#4677#0" expanded="true" />
-                <element signature="e#4712#4713#0" expanded="true" />
-                <element signature="e#7165#7166#0" expanded="true" />
-                <element signature="e#7204#7205#0" expanded="true" />
-                <element signature="e#7238#7239#0" expanded="true" />
-                <element signature="e#7267#7268#0" expanded="true" />
-                <element signature="e#7308#7309#0" expanded="true" />
-                <element signature="e#7340#7341#0" expanded="true" />
-                <element signature="e#7471#7472#0" expanded="true" />
-                <element signature="e#7498#7499#0" expanded="true" />
-                <element signature="e#8847#8848#0" expanded="true" />
-                <element signature="e#8882#8883#0" expanded="true" />
+                <element signature="e#2151#2152#0" expanded="true" />
+                <element signature="e#2184#2185#0" expanded="true" />
+                <element signature="e#17292#17293#0" expanded="true" />
+                <element signature="e#17355#17356#0" expanded="true" />
+                <element signature="e#19114#19115#0" expanded="true" />
+                <element signature="e#19145#19146#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/util/Utils.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="11" selection-start-line="11" selection-end-line="11" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/FactoryDeck.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="945">
-              <caret line="70" column="5" selection-start-line="70" selection-start-column="5" selection-end-line="70" selection-end-column="5" />
+            <state relative-caret-position="644">
+              <caret line="140" column="17" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -117,17 +99,52 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarte.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="960">
-              <caret line="78" column="53" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
+            <state relative-caret-position="647">
+              <caret line="83" column="33" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarteAventurier.java">
+        <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EActions.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="13" column="52" selection-start-line="13" selection-start-column="52" selection-end-line="13" selection-end-column="52" />
+            <state relative-caret-position="159">
+              <caret line="115" selection-start-line="115" selection-end-line="116" />
+              <folding>
+                <element signature="e#4967#4968#0" expanded="true" />
+                <element signature="e#5021#5022#0" expanded="true" />
+                <element signature="e#5073#5074#0" expanded="true" />
+                <element signature="e#5121#5122#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/GameState.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-5">
+              <caret line="25" column="9" selection-start-line="25" selection-start-column="9" selection-end-line="25" selection-end-column="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="394">
+              <caret line="270" selection-start-line="270" selection-end-line="270" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#6353#6354#0" expanded="true" />
+                <element signature="e#6381#6382#0" expanded="true" />
+                <element signature="e#7315#7316#0" expanded="true" />
+                <element signature="e#7346#7347#0" expanded="true" />
+                <element signature="e#7395#7396#0" expanded="true" />
+                <element signature="e#7435#7436#0" expanded="true" />
+                <element signature="e#7486#7487#0" expanded="true" />
+                <element signature="e#7519#7520#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -205,13 +222,11 @@
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Explorateur.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Ingenieur.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Messager.java" />
-        <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java" />
         <option value="$PROJECT_DIR$/src/Project/util/Utils.java" />
         <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Plongeur.java" />
         <option value="$PROJECT_DIR$/src/Project/util/Vector2.java" />
         <option value="$PROJECT_DIR$/src/Project/util/MultiMap.java" />
-        <option value="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" />
         <option value="$PROJECT_DIR$/src/Project/util/Message.java" />
         <option value="$PROJECT_DIR$/src/Project/views/Elements/EJeu.java" />
         <option value="$PROJECT_DIR$/src/Project/views/VueFormulaire.java" />
@@ -223,9 +238,11 @@
         <option value="$PROJECT_DIR$/src/Project/views/Elements/EActions.java" />
         <option value="$PROJECT_DIR$/src/Project/util/AdaptativeDimension.java" />
         <option value="$PROJECT_DIR$/src/Project/views/Elements/EInfo.java" />
-        <option value="$PROJECT_DIR$/src/Project/Controleur.java" />
         <option value="$PROJECT_DIR$/src/Project/util/MessageType.java" />
         <option value="$PROJECT_DIR$/src/Project/views/Vue.java" />
+        <option value="$PROJECT_DIR$/src/Project/Modele/Aventurier.java" />
+        <option value="$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java" />
+        <option value="$PROJECT_DIR$/src/Project/Controleur.java" />
       </list>
     </option>
   </component>
@@ -242,7 +259,9 @@
     <option name="width" value="1886" />
     <option name="height" value="1020" />
   </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
@@ -259,6 +278,11 @@
             <path>
               <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
               <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name=".idea" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -266,13 +290,6 @@
               <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="images" type="462c0819:PsiDirectoryNode" />
-              <item name="cartes" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
@@ -294,6 +311,13 @@
               <item name="Project" type="462c0819:PsiDirectoryNode" />
               <item name="Modele" type="462c0819:PsiDirectoryNode" />
               <item name="Aventuriers" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Ile_Interdite" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Project" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Ile_Interdite" type="b2602c69:ProjectViewProjectNode" />
@@ -387,7 +411,7 @@
       </list>
     </recent_temporary>
   </component>
-  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="$PROJECT_DIR$/.." CustomDictionaries="1" CustomDictionary0="$PROJECT_DIR$/../liste_francais.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" Folders="1" Folder0="C:\Users\Maxime\IdeaProjects" CustomDictionaries="1" CustomDictionary0="$PROJECT_DIR$/../liste_francais.dic" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="project-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -620,7 +644,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="146984000" />
+    <option name="totallyTimeSpent" value="147524000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -632,9 +656,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="17" y="20" width="1886" height="1020" extended-state="0" />
+    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.87230515" visible="true" weight="0.166122" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.87230515" visible="true" weight="0.1409396" />
       <window_info id="Structure" order="1" sideWeight="0.12769486" side_tool="true" visible="true" weight="0.166122" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -651,7 +676,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.49891067" weight="0.32924107" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.48856208" visible="true" weight="0.32700893" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.48856208" visible="true" weight="0.32577905" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5114379" side_tool="true" visible="true" weight="0.32700893" />
       <window_info anchor="bottom" id="Messages" order="12" sideWeight="0.4929194" weight="0.32924107" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -699,6 +724,38 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list />
+          </value>
+        </entry>
+        <entry key="User">
+          <value>
+            <list />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Ajout Code Chamilo" />
     <MESSAGE value="implementation de toutes les methodes se deplacer plus fonction assecher faite parciellement" />
@@ -715,7 +772,8 @@
     <MESSAGE value="Fix de la selection de carte&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
     <MESSAGE value="Fix Eror Message&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
     <MESSAGE value="Commente les fonction de aventurier&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
-    <option name="LAST_COMMIT_MESSAGE" value="Commente les fonction de aventurier&#10;# Veuillez entrer un message de validation pour expliquer en quoi cette fusion est&#10;# nécessaire, surtout si cela fusionne une branche amont mise à jour dans une branche de sujet.&#10;#&#10;# Les lignes commençant par '#' seront ignorées, et un message vide&#10;# abandonne la validation." />
+    <MESSAGE value="Tentative de merge ?" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tentative de merge ?" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -791,6 +849,11 @@
       </configuration>
     </watches-manager>
   </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Ile_Interdite$VueFormulaire.ic" NAME="VueFormulaire Coverage Results" MODIFIED="1560861915014" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>Project.views.*</FILTER>
+    </SUITE>
+  </component>
   <component name="debuggerHistoryManager">
     <expressions id="watch">
       <expression>
@@ -826,16 +889,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/Project/views/VueAventurier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="900">
-          <caret line="81" column="37" selection-start-line="81" selection-start-column="37" selection-end-line="81" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="jrt:///usr/lib/jvm/java-11-openjdk!/java.base/java/io/FileInputStream.class" />
     <entry file="file://$PROJECT_DIR$/src/Project/Modele/Grille.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -847,16 +900,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/views/VueGrille.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="508">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/VueGrille.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/Grille.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/NiveauDEau.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/util/Message.java">
@@ -899,28 +943,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Messager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/util/Utils.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="55" column="38" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+        <state relative-caret-position="644">
+          <caret line="140" column="17" selection-start-line="140" selection-start-column="17" selection-end-line="140" selection-end-column="17" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1983#1984#0" expanded="true" />
-            <element signature="e#2020#2021#0" expanded="true" />
-            <element signature="e#2064#2065#0" expanded="true" />
-            <element signature="e#2539#2540#0" expanded="true" />
-            <element signature="e#2575#2576#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -961,20 +989,6 @@
             <element signature="e#4826#4827#0" expanded="true" />
             <element signature="e#4857#4858#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="11" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
         </state>
       </provider>
     </entry>
@@ -1047,21 +1061,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="185" selection-start-line="185" selection-end-line="185" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#5596#5597#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/ECarte.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="960">
-          <caret line="78" column="53" selection-start-line="78" selection-start-column="53" selection-end-line="78" selection-end-column="53" />
+        <state relative-caret-position="647">
+          <caret line="83" column="33" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1076,24 +1079,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/javax/swing/JComponent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="1657" column="17" selection-start-line="1657" selection-start-column="17" selection-end-line="1657" selection-end-column="17" />
-          <folding>
-            <element signature="e#63127#63128#0" expanded="true" />
-            <element signature="e#63180#63181#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="2660" column="36" selection-start-line="2660" selection-start-column="33" selection-end-line="2660" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/javax/swing/JComponent.java" />
+    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Component.java" />
     <entry file="file://$PROJECT_DIR$/src/images/cartes/laforetpourpre.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -1130,16 +1117,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="21" column="26" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6255">
-          <caret line="427" column="7" selection-start-line="427" selection-start-column="7" selection-end-line="427" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1222,45 +1199,21 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EActions.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="154" selection-start-line="154" selection-end-line="154" />
+        <state relative-caret-position="159">
+          <caret line="115" selection-start-line="115" selection-end-line="116" />
           <folding>
-            <element signature="e#4962#4963#0" expanded="true" />
-            <element signature="e#5010#5011#0" expanded="true" />
-            <element signature="e#4963#4964#0" expanded="true" />
-            <element signature="e#4991#4992#0" expanded="true" />
+            <element signature="e#4967#4968#0" expanded="true" />
+            <element signature="e#5021#5022#0" expanded="true" />
+            <element signature="e#5073#5074#0" expanded="true" />
+            <element signature="e#5121#5122#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/javax/swing/JFrame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="123" column="30" lean-forward="true" selection-start-line="123" selection-start-column="30" selection-end-line="123" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Window.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="159" column="31" lean-forward="true" selection-start-line="159" selection-start-column="31" selection-end-line="159" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Container.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="94" column="13" selection-start-line="94" selection-start-column="13" selection-end-line="94" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Frame.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="137" column="30" selection-start-line="137" selection-start-column="30" selection-end-line="137" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/javax/swing/JFrame.java" />
+    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Window.java" />
+    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Container.java" />
+    <entry file="jar:///usr/lib/jvm/java-12-jdk/lib/src.zip!/java.desktop/java/awt/Frame.java" />
     <entry file="file://$PROJECT_DIR$/src/Project/util/AdaptativeDimension.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="600">
@@ -1300,6 +1253,82 @@
             <element signature="e#7498#7499#0" expanded="true" />
             <element signature="e#8847#8848#0" expanded="true" />
             <element signature="e#8882#8883#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Messager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-65">
+          <caret line="11" selection-start-line="7" selection-end-line="41" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/views/Elements/EEcranVictoire.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="95" column="52" selection-start-line="95" selection-start-column="52" selection-end-line="95" selection-end-column="52" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Pilote.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="68" column="28" selection-start-line="68" selection-start-column="28" selection-end-line="68" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventuriers/Navigateur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-14">
+          <caret line="67" column="14" lean-forward="true" selection-start-line="67" selection-start-column="14" selection-end-line="67" selection-end-column="14" />
+          <folding>
+            <element signature="e#658#659#0" expanded="true" />
+            <element signature="e#681#682#0" expanded="true" />
+            <element signature="e#848#849#0" expanded="true" />
+            <element signature="e#879#880#0" expanded="true" />
+            <element signature="e#923#924#0" expanded="true" />
+            <element signature="e#949#950#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Modele/Aventurier.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="394">
+          <caret line="270" selection-start-line="270" selection-end-line="270" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#6353#6354#0" expanded="true" />
+            <element signature="e#6381#6382#0" expanded="true" />
+            <element signature="e#7315#7316#0" expanded="true" />
+            <element signature="e#7346#7347#0" expanded="true" />
+            <element signature="e#7395#7396#0" expanded="true" />
+            <element signature="e#7435#7436#0" expanded="true" />
+            <element signature="e#7486#7487#0" expanded="true" />
+            <element signature="e#7519#7520#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Project/Controleur.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="335" column="14" selection-start-line="335" selection-start-column="14" selection-end-line="335" selection-end-column="14" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2151#2152#0" expanded="true" />
+            <element signature="e#2184#2185#0" expanded="true" />
+            <element signature="e#17292#17293#0" expanded="true" />
+            <element signature="e#17355#17356#0" expanded="true" />
+            <element signature="e#19114#19115#0" expanded="true" />
+            <element signature="e#19145#19146#0" expanded="true" />
           </folding>
         </state>
       </provider>

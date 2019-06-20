@@ -12,6 +12,7 @@ import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
 import Project.views.VueFormulaire;
+
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -182,7 +183,7 @@ public class Controleur implements Observeur {
      * @param indexAventurier l'index de l'aventurier
      * @return Retourne l'aventurier d'index indexAventurier
      */
-    public Aventurier getAventurier(int indexAventurier) {
+    public Aventurier getSelectedAventurier(int indexAventurier) {
         vue.SetMode(Vue.IhmMode.AVENTURIER);
 
         Aventurier av = null;
@@ -331,7 +332,9 @@ public class Controleur implements Observeur {
                             }
                             break;
                         case ACTION_SPECIALE:
-                            nbAction++;
+                            if (av.actionSpeciale()){
+                                nbAction++;
+                            }
                             break;
                     }
                     vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
@@ -585,7 +588,7 @@ public class Controleur implements Observeur {
      */
     private boolean isVictoire() {
         boolean carteHelico = false;
-        for (Carte uneCarte : this.getAventurier(this.getCurrentAventurier()).getCarteItems()) {
+        for (Carte uneCarte : this.getSelectedAventurier(this.getCurrentAventurier()).getCarteItems()) {
             if (uneCarte instanceof CarteHelicoptere) {
                 carteHelico = true;
             }

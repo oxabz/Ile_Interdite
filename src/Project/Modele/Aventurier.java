@@ -124,7 +124,7 @@ public abstract class Aventurier {
     public void donnerCarte() {
         System.out.println("Choisissez un aventurier");
         Controleur c = Controleur.getControleur();
-        Aventurier av = c.getAventurier(c.getCurrentAventurier());
+        Aventurier av = c.getSelectedAventurier(c.getCurrentAventurier());
         Carte carte = c.getCarteSelectionne();
     }
 
@@ -193,6 +193,13 @@ public abstract class Aventurier {
      * Permet d'utiliser une carte bonus possédée par le joueur
      *
      * @return true si la carte a pu être utilisée
+    */
+    public boolean actionSpeciale () {
+        return true ;
+    }
+
+    /*
+    GETTER SETTER
      */
     public boolean utiliserCarte() {
         Controleur c = Controleur.getControleur();

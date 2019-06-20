@@ -1,4 +1,5 @@
 /build/
 /dist/
 /.idea/
-.idea/workspace.xml
+.idea\workspace.xml
+*workspace.xml
