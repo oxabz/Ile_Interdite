@@ -19,6 +19,10 @@ import java.util.Iterator;
  */
 public abstract class Aventurier {
 
+
+    /* CONSTANT */
+    protected static final boolean ACTION_SPECIAL_DISPONIBLE = false;
+
     /* ATTRIBUTS */
     protected Vector2 position;
     private ArrayList<CarteItem> carteItems;
@@ -129,13 +133,13 @@ public abstract class Aventurier {
         Aventurier av;
         do {
             av = c.getSelectedAventurier();
-        }while (!av.getPosition().equals( this.getPosition())&&av!=null);
+        }while (av!=null&&!av.getPosition().equals( this.getPosition()));
         if(av!=null){
             Carte carte;
             do {
                 carte = c.getCarteSelectionne();
                 System.out.println("test");
-            }while (!(carte instanceof CarteTresor)&&carte != null);
+            }while (carte != null&&!(carte instanceof CarteTresor));
             if(carte!=null){
                 this.removeCarteItem( (CarteItem) carte);
                 av.getCarteItems().add((CarteItem) carte) ; // le déclancement de la mettre à la défose est à 6 auto ?
@@ -313,5 +317,9 @@ public abstract class Aventurier {
 
     public int getNbAction() {
         return nbAction;
+    }
+
+    public boolean isActionSpecialDisponible() {
+        return ACTION_SPECIAL_DISPONIBLE;
     }
 }

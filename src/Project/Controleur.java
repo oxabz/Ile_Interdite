@@ -12,7 +12,11 @@ import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
 import Project.views.VueFormulaire;
+import Project.views.VueGameOver;
+import Project.views.VueVictoire;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,6 +29,7 @@ public class Controleur implements Observeur {
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState;
     private int currentAventurier;
+    private boolean jeuEnCour;
     private final Vue vue;
     private final VueFormulaire vueFormulaire;
     private final Deque<Message> messages = new ArrayDeque<>();
@@ -52,6 +57,43 @@ public class Controleur implements Observeur {
         vue.initialiserVue();
         Sound.jouerMusique(Project.util.Utils.Son.getCheminSon() + "musique/musique_menu.wav");
         vue.initialiserAdaptativeSize();
+        vue.getWindow().addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if(!(isGameOver()||isVictoire()))System.exit(0);
+
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
         vue.getGrille().updatePion(getPosPion());
         vue.updateJoueurs();
@@ -145,7 +187,7 @@ public class Controleur implements Observeur {
         if (aventuriers.get(aventurierIndex).getNbAction()>0){
             Utils.Action[] actionsList = {Utils.Action.SE_DEPLACER,Utils.Action.ASSECHER,Utils.Action.DON_CARTE,Utils.Action.FIN_TOUR,Utils.Action.UTILISER_CARTE,Utils.Action.PRENDRE_TRESOR};
             actions = new ArrayList<>(Arrays.asList(actionsList));
-            if(aventuriers.get(aventurierIndex) instanceof Navigateur) actions.add(Utils.Action.ACTION_SPECIALE);
+            if(aventuriers.get(aventurierIndex).isActionSpecialDisponible()) actions.add(Utils.Action.ACTION_SPECIALE);
         }else{
             Utils.Action[] actionsList = {Utils.Action.FIN_TOUR,Utils.Action.UTILISER_CARTE};
             actions = new ArrayList<>(Arrays.asList(actionsList));
@@ -400,6 +442,15 @@ public class Controleur implements Observeur {
 
         }
 
+        jeuEnCour = false;
+        vue.getWindow().setVisible(false);
+        vue.getWindow().dispose();
+        if(isVictoire()){
+            new VueVictoire();
+        }else {
+            new VueGameOver();
+        }
+
     }
 
     /**
@@ -486,7 +537,7 @@ public class Controleur implements Observeur {
      * @return true si le joueur est sur une case coulée et ne peut pas se
      * déplacer ailleurs
      */
-    private boolean isJoueursCoince() {
+    public boolean isJoueursCoince() {
         int i = 0;
         if (listeJoueursCoule().size() > 0) {
             for (Aventurier unAventurier : listeJoueursCoule()) {
@@ -535,7 +586,7 @@ public class Controleur implements Observeur {
      * @return true si au moins l'un des trésors n'est plus récupérable (plus de
      * case & pas récupéré à temps)
      */
-    private boolean isTuilesTresorCoince() {
+    public boolean isTuilesTresorCoince() {
         Utils.Tresor[] listeTresors = Utils.Tresor.values();
         for (Utils.Tresor unTresor : listeTresors) {
             if (isTuilesTresorCoule(unTresor) && !(this.getGameState().getTresors().get(unTresor))) {
@@ -549,7 +600,7 @@ public class Controleur implements Observeur {
      *
      * @return true si l'héliport est coulé
      */
-    private boolean isHeliportCoule() {
+    public boolean isHeliportCoule() {
         int i = 0;
         Tuile[][] listeTuiles = this.getGrille().getTuiles();
         for (Tuile[] uneColonne : listeTuiles) {
@@ -566,7 +617,7 @@ public class Controleur implements Observeur {
      *
      * @return true si le niveau d'eau dépasse le niveau 5 (>= 10 dans le code)
      */
-    private boolean isTeteDeMort() {
+    public boolean isTeteDeMort() {
         return this.getGameState().getNiveauEau() >= 10;
     }
 
@@ -574,7 +625,7 @@ public class Controleur implements Observeur {
      *
      * @return true si au moins l'une des conditions de défaite est respectée
      */
-    private boolean isGameOver() {
+    public boolean isGameOver() {
         return isJoueursCoince() || isTuilesTresorCoince() || isHeliportCoule() || isTeteDeMort();
     }
 
@@ -615,9 +666,12 @@ public class Controleur implements Observeur {
      */
     private boolean isVictoire() {
         boolean carteHelico = false;
-        for (Carte uneCarte : this.getAventuriers().get(this.getCurrentAventurier()).getCarteItems()) {
-            if (uneCarte instanceof CarteHelicoptere) {
-                carteHelico = true;
+        for (Aventurier av :
+                this.getAventuriers()) {
+            for (Carte uneCarte : av.getCarteItems()) {
+                if (uneCarte instanceof CarteHelicoptere) {
+                    carteHelico = true;
+                }
             }
         }
         return this.isToutLeMondeSurTuileHelicopetere() && this.isToutlestresorsrecuperes() && carteHelico;
