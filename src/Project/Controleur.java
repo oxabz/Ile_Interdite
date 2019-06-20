@@ -204,6 +204,10 @@ public class Controleur implements Observeur {
                     done = true;
                     av = m.av;
                 }
+                if (m.type == MessageType.ANNULER) {
+                    done = true;
+                    av = null;
+                }
             }
         }
 
