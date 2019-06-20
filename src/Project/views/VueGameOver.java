@@ -1,6 +1,6 @@
 package Project.views;
 
-import javax.swing.JFrame;
+import javax.swing.*;
 
 import Project.views.Elements.EGameOver;
 import Project.util.Message;
@@ -24,6 +24,7 @@ public class VueGameOver extends Observe {
 
 		this.window.add(new EGameOver(this));
 		this.window.setVisible(true);
+		this.window.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 	}
 
 	/**

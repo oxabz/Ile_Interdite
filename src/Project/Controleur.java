@@ -12,7 +12,11 @@ import Project.util.*;
 import Project.util.Utils.Tresor;
 import Project.views.Vue;
 import Project.views.VueFormulaire;
+import Project.views.VueGameOver;
+import Project.views.VueVictoire;
 
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -25,6 +29,7 @@ public class Controleur implements Observeur {
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState;
     private int currentAventurier;
+    private boolean jeuEnCour;
     private final Vue vue;
     private final VueFormulaire vueFormulaire;
     private final Deque<Message> messages = new ArrayDeque<>();
@@ -52,9 +57,47 @@ public class Controleur implements Observeur {
         vue.initialiserVue();
         Sound.jouerMusique(Project.util.Utils.Son.getCheminSon() + "musique/musique_menu.wav");
         vue.initialiserAdaptativeSize();
+        vue.getWindow().addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                if(!(isGameOver()||isVictoire()))System.exit(0);
+
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+
+            }
+        });
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
         vue.getGrille().updatePion(getPosPion());
         vue.updateJoueurs();
+
     }
 
     private final static Controleur controleur = new Controleur();
@@ -152,6 +195,8 @@ public class Controleur implements Observeur {
         }
 
         vue.getActions().setEnabled(true, actions);
+
+
 
         Utils.Action act = null;
         boolean done = false;
@@ -302,6 +347,10 @@ public class Controleur implements Observeur {
         currentAventurier = 0;
         boolean finDeTour = true;
         Aventurier av = null;
+        gameState.recupererTresor(Tresor.CRISTAL);
+        gameState.recupererTresor(Tresor.COUPE);
+        gameState.recupererTresor(Tresor.PIERRE);
+        gameState.recupererTresor(Tresor.STATUE);
         while (!(isGameOver()||isVictoire())) {
 
             /*incrementer le joueur en fin de tour*/
@@ -399,6 +448,15 @@ public class Controleur implements Observeur {
                 vue.updateJoueurs();
             }
 
+        }
+
+        jeuEnCour = false;
+        vue.getWindow().setVisible(false);
+        vue.getWindow().dispose();
+        if(isVictoire()){
+            new VueVictoire();
+        }else {
+            new VueGameOver();
         }
 
     }
@@ -616,9 +674,12 @@ public class Controleur implements Observeur {
      */
     private boolean isVictoire() {
         boolean carteHelico = false;
-        for (Carte uneCarte : this.getAventuriers().get(this.getCurrentAventurier()).getCarteItems()) {
-            if (uneCarte instanceof CarteHelicoptere) {
-                carteHelico = true;
+        for (Aventurier av :
+                this.getAventuriers()) {
+            for (Carte uneCarte : av.getCarteItems()) {
+                if (uneCarte instanceof CarteHelicoptere) {
+                    carteHelico = true;
+                }
             }
         }
         return this.isToutLeMondeSurTuileHelicopetere() && this.isToutlestresorsrecuperes() && carteHelico;

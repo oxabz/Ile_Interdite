@@ -115,29 +115,7 @@ public class Vue extends Observe {
         window.setSize(getWINDOW_SIZE_X(), getWINDOW_SIZE_Y());
         window.getContentPane().setLayout(new java.awt.BorderLayout());
         window.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
-        window.addWindowListener(new java.awt.event.WindowListener() {
-            public void windowOpened(java.awt.event.WindowEvent e) {
-            }
 
-            public void windowClosed(java.awt.event.WindowEvent e) {
-            }
-
-            public void windowIconified(java.awt.event.WindowEvent e) {
-            }
-
-            public void windowDeiconified(java.awt.event.WindowEvent e) {
-            }
-
-            public void windowActivated(java.awt.event.WindowEvent e) {
-            }
-
-            public void windowDeactivated(java.awt.event.WindowEvent e) {
-            }
-
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                System.exit(0);
-            }
-        });
 
     }
 
@@ -305,6 +283,10 @@ public class Vue extends Observe {
                 listeJoueurs) {
             j.updateJoueur();
         }
+    }
+
+    public JFrame getWindow() {
+        return window;
     }
 
     public EActions getActions() {

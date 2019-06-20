@@ -16,7 +16,7 @@ public class VueFormulaire extends Observe {
 
         f.add (new EFormulaire (this)) ;
         f.setVisible(true);
-
+        this.f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {

@@ -15,7 +15,9 @@ public class VueVictoire extends Observe {
         EEcranVictoire ecranVictoire = new EEcranVictoire(this) ;
         f.add(ecranVictoire) ;
         f.setVisible(true);
+        this.f.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         ecranVictoire.afficherText(); // pour apeler la fonction de présentation des messages
+
     }
 
     public static void main (String[] args) { VueVictoire v = new VueVictoire() ; }
