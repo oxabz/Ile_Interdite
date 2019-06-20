@@ -12,6 +12,7 @@ import java.util.Iterator;
 public class Plongeur extends Aventurier {
 
     private static final String NOM = "Plongeur";
+    private static final Utils.Pion PION = Utils.Pion.NOIR;
 
     public Plongeur() {
         super();
@@ -30,34 +31,28 @@ public class Plongeur extends Aventurier {
         Grille grille = c.getGrille();
         Vector2 oldPosition = position;
 
-        boolean fini = false;
+        boolean fini;
         do {
             pos = getPosDeplacement();
             pos.add(position);
             Iterator<Vector2> iterator = pos.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Vector2 p = iterator.next();
-                if (p.x<0||p.x>5||p.y<0||p.y>5){
+                if (p.x < 0 || p.x > 5 || p.y < 0 || p.y > 5) {
                     iterator.remove();
                 }
             }
-            Vector2 positionSelected = c.getPosClick(pos);
-            fini = (positionSelected.x == position.x && positionSelected.y == position.y)&&grille.getTuile(position) != null;
+            Vector2 positionSelected = c.getPosClic(pos);
+            fini = (positionSelected.x == position.x && positionSelected.y == position.y) && grille.getTuile(position) != null;
             position = positionSelected;
-        } while ((grille.getTuile(position) == null || grille.getTuile(position).isInnondee())&& !fini);//non fini
-        if(position.x == oldPosition.x && position.y == oldPosition.y){
-            return false;
-        }else{
-            return true;
-        }
+        } while ((grille.getTuile(position) == null || grille.getTuile(position).isInnondee()) && !fini);//non fini
+        return !(position.x == oldPosition.x && position.y == oldPosition.y);
     }
 
     @Override
     public String getNom() {
         return NOM;
     }
-
-    private static final Utils.Pion PION = Utils.Pion.NOIR;
 
     @Override
     public Utils.Pion getPion() {

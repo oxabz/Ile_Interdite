@@ -5,15 +5,12 @@
  */
 package Project;
 
-import Project.Modele.Aventurier;
-import Project.Modele.Aventuriers.Ingenieur;
 import Project.Modele.Grille;
 import Project.Modele.Tuile;
 import Project.Modele.Tuiles.Heliport;
 import Project.Modele.Tuiles.TuileApparition;
 import Project.Modele.Tuiles.TuileTresor;
 import Project.util.Utils.Tresor;
-
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
@@ -72,7 +69,7 @@ public class FactoryGrille {
                     t = new TuileApparition(nom, "Explorateur");
                     break;
                 case "Heliport":
-                    t = new Heliport("Pilote");
+                    t = new Heliport();
                     break;
                 case "La Caverne des Ombres":
                 case "La Caverne du Brasier":

@@ -25,6 +25,13 @@ public class Grille {
     /*
     METHODS
      */
+
+    /**
+     *
+     * @param x coordonnée x de la tuile
+     * @param y coordonnée y de la tuile
+     * @return la tuile en (x,y), null si rien trouvé
+     */    
     public Tuile getTuile(int x, int y) {
         if (x < GRILLE_TAILLE_X && x >= 0 && y < GRILLE_TAILLE_Y && y >= 0) {
             return tuiles[x][y];
@@ -34,6 +41,11 @@ public class Grille {
 
     }
 
+    /**
+     *
+     * @param v le Vector2 de la position de la tuile
+     * @return la tuile en (x,y), null si rien trouvé
+     */
     public Tuile getTuile(Vector2 v) {
         if (v.x < GRILLE_TAILLE_X && v.x >= 0 && v.y < GRILLE_TAILLE_Y && v.y >= 0) {
             return tuiles[v.x][v.y];
@@ -43,6 +55,10 @@ public class Grille {
 
     }
 
+    /**
+     *
+     * @param tuile la tuile à retirer
+     */
     public void removeTuile(Tuile tuile) {
 
         boolean found = false;
@@ -61,6 +77,10 @@ public class Grille {
 
     }
 
+    /**
+     *
+     * @return la liste des tuiles coulées (sous forme de grille)
+     */
     public boolean[][] getCoulee() {
         boolean[][] coulee = new boolean[getSizeX()][getSizeY()];
         for (int i = 0; i < getSizeX(); i++) {
@@ -71,6 +91,10 @@ public class Grille {
         return coulee;
     }
 
+    /**
+     *
+     * @return la liste des tuiles innondées (sous forme de grille)
+     */
     public boolean[][] getInnondee() {
         boolean[][] innondee = new boolean[getSizeX()][getSizeY()];
         for (int i = 0; i < getSizeX(); i++) {
@@ -81,6 +105,10 @@ public class Grille {
         return innondee;
     }
 
+    /**
+     *
+     * @return la liste des noms des tuiles (sous forme de grille)
+     */
     public String[][] getNames() {
         String[][] names = new String[getSizeX()][getSizeY()];
         for (int i = 0; i < getSizeX(); i++) {

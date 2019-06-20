@@ -9,24 +9,22 @@ public class GameState {
     /*
     ATTRIBUTES
      */
-
-    private HashMap<Utils.Tresor,Boolean> tresors;
+    private final HashMap<Utils.Tresor, Boolean> tresors;
     private int niveauEau;
 
     /*
     CONSTRUCTOR
      */
-
-    public GameState(int difficulte){
+    public GameState(int difficulte) {
 
         //Initialisation du niveau d'eau en fonction de la difficulté choisie
         niveauEau = difficulte;
 
         //initialisation de la liste des tresor recolté
         tresors = new HashMap<>();
-        for (Utils.Tresor tresor :
-                Utils.Tresor.values()) {
-            tresors.put(tresor,false);
+        for (Utils.Tresor tresor
+                : Utils.Tresor.values()) {
+            tresors.put(tresor, false);
         }
 
     }
@@ -34,42 +32,48 @@ public class GameState {
     /*
     METHODS
      */
-
-
-    //Sert à sauvegarder la recuperation d'un tresor
-    public void recupererTresor(Utils.Tresor tresor){
+    /**
+     *
+     * @param tresor le trésor à récupérer Sert à sauvegarder la récupération
+     * d'un tresor
+     */
+    public void recupererTresor(Utils.Tresor tresor) {
         tresors.put(tresor, true);
     }
 
-    //Sert a incrementer le niveau d'eau
-    public void incrementNiveau(){
+    /**
+     * Sert a incrémenter le niveau d'eau
+     */
+    public void incrementNiveau() {
         niveauEau++;
     }
 
-    //Donne le nombre de carte inondation a piocher
-    public int getNbDeCarte(){
-        if(niveauEau<3){
+    /**
+     * @return le nombre de carte inondation a piocher
+     */
+    public int getNbDeCarte() {
+        if (niveauEau < 3) {
             return 2;
-        }else if(niveauEau<6){
+        } else if (niveauEau < 6) {
             return 3;
-        }else if(niveauEau<8){
+        } else if (niveauEau < 8) {
             return 4;
-        }else if(niveauEau<10){
+        } else if (niveauEau < 10) {
             return 5;
-        }else {
+        } else {
             return 0;
         }
-    }
-
-    public int getNiveauEau() {
-        return niveauEau;
     }
 
     /* 
     GETTER 
      */
+    
+    public int getNiveauEau() {
+        return niveauEau;
+    }
 
-	public HashMap<Utils.Tresor, Boolean> getTresors() {
-		return tresors;
-	}
+    public HashMap<Utils.Tresor, Boolean> getTresors() {
+        return tresors;
+    }
 }

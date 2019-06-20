@@ -79,7 +79,7 @@ public class Controleur implements Observeur {
      * @param clickables la liste des positions clickables
      * @return retourne une position sélectionée dans les clickables
      */
-    public Vector2 getPosClick(ArrayList<Vector2> clickables) {
+    public Vector2 getPosClic(ArrayList<Vector2> clickables) {
         //placeholder
 
         vue.SetMode(Vue.IhmMode.POSITION);
@@ -298,7 +298,7 @@ public class Controleur implements Observeur {
                 int nbAction = 0;
                 boolean finT = false;
                 if (av instanceof Pilote) {
-                    ((Pilote) av).setDeplacemntSpecial(true);
+                    ((Pilote) av).setDeplacementSpecial(true);
                 }
 
                 //Phase d'action

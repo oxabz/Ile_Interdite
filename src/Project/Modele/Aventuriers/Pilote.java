@@ -19,13 +19,14 @@ public class Pilote extends Aventurier {
         super(position);
     }
 
-    private boolean deplacemntSpecial = true;
+    private boolean deplacementSpecial = true;
 
     private static final String NOM = "Pilote";
+    private static final Utils.Pion PION = Utils.Pion.BLEU;
 
     @Override
     public boolean seDeplacer() {
-        if (deplacemntSpecial) {
+        if (deplacementSpecial) {
             Controleur c = Controleur.getControleur();
             ArrayList<Vector2> pos = new ArrayList<>();
             Grille grille = c.getGrille();
@@ -37,17 +38,19 @@ public class Pilote extends Aventurier {
                     }
                 }
             }
-            Vector2 p = c.getPosClick(pos);
+            Vector2 p = c.getPosClic(pos);
             if (p != null) {
                 boolean b = false;
-                for (Vector2 posNormal :
-                        getPosDeplacement()) {
+                for (Vector2 posNormal
+                        : getPosDeplacement()) {
                     b = b || posNormal.x == p.x && posNormal.y == p.y;
                 }
                 position = p;
-                deplacemntSpecial = b;
+                deplacementSpecial = b;
                 return true;
-            }else {return false;}
+            } else {
+                return false;
+            }
         } else {
             return super.seDeplacer();
 
@@ -59,11 +62,9 @@ public class Pilote extends Aventurier {
         return NOM;
     }
 
-    public void setDeplacemntSpecial(boolean deplacemntSpecial) {
-        this.deplacemntSpecial = deplacemntSpecial;
+    public void setDeplacementSpecial(boolean deplacementSpecial) {
+        this.deplacementSpecial = deplacementSpecial;
     }
-
-    private static final Utils.Pion PION = Utils.Pion.BLEU;
 
     @Override
     public Utils.Pion getPion() {

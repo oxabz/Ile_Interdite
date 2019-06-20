@@ -15,7 +15,7 @@ import java.util.Iterator;
  *
  * @author IUT2-Dept Info
  */
-public abstract class Aventurier extends ObjetIdentifie {
+public abstract class Aventurier {
     /*
     ATTRIBUTES
      */
@@ -62,7 +62,7 @@ public abstract class Aventurier extends ObjetIdentifie {
                 iterator.remove();
             }
         }
-        Vector2 p = c.getPosClick(pos);
+        Vector2 p = c.getPosClic(pos);
         if (p!=null){
             position = p;
             return true;
@@ -102,7 +102,7 @@ public abstract class Aventurier extends ObjetIdentifie {
                 pos.add(position.add(0,i));
             }
         }
-        Vector2 aAssecher = c.getPosClick(pos);
+        Vector2 aAssecher = c.getPosClic(pos);
         if(aAssecher != null){
 
             g.getTuile(aAssecher).setInnondee(false);
@@ -124,6 +124,7 @@ public abstract class Aventurier extends ObjetIdentifie {
 
     /**
      * Permet de récupérer un tresor 
+     * @return true si le trésor est récupéré
      */
     public boolean prendreTresor() {
         Controleur c = Controleur.getControleur();

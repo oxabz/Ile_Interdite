@@ -3,10 +3,13 @@ package Project.Modele.Cartes;
 import Project.Modele.Carte;
 
 public abstract class CarteItem extends Carte {
-    /*
-    CONSTRUCTOR
+    
+    /* CONSTRUCTEURS */
+    
+    /**
+     * 
+     * @param nom 
      */
-
     public CarteItem(String nom) {
         super(nom);
     }

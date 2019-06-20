@@ -5,22 +5,22 @@ import Project.Modele.Tuile;
 
 public class CarteInondation extends Carte {
 
-    /*
-    ATTRIBUTES
-     */
-    private Tuile tuile;
+    /* ATTRIBUTS */
+    private final Tuile tuile;
 
-    /*
-    CONSTRUCTOR
-     */
+    /* CONSTRUCTEUR */
+
+    /**
+     *
+     * @param nom le nom de la carte inondation à créer
+     * @param tuile le nom de la tuile à lier
+     */    
     public CarteInondation(String nom, Tuile tuile) {
         super(nom);
         this.tuile = tuile;
     }
 
-    /*
-    GETTER SETTER
-     */
+    /* GETTERS & SETTERS */
     public Tuile getTuile() {
         return tuile;
     }

@@ -7,6 +7,7 @@ import Project.util.Vector2;
 public class Navigateur extends Aventurier {
 
     private static final String NOM = "Navigateur";
+    private static final Utils.Pion PION = Utils.Pion.JAUNE;
 
     public Navigateur() {
         super();
@@ -20,8 +21,6 @@ public class Navigateur extends Aventurier {
     public String getNom() {
         return NOM;
     }
-
-    private static final Utils.Pion PION = Utils.Pion.JAUNE;
 
     @Override
     public Utils.Pion getPion() {

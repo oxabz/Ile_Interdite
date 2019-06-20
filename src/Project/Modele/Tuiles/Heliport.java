@@ -1,14 +1,10 @@
 package Project.Modele.Tuiles;
 
-import Project.Modele.Aventurier;
-
 public class Heliport extends TuileApparition {
 
-    /**
-     * CONSTRUCTOR
-     */
-    public Heliport(String aventurier) {
-        super("Heliport", aventurier);
+    /* CONSTRUCTEUR */
+    public Heliport() {
+        super("Heliport", "Pilote");
     }
 
 }
