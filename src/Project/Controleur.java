@@ -28,7 +28,6 @@ public class Controleur implements Observeur {
     private final VueFormulaire vueFormulaire;
     private final Deque<Message> messages = new ArrayDeque<>();
 
-
     /*
     SINGLETON THINGY (CONSTRUCTEUR)
      */
@@ -50,6 +49,7 @@ public class Controleur implements Observeur {
         vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
         vue.initialiserJoueurs(aventuriers);
         vue.initialiserVue();
+        Sound.jouerMusique(Project.util.Utils.Son.getCheminSon() + "musique/musique_menu.wav");
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
         vue.getGrille().updatePion(getPosPion());
         vue.updateJoueurs();

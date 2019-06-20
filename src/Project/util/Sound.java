@@ -18,19 +18,38 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author seiglebq
  */
 public class Sound {
-    public static synchronized void play(final String fileName)
+    public static synchronized void jouer(final String nomFichier)
     {
-        // Note: use .wav files            
+        // Note : fichier .wav !            
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
                     Clip clip = AudioSystem.getClip();
-                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fileName));
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(nomFichier));
                     clip.open(inputStream);
                     clip.start();
                 } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-                    System.out.println("Erreur son : " + e.getMessage() + " pour " + fileName);
+                    System.out.println("Erreur son : " + e.getMessage() + " pour " + nomFichier);
+                }
+            }
+        }).start();
+    }
+    
+    public static synchronized void jouerMusique(final String nomFichier)
+    {
+        // Note : fichier .wav !     
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    Clip clip = AudioSystem.getClip();
+                    AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(nomFichier));
+                    clip.open(inputStream);
+                    clip.loop(Clip.LOOP_CONTINUOUSLY);
+                    clip.start();
+                } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+                    System.out.println("Erreur son : " + e.getMessage() + " pour " + nomFichier);
                 }
             }
         }).start();
