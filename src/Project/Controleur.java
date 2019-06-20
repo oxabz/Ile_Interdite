@@ -456,7 +456,7 @@ public class Controleur implements Observeur {
      * @return true si le joueur est sur une case coulée et ne peut pas se
      * déplacer ailleurs
      */
-    private boolean isJoueursCoince() {
+    public boolean isJoueursCoince() {
         int i = 0;
         if (listeJoueursCoule().size() > 0) {
             for (Aventurier unAventurier : listeJoueursCoule()) {
@@ -505,7 +505,7 @@ public class Controleur implements Observeur {
      * @return true si au moins l'un des trésors n'est plus récupérable (plus de
      * case & pas récupéré à temps)
      */
-    private boolean isTuilesTresorCoince() {
+    public boolean isTuilesTresorCoince() {
         Utils.Tresor[] listeTresors = Utils.Tresor.values();
         for (Utils.Tresor unTresor : listeTresors) {
             if (isTuilesTresorCoule(unTresor) && !(this.getGameState().getTresors().get(unTresor))) {
@@ -519,7 +519,7 @@ public class Controleur implements Observeur {
      *
      * @return true si l'héliport est coulé
      */
-    private boolean isHeliportCoule() {
+    public boolean isHeliportCoule() {
         int i = 0;
         Tuile[][] listeTuiles = this.getGrille().getTuiles();
         for (Tuile[] uneColonne : listeTuiles) {
@@ -536,7 +536,7 @@ public class Controleur implements Observeur {
      *
      * @return true si le niveau d'eau dépasse le niveau 5 (>= 10 dans le code)
      */
-    private boolean isTeteDeMort() {
+    public boolean isTeteDeMort() {
         return this.getGameState().getNiveauEau() >= 10;
     }
 
@@ -544,7 +544,7 @@ public class Controleur implements Observeur {
      *
      * @return true si au moins l'une des conditions de défaite est respectée
      */
-    private boolean isGameOver() {
+    public boolean isGameOver() {
         return isJoueursCoince() || isTuilesTresorCoince() || isHeliportCoule() || isTeteDeMort();
     }
 
