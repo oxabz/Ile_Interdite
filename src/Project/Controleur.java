@@ -188,7 +188,7 @@ public class Controleur implements Observeur {
         if (aventuriers.get(aventurierIndex).getNbAction()>0){
             Utils.Action[] actionsList = {Utils.Action.SE_DEPLACER,Utils.Action.ASSECHER,Utils.Action.DON_CARTE,Utils.Action.FIN_TOUR,Utils.Action.UTILISER_CARTE,Utils.Action.PRENDRE_TRESOR};
             actions = new ArrayList<>(Arrays.asList(actionsList));
-            if(aventuriers.get(aventurierIndex) instanceof Navigateur) actions.add(Utils.Action.ACTION_SPECIALE);
+            if(aventuriers.get(aventurierIndex).isActionSpecialDisponible()) actions.add(Utils.Action.ACTION_SPECIALE);
         }else{
             Utils.Action[] actionsList = {Utils.Action.FIN_TOUR,Utils.Action.UTILISER_CARTE};
             actions = new ArrayList<>(Arrays.asList(actionsList));

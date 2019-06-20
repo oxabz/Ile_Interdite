@@ -19,6 +19,10 @@ import java.util.Iterator;
  */
 public abstract class Aventurier {
 
+
+    /* CONSTANT */
+    protected static final boolean ACTION_SPECIAL_DISPONIBLE = false;
+
     /* ATTRIBUTS */
     protected Vector2 position;
     private ArrayList<CarteItem> carteItems;
@@ -313,5 +317,9 @@ public abstract class Aventurier {
 
     public int getNbAction() {
         return nbAction;
+    }
+
+    public boolean isActionSpecialDisponible() {
+        return ACTION_SPECIAL_DISPONIBLE;
     }
 }

@@ -12,6 +12,8 @@ import java.util.Iterator;
 
 public class Navigateur extends Aventurier {
 
+    private static final boolean ACTION_SPECIAL_DISPONIBLE = true;
+
     /* ATTRIBUTS */
     private static final String NOM = "Navigateur";
     private static final Utils.Pion PION = Utils.Pion.JAUNE;
@@ -95,5 +97,8 @@ public class Navigateur extends Aventurier {
 
     }
 
-
+    @Override
+    public boolean isActionSpecialDisponible() {
+        return ACTION_SPECIAL_DISPONIBLE;
+    }
 }
