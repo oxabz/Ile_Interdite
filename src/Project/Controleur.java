@@ -341,6 +341,9 @@ public class Controleur implements Observeur {
                             }
                             break;
                         case UTILISER_CARTE:
+                            if(av.utiliserCarte()) {
+                                nbAction++;
+                            }
                             break;
                         case ACTION_SPECIALE:
                             nbAction++;
@@ -815,6 +818,17 @@ public class Controleur implements Observeur {
             }
         }
         return message;
+    }
+
+    /**
+     * Permet de mettre à jour la vue de la main avec les cartes du joueur courant
+     */
+    public void updateMain() {
+
+        Aventurier aventurier = this.getAventuriers().get(this.getCurrentAventurier());
+        
+        this.vue.getMain().setCartesItems(aventurier.getCarteItems());
+        
     }
 
 

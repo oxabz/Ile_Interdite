@@ -2,6 +2,7 @@ package Project.Modele;
 
 import Project.Controleur;
 import Project.Modele.Cartes.CarteItem;
+import Project.Modele.Cartes.CartesItem.CarteBonus;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Tuiles.TuileTresor;
 import Project.util.Utils;
@@ -168,6 +169,35 @@ public abstract class Aventurier {
                 return true;
             }
         }
+        return false;
+    }
+
+    /**
+     * Permet d'utiliser une carte bonus possédé par le joueur
+     * @return true si la carte a pu être utilisée
+     */
+    public boolean utiliserCarte() {
+        Controleur c = Controleur.getControleur();
+        
+        if(this.getCarteItems().size() > 0) {
+
+            // On récupère la carte séléctionné par le joueur dans la main du joueur.
+            Carte carte = c.getCarteSelectionne();
+            
+            if(carte instanceof CarteBonus) {
+
+                // On retire la carte de la main du joueur
+                this.getCarteItems().remove(carte);
+    
+                // On fait l'action spéciale de la carte
+                ((CarteBonus) carte).actionCarte();
+
+                c.updateMain();
+
+                return true;
+            }
+        }
+        
         return false;
     }
 
