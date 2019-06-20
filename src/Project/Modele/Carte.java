@@ -18,7 +18,6 @@ public abstract class Carte {
 
 
     /* GETTERS & SETTERS */
-    
     public String getImage() {
         return image;
     }

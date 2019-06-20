@@ -68,7 +68,6 @@ public class GameState {
     /* 
     GETTER 
      */
-    
     public int getNiveauEau() {
         return niveauEau;
     }

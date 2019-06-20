@@ -7,12 +7,12 @@ public class Tuile {
     /**
      * ATTRIBUTES
      */
-
     private String nom;
     private Boolean innondee;
 
     /**
      * CONSTRUCTOR
+     *
      * @param nom le nom de la tuile
      */
     public Tuile(String nom) {

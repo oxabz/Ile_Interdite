@@ -25,13 +25,12 @@ public class Grille {
     /*
     METHODS
      */
-
     /**
      *
      * @param x coordonnée x de la tuile
      * @param y coordonnée y de la tuile
      * @return la tuile en (x,y), null si rien trouvé
-     */    
+     */
     public Tuile getTuile(int x, int y) {
         if (x < GRILLE_TAILLE_X && x >= 0 && y < GRILLE_TAILLE_Y && y >= 0) {
             return tuiles[x][y];
