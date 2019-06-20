@@ -37,6 +37,13 @@ public class Pilote extends Aventurier {
     }
 
     /* MÉTHODES */
+
+    @Override
+    public void initialiserTour() {
+        super.initialiserTour();
+        setDeplacementSpecial(true);
+    }
+
     /**
      * Permet de déplacer un aventurier
      *
