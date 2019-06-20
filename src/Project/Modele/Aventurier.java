@@ -128,7 +128,7 @@ public abstract class Aventurier {
         Controleur c = Controleur.getControleur();
         Aventurier av;
         do {
-            av = c.getSelectedAventurier(c.getCurrentAventurier());
+            av = c.getSelectedAventurier();
         }while (!av.getPosition().equals( this.getPosition()));
         System.out.println("yolo");
         Carte carte;
@@ -255,11 +255,18 @@ public abstract class Aventurier {
         return pos;
     }
 
+    public void defausserCarteItem(CarteItem carteItem){
+        carteItems.remove(carteItem);
+        Controleur controleur = Controleur.getControleur() ;
+        controleur.getCartesItem().getDefausse().add(carteItem) ;
+    }
+
     public void utiliserAction(){
         nbAction--;
     }
 
     /* GETTERS & SETTERS */
+
     public Vector2 getPosition() {
         return position;
     }
@@ -283,12 +290,6 @@ public abstract class Aventurier {
 
     public void removeCarteItem(CarteItem carteItem) {
         carteItems.remove(carteItem);
-    }
-
-    public void defausserCarteItem(CarteItem carteItem){
-        carteItems.remove(carteItem);
-        Controleur controleur = Controleur.getControleur() ;
-        controleur.getCartesItem().getDefausse().add(carteItem) ;
     }
 
     public void setCarteItems(ArrayList<CarteItem> carteItems) {

@@ -123,6 +123,7 @@ public class EActions extends JPanel {
                 vue.notifierObserver(m);
             }
         });
+        boutons.add(actionSpecialButon);
 
         annulerButon = new JButton("Annuler");
         this.add(annulerButon);

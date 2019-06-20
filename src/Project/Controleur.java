@@ -149,7 +149,7 @@ public class Controleur implements Observeur {
 
         vue.getActions().setEnabled(true, actions);
 
-        Utils.Action act = Utils.Action.SE_DEPLACER;
+        Utils.Action act = null;
         boolean done = false;
         while (!done) {
             try {
@@ -192,10 +192,10 @@ public class Controleur implements Observeur {
 
     /**
      *
-     * @param indexAventurier l'index de l'aventurier
+     *
      * @return Retourne l'aventurier d'index indexAventurier
      */
-    public Aventurier getAventurier(int indexAventurier) {
+    public Aventurier getSelectedAventurier() {
         vue.setMode(Vue.IhmMode.AVENTURIER);
 
         Aventurier av = null;
@@ -344,7 +344,9 @@ public class Controleur implements Observeur {
                     }
                     break;
                 case ACTION_SPECIALE:
-                    av.utiliserAction();
+                    if(av.actionSpeciale()){
+                        av.utiliserAction();
+                    }
                     break;
             }
             vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());

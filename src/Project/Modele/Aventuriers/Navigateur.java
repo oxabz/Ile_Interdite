@@ -49,7 +49,7 @@ public class Navigateur extends Aventurier {
     @Override
     public boolean actionSpeciale () {
         Controleur controleur = Controleur.getControleur() ;
-        Aventurier av = controleur.getSelectedAventurier(1) ;
+        Aventurier av = controleur.getSelectedAventurier() ;
 
         ArrayList<Vector2> pos;
         Grille grille = controleur.getGrille();
