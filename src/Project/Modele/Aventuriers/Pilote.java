@@ -11,21 +11,41 @@ import java.util.ArrayList;
 
 public class Pilote extends Aventurier {
 
+    /* ATTRIBUTS */
+    private boolean deplacementSpecial = true;
+    private static final String NOM = "Pilote";
+    private static final Utils.Pion PION = Utils.Pion.BLEU;
+
+    /* CONSTRUCTEURS */
+    /**
+     * Créer un aventurier de type pilote
+     *
+     * @deprecated utiliser {@link #Pilote(Vector2) à la place
+     */
+    @Deprecated
     public Pilote() {
         super();
     }
 
+    /**
+     * Créer un aventurier de type pilote
+     *
+     * @param position la position de départ du pilote
+     */
     public Pilote(Vector2 position) {
         super(position);
     }
 
-    private boolean deplacemntSpecial = true;
-
-    private static final String NOM = "Pilote";
-
+    /* MÉTHODES */
+    /**
+     * Permet de déplacer un aventurier
+     *
+     * @return true si le déplacement a été effectuée
+     *
+     */
     @Override
     public boolean seDeplacer() {
-        if (deplacemntSpecial) {
+        if (deplacementSpecial) {
             Controleur c = Controleur.getControleur();
             ArrayList<Vector2> pos = new ArrayList<>();
             Grille grille = c.getGrille();
@@ -37,17 +57,19 @@ public class Pilote extends Aventurier {
                     }
                 }
             }
-            Vector2 p = c.getPosClick(pos);
+            Vector2 p = c.getPosClic(pos);
             if (p != null) {
                 boolean b = false;
-                for (Vector2 posNormal :
-                        getPosDeplacement()) {
+                for (Vector2 posNormal
+                        : getPosDeplacement()) {
                     b = b || posNormal.x == p.x && posNormal.y == p.y;
                 }
                 position = p;
-                deplacemntSpecial = b;
+                deplacementSpecial = b;
                 return true;
-            }else {return false;}
+            } else {
+                return false;
+            }
         } else {
             return super.seDeplacer();
 
@@ -59,11 +81,9 @@ public class Pilote extends Aventurier {
         return NOM;
     }
 
-    public void setDeplacemntSpecial(boolean deplacemntSpecial) {
-        this.deplacemntSpecial = deplacemntSpecial;
+    public void setDeplacementSpecial(boolean deplacementSpecial) {
+        this.deplacementSpecial = deplacementSpecial;
     }
-
-    private static final Utils.Pion PION = Utils.Pion.BLEU;
 
     @Override
     public Utils.Pion getPion() {

@@ -4,30 +4,27 @@ import Project.Modele.Tuile;
 import Project.util.Utils.Tresor;
 
 public class TuileTresor extends Tuile {
-	/**
-	 * ATTRIBUTES
-	 */
 
-	private Tresor tresor;
-	
-	/**
-	 * CONSTRUCTOR
-	 */
+    /* ATTRIBUTS */
+    private Tresor tresor;
 
-	public TuileTresor(String nom, Tresor tresor) {
-		super(nom);
-		setTresor(tresor);
-	}
+    /* CONSTRUCTEUR */
+    /**
+     *
+     * @param nom le nom de la tuile
+     * @param tresor le trésor lié à la tuile
+     */
+    public TuileTresor(String nom, Tresor tresor) {
+        super(nom);
+        setTresor(tresor);
+    }
 
-	/**
-	 * GETTERS/SETTERS
-	 */
+    /* GETTERS & SETTERS */
+    public Tresor getTresor() {
+        return tresor;
+    }
 
-	public Tresor getTresor() {
-		return tresor;
-	}
-
-	private void setTresor(Tresor tresor) {
-		this.tresor = tresor;
-	}
+    private void setTresor(Tresor tresor) {
+        this.tresor = tresor;
+    }
 }

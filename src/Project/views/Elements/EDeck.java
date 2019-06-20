@@ -27,7 +27,7 @@ public final class EDeck extends JPanel {
     private final static String IMAGE_EXTENSION = ".png";
     private final static String SON_CARTE_FLIP_CHEMIN = "src/sons/carte/carteFlip.wav";
     private final static JLabel LABEL_ITEM = new JLabel("Items");
-    private final static JLabel LABEL_INONDATION = new JLabel("Innondation");
+    private final static JLabel LABEL_INONDATION = new JLabel("Inondation");
     private final static int NOMBRE_FRAMES_ANIMATION = 24;
     private final static int DELAI_ANIMATION = 1;
     /* ATTRIBUTS */
@@ -45,8 +45,8 @@ public final class EDeck extends JPanel {
     private final JLabel inondationDefausseNombre;
     private final JLabel labelImagePiocheItem;
     private final JLabel labelImageDefausseItem;
-    private final JLabel labelImagePiocheInnondation;
-    private final JLabel labelImageDefausseInnondation;
+    private final JLabel labelImagePiocheInondation;
+    private final JLabel labelImageDefausseInondation;
     private BufferedImage dosItem;
     private BufferedImage dosInondation;
     private BufferedImage imageItemDefausse;
@@ -139,7 +139,7 @@ public final class EDeck extends JPanel {
 
             }
         };
-        labelImagePiocheInnondation = new JLabel() {
+        labelImagePiocheInondation = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -147,7 +147,7 @@ public final class EDeck extends JPanel {
 
             }
         };
-        labelImageDefausseInnondation = new JLabel() {
+        labelImageDefausseInondation = new JLabel() {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -167,8 +167,8 @@ public final class EDeck extends JPanel {
         // Aménagement des images
         this.getItemPioche().add(getLabelImagePiocheItem());
         this.getItemDefausse().add(getLabelImageDefausseItem());
-        this.getInondationPioche().add(getLabelImagePiocheInnondation());
-        this.getInondationDefausse().add(getLabelImageDefausseInnondation());
+        this.getInondationPioche().add(getLabelImagePiocheInondation());
+        this.getInondationDefausse().add(getLabelImageDefausseInondation());
     }
 
 
@@ -225,13 +225,13 @@ public final class EDeck extends JPanel {
      * Animation qui retourne la première carte de la pioche (Inondation)
      * Toujours du dos vers la face et joue un son en même temps
      */
-    private void retournerCarteInnondation() {
+    private void retournerCarteInondation() {
         String location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckInondation().getPioche().get(0).getNom()) + IMAGE_EXTENSION;
         try {
             this.setImageInondationPioche(ImageIO.read(new File(location)));
             Sound.play(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
-            System.out.println("Project.views.Elements.EDeck.retournerCarteInnondation()");
+            System.out.println("Project.views.Elements.EDeck.retournerCarteInondation()");
             System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
         }
     }
@@ -293,7 +293,7 @@ public final class EDeck extends JPanel {
      */
     private void piocherInondation() {
         try {
-            this.retournerCarteInnondation();
+            this.retournerCarteInondation();
             this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
             this.getDeckInondation().addCarteDefausseDebut(this.getDeckInondation().getPioche().get(0));
@@ -440,12 +440,12 @@ public final class EDeck extends JPanel {
         return labelImageDefausseItem;
     }
 
-    public JLabel getLabelImagePiocheInnondation() {
-        return labelImagePiocheInnondation;
+    public JLabel getLabelImagePiocheInondation() {
+        return labelImagePiocheInondation;
     }
 
-    public JLabel getLabelImageDefausseInnondation() {
-        return labelImageDefausseInnondation;
+    public JLabel getLabelImageDefausseInondation() {
+        return labelImageDefausseInondation;
     }
 
     public static String getIMAGE_PREFIXE_CARTE() {
