@@ -17,9 +17,12 @@ public class EJoueur extends JPanel {
     private Aventurier av;
 
     public EJoueur(Vue vue, Aventurier av) {
+        this.setLayout(new BorderLayout());
         this.vue = vue;
+        this.av = av;
         this.main = new EMain(vue);
         this.main.removeListeners();
+        this.add(main,BorderLayout.CENTER);
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -51,6 +54,12 @@ public class EJoueur extends JPanel {
 
             }
         });
+
+
+    }
+
+    public void updateJoueur(){
+        main.setAventurier(av);
     }
 
 

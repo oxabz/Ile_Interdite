@@ -12,9 +12,16 @@ import javax.imageio.ImageIO;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import Project.util.AdaptativeDimension;
 import Project.util.Utils;
 
 public class EInfo extends JPanel  {
+	/**
+	 * CONSTANTES
+	 */
+	private static final double TRESOR_SIZE_RATIO = 1.2;
+	
+	
 	/**
 	 * ATTRIBUTES
 	 */
@@ -51,7 +58,7 @@ public class EInfo extends JPanel  {
 	 * CONSTRUCTOR
 	 */
 	public EInfo() {
-
+		
 		this.setLayout(new GridLayout(1, 2));
 
 		this.panel_tresor = new JPanel[4];
@@ -59,6 +66,11 @@ public class EInfo extends JPanel  {
 		this.image_tresor = new BufferedImage[4];
 
 		this.panel_groupe_tresor = new JPanel(new GridLayout(2, 2));
+		new AdaptativeDimension(
+				this,
+				null,
+				()->(int)(panel_groupe_tresor.getWidth()*TRESOR_SIZE_RATIO),
+				panel_groupe_tresor);
 
 		this.panel_groupe_messages = new JPanel(new GridLayout(4, 1));
 

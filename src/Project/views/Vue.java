@@ -1,9 +1,11 @@
 package Project.views;
 
 import Project.Controleur;
+import Project.Modele.Aventurier;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Deck;
 import Project.Modele.Grille;
+import Project.util.AdaptativeDimension;
 import Project.util.Observe;
 import Project.util.Utils;
 import Project.util.Vector2;
@@ -18,13 +20,17 @@ import Project.views.Elements.EJoueur;
 import Project.views.Elements.EMain;
 import Project.views.Elements.ENiveauDEau;
 import java.awt.Color;
+import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
+import javax.swing.border.LineBorder;
 
 public class Vue extends Observe {
 
     private final static int WINDOW_SIZE_X = 1715;
     private final static int WINDOW_SIZE_Y = 1050;
+    private static final double CARD_SIZE_RATIO = 1.39191919192;
+    private static final double DECK_SIZE_RATIO = 1.44191919192;
     private JFrame window;
     private GridBagConstraints constraints;
 
@@ -33,7 +39,7 @@ public class Vue extends Observe {
     private EInfo informations;
     private ENiveauDEau niveauEau;
     private EDeck deck;
-    private HashMap<String, EJoueur> listeJoueurs;
+    private ArrayList< EJoueur> listeJoueurs;
     private EMain main;
     private EActions actions;
 
@@ -42,38 +48,65 @@ public class Vue extends Observe {
         this.configureWindow(window);
 
         constraints = new GridBagConstraints();
-        constraints.fill = GridBagConstraints.BOTH;
+        constraints.fill = GridBagConstraints.NONE;
         constraints.weightx = 1;
         constraints.weighty = 1;
         window.setLayout(new GridBagLayout());
 
-        listeJoueurs = new HashMap<>();
+        listeJoueurs = new ArrayList<>();
         deck = new EDeck();
         actions = new EActions(this);
         main = new EMain(this);
         informations = new EInfo();
 
-        constraints.gridwidth = 4;
+        constraints.fill = GridBagConstraints.VERTICAL;
+        constraints.gridwidth = 1;
         constraints.gridheight = 2;
-        constraints.gridx = 4;
-        constraints.gridy = 4;
+        constraints.gridx = 2;
+        constraints.gridy = 5;
         window.add(deck,constraints);
+        deck.setBorder(BorderFactory.createLineBorder(Color.RED,2));
+        new AdaptativeDimension(
+                window,
+                ()->(int) (deck.getHeight()/DECK_SIZE_RATIO),
+                null,
+                deck);
+
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
-        constraints.gridx = 0;
+        constraints.weightx = 1;
+        constraints.weighty = 0;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        constraints.gridx = 1;
         constraints.gridy = 4;
         window.add(actions,constraints);
-        constraints.gridwidth = 2;
-        constraints.gridheight = 1;
-        constraints.gridx = 2;
-        constraints.gridy = 4;
-        window.add(informations,constraints);
+        actions.setBorder(BorderFactory.createLineBorder(Color.GREEN,2));
 
-        constraints.gridwidth = 4;
-        constraints.gridheight = 1;
-        constraints.gridx = 0;
+
+        constraints.gridwidth = 1;
+        constraints.gridheight = 2;
+        constraints.gridx = 1;
         constraints.gridy = 5;
+        window.add(informations,constraints);
+        informations.setBorder(BorderFactory.createLineBorder(Color.YELLOW,2));
+
+
+
+        constraints.gridx = 0;
+        constraints.gridy = 6;
+        constraints.gridwidth = 1;
+        constraints.gridheight = 0;
+        constraints.weightx = 0;
+        constraints.anchor = GridBagConstraints.SOUTHWEST;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
         window.add(main,constraints);
+        main.setBorder(BorderFactory.createLineBorder(Color.BLUE,2));
+
+        new AdaptativeDimension(window,
+                null,
+                ()-> (int)(CARD_SIZE_RATIO*(double) main.getWidth()*0.125),
+                main);
+
 
 
 
@@ -126,25 +159,56 @@ public class Vue extends Observe {
 
     public void initialiserNiveauEau(int level) {
         niveauEau = new ENiveauDEau(level);
+        constraints.weightx = 1;
         constraints.gridwidth = 1;
-        constraints.gridheight = 4;
+        constraints.gridheight = 3;
         constraints.gridx = 3;
-        constraints.gridy = 0;
+        constraints.gridy = 4;
+        constraints.fill = GridBagConstraints.BOTH;
         window.add(niveauEau, constraints);
+        niveauEau.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY,2));
+
     }
 
     public void initialiserGrille(String[][] names, boolean[][] inondee, boolean[][] coulee) {
         grille = new EGrille(names[0].length, names.length, names, this);
 
-        constraints.gridwidth = 3;
-        constraints.gridheight = 4;
+        new AdaptativeDimension(window,
+                ()-> (int)(window.getWidth()*0.5< window.getHeight()*0.85 ? window.getWidth()*0.5: window.getHeight()*0.85),
+                ()->(int)grille.getSize().width,
+                grille);
+        constraints.gridwidth = 1;
+        constraints.gridheight = 6;
+        constraints.anchor = GridBagConstraints.NORTHWEST;
+        constraints.fill = GridBagConstraints.NONE;
+        constraints.weightx = 0;
+        constraints.weighty = 0;
         constraints.gridx = 0;
         constraints.gridy = 0;
         window.add(grille, constraints);
+        grille.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
+
 
         grille.setVisible(true);
         grille.paintComponents(window.getGraphics());
 
+    }
+
+    public void initialiserJoueurs(ArrayList<Aventurier> joueurs){
+        constraints.weightx = 1;
+        constraints.gridwidth = 3;
+        constraints.gridheight = 1;
+        constraints.gridx = 1;
+        constraints.fill = GridBagConstraints.HORIZONTAL;
+        for (int i = 0; i < 4; i++) {
+            EJoueur eJoueur = new EJoueur(this,joueurs.get(i));
+            this.listeJoueurs.add(eJoueur);
+            constraints.gridy = i;
+            window.add(eJoueur,constraints);
+            eJoueur.updateJoueur();
+            eJoueur.setBorder(BorderFactory.createLineBorder(Color.PINK,2));
+            new AdaptativeDimension(window, null ,()-> (int)(CARD_SIZE_RATIO*(double) eJoueur.getWidth()*0.125),eJoueur);
+        }
     }
 
     public void initialiserVue() {
@@ -177,7 +241,7 @@ public class Vue extends Observe {
                 grille.setEnabled(false);
                 main.setEnabled(false);
                 for (EJoueur j
-                        : listeJoueurs.values()) {
+                        : listeJoueurs) {
                     j.setEnabled(false);
                 }
                 break;
@@ -186,7 +250,7 @@ public class Vue extends Observe {
                 grille.setEnabled(true);
                 main.setEnabled(false);
                 for (EJoueur j
-                        : listeJoueurs.values()) {
+                        : listeJoueurs) {
                     j.setEnabled(false);
                 }
                 break;
@@ -196,7 +260,7 @@ public class Vue extends Observe {
                 grille.setEnabled(false);
                 main.setEnabled(true);
                 for (EJoueur j
-                        : listeJoueurs.values()) {
+                        : listeJoueurs) {
                     j.setEnabled(false);
                 }
                 break;
@@ -206,7 +270,7 @@ public class Vue extends Observe {
                 grille.setEnabled(false);
                 main.setEnabled(false);
                 for (EJoueur j
-                        : listeJoueurs.values()) {
+                        : listeJoueurs) {
                     j.setEnabled(false);
                 }
                 break;
@@ -216,5 +280,12 @@ public class Vue extends Observe {
 
     public EInfo getInformations() {
         return informations;
+    }
+    
+    public void updateJoueurs(){
+        for (EJoueur j :
+                listeJoueurs) {
+            j.updateJoueur();
+        }
     }
 }

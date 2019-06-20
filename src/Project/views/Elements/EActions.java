@@ -21,13 +21,16 @@ public class EActions extends JPanel {
     /* ATTRIBUTS */
 
     private final ArrayList<JButton> boutons;
+    private final JButton actionSpecialButon;
+    private final JButton annulerButon;
+
     private Vue vue;
 
 
     /* CONSTRUCTEUR */
     public EActions(Vue vue) {
 
-        this.setLayout(new GridLayout(2,3));
+        this.setLayout(new GridLayout(2,4));
 
         this.vue = vue;
         boutons = new ArrayList<>();
@@ -104,6 +107,27 @@ public class EActions extends JPanel {
         });
         boutons.add(utiliserCarteButon);
 
+        actionSpecialButon = new JButton("Action Special");
+        this.add(actionSpecialButon);
+        utiliserCarteButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ACTION);
+                m.action = Utils.Action.ACTION_SPECIALE;
+                vue.notifierObserver(m);
+            }
+        });
+
+        annulerButon = new JButton("Annuler");
+        this.add(annulerButon);
+        utiliserCarteButon.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Message m = new Message(MessageType.ANNULER);
+                vue.notifierObserver(m);
+            }
+        });
+
         for (JButton unBouton : boutons) {
             unBouton.setEnabled(true);
 
@@ -120,4 +144,13 @@ public class EActions extends JPanel {
             bouton.setEnabled(enabled);
         }
     }
+
+    public void setEnableActionSpecial(boolean enabled){
+        actionSpecialButon.setEnabled(enabled);
+    }
+
+    public void setEnableAnnuler(boolean enabled){
+        annulerButon.setEnabled(enabled);
+    }
+
 }

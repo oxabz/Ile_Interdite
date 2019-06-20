@@ -18,7 +18,6 @@ public class ECarte extends JPanel {
 
     private static final String IMAGE_PREFIX = "src/images/cartes/";
     private static final String IMAGE_EXTENTION = ".png";
-    private static final String IMAGE_INNONDEE_SUFIX = "_Inonde";
 
     Vue vue;
     BufferedImage image;

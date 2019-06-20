@@ -10,19 +10,13 @@ import Project.Modele.Tuiles.Heliport;
 import Project.Modele.Tuiles.TuileTresor;
 import Project.util.*;
 import Project.util.Utils.Tresor;
+import Project.views.TestView;
 import Project.views.Vue;
 
-import Project.views.VueAventurier;
 import Project.views.VueFormulaire;
-import Project.views.VueGrille;
 
-import javax.naming.InitialContext;
-
-import java.awt.desktop.SystemSleepEvent;
-import java.sql.Time;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
-import java.util.concurrent.TimeUnit;
 
 public class Controleur implements Observeur {
 
@@ -60,9 +54,11 @@ public class Controleur implements Observeur {
         vue.setObserveur(this);
         vue.initialiserNiveauEau(gameState.getNiveauEau());
         vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
+        vue.initialiserJoueurs(aventuriers);
         vue.initialiserVue();
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
         vue.getGrille().updatePion(getPosPion());
+        vue.updateJoueurs();
     }
 
     private final static Controleur controleur = new Controleur();
@@ -348,11 +344,12 @@ public class Controleur implements Observeur {
                     }
                     vue.getGrille().updateGrid(grille.getInnondee(),grille.getCoulee());
                     vue.getGrille().updatePion(getPosPion());
+
                 }
 
                 //phase de pioche
-                CarteItem cIt1 = (CarteItem) cartesItem.piocher();
-                CarteItem cIt2 = (CarteItem) cartesItem.piocher();
+                CarteItem cIt1 = (CarteItem) cartesItem.getPioche().poll();
+                CarteItem cIt2 = (CarteItem) cartesItem.getPioche().poll();
 
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
@@ -378,6 +375,7 @@ public class Controleur implements Observeur {
                 faireInnondation();
 
                 vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
+                vue.updateJoueurs();
             }
         }
 
@@ -400,22 +398,17 @@ public class Controleur implements Observeur {
      * Pioche x cartes inondation et met à jour les tuiles (inondées/coulées)
      */
     private void faireInnondation() {
-        int nbCarteInondation = gameState.getNbDeCarte();
+        int nbCarteInnondation = gameState.getNbDeCarte();
+        LinkedList<Carte> cartesInnondationPioche = cartesInondation.getPioche();
 
-        for (int j = 0; j < nbCarteInondation; j++) {
-            CarteInondation cIn = (CarteInondation) cartesInondation.piocher();
-
-            if(cIn == null) {
-                System.err.println("Pioche d'inondation vide.");
+        for (int j = 0; j < nbCarteInnondation; j++) {
+            CarteInondation cIn = (CarteInondation) cartesInnondationPioche.poll();
+            if (cIn.getTuile().isInnondee()) {
+                grille.removeTuile(cIn.getTuile());
             } else {
-                if (cIn.getTuile().isInnondee()) {
-                    grille.removeTuile(cIn.getTuile());
-                } else {
-                    cartesInondation.addCarteDefausseDebut(cIn);
-                    cIn.getTuile().setInnondee(true);
-                }
+                cIn.getTuile().setInnondee(true);
             }
-            
+            cartesInondation.addCarteDefausseDebut(cIn);
         }
     }
 
@@ -440,7 +433,6 @@ public class Controleur implements Observeur {
             System.out.println(av.getJoueur() + " sera " + av.getNom());
 
         }
-        //Initialisation du gamestate
 
         gameState = new GameState(m.difficulte);
 
