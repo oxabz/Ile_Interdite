@@ -62,7 +62,7 @@ public final class EDeck extends JPanel {
         this.deckItems = deckItems;
         this.setDoubleBuffered(true);
         // Définition des paramètres propre à l'EDeck
-        this.setLayout(new GridLayout(1, 2, 5, 0));
+        this.setLayout(new GridLayout(1, 2, 10, 0));
         // Création des JPanels
         sideInondation = new JPanel(new GridLayout(2, 1));
         sideItem = new JPanel(new GridLayout(2, 1));
@@ -85,8 +85,10 @@ public final class EDeck extends JPanel {
         // Aménagement des JLabels
         EDeck.getLABEL_ITEM().setHorizontalAlignment(JLabel.CENTER);
         EDeck.getLABEL_ITEM().setVerticalAlignment(JLabel.CENTER);
+        EDeck.getLABEL_ITEM().setFont(EDeck.getLABEL_ITEM().getFont().deriveFont(EDeck.getLABEL_ITEM().getFont().getSize()/3));
         EDeck.getLABEL_INONDATION().setHorizontalAlignment(JLabel.CENTER);
         EDeck.getLABEL_INONDATION().setVerticalAlignment(JLabel.CENTER);
+        EDeck.getLABEL_INONDATION().setFont(EDeck.getLABEL_INONDATION().getFont().deriveFont(EDeck.getLABEL_INONDATION().getFont().getSize()/30));
         this.getItemPiocheNombre().setHorizontalAlignment(JLabel.CENTER);
         this.getItemPiocheNombre().setVerticalAlignment(JLabel.CENTER);
         this.getItemDefausseNombre().setHorizontalAlignment(JLabel.CENTER);

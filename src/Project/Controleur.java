@@ -306,7 +306,7 @@ public class Controleur implements Observeur {
  /*
     Gère la game loop du jeu
      */
-    public void gameLoop() {        
+    public void gameLoop() {
         currentAventurier = 0;
         boolean finDeTour = true;
         Aventurier av = null;
@@ -349,7 +349,7 @@ public class Controleur implements Observeur {
                     finDeTour = true;
                     break;
                 case PRENDRE_TRESOR:
-                    // Si le joueur a peut prendre le trésor alors il a fait une action
+                    // Si le joueur peut prendre le trésor alors il a fait une action
                     if (av.prendreTresor()) {
                         av.utiliserAction();
                     }
@@ -390,6 +390,7 @@ public class Controleur implements Observeur {
                     cartesItem.addCarteDefausseDebut(cIt2);
                 } else if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
+                    Sound.jouer(Utils.Son.getCHEMIN_INONDATION());
                     if (cIt1 instanceof CarteMEau) {
                         av.addCarteItem(cIt2);
                         vue.getDeck().piocherItem(cIt1);
@@ -417,6 +418,7 @@ public class Controleur implements Observeur {
                 //phase d'innondation
                 if (!(cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau)) {
                     faireInnondation();
+                    Sound.jouer(Utils.Son.getCHEMIN_INONDATION());
                 }
                 currentAventurier = (currentAventurier != aventuriers.size() - 1 ? currentAventurier + 1 : 0);
 
@@ -433,7 +435,7 @@ public class Controleur implements Observeur {
         vue.getWindow().dispose();
         if (isVictoire()) {
             son.stopMusiqueJeu();
-            son.stopAmbianceJeu();            
+            son.stopAmbianceJeu();
             new VueVictoire();
         } else {
             son.stopMusiqueJeu();
