@@ -18,10 +18,10 @@ public final class EFormulaire extends JPanel {
 
     /* CONSTANTES */
     private final static JLabel tableauJoueurs[] = {new JLabel("Joueur 1") , new JLabel("Joueur 2") , new JLabel("Joueur 3") , new JLabel("Joueur 4") };
-    private final static String tableauDifficulté [] = {"novice" , "normale" , "élite" , "légendaire" } ;
+    private final static String tableauDifficulté [] = {"Novice" , "Normal" , "Élite" , "Légendaire" } ;
 
     /* ATTRIBUTS */
-    private JTextField tableauNomJoueurs[] = {new JTextField("J1") , new JTextField("J2") ,new JTextField("J3") , new JTextField("J4")} ;
+    private JTextField tableauNomJoueurs[] = {new JTextField("Joueur 1") , new JTextField("Joueur 2") ,new JTextField("Joueur 3") , new JTextField("Joueur 4")} ;
     private JSlider choixNbJoueurs ;
     private JSlider choixDifficulté ;
     private JButton valider ;
@@ -45,9 +45,9 @@ public final class EFormulaire extends JPanel {
         listeFormulaire = new ArrayList<>() ;
         listeFormulaire.add(new JPanel (new GridLayout (2,2))) ;
 
-        listeFormulaire.get(0).add(new JLabel("nombre de Joueurs")) ;
+        listeFormulaire.get(0).add(new JLabel("Nombre de Joueurs")) ;
 
-        listeFormulaire.get(0).add(new JLabel("niveau de difficulté")) ;
+        listeFormulaire.get(0).add(new JLabel("Niveau de difficulté")) ;
 
         choixNbJoueurs = new JSlider(JSlider.HORIZONTAL  , 2 , 4 , 4) ; // création du slider du nombre de joeurs
         choixNbJoueurs.setMajorTickSpacing(1);

@@ -63,7 +63,6 @@ public class Sound {
                     clip.open(inputStream);
 
                     while (!c.isClosed && getEtatAmbianceJeu()) {
-                        System.out.println("Démarrage ambiance");
 
                         clip.start();
                         while (clip.getFramePosition() < clip.getFrameLength() && getEtatAmbianceJeu()) {
@@ -71,7 +70,6 @@ public class Sound {
                         }
                         clip.stop();
                         clip.setFramePosition(0);
-                        System.out.println("Fin ambiance");
                     }
 
                 } catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {

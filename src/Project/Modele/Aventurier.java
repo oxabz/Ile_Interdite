@@ -9,7 +9,6 @@ import Project.util.Utils;
 import Project.util.Vector2;
 import Project.util.Utils.Tresor;
 
-import java.lang.constant.Constable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -52,8 +51,7 @@ public abstract class Aventurier {
     }
 
     /* MÉTHODES */
-
-    public void initialiserTour(){
+    public void initialiserTour() {
         nbAction = 3;
     }
 
@@ -121,32 +119,28 @@ public abstract class Aventurier {
     }
 
     /**
-     * permet de rien faire
+     * Permet de donner une carte d'un joueur à l'autre
      *
-     * @hidden
-     * @since never
-     * @deprecated fuyez
+     * @return true si l'action a réussi
      */
-    @Deprecated
-    public boolean  donnerCarte() {
+    public boolean donnerCarte() {
         Controleur c = Controleur.getControleur();
         Aventurier av;
         do {
             av = c.getSelectedAventurier();
-        }while (av!=null&&!av.getPosition().equals( this.getPosition()));
-        if(av!=null){
+        } while (av != null && !av.getPosition().equals(this.getPosition()));
+        if (av != null) {
             Carte carte;
             do {
                 carte = c.getCarteSelectionne();
                 System.out.println("test");
-            }while (carte != null&&!(carte instanceof CarteTresor));
-            if(carte!=null){
-                this.removeCarteItem( (CarteItem) carte);
-                av.getCarteItems().add((CarteItem) carte) ; // le déclancement de la mettre à la défose est à 6 auto ?
-                if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem)carte) == true) {
-                    return true ;
-                }
-                else {
+            } while (carte != null && !(carte instanceof CarteTresor));
+            if (carte != null) {
+                this.removeCarteItem((CarteItem) carte);
+                av.getCarteItems().add((CarteItem) carte); // le déclancement de la mettre à la défose est à 6 auto ?
+                if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem) carte) == true) {
+                    return true;
+                } else {
                     return false;
                 }
             }
@@ -220,9 +214,9 @@ public abstract class Aventurier {
      * Permet d'utiliser une carte bonus possédée par le joueur
      *
      * @return true si la carte a pu être utilisée
-    */
-    public boolean actionSpeciale () {
-        return false ;
+     */
+    public boolean actionSpeciale() {
+        return false;
     }
 
     /*
@@ -262,18 +256,17 @@ public abstract class Aventurier {
         return pos;
     }
 
-    public void defausserCarteItem(CarteItem carteItem){
+    public void defausserCarteItem(CarteItem carteItem) {
         carteItems.remove(carteItem);
-        Controleur controleur = Controleur.getControleur() ;
-        controleur.getCartesItem().getDefausse().add(carteItem) ;
+        Controleur controleur = Controleur.getControleur();
+        controleur.getCartesItem().getDefausse().add(carteItem);
     }
 
-    public void utiliserAction(){
+    public void utiliserAction() {
         nbAction--;
     }
 
     /* GETTERS & SETTERS */
-
     public Vector2 getPosition() {
         return position;
     }
@@ -291,7 +284,7 @@ public abstract class Aventurier {
 
         carteItems.add(carte);
         if (carteItems.size() > 5) {
-            this.defausserCarteItem ((CarteItem) controleur.getCarteSelectionne(this));
+            this.defausserCarteItem((CarteItem) controleur.getCarteSelectionne(this));
         }
     }
 
