@@ -163,7 +163,7 @@ public class Vue extends Observe {
     public void initialiserJoueurs(ArrayList<Aventurier> joueurs){
         joueursPanel = new JPanel();
         joueursPanel.setLayout(new GridLayout(4,1));
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < joueurs.size(); i++) {
             EJoueur eJoueur = new EJoueur(this,joueurs.get(i));
             this.listeJoueurs.add(eJoueur);
             joueursPanel.add(eJoueur,constraints);
