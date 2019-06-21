@@ -150,6 +150,19 @@ public class FactoryGrille {
             }
         }
 
+
+        for(String nom : TUILES_NAMES) {
+            distribution_tuiles.add(nom);
+        }
+
+        // On met la liste des noms dans un ordre aléatoire
+        Collections.shuffle(distribution_tuiles);
+
+        // On récupère 6 tuiles aléatoires pour les inonder.
+        for(int i = 0; i < 6; i++) {
+            tuiles.get(distribution_tuiles.poll()).setInnondee(true);
+        }
+
         // Sauvegarde de la grille
         derniereGrille = g;
 
