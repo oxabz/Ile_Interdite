@@ -35,7 +35,9 @@ public class VueGameOver extends Observe {
 	/**
 	 * METHODS
 	 */
-	//
+	public void cacher() {
+		this.window.setVisible(false);
+	}
 
 	public static void main(String args[]) {
 		VueGameOver gameOver = new VueGameOver();

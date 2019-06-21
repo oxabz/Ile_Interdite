@@ -62,7 +62,7 @@ public class Sound {
                     AudioInputStream inputStream = AudioSystem.getAudioInputStream(new File(fichier));
                     clip.open(inputStream);
 
-                    while (!c.isClosed && getEtatAmbianceJeu()) {
+                    while (!c.isClosed() && getEtatAmbianceJeu()) {
 
                         clip.start();
                         while (clip.getFramePosition() < clip.getFrameLength() && getEtatAmbianceJeu()) {
@@ -95,7 +95,7 @@ public class Sound {
                     }
                 }
                 int i = 0;
-                while (!c.isClosed && i < clips.size() && getEtatMusiqueJeu()) {
+                while (!c.isClosed() && i < clips.size() && getEtatMusiqueJeu()) {
                     try {
                         clips.get(i).open(ais.get(i));
                     } catch (LineUnavailableException | IOException ex) {

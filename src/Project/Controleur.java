@@ -33,8 +33,10 @@ public class Controleur implements Observeur {
     private final Vue vue;
     private final VueFormulaire vueFormulaire;
     private final Deque<Message> messages = new ArrayDeque<>();
-    public boolean isClosed = false;
+    private boolean isClosed = false;
     private final Sound son = new Sound();
+    private VueVictoire vueVictoire;
+    private VueGameOver vueDefaite;
 
     /*
     SINGLETON THINGY (CONSTRUCTEUR)
@@ -703,7 +705,13 @@ public class Controleur implements Observeur {
 
     @Override
     public void recevoirMessage(Message m) {
-        messages.add(m);
+        if(m.type == MessageType.QUITTER) {
+            System.exit(0);
+        }
+        else if(m.type == MessageType.REJOUER) {
+
+        }
+        else messages.add(m);
     }
 
     /**
@@ -981,4 +989,7 @@ public class Controleur implements Observeur {
         return currentAventurier;
     }
 
+    public boolean isClosed() {
+        return isClosed;
+    }
 }
