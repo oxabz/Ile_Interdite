@@ -143,36 +143,6 @@ public class Controleur implements Observeur {
         }
         return null;
 
-        //Console based I/O deprecated
-        /*
-
-        Scanner scanner = new Scanner(System.in);
-
-        for (Vector2 c :
-                clickables) {
-            System.out.print('{'+Integer.toString(c.x)+','+Integer.toString(c.y)+'}');
-        }
-
-        System.out.print('\n');
-
-
-        while (clickables.size() != 0) {
-            int x, y;
-            System.out.print("x : ");
-            x = scanner.nextInt();
-            System.out.print("y : ");
-            y = scanner.nextInt();
-
-            for (Vector2 c : clickables) {
-                if (c.x == x && c.y == y) {
-                    return new Vector2(x, y);
-                }
-            }
-        }
-
-
-         */
-        //return null;
     }
 
     //
@@ -215,28 +185,7 @@ public class Controleur implements Observeur {
             }
         }
         return act;
-
-        //Console based I/O deprecated
-        /*
-        Scanner s  = new Scanner(System.in);
-        System.out.print("choisissez  une action a faire ((d)se deplacer,(a)assecher, (e)donner carte, (t)prendre tresor, (f)fin de tour, (c)utiliser carte"+(currentAventurier instanceof Navigateur ? "(s)action speciale" : "" ));
-        switch (s.nextLine()){
-            default:
-            case "d":
-                return Utils.Action.SE_DEPLACER;
-            case "a":
-                return Utils.Action.ASSECHER;
-            case "e":
-                return Utils.Action.DON_CARTE;
-            case "t":
-                return Utils.Action.PRENDRE_TRESOR;
-            case "f":
-                return Utils.Action.FIN_TOUR;
-            case "c":
-                return Utils.Action.UTILISER_CARTE;
-            case "s":
-                return Utils.Action.ACTION_SPECIALE;
-        }*/
+        
     }
 
     /**
@@ -352,9 +301,7 @@ public class Controleur implements Observeur {
             /*incrementer le joueur en fin de tour*/
             if(finDeTour) {
                 av = aventuriers.get(currentAventurier);
-                av.initialiserTour();
-                System.out.println("Tour de : " + av.getJoueur());
-                System.out.println("Position du pion : " + av.getPosition().toString());
+                av.initialiserTour();                
                 finDeTour = false;
             }
 

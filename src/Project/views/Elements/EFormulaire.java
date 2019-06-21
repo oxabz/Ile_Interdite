@@ -43,11 +43,16 @@ public final class EFormulaire extends JPanel {
         JPanel formulaire = new JPanel( new GridLayout(5,1)) ;
 
         listeFormulaire = new ArrayList<>() ;
-        listeFormulaire.add(new JPanel (new GridLayout (2,2))) ;
-
-        listeFormulaire.get(0).add(new JLabel("Nombre de Joueurs")) ;
-
-        listeFormulaire.get(0).add(new JLabel("Niveau de difficulté")) ;
+        listeFormulaire.add(new JPanel (new GridLayout (2,2,5,0))) ;
+        
+        JLabel nbJoueurs = new JLabel("Nombre de joueurs");
+        nbJoueurs.setHorizontalAlignment(JLabel.CENTER);
+        nbJoueurs.setVerticalAlignment(JLabel.CENTER);
+        listeFormulaire.get(0).add(nbJoueurs) ;
+        JLabel nivDif = new JLabel("Niveau de difficulté");
+        nbJoueurs.setHorizontalAlignment(JLabel.CENTER);
+        nbJoueurs.setVerticalAlignment(JLabel.CENTER);
+        listeFormulaire.get(0).add(nivDif) ;
 
         choixNbJoueurs = new JSlider(JSlider.HORIZONTAL  , 2 , 4 , 4) ; // création du slider du nombre de joeurs
         choixNbJoueurs.setMajorTickSpacing(1);
@@ -65,7 +70,7 @@ public final class EFormulaire extends JPanel {
             }
         });
 
-        choixDifficulté = new JSlider(JSlider.HORIZONTAL,1, 4, 1); // création du slider de niveau de difficulté
+        choixDifficulté = new JSlider(JSlider.VERTICAL,1, 4, 1); // création du slider de niveau de difficulté
         choixDifficulté.setSnapToTicks(true) ;
         choixDifficulté.setMajorTickSpacing(1);
         choixDifficulté.setPaintTicks(true);

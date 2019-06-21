@@ -14,7 +14,6 @@ import java.util.Collections;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import Project.Modele.Aventurier;
-//import Project.stockage.view.Parameters;
 
 /**
  *
@@ -50,8 +49,8 @@ public class Utils {
         ROUGE("Rouge", new Color(255, 0, 0)),
         VERT("Vert", new Color(0, 195, 0)),
         BLEU("Bleu", new Color(55, 194, 198)),
-        ORANGE("Orange", new Color(255, 148, 0)),
-        VIOLET("Violet", new Color(204, 94, 255)),
+        // ORANGE("Orange", new Color(255, 148, 0)), inutilisé
+        // VIOLET("Violet", new Color(204, 94, 255)), inutilisé
         JAUNE("Jaune", new Color(255, 255, 0)),
         GRIS("Gris", new Color(100, 100, 100)),
         NOIR("Noir", new Color(0, 0, 0));
@@ -90,13 +89,13 @@ public class Utils {
             }
             if (BLEU.name().equals(name)) {
                 return BLEU;
-            }
+            }/*
             if (ORANGE.name().equals(name)) {
                 return ORANGE;
             }
             if (VIOLET.name().equals(name)) {
                 return VIOLET;
-            }
+            }*/
             if (JAUNE.name().equals(name)) {
                 return JAUNE;
             }

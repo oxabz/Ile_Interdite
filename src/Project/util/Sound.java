@@ -21,8 +21,8 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  */
 public class Sound {
     
-    private boolean etatMusiqueJeu = true;
-    private boolean etatAmbianceJeu = true;
+    private volatile boolean  etatMusiqueJeu = true;
+    private volatile boolean  etatAmbianceJeu = true;
 
     /**
      *

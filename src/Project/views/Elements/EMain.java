@@ -51,8 +51,10 @@ public class EMain extends JPanel {
         nombreCarte = new JLabel("");
 
         JPanel panelJoueur = new JPanel();
+        panelJoueur.add(new JLabel("Nom : "));
         panelJoueur.add(nomJoueur);
         panelJoueur.add(nbAction);
+        panelJoueur.add(new JLabel("Cartes : "));
         panelJoueur.add(nombreCarte);
         this.add(panelJoueur);
     }
@@ -67,9 +69,9 @@ public class EMain extends JPanel {
 
     public void setAventurier(Aventurier aventurier) {
         this.aventurier = aventurier;
-        setCartesItems(aventurier.getCarteItems());
+        setCartesItems(aventurier.getCarteItems());        
         nomJoueur.setText(aventurier.getJoueur());
-        nombreCarte.setText(Integer.toString(aventurier.getCarteItems().size()));
+        nombreCarte.setText(Integer.toString(aventurier.getCarteItems().size()) + " / 5");
         carteAventurier.setAv(aventurier);
     }
 

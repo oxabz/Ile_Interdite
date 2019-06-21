@@ -4,15 +4,14 @@ import Project.util.Observe;
 import Project.views.Elements.EFormulaire;
 
 import javax.swing.*;
-import java.awt.*;
 
 public class VueFormulaire extends Observe {
 
-    private JFrame f ;
+    private final JFrame f ;
 
     public VueFormulaire () {
         f = new JFrame("Formulaire") ;
-        f.setSize(500 , 500);
+        f.setSize(600 , 600);
 
         f.add (new EFormulaire (this)) ;
         f.setVisible(true);
