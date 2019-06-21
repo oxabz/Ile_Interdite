@@ -46,12 +46,12 @@ public class Pilote extends Aventurier {
 
     /**
      * Permet de déplacer un aventurier
-     *
+     * @param annulable true si l'action est annulable
      * @return true si le déplacement a été effectuée
      *
      */
     @Override
-    public boolean seDeplacer() {
+    public boolean seDeplacer(boolean annulable) {
         if (deplacementSpecial) {
             Controleur c = Controleur.getControleur();
             ArrayList<Vector2> pos = new ArrayList<>();
@@ -64,7 +64,7 @@ public class Pilote extends Aventurier {
                     }
                 }
             }
-            Vector2 p = c.getPosClic(pos);
+            Vector2 p = c.getPosClic(pos, annulable);
             if (p != null) {
                 boolean b = false;
                 for (Vector2 posNormal
@@ -78,7 +78,7 @@ public class Pilote extends Aventurier {
                 return false;
             }
         } else {
-            return super.seDeplacer();
+            return super.seDeplacer(annulable);
 
         }
     }
