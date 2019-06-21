@@ -18,14 +18,14 @@ import java.util.ArrayList;
  */
 public class EMain extends JPanel {
 
-    private JLabel nomJoueur;
-    private JLabel nbAction;
-    private JLabel nombreCarte;
-    private ECarteAventurier carteAventurier;
-    private ArrayList<JPanel> panels;
+    private final JLabel nomJoueur;
+    private final JLabel nbAction;
+    private final JLabel nombreCarte;
+    private final ECarteAventurier carteAventurier;
+    private final ArrayList<JPanel> panels;
     private ArrayList<CarteItem> cartesItems;
     private Aventurier aventurier;
-    private Vue vue;
+    private final Vue vue;
 
     public EMain(Vue vue) {
         this.vue = vue;
