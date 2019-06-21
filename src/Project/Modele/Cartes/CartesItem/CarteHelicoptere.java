@@ -6,6 +6,8 @@ import Project.Controleur;
 import Project.Modele.Aventurier;
 import Project.Modele.Grille;
 import Project.Modele.Tuile;
+import Project.util.Sound;
+import Project.util.Utils;
 import Project.util.Vector2;
 
 public class CarteHelicoptere extends CarteBonus {
@@ -62,6 +64,7 @@ public class CarteHelicoptere extends CarteBonus {
         // S'il la tuile existe, on s'y téléporte
         if (tuile_pos != null) {
             for (Aventurier aventurier : aventuriers) {
+                Sound.jouer(Utils.Son.getCHEMIN_HELICOPTERE());
                 aventurier.setPosition(tuile_pos);
             }
         }

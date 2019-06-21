@@ -18,6 +18,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controleur implements Observeur {
 
@@ -59,7 +61,7 @@ public class Controleur implements Observeur {
         vue.initialiserJoueurs(aventuriers);
         vue.initialiserVue();
         son.demarrerMusiqueJeu(this);
-        son.jouerBoucle(Project.util.Utils.Son.getCheminSon() + "ambiance/ambient.wav", this);
+        son.jouerBoucle(Project.util.Utils.Son.getCHEMIN_SON() + "ambiance/ambient.wav", this);
         vue.initialiserAdaptativeSize();
         vue.getWindow().addWindowListener(new WindowListener() {
             @Override
@@ -131,7 +133,11 @@ public class Controleur implements Observeur {
             Vector2 pos = new Vector2(0, 0);
             boolean done = false;
             while (!done) {
-                System.out.print("");
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 while (!messages.isEmpty()) {
                     Message m = messages.poll();
                     if (m.type == MessageType.POSITION) {
@@ -344,7 +350,7 @@ public class Controleur implements Observeur {
                     finDeTour = true;
                     break;
                 case PRENDRE_TRESOR:
-                    // Si le joueur a peut prendre le trésor alors il a fait une action
+                    // Si le joueur peut prendre le trésor alors il a fait une action
                     if (av.prendreTresor()) {
                         av.utiliserAction();
                     }
@@ -386,6 +392,7 @@ public class Controleur implements Observeur {
                     cartesItem.addCarteDefausseDebut(cIt2);
                 } else if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
+                    Sound.jouer(Utils.Son.getCHEMIN_INONDATION());
                     if (cIt1 instanceof CarteMEau) {
                         av.addCarteItem(cIt2);
                         vue.getDeck().piocherItem(cIt1);
@@ -413,6 +420,7 @@ public class Controleur implements Observeur {
                 //phase d'innondation
                 if (!(cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau)) {
                     faireInnondation();
+                    Sound.jouer(Utils.Son.getCHEMIN_INONDATION());
                 }
                 currentAventurier = (currentAventurier != aventuriers.size() - 1 ? currentAventurier + 1 : 0);
 
@@ -428,8 +436,12 @@ public class Controleur implements Observeur {
         vue.getWindow().setVisible(false);
         vue.getWindow().dispose();
         if (isVictoire()) {
+            son.stopMusiqueJeu();
+            son.stopAmbianceJeu();
             new VueVictoire();
         } else {
+            son.stopMusiqueJeu();
+            son.stopAmbianceJeu();
             new VueGameOver();
         }
 
@@ -918,7 +930,11 @@ public class Controleur implements Observeur {
         Message message = null;
         boolean done = false;
         while (!done) {
-            System.out.print("");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
                 if (m.type == MessageType.VALIDER_FOMULAIRE) {
