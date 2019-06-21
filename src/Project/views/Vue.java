@@ -148,7 +148,10 @@ public class Vue extends Observe {
     public void initialiserGrille(String[][] names, boolean[][] inondee, boolean[][] coulee) {
         grille = new EGrille(names[0].length, names.length, names, this);
 
-        grilleMainPanel.add(grille, BorderLayout.CENTER);
+        JPanel grillePanel = new JPanel();
+        grillePanel.setLayout(new GridBagLayout());
+        grillePanel.add(grille);
+        grilleMainPanel.add(grillePanel,BorderLayout.CENTER);
         grille.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
 
 
@@ -177,12 +180,14 @@ public class Vue extends Observe {
                 null,
                 deck);
         
-        new AdaptativeDimension(window,
+        new AdaptativeDimension(
+                window,
                 null,
                 ()-> (int)(CARD_SIZE_RATIO*(double) main.getWidth()*0.125),
                 main);
         
-        new AdaptativeDimension(window,
+        new AdaptativeDimension(
+                window,
                 ()-> (int)(window.getWidth()*0.5< window.getHeight()*0.85 ? window.getWidth()*0.5: window.getHeight()*0.85),
                 ()->(int)grille.getSize().width,
                 grille);
