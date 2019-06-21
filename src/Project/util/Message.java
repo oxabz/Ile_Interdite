@@ -21,4 +21,5 @@ public class Message {
     public int difficulte ;
     public int carte;
     public int aventurier;
+    public boolean random;
 }

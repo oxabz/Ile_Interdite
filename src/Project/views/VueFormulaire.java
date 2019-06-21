@@ -11,7 +11,7 @@ public class VueFormulaire extends Observe {
 
     public VueFormulaire () {
         f = new JFrame("Formulaire") ;
-        f.setSize(600 , 600);
+        f.setSize(700 , 600);
 
         f.add (new EFormulaire (this)) ;
         f.setVisible(true);

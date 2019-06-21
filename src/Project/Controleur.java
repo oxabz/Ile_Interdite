@@ -44,11 +44,7 @@ public class Controleur implements Observeur {
     SINGLETON THINGY (CONSTRUCTEUR)
      */
     private Controleur() {
-        grille = FactoryGrille.getGrilleTest();
         aventuriers = new ArrayList<>();
-
-        cartesItem = FactoryDeck.getDeckItems();
-        cartesInondation = FactoryDeck.getDeckInondations();
 
         vueFormulaire = new VueFormulaire();
         vueFormulaire.setObserveur(this);
@@ -170,7 +166,7 @@ public class Controleur implements Observeur {
      * @return Retourne une action sélectionée par l'aventurier d'index
      * aventurierIndex
      */
-    Utils.Action getSelectedAction(int aventurierIndex) {
+    public Utils.Action getSelectedAction(int aventurierIndex) {
 
         vue.setMode(Vue.IhmMode.ACTION);
 
@@ -577,10 +573,23 @@ public class Controleur implements Observeur {
      * l'utilisateur
      */
     public void initialiserPartie() {
+        Message m = this.recevoirFormulaire();
+        
+        //Initialisation du gamestate
+
+        gameState = new GameState(m.difficulte);
+
+        // Initialisation de la grille
+
+        if(m.random) grille = FactoryGrille.genererGrilleAleatoire();
+        else grille = FactoryGrille.getGrilleTest();
+
+        // Initialisation des decks
+        cartesItem = FactoryDeck.getDeckItems();
+        cartesInondation = FactoryDeck.getDeckInondations();
 
         //Ajout des joueurs
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
-        Message m = this.recevoirFormulaire();
 
         for (int i = 0; i < m.nbJoueurs; i++) {
             //Initialiser aventurier
@@ -592,10 +601,6 @@ public class Controleur implements Observeur {
             av.setJoueur(nomJ);
 
         }
-        //Initialisation du gamestate
-
-        gameState = new GameState(m.difficulte);
-
     }
 
     /* Méthodes liées aux conditions de défaite */

@@ -40,19 +40,32 @@ public final class EFormulaire extends JPanel {
         this.observe = observe;
 
         this.setLayout(new GridLayout(1,2, 5 , 0)) ;
-        JPanel formulaire = new JPanel( new GridLayout(5,1)) ;
+        JPanel formulaire = new JPanel( new GridLayout(6,1)) ;
 
         listeFormulaire = new ArrayList<>() ;
-        listeFormulaire.add(new JPanel (new GridLayout (2,2,5,0))) ;
+        listeFormulaire.add(new JPanel (new GridBagLayout ())) ;
+
+        GridBagConstraints contrainte = new GridBagConstraints();
+
+        contrainte.fill = GridBagConstraints.BOTH;
+        contrainte.gridwidth = 1;
+        contrainte.gridheight = 1;
+        contrainte.gridx = 1;
+        contrainte.gridy = 1;
+        contrainte.ipadx = 20;
+        contrainte.ipady = 10;
         
         JLabel nbJoueurs = new JLabel("Nombre de joueurs");
         nbJoueurs.setHorizontalAlignment(JLabel.CENTER);
         nbJoueurs.setVerticalAlignment(JLabel.CENTER);
-        listeFormulaire.get(0).add(nbJoueurs) ;
+        listeFormulaire.get(0).add(nbJoueurs, contrainte) ;
+
         JLabel nivDif = new JLabel("Niveau de difficulté");
+        contrainte.gridx = 2;
+        contrainte.gridy = 1;
         nbJoueurs.setHorizontalAlignment(JLabel.CENTER);
         nbJoueurs.setVerticalAlignment(JLabel.CENTER);
-        listeFormulaire.get(0).add(nivDif) ;
+        listeFormulaire.get(0).add(nivDif, contrainte) ;
 
         choixNbJoueurs = new JSlider(JSlider.HORIZONTAL  , 2 , 4 , 4) ; // création du slider du nombre de joeurs
         choixNbJoueurs.setMajorTickSpacing(1);
@@ -60,8 +73,10 @@ public final class EFormulaire extends JPanel {
         choixNbJoueurs.setPaintTicks(true);
         choixNbJoueurs.setPaintLabels(true);
         choixNbJoueurs.setSnapToTicks(true) ;
+        contrainte.gridx = 1;
+        contrainte.gridy = 2;
 
-        listeFormulaire.get(0).add(choixNbJoueurs);
+        listeFormulaire.get(0).add(choixNbJoueurs, contrainte);
 
         choixNbJoueurs.addChangeListener (new ChangeListener() {
             @Override
@@ -80,11 +95,15 @@ public final class EFormulaire extends JPanel {
         for (int i = 0 ; i<4 ; i++){
             labelTable.put(  (Integer) i+1 , new JLabel((tableauDifficulté[i])) );;
         }
-        listeFormulaire.get(0).add(choixDifficulté);
+        
+        // listeFormulaire.get(0).add(choixDifficulté, contrainte);
         choixDifficulté.setLabelTable( labelTable );
 
+        contrainte.gridx = 2;
+        contrainte.gridy = 2;
+
         choixDifficulté.setPaintLabels(true);
-        listeFormulaire.get(0).add(choixDifficulté);
+        listeFormulaire.get(0).add(choixDifficulté, contrainte);
 
         choixDifficulté.addChangeListener (new ChangeListener() { // changement de l'affichage si niveau de difficulté changer
             @Override
@@ -93,7 +112,14 @@ public final class EFormulaire extends JPanel {
             }
         });
 
+        JPanel panelRandom = new JPanel();
+        JCheckBox choixRandom = new JCheckBox("Génération aléatoire");
 
+        contrainte.gridx = 1;
+        contrainte.gridy = 3;
+        contrainte.gridwidth = 2;
+
+        listeFormulaire.get(0).add(choixRandom, contrainte);
 
         for (int i = 0 ; i<4 ; i++){    // création de tout les formulaires pour les joueurs
             JPanel panel = new JPanel(new GridLayout(2,1)) ;
@@ -126,11 +152,13 @@ public final class EFormulaire extends JPanel {
                 m.nomDesJoueurs = noms;
                 m.nbJoueurs = choixNbJoueurs.getValue() ;
                 m.difficulte = choixDifficulté.getValue() ;
+                m.random = choixRandom.isSelected();
                 observe.notifierObserver(m);
 
                 ((VueFormulaire)observe).getFrame().dispose();
             }
         }) ;
+        
         bouttons.add(valider , BorderLayout.SOUTH) ;
         this.add(bouttons) ;
     }
