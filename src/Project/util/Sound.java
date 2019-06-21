@@ -20,9 +20,9 @@ import javax.sound.sampled.UnsupportedAudioFileException;
  * @author seiglebq
  */
 public class Sound {
-    
-    private volatile boolean  etatMusiqueJeu = true;
-    private volatile boolean  etatAmbianceJeu = true;
+
+    private volatile boolean etatMusiqueJeu = true;
+    private volatile boolean etatAmbianceJeu = true;
 
     /**
      *
@@ -77,7 +77,7 @@ public class Sound {
                 }
             }
         }).start();
-    } 
+    }
 
     public synchronized void demarrerMusiqueJeu(Controleur c) {
 
@@ -89,7 +89,7 @@ public class Sound {
                 for (int i = 1; i <= 4; i++) {
                     try {
                         clips.add(AudioSystem.getClip());
-                        ais.add(AudioSystem.getAudioInputStream(new File(Utils.Son.getCheminSon() + "musique/musiqueJeu" + i + ".wav")));
+                        ais.add(AudioSystem.getAudioInputStream(new File(Utils.Son.getCHEMIN_SON() + "musique/musiqueJeu" + i + ".wav")));
                     } catch (LineUnavailableException | IOException | UnsupportedAudioFileException ex) {
                         System.err.print("Erreur son : " + ex.getMessage() + " pour " + i);
                     }
@@ -115,28 +115,29 @@ public class Sound {
 
         }).start();
     }
-    
+
     public void stopMusiqueJeu() {
         this.setEtatMusiqueJeu(false);
+    }
+
+    public void stopAmbianceJeu() {
+        this.setEtatAmbianceJeu(false);
     }
 
     private void setEtatMusiqueJeu(boolean etatMusiqueJeu) {
         this.etatMusiqueJeu = etatMusiqueJeu;
     }
-    
+
     private boolean getEtatMusiqueJeu() {
         return etatMusiqueJeu;
     }
 
-    public boolean getEtatAmbianceJeu() {
+    private boolean getEtatAmbianceJeu() {
         return etatAmbianceJeu;
     }
 
-    public void setEtatAmbianceJeu(boolean etatAmbianceJeu) {
+    private void setEtatAmbianceJeu(boolean etatAmbianceJeu) {
         this.etatAmbianceJeu = etatAmbianceJeu;
     }
-    
-    
-    
-    
+
 }

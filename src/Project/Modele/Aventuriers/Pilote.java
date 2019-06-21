@@ -4,6 +4,7 @@ import Project.Controleur;
 import Project.Modele.Aventurier;
 import Project.Modele.Grille;
 import Project.Modele.Tuile;
+import Project.util.Sound;
 import Project.util.Utils;
 import Project.util.Vector2;
 
@@ -37,7 +38,6 @@ public class Pilote extends Aventurier {
     }
 
     /* MÉTHODES */
-
     @Override
     public void initialiserTour() {
         super.initialiserTour();
@@ -46,6 +46,7 @@ public class Pilote extends Aventurier {
 
     /**
      * Permet de déplacer un aventurier
+     *
      * @param annulable true si l'action est annulable
      * @return true si le déplacement a été effectuée
      *
@@ -73,6 +74,7 @@ public class Pilote extends Aventurier {
                 }
                 position = p;
                 deplacementSpecial = b;
+                Sound.jouer(Utils.Son.getCHEMIN_HELICOPTERE());
                 return true;
             } else {
                 return false;

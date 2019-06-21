@@ -19,6 +19,8 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Controleur implements Observeur {
 
@@ -58,7 +60,7 @@ public class Controleur implements Observeur {
         vue.initialiserJoueurs(aventuriers);
         vue.initialiserVue();
         son.demarrerMusiqueJeu(this);
-        son.jouerBoucle(Project.util.Utils.Son.getCheminSon() + "ambiance/ambient.wav", this);
+        son.jouerBoucle(Project.util.Utils.Son.getCHEMIN_SON() + "ambiance/ambient.wav", this);
         vue.initialiserAdaptativeSize();
         vue.getWindow().addWindowListener(new WindowListener() {
             @Override
@@ -130,7 +132,11 @@ public class Controleur implements Observeur {
             Vector2 pos = new Vector2(0, 0);
             boolean done = false;
             while (!done) {
-                System.out.print("");
+                try {
+                    Thread.sleep(10);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 while (!messages.isEmpty()) {
                     Message m = messages.poll();
                     if (m.type == MessageType.POSITION) {
@@ -300,7 +306,7 @@ public class Controleur implements Observeur {
  /*
     Gère la game loop du jeu
      */
-    public void gameLoop() {
+    public void gameLoop() {        
         currentAventurier = 0;
         boolean finDeTour = true;
         Aventurier av = null;
@@ -426,8 +432,12 @@ public class Controleur implements Observeur {
         vue.getWindow().setVisible(false);
         vue.getWindow().dispose();
         if (isVictoire()) {
+            son.stopMusiqueJeu();
+            son.stopAmbianceJeu();            
             new VueVictoire();
         } else {
+            son.stopMusiqueJeu();
+            son.stopAmbianceJeu();
             new VueGameOver();
         }
 
@@ -910,7 +920,11 @@ public class Controleur implements Observeur {
         Message message = null;
         boolean done = false;
         while (!done) {
-            System.out.print("");
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Controleur.class.getName()).log(Level.SEVERE, null, ex);
+            }
             while (!messages.isEmpty()) {
                 Message m = messages.poll();
                 if (m.type == MessageType.VALIDER_FOMULAIRE) {

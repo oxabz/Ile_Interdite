@@ -31,7 +31,7 @@ public final class EDeck extends JPanel {
     private final static JLabel LABEL_ITEM = new JLabel("Items");
     private final static JLabel LABEL_INONDATION = new JLabel("Inondation");
     private final static int NOMBRE_FRAMES_ANIMATION = 24;
-    private final static int DELAI_ANIMATION = 1;
+    private final static int DELAI_ANIMATION = 500;
     /* ATTRIBUTS */
     private final Deck deckInondation;
     private final Deck deckItems;
@@ -185,30 +185,6 @@ public final class EDeck extends JPanel {
     }
 
     /**
-     *
-     * @param g
-     * @param image l'image à animer
-     * @param pointDepart le point en haut à gauche du début de l'animation
-     * @param pointArrive le point en haut à gauche de la fin de l'animation
-     * @param posX quantité de pixel en X pour déplacer l'image
-     * @param posY quantité de pixel en Y pour déplacer l'image
-     */
-    public void paintAnimation(Graphics g, BufferedImage image, Point pointDepart, Point pointArrive, double posX, double posY) {
-        try {
-            g.drawImage(image, (int) (pointDepart.getX()), (int) (posY + pointDepart.getY()), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-        try {
-            TimeUnit.MILLISECONDS.sleep(50);
-        } catch (InterruptedException ex) {
-            Thread.currentThread().interrupt();
-            throw new RuntimeException(ex);
-        }
-
-    }
-
-    /**
      * Animation qui retourne la carte, du dos vers la face et joue un son en
      * même temps
      *
@@ -251,7 +227,7 @@ public final class EDeck extends JPanel {
         try {
             this.retournerCartePioche(carte);
             this.repaint();
-            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+            TimeUnit.MILLISECONDS.sleep(DELAI_ANIMATION);
             this.setImageItemPioche(dosItem);
             if (carte instanceof CarteMEau) {
                 String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getImage()) + IMAGE_EXTENSION;
@@ -263,7 +239,7 @@ public final class EDeck extends JPanel {
                 }
             }
             repaint();
-            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+            TimeUnit.MILLISECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(ex);
@@ -280,7 +256,7 @@ public final class EDeck extends JPanel {
         try {
             this.retournerCarteInondation(carte);
             this.repaint();
-            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+            TimeUnit.MILLISECONDS.sleep(DELAI_ANIMATION);
             this.setImageInondationPioche(dosInondation);
             String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getNom()) + IMAGE_EXTENSION;
             try {
@@ -289,7 +265,7 @@ public final class EDeck extends JPanel {
                 System.err.println("Project.views.Elements.EDeck.piocherInondation()");
                 System.err.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
             }
-            TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
+            TimeUnit.MILLISECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(ex);

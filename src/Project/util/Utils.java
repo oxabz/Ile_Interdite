@@ -107,27 +107,6 @@ public class Utils {
         }
     }
 
-    public static ArrayList<Aventurier> melangerAventuriers(ArrayList<Aventurier> arrayList) {
-        if (Parameters.ALEAS) {
-            Collections.shuffle(arrayList);
-        }
-        return arrayList;
-    }
-
-    /**
-     * Permet de poser une question à laquelle l'utilisateur répond par oui ou
-     * non
-     *
-     * @param question texte à afficher
-     * @return true si l'utilisateur répond oui, false sinon
-     */
-    public static Boolean poserQuestion(String question) {
-        System.out.println("Divers.poserQuestion(" + question + ")");
-        int reponse = JOptionPane.showConfirmDialog(null, question, "", JOptionPane.YES_NO_OPTION);
-        System.out.println("\tréponse : " + (reponse == JOptionPane.YES_OPTION ? "Oui" : "Non"));
-        return reponse == JOptionPane.YES_OPTION;
-    }
-
     /**
      * Permet d'afficher un message d'information avec un bouton OK
      *
@@ -179,9 +158,16 @@ public class Utils {
     public static class Son {
 
         private final static String CHEMIN_SON = "src/sons/";
+        private final static String CHEMIN_HELICOPTERE = "src/sons/effets/helicoptere.wav";
 
-        public static String getCheminSon() {
+        public static String getCHEMIN_SON() {
             return CHEMIN_SON;
         }
+
+        public static String getCHEMIN_HELICOPTERE() {
+            return CHEMIN_HELICOPTERE;
+        }
+        
+        
     }
 }
