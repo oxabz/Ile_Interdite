@@ -166,7 +166,7 @@ public class EInfo extends JPanel  {
 		
 		label_tuiles_restantes.setText("Tuiles restantes : " + tuiles_restantes + "%");
 		
-		label_alerte.setText(message_alerte);
+		label_alerte.setText("<HTML><p>"+message_alerte+"</p></HTML>");
 		// Si le message est en majuscule, alors on affiche le texte en rouge
 		if(message_alerte.equals(message_alerte.toUpperCase())) {
 			label_alerte.setForeground(Color.RED);

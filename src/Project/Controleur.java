@@ -810,10 +810,10 @@ public class Controleur implements Observeur {
                         msg = "1 TUILE TRESOR " + tresor.toString();
                     } // Pour la dernière itération, on ajoute un & avant le dernier trésor et on finit la string
                     else if (index == nb_tresors) {
-                        msg += " & " + tresor.toString();
+                        msg += " & <br>" + tresor.toString();
                     } // Sinon, on sépare par des virgules
                     else {
-                        msg += ", " + tresor.toString();
+                        msg += ", <br>" + tresor.toString();
                     }
                 }
             }
