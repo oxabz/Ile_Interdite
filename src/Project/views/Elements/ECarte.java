@@ -19,9 +19,9 @@ public class ECarte extends JPanel {
     private static final String IMAGE_PREFIX = "src/images/cartes/";
     private static final String IMAGE_EXTENTION = ".png";
 
-    Vue vue;
-    BufferedImage image;
-    Carte carte;
+    private Vue vue;
+    private BufferedImage image;
+    private int carteId;
 
     public ECarte(Vue vue) {
         this.vue = vue;
@@ -35,9 +35,9 @@ public class ECarte extends JPanel {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 ECarte ths = (ECarte) mouseEvent.getComponent();
-                if (ths.isEnabled()){
+                if (ths.isEnabled()&&carteId!=0){
                     Message m = new Message(MessageType.CARTE);
-                    m.carte = ths.carte;
+                    m.carte = ths.carteId;
                     ths.vue.notifierObserver(m);
                 }
             }
@@ -70,12 +70,8 @@ public class ECarte extends JPanel {
         g.drawImage(image,0,0,this.getWidth(),this.getHeight(),null);
     }
 
-    public Carte getCarte() {
-        return carte;
-    }
-
     public void setCarte(Carte carte){
-        this.carte=carte;
+        carteId = (carte!=null?carte.getId():0);
         String name = (carte!=null ? carte.getImage() : "");
         name = name.replaceAll("\\s+","").replaceAll("\'","").replaceAll("Carte","").toLowerCase();
         try {

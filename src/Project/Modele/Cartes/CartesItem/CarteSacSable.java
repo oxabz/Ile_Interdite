@@ -49,7 +49,7 @@ public class CarteSacSable extends CarteBonus {
                 // On récupère la tuile
                 Tuile t = grille.getTuile(i, j);
                 // On vérifie qu'elle existe et on ajoute la position au vecteur
-                if (t != null) {
+                if (t != null && t.isInnondee()) {
                     pos.add(new Vector2(i, j));
                 }
             }

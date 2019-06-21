@@ -23,8 +23,6 @@ public class EMain extends JPanel {
     private final JLabel nombreCarte;
     private final ECarteAventurier carteAventurier;
     private final ArrayList<JPanel> panels;
-    private ArrayList<CarteItem> cartesItems;
-    private Aventurier aventurier;
     private final Vue vue;
 
     public EMain(Vue vue) {
@@ -33,7 +31,6 @@ public class EMain extends JPanel {
         for (int i = 0; i < 6; i++) {
             panels.add(new ECarte(vue));
         }
-        cartesItems = new ArrayList<>();
 
         this.setLayout(new GridLayout(1, 8));
 
@@ -51,16 +48,13 @@ public class EMain extends JPanel {
         nombreCarte = new JLabel("");
 
         JPanel panelJoueur = new JPanel();
-        panelJoueur.add(new JLabel("Nom : "));
         panelJoueur.add(nomJoueur);
         panelJoueur.add(nbAction);
-        panelJoueur.add(new JLabel("Cartes : "));
         panelJoueur.add(nombreCarte);
         this.add(panelJoueur);
     }
 
     public void setCartesItems(ArrayList<CarteItem> cartesItems) {
-        this.cartesItems = cartesItems;
         for (int i = 0; i < 6; i++) {
             ((ECarte) panels.get(i)).setCarte((i < cartesItems.size() ? cartesItems.get(i) : null));
 
@@ -68,8 +62,7 @@ public class EMain extends JPanel {
     }
 
     public void setAventurier(Aventurier aventurier) {
-        this.aventurier = aventurier;
-        setCartesItems(aventurier.getCarteItems());        
+        setCartesItems(aventurier.getCarteItems());
         nomJoueur.setText(aventurier.getJoueur());
         nombreCarte.setText(Integer.toString(aventurier.getCarteItems().size()) + " / 5");
         carteAventurier.setAv(aventurier);
