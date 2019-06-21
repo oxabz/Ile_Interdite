@@ -57,7 +57,7 @@ public class CarteHelicoptere extends CarteBonus {
         }
 
         // On récupère quelle position a été cliqué en donnant le vecteur de positions
-        Vector2 tuile_pos = c.getPosClic(pos);
+        Vector2 tuile_pos = c.getPosClic(pos, true);
 
         // S'il la tuile existe, on s'y téléporte
         if (tuile_pos != null) {

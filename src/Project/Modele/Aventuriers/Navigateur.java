@@ -62,7 +62,7 @@ public class Navigateur extends Aventurier {
                     iterator.remove();
                 }
             }
-            Vector2 p1 = controleur.getPosClic(pos);
+            Vector2 p1 = controleur.getPosClic(pos, true);
             if (p1 == null){
                 return false ;
             }
@@ -81,7 +81,7 @@ public class Navigateur extends Aventurier {
                     iterator.remove();
                 }
             }
-            Vector2 p2 = controleur.getPosClic(pos);
+            Vector2 p2 = controleur.getPosClic(pos, true);
             if (p2 != null) {
                 av.setPosition(p2);
                 return true ;
