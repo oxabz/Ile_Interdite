@@ -39,10 +39,10 @@ public class Plongeur extends Aventurier {
     @Override
     /**
      * Permet de déplacer le plongeur
-     *
+     * @param annulable true si on peut annuler l'action
      * @return true quand le déplacement a été effectuée
      */
-    public boolean seDeplacer() {
+    public boolean seDeplacer(boolean annulable) {
 
         // Déclaration
         Controleur c = Controleur.getControleur();
@@ -63,7 +63,7 @@ public class Plongeur extends Aventurier {
                     iterator.remove();
                 }
             }
-            Vector2 positionSelected = c.getPosClic(pos);
+            Vector2 positionSelected = c.getPosClic(pos, annulable);
             if(positionSelected != null) {
                 fini = (positionSelected.x == position.x && positionSelected.y == position.y) && grille.getTuile(position) != null;
                 position = positionSelected;

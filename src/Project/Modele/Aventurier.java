@@ -57,10 +57,10 @@ public abstract class Aventurier {
 
     /**
      * Déplace le joueur
-     *
+     * @param annulable true si l'action est annulable
      * @return true si l'action a été effectuée
      */
-    public boolean seDeplacer() {
+    public boolean seDeplacer(boolean annulable) {
 
         //Declaration
         Controleur c = Controleur.getControleur();
@@ -74,7 +74,7 @@ public abstract class Aventurier {
                 iterator.remove();
             }
         }
-        Vector2 p = c.getPosClic(pos);
+        Vector2 p = c.getPosClic(pos, annulable);
         if (p != null) {
             position = p;
             return true;
@@ -108,7 +108,7 @@ public abstract class Aventurier {
                 pos.add(position.add(0, i));
             }
         }
-        Vector2 aAssecher = c.getPosClic(pos);
+        Vector2 aAssecher = c.getPosClic(pos, true);
         if (aAssecher != null) {
 
             g.getTuile(aAssecher).setInnondee(false);
