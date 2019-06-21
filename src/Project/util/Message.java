@@ -19,6 +19,6 @@ public class Message {
     public ArrayList<String> nomDesJoueurs;
     public int nbJoueurs ;
     public int difficulte ;
-    public Carte carte;
-    public Aventurier av;
+    public int carte;
+    public int aventurier;
 }

@@ -1,7 +1,6 @@
 package Project;
 
 import Project.Modele.*;
-import Project.Modele.Aventuriers.Navigateur;
 import Project.Modele.Cartes.CarteInondation;
 import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteHelicoptere;
@@ -216,7 +215,7 @@ public class Controleur implements Observeur {
                 Message m = messages.poll();
                 if (m.type == MessageType.AVENTURIER) {
                     done = true;
-                    av = m.av;
+                    av = (Aventurier)IdentifiedElement.getIdentifiedElement(m.aventurier);
                 }
                 if (m.type == MessageType.ANNULER) {
                     done = true;
@@ -249,7 +248,7 @@ public class Controleur implements Observeur {
                 Message m = messages.poll();
                 if (m.type == MessageType.CARTE) {
                     done = true;
-                    c = m.carte;
+                    c = (Carte) IdentifiedElement.getIdentifiedElement(m.carte);
                 }
                 if (m.type == MessageType.ANNULER) {
                     done = true;
@@ -285,7 +284,7 @@ public class Controleur implements Observeur {
                 Message m = messages.poll();
                 if (m.type == MessageType.CARTE) {
                     done = true;
-                    c = m.carte;
+                    c = (Carte)IdentifiedElement.getIdentifiedElement(m.carte);
                 }
             }
         }
@@ -360,6 +359,7 @@ public class Controleur implements Observeur {
             }
             vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
             vue.getGrille().updatePion(getPosPion());
+            vue.updateJoueurs();
 
             if (finDeTour) {
 

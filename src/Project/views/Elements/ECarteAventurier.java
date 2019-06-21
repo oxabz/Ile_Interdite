@@ -14,7 +14,7 @@ public class ECarteAventurier extends JPanel {
     private static final String IMAGE_PREFIX = "src/images/personnages/";
     private static final String IMAGE_EXTENTION = ".png";
 
-    private Aventurier av;
+    private String nomAventurier;
 
     public ECarteAventurier() {
 
@@ -24,9 +24,9 @@ public class ECarteAventurier extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
         BufferedImage image = null;
-        if(av != null){
+        if(nomAventurier != null){
             try {
-                image = ImageIO.read(new File(IMAGE_PREFIX + av.getNom().toLowerCase() + IMAGE_EXTENTION));
+                image = ImageIO.read(new File(IMAGE_PREFIX + nomAventurier.toLowerCase() + IMAGE_EXTENTION));
             } catch (IOException e) {
                 System.out.println("Erreur chargement carte aventurier");
             }
@@ -35,7 +35,7 @@ public class ECarteAventurier extends JPanel {
     }
 
     public void setAv(Aventurier av) {
-        this.av = av;
+        this.nomAventurier = av.getNom();
         repaint();
     }
 }

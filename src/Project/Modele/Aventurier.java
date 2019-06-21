@@ -5,6 +5,7 @@ import Project.Modele.Cartes.CarteItem;
 import Project.Modele.Cartes.CartesItem.CarteBonus;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Tuiles.TuileTresor;
+import Project.util.IdentifiedElement;
 import Project.util.Utils;
 import Project.util.Vector2;
 import Project.util.Utils.Tresor;
@@ -16,7 +17,7 @@ import java.util.Iterator;
  *
  * @author IUT2-Dept Info
  */
-public abstract class Aventurier {
+public abstract class Aventurier extends IdentifiedElement {
 
 
     /* CONSTANT */

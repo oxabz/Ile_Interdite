@@ -1,6 +1,8 @@
 package Project.Modele;
 
-public abstract class Carte {
+import Project.util.IdentifiedElement;
+
+public abstract class Carte extends IdentifiedElement {
 
     /* ATTRIBUTS */
     private String nom;
