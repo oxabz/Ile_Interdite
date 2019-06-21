@@ -66,11 +66,11 @@ public class EGameOver extends JPanel {
         // création du label de la description de la défaite
         // Si l'héliport a coulé
         if(c.isHeliportCoule()) {
-            description.setText("<html><p style=\"text-align:justify;\"> L'héliport étant coulé, il n'est plus possible de s'enfuire. </p></html>");
+            description.setText("<html><p style=\"text-align:justify;\"> L'héliport étant coulé, il n'est plus possible de s'enfuir. </p></html>");
         }
         // Si une des tuiles trésors a coulé alors que le trésor n'a pas été récupéré
         else if(c.isTuilesTresorCoince()) {
-            description.setText("<html><p style=\"text-align:justify;\"> Les trésors étant irrécupérables, il n'est plus possible de s'enfuire. </p></html>");
+            description.setText("<html><p style=\"text-align:justify;\"> Les trésors étant irrécupérables, il n'est plus possible de s'enfuir. </p></html>");
         } 
         // Si un ou plusieurs joueurs ont coulés
         else if(c.isJoueursCoince()) {
@@ -78,7 +78,7 @@ public class EGameOver extends JPanel {
         }
         // Si le niveau d'eau a atteint le dernier pallier
         else if(c.isTeteDeMort()) {
-            description.setText("<html><p style=\"text-align:justify;\"> Le niveau d'eau a été le seuil mortel, vous avez donc perdu. </p></html>");
+            description.setText("<html><p style=\"text-align:justify;\"> Le niveau d'eau a atteint le seuil mortel, vous avez donc perdu. </p></html>");
         }
         // Sinon on affiche un message par défaut
         else {
