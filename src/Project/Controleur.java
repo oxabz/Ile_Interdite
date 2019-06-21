@@ -199,6 +199,7 @@ public class Controleur implements Observeur {
         }
 
         vue.getActions().setEnabled(true, actions);
+        vue.getActions().setEnableAnnuler(false);
 
         Utils.Action act = null;
         boolean done = false;
