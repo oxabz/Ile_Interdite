@@ -56,7 +56,7 @@ public class CarteSacSable extends CarteBonus {
         }
 
         // On récupère quelle position a été cliqué en donnant le vecteur de positions
-        Vector2 aAssecher = c.getPosClic(pos);
+        Vector2 aAssecher = c.getPosClic(pos, true);
 
         // S'il la tuile existe, on l'asseche
         if (aAssecher != null) {
