@@ -1,16 +1,9 @@
 package Project.views;
 
-import Project.Controleur;
 import Project.Modele.Aventurier;
-import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Deck;
-import Project.Modele.Grille;
 import Project.util.AdaptativeDimension;
 import Project.util.Observe;
-import Project.util.Utils;
-import Project.util.Vector2;
-import Project.views.Elements.*;
-
 import java.awt.*;
 import Project.views.Elements.EActions;
 import Project.views.Elements.EDeck;
@@ -20,17 +13,17 @@ import Project.views.Elements.EJoueur;
 import Project.views.Elements.EMain;
 import Project.views.Elements.ENiveauDEau;
 import java.awt.Color;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.util.ArrayList;
-import java.util.HashMap;
 import javax.swing.*;
-import javax.swing.border.LineBorder;
 
 public class Vue extends Observe {
 
-    private final static int WINDOW_SIZE_X = 1520;
-    private final static int WINDOW_SIZE_Y = 920;
+    private final static int WINDOW_SIZE_X = 1680;
+    private final static int WINDOW_SIZE_Y = 1000;
     private static final double CARD_SIZE_RATIO = 1.39191919192;
-    private static final double DECK_SIZE_RATIO = 1.44191919192;
+    private static final double DECK_SIZE_RATIO = 1.2;
     private JFrame window;
     private GridBagConstraints constraints;
     private GridBagConstraints constraintsbis;
@@ -76,7 +69,6 @@ public class Vue extends Observe {
         constraints.gridx = 0;
         constraints.gridy = 1;
         bottomRightPanel.add(deck, constraints);
-        deck.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
@@ -84,7 +76,6 @@ public class Vue extends Observe {
         constraints.gridx = 0;
         constraints.gridy = 0;
         bottomRightPanel.add(actions, constraints);
-        actions.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
 
         constraints.fill = GridBagConstraints.NONE;
         constraints.weightx = 0.5;
@@ -93,10 +84,27 @@ public class Vue extends Observe {
         constraints.gridx = 1;
         constraints.gridy = 1;
         bottomRightPanel.add(informations, constraints);
-        informations.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
 
         grilleMainPanel.add(main, BorderLayout.SOUTH);
-        main.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
+        
+        window.addComponentListener(new ComponentListener() {
+            @Override
+            public void componentResized(ComponentEvent arg0) {
+                System.out.println(window.getWidth() + " , " + window.getHeight());                
+            }
+
+            @Override
+            public void componentMoved(ComponentEvent arg0) {
+            }
+
+            @Override
+            public void componentShown(ComponentEvent arg0) {
+            }
+
+            @Override
+            public void componentHidden(ComponentEvent arg0) {
+            }
+        });
 
     }
 
@@ -124,7 +132,6 @@ public class Vue extends Observe {
         constraints.gridy = 0;
         constraints.fill = GridBagConstraints.BOTH;
         bottomRightPanel.add(niveauEau, constraints);
-        niveauEau.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 
     }
 
@@ -135,7 +142,6 @@ public class Vue extends Observe {
         grillePanel.setLayout(new GridBagLayout());
         grillePanel.add(grille);
         grilleMainPanel.add(grillePanel, BorderLayout.CENTER);
-        grille.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
         grille.setVisible(true);
         grille.paintComponents(window.getGraphics());
@@ -150,7 +156,6 @@ public class Vue extends Observe {
             this.listeJoueurs.add(eJoueur);
             joueursPanel.add(eJoueur, constraints);
             eJoueur.updateJoueur();
-            eJoueur.setBorder(BorderFactory.createLineBorder(Color.PINK, 2));
 
         }
     }
