@@ -36,13 +36,12 @@ public class EActions extends JPanel {
     /* CONSTRUCTEUR */
     public EActions(Vue vue) {
 
-        this.setLayout(new GridLayout(2,4));
+        this.setLayout(new GridLayout(2, 4));
 
         this.vue = vue;
         boutons = new ArrayList<>();
 
-        seDeplacerButon = new JButton("se deplacer");
-        this.add(seDeplacerButon);
+        seDeplacerButon = new JButton("Se déplacer");
         seDeplacerButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -53,8 +52,7 @@ public class EActions extends JPanel {
         });
         boutons.add(seDeplacerButon);
 
-        assecherButon = new JButton("assecher");
-        this.add(assecherButon);
+        assecherButon = new JButton("Assécher");
         assecherButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -65,8 +63,7 @@ public class EActions extends JPanel {
         });
         boutons.add(assecherButon);
 
-        donnerCarteButon = new JButton("donner carte");
-        this.add(donnerCarteButon);
+        donnerCarteButon = new JButton("Donner carte");
         donnerCarteButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -77,8 +74,7 @@ public class EActions extends JPanel {
         });
         boutons.add(donnerCarteButon);
 
-        prendreTresorButon = new JButton("prendre tresor");
-        this.add(prendreTresorButon);
+        prendreTresorButon = new JButton("Récupérer trésor");
         prendreTresorButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -89,8 +85,7 @@ public class EActions extends JPanel {
         });
         boutons.add(prendreTresorButon);
 
-        finDeTourButon = new JButton("fin de tour");
-        this.add(finDeTourButon);
+        finDeTourButon = new JButton("Fin de tour");
         finDeTourButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -101,8 +96,7 @@ public class EActions extends JPanel {
         });
         boutons.add(finDeTourButon);
 
-        utiliserCarteButon = new JButton("utiliser carte");
-        this.add(utiliserCarteButon);
+        utiliserCarteButon = new JButton("Utiliser carte");
         utiliserCarteButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -113,8 +107,7 @@ public class EActions extends JPanel {
         });
         boutons.add(utiliserCarteButon);
 
-        actionSpecialButon = new JButton("Action Special");
-        this.add(actionSpecialButon);
+        actionSpecialButon = new JButton("Action spéciale");
         actionSpecialButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -126,7 +119,6 @@ public class EActions extends JPanel {
         boutons.add(actionSpecialButon);
 
         annulerButon = new JButton("Annuler");
-        this.add(annulerButon);
         annulerButon.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -134,6 +126,15 @@ public class EActions extends JPanel {
                 vue.notifierObserver(m);
             }
         });
+
+        this.add(seDeplacerButon);
+        this.add(assecherButon);
+        this.add(prendreTresorButon);
+        this.add(finDeTourButon);
+        this.add(utiliserCarteButon);
+        this.add(donnerCarteButon);
+        this.add(actionSpecialButon);
+        this.add(annulerButon);
 
         for (JButton unBouton : boutons) {
             unBouton.setEnabled(true);
@@ -146,8 +147,8 @@ public class EActions extends JPanel {
     @Override
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
-        for (JButton bouton:
-             boutons) {
+        for (JButton bouton
+                : boutons) {
             bouton.setEnabled(enabled);
         }
         setEnableAnnuler(!enabled);
@@ -157,13 +158,12 @@ public class EActions extends JPanel {
         annulerButon.setEnabled(b);
     }
 
-
-    public void setEnabled(boolean enabled, ArrayList<Utils.Action> actions){
+    public void setEnabled(boolean enabled, ArrayList<Utils.Action> actions) {
         setEnabled(false);
         super.setEnabled(true);
-        for (Utils.Action ac:
-             actions ) {
-            switch (ac){
+        for (Utils.Action ac
+                : actions) {
+            switch (ac) {
                 default:
                 case ACTION_SPECIALE:
                     actionSpecialButon.setEnabled(enabled);
