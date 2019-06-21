@@ -1,6 +1,8 @@
 package Project.views.Elements;
 
 import Project.FactoryDeck;
+import Project.Modele.Carte;
+import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.Modele.Deck;
 import Project.util.Sound;
 import java.awt.BasicStroke;
@@ -55,10 +57,10 @@ public final class EDeck extends JPanel {
     private BufferedImage imageInondationDefausse;
 
     /* CONSTRUCTEURS */
-    public EDeck() {
+    public EDeck(Deck deckInondation, Deck deckItems) {
+        this.deckInondation = deckInondation;
+        this.deckItems = deckItems;
         this.setDoubleBuffered(true);
-        deckInondation = FactoryDeck.getDeckInondations();
-        deckItems = FactoryDeck.getDeckItems();
         // Définition des paramètres propre à l'EDeck
         this.setLayout(new GridLayout(1, 2, 5, 0));
         // Création des JPanels
@@ -106,8 +108,8 @@ public final class EDeck extends JPanel {
             dosItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "fondrouge" + IMAGE_EXTENSION));
             dosInondation = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "fondbleu" + IMAGE_EXTENSION));
         } catch (IOException ex) {
-            System.out.println("Project.views.Elements.EDeck.<init>()");
-            System.out.println("Erreur fichier : " + ex.getMessage() + " pour dos des cartes");
+            System.err.println("Project.views.Elements.EDeck.<init>()");
+            System.err.println("Erreur fichier : " + ex.getMessage() + " pour dos des cartes");
 
         }
         this.setImageItemPioche(this.getDosItem());
@@ -195,7 +197,7 @@ public final class EDeck extends JPanel {
         try {
             g.drawImage(image, (int) (pointDepart.getX()), (int) (posY + pointDepart.getY()), (int) getLabelImagePiocheItem().getSize().getWidth(), (int) getLabelImagePiocheItem().getSize().getHeight(), null);
         } catch (Exception ex) {
-            System.out.println(ex.getMessage());
+            System.err.println(ex.getMessage());
         }
         try {
             TimeUnit.MILLISECONDS.sleep(50);
@@ -207,134 +209,92 @@ public final class EDeck extends JPanel {
     }
 
     /**
-     * Animation qui retourne la première carte de la pioche (Items) Toujours du
-     * dos vers la face et joue un son en même temps *
+     * Animation qui retourne la carte, du dos vers la face et joue un son en
+     * même temps
+     *
+     * @param carte la carte qui est piochée
      */
-    private void retournerCartePioche() {
-        String location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckItems().getPioche().get(0).getImage()) + IMAGE_EXTENSION;
+    private void retournerCartePioche(Carte carte) {
+        String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getImage()) + IMAGE_EXTENSION;
         try {
             this.setImageItemPioche(ImageIO.read(new File(location)));
             Sound.jouer(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
-            System.out.println("Project.views.Elements.EDeck.retournerCartePioche()");
-            System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+            System.err.println("Project.views.Elements.EDeck.retournerCartePioche()");
+            System.err.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
         }
     }
 
     /**
-     * Animation qui retourne la première carte de la pioche (Inondation)
-     * Toujours du dos vers la face et joue un son en même temps
+     * Animation qui retourne la carte, du dos vers la face et joue un son en
+     * même temps
+     *
+     * @param carte la carte qui est piochée
      */
-    private void retournerCarteInondation() {
-        String location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckInondation().getPioche().get(0).getNom()) + IMAGE_EXTENSION;
+    private void retournerCarteInondation(Carte carte) {
+        String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getNom()) + IMAGE_EXTENSION;
         try {
             this.setImageInondationPioche(ImageIO.read(new File(location)));
             Sound.jouer(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
-            System.out.println("Project.views.Elements.EDeck.retournerCarteInondation()");
-            System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+            System.err.println("Project.views.Elements.EDeck.retournerCarteInondation()");
+            System.err.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
         }
     }
 
     /**
      * Animation qui fait piocher dans le deck Item
+     *
+     * @param carte la carte qui est piochée
      */
-    private void piocherItem() {
+    public void piocherItem(Carte carte) {
         try {
-            this.retournerCartePioche();
+            this.retournerCartePioche(carte);
             this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
             this.setImageItemPioche(dosItem);
-            this.getDeckItems().addCarteDefausseDebut(this.getDeckItems().getPioche().get(0));
-            this.getDeckItems().retirerCartePioche(0);
-            /**
-             * Cette partie s'occupe de l'animation de drag
-             */
-            Point pointDepart = new Point(getSideInondation().getWidth() + 5, getLABEL_ITEM().getHeight()); // On récupère les coordonnées comme ça car getLocationOnScreen() ne retourne pas les bonnes valeurs
-            Point pointArrive = new Point(getSideInondation().getWidth() + 5, getItemPioche().getHeight() + getLABEL_ITEM().getHeight()); // Voir commentaire de dessus
-
-            Double deplacementY = pointArrive.getY() - pointDepart.getY();
-            Double posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
-
-            String location = EDeck.getIMAGE_PREFIXE_CARTE() + this.cleanString(getDeckItems().getDefausse().get(0).getImage()) + EDeck.getIMAGE_EXTENSION();
-
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(new File(location));
-            } catch (IOException ex) {
-                System.out.println("Project.views.Elements.EDeck.AnimationDrag.paint()");
-                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+            if (carte instanceof CarteMEau) {
+                String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getImage()) + IMAGE_EXTENSION;
+                try {
+                    this.setImageItemDefausse(ImageIO.read(new File(location)));
+                } catch (IOException ex) {
+                    System.err.println("Project.views.Elements.EDeck.piocherItem()");
+                    System.err.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+                }
             }
-            for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
-                this.paintAnimation(getEDeck().getGraphics(), image, pointDepart, pointArrive, 0, j * posY);
-                this.repaint();
-            }
-            location = EDeck.getIMAGE_PREFIXE_CARTE() + cleanString(getDeckItems().getDefausse().get(0).getImage()) + EDeck.getIMAGE_EXTENSION();
-            try {
-                setImageItemDefausse(ImageIO.read(new File(location)));
-            } catch (IOException ex) {
-                System.out.println("Project.views.Elements.EDeck.piocherInondation()");
-                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
-            }
-            /**
-             *
-             */
-
+            repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(ex);
         }
+
     }
 
     /**
      * Animation qui fait piocher dans le deck
-     * InondationgetSideItem().getLocationOnScreen();
+     *
+     * @param carte la carte qui est piochée
      */
-    private void piocherInondation() {
+    public void piocherInondation(Carte carte) {
         try {
-            this.retournerCarteInondation();
+            this.retournerCarteInondation(carte);
             this.repaint();
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
-            this.getDeckInondation().addCarteDefausseDebut(this.getDeckInondation().getPioche().get(0));
-            this.getDeckInondation().retirerCartePioche(0);
             this.setImageInondationPioche(dosInondation);
-            /**
-             * Cette partie s'occupe de l'animation de drag
-             */
-            Point pointDepart = new Point(0, EDeck.getLABEL_ITEM().getHeight()); // On récupère les coordonnées comme ça car getLocationOnScreen() ne retourne pas les bonnes valeurs
-            Point pointArrive = new Point(0, this.getInondationPioche().getHeight() + EDeck.getLABEL_ITEM().getHeight()); // Voir commentaire de dessus
-
-            Double deplacementY = pointArrive.getY() - pointDepart.getY();
-            Double posY = deplacementY / EDeck.getNOMBRE_FRAMES_ANIMATION();
-
-            String location = EDeck.getIMAGE_PREFIXE_CARTE() + this.cleanString(getDeckInondation().getDefausse().get(0).getNom()) + EDeck.getIMAGE_EXTENSION();
-
-            BufferedImage image = null;
-            try {
-                image = ImageIO.read(new File(location));
-            } catch (IOException ex) {
-                System.out.println("Project.views.Elements.EDeck.AnimationDrag.paint()");
-                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
-            }
-            for (int j = 0; j < EDeck.getNOMBRE_FRAMES_ANIMATION(); j++) {
-                paintAnimation(getEDeck().getGraphics(), image, pointDepart, pointArrive, 0, j * posY);
-            }
-            /**
-             *
-             */
-            location = IMAGE_PREFIXE_CARTE + this.cleanString(this.getDeckInondation().getDefausse().get(0).getNom()) + IMAGE_EXTENSION;
+            String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getNom()) + IMAGE_EXTENSION;
             try {
                 this.setImageInondationDefausse(ImageIO.read(new File(location)));
             } catch (IOException ex) {
-                System.out.println("Project.views.Elements.EDeck.piocherInondation()");
-                System.out.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
+                System.err.println("Project.views.Elements.EDeck.piocherInondation()");
+                System.err.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
             }
             TimeUnit.SECONDS.sleep(DELAI_ANIMATION);
         } catch (InterruptedException ex) {
             Thread.currentThread().interrupt();
             throw new RuntimeException(ex);
         }
+        repaint();
     }
 
     /**
@@ -345,22 +305,6 @@ public final class EDeck extends JPanel {
      */
     private String cleanString(String string) {
         return string.toLowerCase().replaceAll("\\s+", "").replaceAll("\'", "");
-    }
-
-    /**
-     * Utilisé pour voir si les JLabels et les images se mettent bien à jour
-     */
-    public void test() {
-        int nbTour = this.getDeckItems().getPioche().size();
-        for (int i = 0; i < nbTour; i++) {
-            //  this.piocherItem();
-        }
-
-        nbTour = this.getDeckInondation().getPioche().size();
-        for (int i = 0; i < nbTour; i++) {
-            this.piocherInondation();
-        }
-
     }
 
     /* GETTERS & SETTERS */
@@ -490,6 +434,22 @@ public final class EDeck extends JPanel {
 
     public void setImageItemDefausse(BufferedImage imageItemDefausse) {
         this.imageItemDefausse = imageItemDefausse;
+    }
+
+    public void setItemPiocheNombre(int nbCartes) {
+        this.getItemPiocheNombre().setText(Integer.toString(nbCartes));
+    }
+
+    public void setItemDefausseNombre(int nbCartes) {
+        this.getItemDefausseNombre().setText(Integer.toString(nbCartes));
+    }
+
+    public void setInondationPiocheNombre(int nbCartes) {
+        this.getInondationPiocheNombre().setText(Integer.toString(nbCartes));
+    }
+
+    public void setInondationDefausseNombre(int nbCartes) {
+        this.getInondationDefausseNombre().setText(Integer.toString(nbCartes));
     }
 
     public EDeck getEDeck() {

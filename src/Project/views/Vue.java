@@ -40,7 +40,6 @@ public class Vue extends Observe {
     private JPanel joueursPanel;
     private JPanel bottomRightPanel;
 
-
     //Elements
     private EGrille grille;
     private EInfo informations;
@@ -50,7 +49,7 @@ public class Vue extends Observe {
     private EMain main;
     private EActions actions;
 
-    public Vue() {
+    public Vue(Deck deckInondation, Deck deckItem) {
         window = new JFrame("L'Île interdite");
         this.configureWindow(window);
 
@@ -66,7 +65,7 @@ public class Vue extends Observe {
         window.setLayout(new GridBagLayout());
 
         listeJoueurs = new ArrayList<>();
-        deck = new EDeck();
+        deck = new EDeck(deckInondation, deckItem);
         actions = new EActions(this);
         main = new EMain(this);
         informations = new EInfo();
@@ -76,17 +75,16 @@ public class Vue extends Observe {
         constraints.gridheight = 1;
         constraints.gridx = 0;
         constraints.gridy = 1;
-        bottomRightPanel.add(deck,constraints);
-        deck.setBorder(BorderFactory.createLineBorder(Color.RED,2));
-        
+        bottomRightPanel.add(deck, constraints);
+        deck.setBorder(BorderFactory.createLineBorder(Color.RED, 2));
 
         constraints.gridwidth = 2;
         constraints.gridheight = 1;
         constraints.fill = GridBagConstraints.HORIZONTAL;
         constraints.gridx = 0;
         constraints.gridy = 0;
-        bottomRightPanel.add(actions,constraints);
-        actions.setBorder(BorderFactory.createLineBorder(Color.GREEN,2));
+        bottomRightPanel.add(actions, constraints);
+        actions.setBorder(BorderFactory.createLineBorder(Color.GREEN, 2));
 
         constraints.fill = GridBagConstraints.NONE;
         constraints.weightx = 0.5;
@@ -94,19 +92,11 @@ public class Vue extends Observe {
         constraints.gridheight = 1;
         constraints.gridx = 1;
         constraints.gridy = 1;
-        bottomRightPanel.add(informations,constraints);
-        informations.setBorder(BorderFactory.createLineBorder(Color.YELLOW,2));
+        bottomRightPanel.add(informations, constraints);
+        informations.setBorder(BorderFactory.createLineBorder(Color.YELLOW, 2));
 
-
-
-
-        grilleMainPanel.add(main,BorderLayout.SOUTH);
-        main.setBorder(BorderFactory.createLineBorder(Color.BLUE,2));
-
-        
-
-
-
+        grilleMainPanel.add(main, BorderLayout.SOUTH);
+        main.setBorder(BorderFactory.createLineBorder(Color.BLUE, 2));
 
     }
 
@@ -116,7 +106,6 @@ public class Vue extends Observe {
         window.getContentPane().setLayout(new java.awt.BorderLayout());
         window.setDefaultCloseOperation(javax.swing.JFrame.DO_NOTHING_ON_CLOSE);
 
-
     }
 
     public static int getWINDOW_SIZE_X() {
@@ -125,13 +114,7 @@ public class Vue extends Observe {
 
     public static int getWINDOW_SIZE_Y() {
         return WINDOW_SIZE_Y;
-    }
-
-    public static void main(String[] args) {
-        Vue ihme = new Vue();
-        //ihme.initialiserGrille(Controleur.getControleur().getGrille().getNames());
-        ihme.grille.updateGrid(Controleur.getControleur().getGrille().getInnondee(), Controleur.getControleur().getGrille().getCoulee());
-    }
+    }    
 
     public void initialiserNiveauEau(int level) {
         niveauEau = new ENiveauDEau(level);
@@ -141,7 +124,7 @@ public class Vue extends Observe {
         constraints.gridy = 0;
         constraints.fill = GridBagConstraints.BOTH;
         bottomRightPanel.add(niveauEau, constraints);
-        niveauEau.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY,2));
+        niveauEau.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2));
 
     }
 
@@ -151,49 +134,48 @@ public class Vue extends Observe {
         JPanel grillePanel = new JPanel();
         grillePanel.setLayout(new GridBagLayout());
         grillePanel.add(grille);
-        grilleMainPanel.add(grillePanel,BorderLayout.CENTER);
-        grille.setBorder(BorderFactory.createLineBorder(Color.BLACK,2));
-
+        grilleMainPanel.add(grillePanel, BorderLayout.CENTER);
+        grille.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
 
         grille.setVisible(true);
         grille.paintComponents(window.getGraphics());
 
     }
 
-    public void initialiserJoueurs(ArrayList<Aventurier> joueurs){
+    public void initialiserJoueurs(ArrayList<Aventurier> joueurs) {
         joueursPanel = new JPanel();
-        joueursPanel.setLayout(new GridLayout(4,1));
+        joueursPanel.setLayout(new GridLayout(4, 1));
         for (int i = 0; i < joueurs.size(); i++) {
-            EJoueur eJoueur = new EJoueur(this,joueurs.get(i));
+            EJoueur eJoueur = new EJoueur(this, joueurs.get(i));
             this.listeJoueurs.add(eJoueur);
-            joueursPanel.add(eJoueur,constraints);
+            joueursPanel.add(eJoueur, constraints);
             eJoueur.updateJoueur();
-            eJoueur.setBorder(BorderFactory.createLineBorder(Color.PINK,2));
-            
+            eJoueur.setBorder(BorderFactory.createLineBorder(Color.PINK, 2));
+
         }
     }
-    
-    public void initialiserAdaptativeSize(){
+
+    public void initialiserAdaptativeSize() {
         new AdaptativeDimension(
                 window,
-                ()->(int) (deck.getHeight()/DECK_SIZE_RATIO),
+                () -> (int) (deck.getHeight() / DECK_SIZE_RATIO),
                 null,
                 deck);
-        
+
         new AdaptativeDimension(
                 window,
                 null,
-                ()-> (int)(CARD_SIZE_RATIO*(double) main.getWidth()*0.125),
+                () -> (int) (CARD_SIZE_RATIO * (double) main.getWidth() * 0.125),
                 main);
-        
+
         new AdaptativeDimension(
                 window,
-                ()-> (int)(window.getWidth()*0.5< window.getHeight()*0.85 ? window.getWidth()*0.5: window.getHeight()*0.85),
-                ()->(int)grille.getSize().width,
+                () -> (int) (window.getWidth() * 0.5 < window.getHeight() * 0.85 ? window.getWidth() * 0.5 : window.getHeight() * 0.85),
+                () -> (int) grille.getSize().width,
                 grille);
-        
+
         for (EJoueur joueur : listeJoueurs) {
-            new AdaptativeDimension(joueur, null ,()-> (int)(CARD_SIZE_RATIO*(double) joueur.getWidth()*0.125),joueur);
+            new AdaptativeDimension(joueur, null, () -> (int) (CARD_SIZE_RATIO * (double) joueur.getWidth() * 0.125), joueur);
         }
     }
 
@@ -202,18 +184,22 @@ public class Vue extends Observe {
         constraints.gridx = 0;
         constraints.gridwidth = 1;
         constraints.gridheight = 2;
-        window.add(grilleMainPanel,constraints);
+        window.add(grilleMainPanel, constraints);
         constraints.gridy = 0;
         constraints.gridx = 1;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        window.add(joueursPanel,constraints);
+        window.add(joueursPanel, constraints);
         constraints.gridy = 1;
         constraints.gridx = 1;
         constraints.gridwidth = 1;
         constraints.gridheight = 1;
-        window.add(bottomRightPanel,constraints);
+        window.add(bottomRightPanel, constraints);
         window.setVisible(true);
+    }
+
+    public EDeck getDeck() {
+        return deck;
     }
 
     public EGrille getGrille() {
@@ -282,10 +268,10 @@ public class Vue extends Observe {
     public EInfo getInformations() {
         return informations;
     }
-    
-    public void updateJoueurs(){
-        for (EJoueur j :
-                listeJoueurs) {
+
+    public void updateJoueurs() {
+        for (EJoueur j
+                : listeJoueurs) {
             j.updateJoueur();
         }
     }

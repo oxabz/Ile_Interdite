@@ -66,7 +66,7 @@ public class Deck {
     }
 
     /**
-     * shuffe la PIOCHE
+     * shuffle la PIOCHE
      */
     public void melangerCartesPioche() {
         Collections.shuffle(this.pioche);
