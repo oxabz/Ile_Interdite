@@ -33,6 +33,8 @@ public class Controleur implements Observeur {
     private final Vue vue;
     private final VueFormulaire vueFormulaire;
     private final Deque<Message> messages = new ArrayDeque<>();
+    public boolean isClosed = false;
+    private final Sound son = new Sound();
 
     /*
     SINGLETON THINGY (CONSTRUCTEUR)
@@ -55,7 +57,8 @@ public class Controleur implements Observeur {
         vue.initialiserGrille(grille.getNames(), grille.getInnondee(), grille.getCoulee());
         vue.initialiserJoueurs(aventuriers);
         vue.initialiserVue();
-        Sound.jouerMusique(Project.util.Utils.Son.getCheminSon() + "musique/musique_menu.wav");
+        son.demarrerMusiqueJeu(this);
+        son.jouerBoucle(Project.util.Utils.Son.getCheminSon() + "ambiance/ambient.wav", this);
         vue.initialiserAdaptativeSize();
         vue.getWindow().addWindowListener(new WindowListener() {
             @Override
