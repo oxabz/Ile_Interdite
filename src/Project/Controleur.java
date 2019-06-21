@@ -30,7 +30,8 @@ public class Controleur implements Observeur {
     private ArrayList<Aventurier> aventuriers;
     private GameState gameState;
     private int currentAventurier;
-    private boolean jeuEnCours;
+    // Permet de vérifier si la partie est finie et que la fenêtre de gameover/fin n'est plus affichée
+    private boolean isPartieFinie = false;
     private final Vue vue;
     private final VueFormulaire vueFormulaire;
     private final Deque<Message> messages = new ArrayDeque<>();
@@ -107,9 +108,14 @@ public class Controleur implements Observeur {
         vue.updateJoueurs();
     }
 
-    private final static Controleur controleur = new Controleur();
+    private static Controleur controleur = new Controleur();
 
     public static Controleur getControleur() {
+        return controleur;
+    }
+
+    public static Controleur resetControleur() {
+        controleur = new Controleur();
         return controleur;
     }
 
@@ -301,6 +307,37 @@ public class Controleur implements Observeur {
 
     }
 
+    /**
+     *
+     * @return true si le joueur veut rejouer
+     */
+    public boolean getReponseRejouer() {
+
+        boolean reponse = false;
+        boolean done = false;
+        while (!done) {
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            while (!messages.isEmpty()) {
+                Message m = messages.poll();
+                if (m.type == MessageType.QUITTER) {
+                    done = true;
+                    reponse = false;
+                }
+                if (m.type == MessageType.REJOUER) {
+                    done = true;
+                    reponse = true;
+                }
+            }
+        }
+
+        return reponse;
+
+    }
+
     /*
     GAME LOOP
      */
@@ -432,19 +469,27 @@ public class Controleur implements Observeur {
 
         }
 
-        jeuEnCours = false;
         vue.getWindow().setVisible(false);
         vue.getWindow().dispose();
         if (isVictoire()) {
+            vueVictoire = new VueVictoire();
+            vueVictoire.setObserveur(this);
             son.stopMusiqueJeu();
             son.stopAmbianceJeu();
-            new VueVictoire();
         } else {
+            vueDefaite = new VueGameOver();
+            vueDefaite.setObserveur(this);
             son.stopMusiqueJeu();
             son.stopAmbianceJeu();
-            new VueGameOver();
         }
 
+        this.isPartieFinie = !getReponseRejouer();
+
+        if(vueDefaite != null) {
+            vueDefaite.cacher();
+        } else {
+            vueVictoire.cacher();
+        }
     }
 
     /**
@@ -717,13 +762,7 @@ public class Controleur implements Observeur {
 
     @Override
     public void recevoirMessage(Message m) {
-        if(m.type == MessageType.QUITTER) {
-            System.exit(0);
-        }
-        else if(m.type == MessageType.REJOUER) {
-
-        }
-        else messages.add(m);
+        messages.add(m);
     }
 
     /**
@@ -1007,5 +1046,9 @@ public class Controleur implements Observeur {
 
     public boolean isClosed() {
         return isClosed;
+    }
+
+    public boolean isPartieFinie() {
+        return isPartieFinie;
     }
 }

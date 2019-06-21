@@ -23,7 +23,7 @@ public class TestView {
         c.weightx = 1;
         c.weighty = 1;
         c.fill = GridBagConstraints.BOTH;
-        window.add( new EDeck(),c);
+        // window.add( new EDeck(),c);
 
         window.setSize(600,600);
         window.setVisible(true);
