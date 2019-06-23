@@ -8,8 +8,11 @@ import Project.views.Vue;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ComponentListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class EJoueur extends JPanel {
     private EMain main;
@@ -17,12 +20,21 @@ public class EJoueur extends JPanel {
     private int avId;
 
     public EJoueur(Vue vue, Aventurier av) {
-        this.setLayout(new BorderLayout());
+        this.setLayout(new GridBagLayout());
+        GridBagConstraints c = new GridBagConstraints();
+        c.weightx = 1;
+        c.weighty = 1;
+        c.gridheight = 1;
+        c.gridwidth = 1;
+        c.gridx = 1;
+        c.gridy = 1;
+        c.fill = GridBagConstraints.NONE;
+        c.anchor = GridBagConstraints.NORTHEAST;
         this.vue = vue;
         this.avId = av.getId();
         this.main = new EMain(vue);
+        this.add(main, c);
         this.main.removeListeners();
-        this.add(main,BorderLayout.CENTER);
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -54,8 +66,6 @@ public class EJoueur extends JPanel {
 
             }
         });
-
-
     }
 
     public void updateJoueur(){

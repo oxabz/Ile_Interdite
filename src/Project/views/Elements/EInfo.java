@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import Project.util.AdaptativeDimension;
+import Project.util.ImageBuffer;
 import Project.util.Utils;
 
 public class EInfo extends JPanel  {
@@ -78,9 +79,7 @@ public class EInfo extends JPanel  {
 
 			try {
 				// Lecture de l'image selon le nom du tresor
-				this.image_tresor[i] = ImageIO.read(
-					new File(Utils.View.getImagePrefixeTresor() + NOM_TRESOR[i] + Utils.View.getImageExtension())
-				);
+				this.image_tresor[i] = ImageBuffer.getImage(Utils.View.getImagePrefixeTresor() + NOM_TRESOR[i] + Utils.View.getImageExtension());
 				
 			} catch(IOException e) {
 
@@ -141,9 +140,7 @@ public class EInfo extends JPanel  {
 		for(int i = 0; i < this.panel_tresor.length; i++) {
 			try {
 				// Lecture de l'image selon le nom du tresor
-				this.image_tresor[i] = ImageIO.read(
-					new File(Utils.View.getImagePrefixeTresor() + NOM_TRESOR[i] + Utils.View.getImageExtension())
-				);
+				this.image_tresor[i] = ImageBuffer.getImage(Utils.View.getImagePrefixeTresor() + NOM_TRESOR[i] + Utils.View.getImageExtension());
 				
 			} catch(IOException e) {
 

@@ -14,6 +14,7 @@ import Project.views.VueFormulaire;
 import Project.views.VueGameOver;
 import Project.views.VueVictoire;
 
+import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.*;
@@ -59,7 +60,7 @@ public class Controleur implements Observeur {
         vue.initialiserVue();
         son.demarrerMusiqueJeu(this);
         son.jouerBoucle(Project.util.Utils.Son.getCHEMIN_SON() + "ambiance/ambient.wav", this);
-        vue.initialiserAdaptativeSize();
+        //vue.initialiserAdaptativeSize();
         vue.getWindow().addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
@@ -102,6 +103,7 @@ public class Controleur implements Observeur {
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
         vue.getGrille().updatePion(getPosPion());
         vue.updateJoueurs();
+        //FilterFactory.setFilter(Color.RED,vue.getGrille());
     }
 
     private static Controleur controleur = new Controleur();
@@ -365,18 +367,22 @@ public class Controleur implements Observeur {
                     getAlerteMessage()
             );
 
+            vue.popUpMessage(av.getJoueur() + " : Veuillez selectionner une action",1);
             switch (getSelectedAction(currentAventurier)) {
                 case SE_DEPLACER:
+                    vue.popUpMessage("Selectionnez la case de votre destination",1);
                     if (av.seDeplacer(true)) {
                         av.utiliserAction();
                     }
                     break;
                 case ASSECHER:
+                    vue.popUpMessage("Selectionnez la case à assecher",1);
                     if (av.assecher()) {
                         av.utiliserAction();
                     }
                     break;
                 case DON_CARTE:
+                    vue.popUpMessage("Selectionnez l'aventurier destinataire puis selectionnez la carte que vous voullez donner",1);
                     av.donnerCarte();
                     break;
                 case FIN_TOUR:
@@ -389,6 +395,7 @@ public class Controleur implements Observeur {
                     }
                     break;
                 case UTILISER_CARTE:
+                    vue.popUpMessage("Selectionnez la carte que vous voullez utiliser",1);
                     if (av.utiliserCarte()) {
                     }
                     break;
@@ -407,6 +414,8 @@ public class Controleur implements Observeur {
                 //phase de pioche
                 CarteItem cIt1 = (CarteItem) cartesItem.piocher();
                 CarteItem cIt2 = (CarteItem) cartesItem.piocher();
+
+                vue.popUpMessage("Distribution des cartes ..." , 2);
 
                 if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     if (cIt1 instanceof CarteMEau) {

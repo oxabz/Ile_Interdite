@@ -18,6 +18,8 @@ import java.util.ArrayList;
  */
 public class EMain extends JPanel {
 
+    private static final double CARD_SIZE_RATIO = 1.39191919192;
+
     private final JLabel nomJoueur;
     private final JLabel nbAction;
     private final JLabel nombreCarte;
@@ -52,6 +54,7 @@ public class EMain extends JPanel {
         panelJoueur.add(nbAction);
         panelJoueur.add(nombreCarte);
         this.add(panelJoueur);
+
     }
 
     public void setCartesItems(ArrayList<CarteItem> cartesItems) {
@@ -87,5 +90,12 @@ public class EMain extends JPanel {
             }
         }
 
+    }
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(
+                (int)(getParent().getWidth()*0.125*CARD_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth() : getParent().getHeight()*8/CARD_SIZE_RATIO),
+                (int)(getParent().getWidth()*0.125*CARD_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth()*0.125*CARD_SIZE_RATIO : getParent().getHeight()));
     }
 }

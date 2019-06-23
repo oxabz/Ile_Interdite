@@ -6,7 +6,9 @@ import Project.Modele.Grille;
 import Project.util.Utils;
 import Project.util.Vector2;
 
+import java.lang.reflect.Constructor;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
 
 public class Plongeur extends Aventurier {
@@ -36,12 +38,12 @@ public class Plongeur extends Aventurier {
         super(position);
     }
 
-    @Override
+    /*@Override
     /**
      * Permet de déplacer le plongeur
      * @param annulable true si on peut annuler l'action
      * @return true quand le déplacement a été effectuée
-     */
+     *//*
     public boolean seDeplacer(boolean annulable) {
 
         // Déclaration
@@ -72,6 +74,36 @@ public class Plongeur extends Aventurier {
             }
         } while ((grille.getTuile(position) == null || grille.getTuile(position).isInnondee()) && !fini);
         return !(position.x == oldPosition.x && position.y == oldPosition.y);
+    }*/
+
+    @Override
+    public ArrayList<Vector2> getPosDeplacement() {
+        HashSet<Vector2> tuiles = new HashSet<>();
+        ArrayList<Vector2> tuilesVisite = new ArrayList<>();
+        getTuileAccessible(position,tuiles,tuilesVisite);
+        return new ArrayList<>(tuiles);
+    }
+
+    private void getTuileAccessible(Vector2 position, HashSet<Vector2> tuiles, ArrayList<Vector2> tuilesVisite){
+        Controleur c = Controleur.getControleur();
+        Grille g = c.getGrille();
+        for (Vector2 p :
+                getPosCroix(position)) {
+            if(p.within(Vector2.ZERO,new Vector2(g.getSizeX()-1,g.getSizeY()-1))&&!tuilesVisite.contains(p)){
+                if(g.getTuile(p) == null){
+                    tuilesVisite.add(p);
+                    getTuileAccessible(p,tuiles,tuilesVisite);
+                    tuilesVisite.remove(p);
+                }else if(g.getTuile(p).isInnondee()){
+                    tuiles.add(p);
+                    tuilesVisite.add(p);
+                    getTuileAccessible(p,tuiles,tuilesVisite);
+                    tuilesVisite.remove(p);
+                }else {
+                    tuiles.add(p);
+                }
+            }
+        }
     }
 
     @Override

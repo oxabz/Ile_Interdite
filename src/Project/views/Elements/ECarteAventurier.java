@@ -1,6 +1,7 @@
 package Project.views.Elements;
 
 import Project.Modele.Aventurier;
+import Project.util.ImageBuffer;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -26,9 +27,9 @@ public class ECarteAventurier extends JPanel {
         BufferedImage image = null;
         if(nomAventurier != null){
             try {
-                image = ImageIO.read(new File(IMAGE_PREFIX + nomAventurier.toLowerCase() + IMAGE_EXTENTION));
+                image = ImageBuffer.getImage(IMAGE_PREFIX + nomAventurier.toLowerCase() + IMAGE_EXTENTION);
             } catch (IOException e) {
-                System.out.println("Erreur chargement carte aventurier");
+                System.err.println("Erreur chargement carte aventurier");
             }
         }
         g.drawImage(image,0,0,this.getWidth(),this.getHeight(), null );

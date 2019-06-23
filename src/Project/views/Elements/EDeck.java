@@ -4,22 +4,16 @@ import Project.FactoryDeck;
 import Project.Modele.Carte;
 import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.Modele.Deck;
+import Project.util.ImageBuffer;
 import Project.util.Sound;
-import java.awt.BasicStroke;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.GridLayout;
-import java.awt.Point;
-import java.awt.Stroke;
+
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public final class EDeck extends JPanel {
 
@@ -32,6 +26,7 @@ public final class EDeck extends JPanel {
     private final static JLabel LABEL_INONDATION = new JLabel("Inondation");
     private final static int NOMBRE_FRAMES_ANIMATION = 24;
     private final static int DELAI_ANIMATION = 500;
+    private static final double DECK_SIZE_RATIO =  1.39191919192;
     /* ATTRIBUTS */
     private final Deck deckInondation;
     private final Deck deckItems;
@@ -107,8 +102,8 @@ public final class EDeck extends JPanel {
         dosItem = null;
         dosInondation = null;
         try {
-            dosItem = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "fondrouge" + IMAGE_EXTENSION));
-            dosInondation = ImageIO.read(new File(IMAGE_PREFIXE_CARTE + "fondbleu" + IMAGE_EXTENSION));
+            dosItem = ImageBuffer.getImage(IMAGE_PREFIXE_CARTE + "fondrouge" + IMAGE_EXTENSION);
+            dosInondation = ImageBuffer.getImage(IMAGE_PREFIXE_CARTE + "fondbleu" + IMAGE_EXTENSION);
         } catch (IOException ex) {
             System.err.println("Project.views.Elements.EDeck.<init>()");
             System.err.println("Erreur fichier : " + ex.getMessage() + " pour dos des cartes");
@@ -173,6 +168,7 @@ public final class EDeck extends JPanel {
         this.getItemDefausse().add(getLabelImageDefausseItem());
         this.getInondationPioche().add(getLabelImagePiocheInondation());
         this.getInondationDefausse().add(getLabelImageDefausseInondation());
+
     }
 
 
@@ -195,7 +191,7 @@ public final class EDeck extends JPanel {
     private void retournerCartePioche(Carte carte) {
         String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getImage()) + IMAGE_EXTENSION;
         try {
-            this.setImageItemPioche(ImageIO.read(new File(location)));
+            this.setImageItemPioche(ImageBuffer.getImage(location));
             Sound.jouer(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
             System.err.println("Project.views.Elements.EDeck.retournerCartePioche()");
@@ -212,7 +208,7 @@ public final class EDeck extends JPanel {
     private void retournerCarteInondation(Carte carte) {
         String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getNom()) + IMAGE_EXTENSION;
         try {
-            this.setImageInondationPioche(ImageIO.read(new File(location)));
+            this.setImageInondationPioche(ImageBuffer.getImage(location));
             Sound.jouer(SON_CARTE_FLIP_CHEMIN);
         } catch (IOException ex) {
             System.err.println("Project.views.Elements.EDeck.retournerCarteInondation()");
@@ -234,7 +230,7 @@ public final class EDeck extends JPanel {
             if (carte instanceof CarteMEau) {
                 String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getImage()) + IMAGE_EXTENSION;
                 try {
-                    this.setImageItemDefausse(ImageIO.read(new File(location)));
+                    this.setImageItemDefausse(ImageBuffer.getImage(location));
                 } catch (IOException ex) {
                     System.err.println("Project.views.Elements.EDeck.piocherItem()");
                     System.err.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
@@ -262,7 +258,7 @@ public final class EDeck extends JPanel {
             this.setImageInondationPioche(dosInondation);
             String location = IMAGE_PREFIXE_CARTE + this.cleanString(carte.getNom()) + IMAGE_EXTENSION;
             try {
-                this.setImageInondationDefausse(ImageIO.read(new File(location)));
+                this.setImageInondationDefausse(ImageBuffer.getImage(location));
             } catch (IOException ex) {
                 System.err.println("Project.views.Elements.EDeck.piocherInondation()");
                 System.err.println("Erreur fichier : " + ex.getMessage() + " pour " + location);
@@ -442,4 +438,10 @@ public final class EDeck extends JPanel {
         return imageItemDefausse;
     }
 
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(
+                (int)(getParent().getWidth()*DECK_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth() : getParent().getHeight()/DECK_SIZE_RATIO),
+                (int)(getParent().getWidth()*DECK_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth()*DECK_SIZE_RATIO : getParent().getHeight()));
+    }
 }

@@ -6,11 +6,14 @@ import Project.views.Vue;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
 
 public class EGrille extends JPanel {
+    /*
+    CONSTANT
+     */
+
+
+
     /*
     ATTRIBUTES
      */
@@ -24,23 +27,21 @@ public class EGrille extends JPanel {
 
     public EGrille(int size_x, int size_y, String[][] tuillesNames,Vue vue) {
         this.setLayout(new GridLayout(size_y,size_x));
-        
+
         eCases = new ECase[size_x][size_y];
         for (int i = 0; i < eCases.length; i++) {
             for (int j = 0; j < eCases[i].length; j++) {
                 ECase c = new ECase(tuillesNames[j][i], new Vector2(j,i),this);
+
                 eCases[j][i] = c;
-                add(c);
+                this.add(c);
                 c.setClickable(false);
                 c.setVisible(true);
+
             }
         }
 
-
-        eCases[0][0].setPions(new ArrayList<>(Arrays.asList(Utils.Pion.ROUGE, Utils.Pion.BLEU)));
-
         this.vue = vue;
-
     }
 
     @Override
@@ -69,7 +70,6 @@ public class EGrille extends JPanel {
     }
 
     public void messageCase(Vector2 pos){
-        System.out.println(pos);
         Message m = new Message(MessageType.POSITION);
         m.position = pos;
         vue.notifierObserver(m);
@@ -81,10 +81,16 @@ public class EGrille extends JPanel {
      * @param aBoolean new state
      */
     public void setClickables(ArrayList<Vector2> positions,boolean aBoolean){
+        ArrayList<JComponent> highlighted = new ArrayList<>();
+        vue.highlightComponent(this);
         for (Vector2 pos:
              positions) {
             ECase tuile = eCases[pos.x][pos.y];
             tuile.setClickable(aBoolean);
+            highlighted.add(tuile);
+        }
+        if(aBoolean){
+            vue.highlightComponents(highlighted);
         }
     }
 
@@ -98,6 +104,14 @@ public class EGrille extends JPanel {
                 eCases[i][j].setPions(pions.get(new Vector2(i,j)));
             }
         }
+    }
+
+
+    @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(
+                (getParent().getWidth()<getParent().getHeight()? getParent().getWidth():getParent().getHeight()),
+                (getParent().getWidth()<getParent().getHeight()? getParent().getWidth():getParent().getHeight()));
     }
 
 
