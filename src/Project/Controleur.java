@@ -225,7 +225,7 @@ public class Controleur implements Observeur {
                 Message m = messages.poll();
                 if (m.type == MessageType.AVENTURIER) {
                     done = true;
-                    av = (Aventurier)IdentifiedElement.getIdentifiedElement(m.aventurier);
+                    av = (Aventurier) IdentifiedElement.getIdentifiedElement(m.aventurier);
                 }
                 if (m.type == MessageType.ANNULER) {
                     done = true;
@@ -294,7 +294,7 @@ public class Controleur implements Observeur {
                 Message m = messages.poll();
                 if (m.type == MessageType.CARTE) {
                     done = true;
-                    c = (Carte)IdentifiedElement.getIdentifiedElement(m.carte);
+                    c = (Carte) IdentifiedElement.getIdentifiedElement(m.carte);
                 }
             }
         }
@@ -407,15 +407,6 @@ public class Controleur implements Observeur {
                 //phase de pioche
                 CarteItem cIt1 = (CarteItem) cartesItem.piocher();
                 CarteItem cIt2 = (CarteItem) cartesItem.piocher();
-
-                if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
-                    if (cIt1 instanceof CarteMEau) {
-                        vue.getDeck().piocherItem(cIt1);
-                    } else {
-                        vue.getDeck().piocherItem(cIt2);
-                    }
-                }
-
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     gameState.incrementNiveau();
@@ -451,7 +442,7 @@ public class Controleur implements Observeur {
                 vue.updateJoueurs();
 
                 //phase d'innondation
-                if (!(cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau)) {
+                if (!(cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau)) { // Si les cartes piochées ne sont pas des cartes montée des eaux
                     faireInnondation();
                     Sound.jouer(Utils.Son.getCHEMIN_INONDATION());
                 }
@@ -481,7 +472,7 @@ public class Controleur implements Observeur {
 
         this.isPartieFinie = !getReponseRejouer();
 
-        if(vueDefaite != null) {
+        if (vueDefaite != null) {
             vueDefaite.cacher();
         } else {
             vueVictoire.cacher();
@@ -574,15 +565,16 @@ public class Controleur implements Observeur {
      */
     public void initialiserPartie() {
         Message m = this.recevoirFormulaire();
-        
-        //Initialisation du gamestate
 
+        //Initialisation du gamestate
         gameState = new GameState(m.difficulte);
 
         // Initialisation de la grille
-
-        if(m.random) grille = FactoryGrille.genererGrilleAleatoire();
-        else grille = FactoryGrille.getGrilleTest();
+        if (m.random) {
+            grille = FactoryGrille.genererGrilleAleatoire();
+        } else {
+            grille = FactoryGrille.getGrilleTest();
+        }
 
         // Initialisation des decks
         cartesItem = FactoryDeck.getDeckItems();
