@@ -1,6 +1,6 @@
 /*
  * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this teplate file, choose Tools | Templates
  * and open the template in the editor.
  */
 package Project;
@@ -10,6 +10,9 @@ import Project.Modele.Cartes.CartesItem.CarteHelicoptere;
 import Project.Modele.Cartes.CartesItem.CarteMEau;
 import Project.Modele.Cartes.CartesItem.CarteSacSable;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
+
+import java.util.HashMap;
+
 import Project.Modele.Deck;
 import Project.Modele.Grille;
 import Project.Modele.Tuile;
@@ -57,6 +60,76 @@ public class FactoryDeck {
 
     }
 
+    public static Deck getDeckItemsTest() {
+        Deck deck = new Deck();
+        // Tour 1
+        deck.addCartePiocheFin(CARTE_TRESOR_CRISTAL);
+        deck.addCartePiocheFin(CARTE_HELICOPTERE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_COUPE);
+        deck.addCartePiocheFin(CARTE_SAC_DE_SABLE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_CRISTAL);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+
+        // Tour 2
+        deck.addCartePiocheFin(CARTE_TRESOR_CRISTAL);
+        deck.addCartePiocheFin(CARTE_TRESOR_CRISTAL);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_COUPE);
+        deck.addCartePiocheFin(CARTE_TRESOR_COUPE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+
+        // Tour 3
+        deck.addCartePiocheFin(CARTE_MONTEE_DES_EAUX);
+        deck.addCartePiocheFin(CARTE_MONTEE_DES_EAUX);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_COUPE);
+        deck.addCartePiocheFin(CARTE_HELICOPTERE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+        deck.addCartePiocheFin(CARTE_SAC_DE_SABLE);
+
+        deck.addCartePiocheFin(CARTE_HELICOPTERE);
+        deck.addCartePiocheFin(CARTE_TRESOR_COUPE);
+
+        // Tour 4
+        deck.addCartePiocheFin(CARTE_TRESOR_CRISTAL);
+        deck.addCartePiocheFin(CARTE_MONTEE_DES_EAUX);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        deck.addCartePiocheFin(CARTE_TRESOR_PIERRE);
+        deck.addCartePiocheFin(CARTE_TRESOR_STATUE);
+
+        return deck;
+
+    }
+
     public static Deck getDeckInondations() {
         Deck deck = new Deck();
         Grille g;
@@ -69,6 +142,109 @@ public class FactoryDeck {
             }
         }
         deck.melangerCartesPioche();
+        return deck;
+    }
+
+    public static Deck getDeckInondationsTest() {
+        Deck deck = new Deck();
+        Grille g;
+        g = FactoryGrille.getDerniereGrille();
+        HashMap<String, CarteInondation> cartes = new HashMap<>();
+        for (Tuile[] uneLigne : g.getTuiles()) {
+            for (Tuile uneTuile : uneLigne) {
+                if (uneTuile != null) {
+                    cartes.put(uneTuile.getNom(), new CarteInondation(uneTuile.getNom(), uneTuile));
+                }
+            }
+        }
+
+        deck.addCartePiocheFin(cartes.get("La Tour de Guet"));
+        deck.addCartePiocheFin(cartes.get("Observatoire"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Pont des Abimes"));
+        deck.addCartePiocheFin(cartes.get("Les Falaises de l\u0027Oubli"));
+        
+        deck.addCartePiocheFin(cartes.get("Les Dunes de l\u0027Illusion"));
+        deck.addCartePiocheFin(cartes.get("La Porte de Fer"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Val du Crepuscule"));
+        deck.addCartePiocheFin(cartes.get("Le Lagon Perdu"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Val du Crepuscule"));
+        deck.addCartePiocheFin(cartes.get("Le Lagon Perdu"));
+
+        deck.addCartePiocheFin(cartes.get("Le Pont des Abimes"));
+        deck.addCartePiocheFin(cartes.get("Les Falaises de l\u0027Oubli"));
+
+        deck.addCartePiocheFin(cartes.get("Le Rocher Fantome"));
+        deck.addCartePiocheFin(cartes.get("Observatoire"));
+
+        deck.addCartePiocheFin(cartes.get("La Porte de Cuivre"));
+        deck.addCartePiocheFin(cartes.get("Observatoire"));
+
+        deck.addCartePiocheFin(cartes.get("La Porte de Cuivre"));
+        deck.addCartePiocheFin(cartes.get("La Porte de Bronze"));
+        deck.addCartePiocheFin(cartes.get("La Caverne des Ombres"));
+
+        deck.addCartePiocheFin(cartes.get("La Porte d\u0027Or"));
+        deck.addCartePiocheFin(cartes.get("La Porte de Bronze"));
+        deck.addCartePiocheFin(cartes.get("La Caverne des Ombres"));
+
+        deck.addCartePiocheFin(cartes.get("La Porte d\u0027Or"));
+        deck.addCartePiocheFin(cartes.get("Le Marais Brumeux"));
+        deck.addCartePiocheFin(cartes.get("La Porte de Fer"));
+
+        deck.addCartePiocheFin(cartes.get("Le Jardin des Hurlements"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple de La Lune"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Palais des Marees"));
+        deck.addCartePiocheFin(cartes.get("La Porte d\u0027Argent"));
+        deck.addCartePiocheFin(cartes.get("La Foret Pourpre"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Palais des Marees"));
+        deck.addCartePiocheFin(cartes.get("La Porte d\u0027Argent"));
+        deck.addCartePiocheFin(cartes.get("La Foret Pourpre"));
+
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Jardin des Murmures"));
+        deck.addCartePiocheFin(cartes.get("Le Jardin des Murmures"));
+
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("La Porte d\u0027Or"));
+        deck.addCartePiocheFin(cartes.get("Le Temple de La Lune"));
+
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        deck.addCartePiocheFin(cartes.get("Le Temple du Soleil"));
+        
         return deck;
     }
 

@@ -138,7 +138,7 @@ public abstract class Aventurier extends IdentifiedElement {
             } while (carte != null && !(carte instanceof CarteTresor));
             if (carte != null) {
                 this.removeCarteItem((CarteItem) carte);
-                av.getCarteItems().add((CarteItem) carte); // le déclancement de la mettre à la défose est à 6 auto ?
+                av.getCarteItems().add((CarteItem) carte);
                 if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem) carte) == true) {
                     return true;
                 } else {

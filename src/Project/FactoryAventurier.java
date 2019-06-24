@@ -58,4 +58,31 @@ public class FactoryAventurier {
         }
         return aventuriers;
     }
+
+    public static ArrayList<Aventurier> getAventuriersTest(Grille grille) {
+
+        ArrayList<Aventurier> aventuriers = new ArrayList<>();
+        for (int i = 0; i < grille.getSizeX(); i++) {
+            for (int j = 0; j < grille.getSizeY(); j++) {
+                Tuile t = grille.getTuile(i,j);
+                if (t != null && t instanceof TuileApparition) {
+                    switch (((TuileApparition) t).getAventurier()){
+                        case MESSAGER:
+                            aventuriers.add(new Messager(new Vector2(i,j)));
+                            break;
+                        case NAVIGATEUR:
+                            aventuriers.add(new Navigateur(new Vector2(i,j)));
+                            break;
+                        case PILOTE:
+                            aventuriers.add(new Pilote(new Vector2(i,j)));
+                            break;
+                        case PLONGEUR:
+                            aventuriers.add(new Plongeur(new Vector2(i,j)));
+                            break;
+                    }
+                }
+            }
+        }
+        return aventuriers;
+    }
 }

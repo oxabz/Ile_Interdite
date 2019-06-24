@@ -594,11 +594,20 @@ public class Controleur implements Observeur {
         }
 
         // Initialisation des decks
-        cartesItem = FactoryDeck.getDeckItems();
-        cartesInondation = FactoryDeck.getDeckInondations();
+        if(m.random) {
+            cartesInondation = FactoryDeck.getDeckInondations();
+            cartesItem = FactoryDeck.getDeckItems();
+        } else {
+            cartesInondation = FactoryDeck.getDeckInondationsTest();
+            cartesItem = FactoryDeck.getDeckItemsTest();
+        }
 
         //Ajout des joueurs
         ArrayList<Aventurier> dispoAventuriers = FactoryAventurier.getAventuriers(grille);
+
+        if(!m.random) {
+            dispoAventuriers = FactoryAventurier.getAventuriersTest(grille);
+        }
 
         for (int i = 0; i < m.nbJoueurs; i++) {
             //Initialiser aventurier

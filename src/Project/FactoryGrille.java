@@ -173,35 +173,42 @@ public class FactoryGrille {
         Grille g = new Grille();
         HashMap<String,Tuile> tuiles = getTuiles();
         Tuile[][] tuilesG = g.getTuiles();
-        tuilesG[2][0] = tuiles.get("Le Pont des Abimes");
-        tuilesG[3][0] = tuiles.get("La Porte de Bronze");
-        tuilesG[3][0].setInnondee(true);
-        tuilesG[1][1] = tuiles.get("La Caverne des Ombres");
-        tuilesG[2][1] = tuiles.get("La Porte de Fer");
-        tuilesG[3][1] = tuiles.get("La Porte d\u0027Or");
-        tuilesG[4][1] = tuiles.get("Les Falaises de l\u0027Oubli");
-        tuilesG[0][2] = tuiles.get("Le Palais de Corail");
-        tuilesG[1][2] = tuiles.get("La Porte d\u0027Argent");
-        //tuilesG[2][2] = tuiles.get("Les Dunes de l’Illusion");
+
         tuilesG[3][2] = tuiles.get("Heliport");
-        tuilesG[4][2] = tuiles.get("La Porte de Cuivre");
-        tuilesG[5][2] = tuiles.get("Le Jardin des Hurlements");
-        tuilesG[0][3] = tuiles.get("La Foret Pourpre");
-        tuilesG[1][3] = tuiles.get("Le Lagon Perdu");
-        tuilesG[1][3].setInnondee(true);
-        //tuilesG[2][3] = tuiles.get("Le Marais Brumeux");
+        tuilesG[3][2].setInnondee(true);
+        tuilesG[2][4] = tuiles.get("La Porte d\u0027Or");
+        tuilesG[4][4] = tuiles.get("La Porte de Cuivre");
+        tuilesG[0][2] = tuiles.get("La Porte de Fer");
+        tuilesG[0][2].setInnondee(true);
+        tuilesG[2][1] = tuiles.get("La Porte d\u0027Argent");
+        tuilesG[3][5] = tuiles.get("La Porte de Bronze");
+
+        tuilesG[2][5] = tuiles.get("La Caverne du Brasier");
+        tuilesG[2][5].setInnondee(true);
+        tuilesG[3][0] = tuiles.get("La Caverne des Ombres");
+
+        tuilesG[1][1] = tuiles.get("Le Palais de Corail");
+        tuilesG[1][1].setInnondee(true);
+        tuilesG[1][4] = tuiles.get("Le Palais des Marees");
+
+        tuilesG[4][2] = tuiles.get("Le Jardin des Hurlements");
+        tuilesG[1][3] = tuiles.get("Le Jardin des Murmures");
+        
+        tuilesG[4][1] = tuiles.get("Le Temple de La Lune");
+        tuilesG[2][3] = tuiles.get("Le Temple du Soleil");
+
+        tuilesG[2][0] = tuiles.get("Le Pont des Abimes");
+        tuilesG[3][1] = tuiles.get("Les Falaises de l\u0027Oubli");
+        tuilesG[1][2] = tuiles.get("Les Dunes de l\u0027Illusion");
+        tuilesG[1][2].setInnondee(true);
+        tuilesG[2][2] = tuiles.get("La Foret Pourpre");
+        tuilesG[5][2] = tuiles.get("Le Lagon Perdu");
+        tuilesG[0][3] = tuiles.get("Le Marais Brumeux");
+        tuilesG[0][3].setInnondee(true);
         tuilesG[3][3] = tuiles.get("Observatoire");
-        tuilesG[3][3].setInnondee(true);
-        //tuilesG[4][3] = tuiles.get("Le Rocher Fantome");
-        tuilesG[5][3] = tuiles.get("La Caverne du Brasier");
-        tuilesG[5][3] .setInnondee(true);
-        tuilesG[1][4] = tuiles.get("Le Temple du Soleil");
-        //tuilesG[2][4] = tuiles.get("Le Temple de La Lune");
-        tuilesG[3][4] = tuiles.get("Le Palais des Marees");
-        tuilesG[4][4] = tuiles.get("Le Val du Crepuscule");
-        tuilesG[2][5] = tuiles.get("La Tour du Guet");
-        tuilesG[3][5] = tuiles.get("Le Jardin des Murmures");
-        tuilesG[3][5].setInnondee(true);
+        tuilesG[4][3] = tuiles.get("Le Rocher Fantome");
+        tuilesG[5][3] = tuiles.get("Le Val du Crepuscule");
+        tuilesG[3][4] = tuiles.get("La Tour de Guet");
 
         // Sauvegarde de la grille
         derniereGrille = g;
