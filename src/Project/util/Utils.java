@@ -7,13 +7,8 @@ package Project.util;
 
 import java.awt.Color;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
-import Project.Modele.Aventurier;
 
 /**
  *

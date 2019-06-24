@@ -35,22 +35,21 @@ public class Messager extends Aventurier {
     }
 
     @Override
-    public boolean  donnerCarte() {
+    public boolean donnerCarte() {
         Controleur c = Controleur.getControleur();
         Aventurier av;
         av = c.getSelectedAventurier();
-        if(av!=null){
+        if (av != null) {
             Carte carte;
             do {
                 carte = c.getCarteSelectionne();
-            }while (carte != null&&!(carte instanceof CarteTresor));
-            if(carte!=null){
-                this.removeCarteItem( (CarteItem) carte);
-                av.getCarteItems().add((CarteItem) carte) ; // le déclancement de la mettre à la défose est à 6 auto ?
-                if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem)carte) == true) {
-                    return true ;
-                }
-                else {
+            } while (carte != null && !(carte instanceof CarteTresor));
+            if (carte != null) {
+                this.removeCarteItem((CarteItem) carte);
+                av.getCarteItems().add((CarteItem) carte); // le déclancement de la mettre à la défose est à 6 auto ?
+                if (carte != null && this.getCarteItems().contains((CarteItem) carte) == false && av.getCarteItems().contains((CarteItem) carte) == true) {
+                    return true;
+                } else {
                     return false;
                 }
             }

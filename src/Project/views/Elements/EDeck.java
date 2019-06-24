@@ -21,10 +21,10 @@ public final class EDeck extends JPanel {
     private final static JLabel LABEL_ITEM = new JLabel("Items");
     private final static JLabel LABEL_INONDATION = new JLabel("Inondation");
     private final static int DELAI_ANIMATION = 500;
-    private static final double DECK_SIZE_RATIO =  1.39191919192;
-    /* ATTRIBUTS */    
+    private static final double DECK_SIZE_RATIO = 1.39191919192;
+    /* ATTRIBUTS */
     private final Deck deckInondation;
-    private final Deck deckItems;    
+    private final Deck deckItems;
     private final JPanel sideInondation;
     private final JPanel sideItem;
     private final JPanel itemPioche;
@@ -430,7 +430,7 @@ public final class EDeck extends JPanel {
     @Override
     public Dimension getPreferredSize() {
         return new Dimension(
-                (int)(getParent().getWidth()*DECK_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth() : getParent().getHeight()/DECK_SIZE_RATIO),
-                (int)(getParent().getWidth()*DECK_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth()*DECK_SIZE_RATIO : getParent().getHeight()));
+                (int) (getParent().getWidth() * DECK_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth() : getParent().getHeight() / DECK_SIZE_RATIO),
+                (int) (getParent().getWidth() * DECK_SIZE_RATIO < getParent().getHeight() ? getParent().getWidth() * DECK_SIZE_RATIO : getParent().getHeight()));
     }
 }

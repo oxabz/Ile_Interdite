@@ -16,7 +16,7 @@ public class CarteHelicoptere extends CarteBonus {
     public CarteHelicoptere(String nom) {
         super(nom);
     }
-
+    
     public CarteHelicoptere(String nom, String image) {
         super(nom, image);
     }
@@ -32,9 +32,9 @@ public class CarteHelicoptere extends CarteBonus {
 
         // On récupère la position du joueur en train de joueur.
         Vector2 pos_joueur = c.getAventuriers().get(c.getCurrentAventurier()).getPosition();
-
+        
         ArrayList<Aventurier> aventuriers = new ArrayList<>();
-
+        
         for (Aventurier aventurier : c.getAventuriers()) {
             // On récupère tous les joueurs qui sont sur la même tuile que le joueur courant
             if (aventurier.getPosition() == pos_joueur) {

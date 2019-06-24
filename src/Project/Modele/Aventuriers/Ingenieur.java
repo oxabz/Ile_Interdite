@@ -7,7 +7,6 @@ import Project.util.Vector2;
 public class Ingenieur extends Aventurier {
 
     /* ATTRIBUTS */
-
     private static final String NOM = "Ingenieur";
     private static final Utils.Pion PION = Utils.Pion.ROUGE;
 

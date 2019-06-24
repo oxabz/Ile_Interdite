@@ -13,8 +13,6 @@ import Project.views.Vue;
 import Project.views.VueFormulaire;
 import Project.views.VueGameOver;
 import Project.views.VueVictoire;
-
-import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.*;
@@ -64,7 +62,6 @@ public class Controleur implements Observeur {
         vue.getWindow().addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
-
             }
 
             @Override
@@ -72,32 +69,26 @@ public class Controleur implements Observeur {
                 if (!(isGameOver() || isVictoire())) {
                     System.exit(0);
                 }
-
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
-
             }
 
             @Override
             public void windowIconified(WindowEvent e) {
-
             }
 
             @Override
             public void windowDeiconified(WindowEvent e) {
-
             }
 
             @Override
             public void windowActivated(WindowEvent e) {
-
             }
 
             @Override
             public void windowDeactivated(WindowEvent e) {
-
             }
         });
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
