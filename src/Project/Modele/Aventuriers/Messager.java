@@ -43,7 +43,6 @@ public class Messager extends Aventurier {
             Carte carte;
             do {
                 carte = c.getCarteSelectionne();
-                System.out.println("test");
             }while (carte != null&&!(carte instanceof CarteTresor));
             if(carte!=null){
                 this.removeCarteItem( (CarteItem) carte);

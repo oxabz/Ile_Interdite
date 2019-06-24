@@ -1,6 +1,7 @@
 package Project.views.Elements;
 
 import Project.Modele.Carte;
+import Project.util.ImageBuffer;
 import Project.util.Message;
 import Project.util.MessageType;
 import Project.views.Vue;
@@ -26,11 +27,8 @@ public class ECarte extends JPanel {
     public ECarte(Vue vue) {
         this.vue = vue;
 
-        try {
-            image = ImageIO.read(new File(IMAGE_PREFIX + "fondrouge" + IMAGE_EXTENTION));
-        } catch (IOException e) {
-            System.out.println("Erreur chargement carte ");
-        }
+        image = null;
+
         this.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
@@ -74,17 +72,14 @@ public class ECarte extends JPanel {
         carteId = (carte!=null?carte.getId():0);
         String name = (carte!=null ? carte.getImage() : "");
         name = name.replaceAll("\\s+","").replaceAll("\'","").replaceAll("Carte","").toLowerCase();
-        try {
-            image = ImageIO.read(new File(IMAGE_PREFIX + name + IMAGE_EXTENTION));
-        } catch (IOException e) {
-            if(!name.equals("")){
+        if(!name.equals("")){
+            try {
+                image = ImageBuffer.getImage(IMAGE_PREFIX + name + IMAGE_EXTENTION);
+            } catch (IOException e) {
                 System.out.println("not found image"+name);
             }
-            try {
-                image = ImageIO.read(new File(IMAGE_PREFIX + "fondrouge" + IMAGE_EXTENTION));
-            } catch (IOException f) {
-                System.out.println("Erreur chargement fallback");
-            }
+        }else {
+            image = null;
         }
         repaint();
     }

@@ -7,7 +7,7 @@ import java.awt.event.ComponentListener;
 
 public class AdaptativeDimension {
 
-    public interface CalculatedExpression {
+    public interface calculatedInt {
 
         public int getResult();
     }
@@ -15,7 +15,7 @@ public class AdaptativeDimension {
     private JFrame frame;
     private JComponent container;
     private double width, height;
-    private CalculatedExpression calculatedWidth, calculatedHeight;
+    private calculatedInt calculatedWidth, calculatedHeight;
     private JComponent component;
 
     public AdaptativeDimension(JFrame frame, double width, double height, JComponent component) {
@@ -61,7 +61,7 @@ public class AdaptativeDimension {
         });
     }
 
-    public AdaptativeDimension(JFrame frame, CalculatedExpression calculatedWidth, CalculatedExpression calculatedHeight, JComponent component) {
+    public AdaptativeDimension(JFrame frame, calculatedInt calculatedWidth, calculatedInt calculatedHeight, JComponent component) {
         this.frame = frame;
         this.calculatedWidth = calculatedWidth;
         this.calculatedHeight = calculatedHeight;
@@ -147,7 +147,7 @@ public class AdaptativeDimension {
         });
     }
 
-    public AdaptativeDimension(JComponent container, CalculatedExpression calculatedWidth, CalculatedExpression calculatedHeight, JComponent component) {
+    public AdaptativeDimension(JComponent container, calculatedInt calculatedWidth, calculatedInt calculatedHeight, JComponent component) {
         this.container = container;
         this.calculatedWidth = calculatedWidth;
         this.calculatedHeight = calculatedHeight;

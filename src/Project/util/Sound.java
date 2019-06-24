@@ -9,6 +9,10 @@ import Project.Controleur;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -84,8 +88,8 @@ public class Sound {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                ArrayList<Clip> clips = new ArrayList<>();
-                ArrayList<AudioInputStream> ais = new ArrayList<>();
+                LinkedList<Clip> clips = new LinkedList<>();
+                LinkedList<AudioInputStream> ais = new LinkedList<>();
                 for (int i = 1; i <= 4; i++) {
                     try {
                         clips.add(AudioSystem.getClip());
@@ -94,6 +98,8 @@ public class Sound {
                         System.err.print("Erreur son : " + ex.getMessage() + " pour " + i);
                     }
                 }
+                Collections.shuffle(clips);
+                Collections.shuffle(ais);
                 int i = 0;
                 while (!c.isClosed() && i < clips.size() && getEtatMusiqueJeu()) {
                     try {
