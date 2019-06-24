@@ -2,7 +2,6 @@ package Project.views;
 
 import Project.Modele.Aventurier;
 import Project.Modele.Deck;
-import Project.util.AdaptativeDimension;
 import Project.util.CalculatedVector2;
 import Project.util.Observe;
 import java.awt.*;
@@ -23,32 +22,27 @@ import javax.swing.plaf.LayerUI;
 public class Vue extends Observe {
 
     private static final Color TRANSPARENT = new Color(0,0,0,0);
-    private static final Color HIGHLIGHT_COLOR = new Color(255,0,0);
+    private static final Color HIGHLIGHT_COLOR = new Color(0,255,0);
     private final static int WINDOW_SIZE_X = 1680;
     private final static int WINDOW_SIZE_Y = 1000;
-    private final static int HIGHLIGHT_X_OFFSET = 4;
-    private final static int HIGHLIGHT_Y_OFFSET = 30;
     private final static int POPUP_OFFSET = 50;
-    private static final double CARD_SIZE_RATIO = 1.39191919192;
-    private static final double DECK_SIZE_RATIO = 1.2;
-    private JFrame window;
-    private GridBagConstraints constraints;
-    private GridBagConstraints constraintsbis;
+    private final JFrame window;
+    private final GridBagConstraints constraints;
 
     //Panels
-    private JPanel componentPanel;
-    private JPanel grilleMainPanel;
+    private final JPanel componentPanel;
+    private final JPanel grilleMainPanel;
     private JPanel joueursPanel;
-    private JPanel bottomRightPanel;
+    private final JPanel bottomRightPanel;
 
     //Elements
     private EGrille grille;
-    private EInfo informations;
+    private final EInfo informations;
     private ENiveauDEau niveauEau;
-    private EDeck deck;
-    private ArrayList< EJoueur> listeJoueurs;
-    private EMain main;
-    private EActions actions;
+    private final EDeck deck;
+    private final ArrayList< EJoueur> listeJoueurs;
+    private final EMain main;
+    private final EActions actions;
 
     //JLayerUI
 
@@ -98,8 +92,8 @@ public class Vue extends Observe {
             this.doHighlight = false;
         }
     }
-    private HighlighLayerUI highlighLayerUI;
-    private JLayer highlighLayer;
+    private final HighlighLayerUI highlighLayerUI;
+    private final JLayer highlighLayer;
 
     public Vue(Deck deckInondation, Deck deckItem) {
         window = new JFrame("L'Île interdite");
@@ -107,7 +101,7 @@ public class Vue extends Observe {
         this.configureWindow(window);
 
         highlighLayerUI = new HighlighLayerUI();
-        highlighLayer = new JLayer<JComponent>(componentPanel,highlighLayerUI);
+        highlighLayer = new JLayer<>(componentPanel,highlighLayerUI);
         //highlighLayerUI.setHighlight(Vector2.ZERO,new Vector2(500,500),Color.RED,0.5f);
 
         window.add(highlighLayer);
@@ -363,8 +357,8 @@ public class Vue extends Observe {
     }
 
     /**
-     * Fonction permetant de mettre en evidence des composents
-     * @param cs les composents mis en evidence
+     * Fonction permettant de mettre en evidence des composants
+     * @param cs les composants mis en evidence
      */
     public void highlightComponents(ArrayList<JComponent> cs){
         ArrayList<CalculatedVector2> dimensions = new ArrayList<>();
