@@ -24,27 +24,6 @@ public class ECase extends JPanel {
         COULEE
     }
 
-    public class FiltreCouleur extends LayerUI<JComponent> {
-
-        private Color color;
-
-        public FiltreCouleur(Color color) {
-            this.color = color;
-        }
-
-        public FiltreCouleur(Color color, float opacity) {
-            this.color = new Color(color.getRed() / 256, color.getGreen() / 256, color.getBlue() / 256, opacity);
-        }
-
-        @Override
-        public void paint(Graphics g, JComponent c) {
-            super.paint(g, c);
-            setBackground(color);
-        }
-    }
-
-
-
     /*
     CONSTANTS
      */
@@ -161,6 +140,10 @@ public class ECase extends JPanel {
         }
     }
 
+    /**
+     * Permet de changer l'etat de la tuile
+     * @param newEtat
+     */
     public void changeEtat(Etat newEtat) {
         this.etat = newEtat;
         this.repaint();
@@ -174,19 +157,16 @@ public class ECase extends JPanel {
         return position;
     }
 
+    /**
+     * permet de definir si la case est clickable
+     * @param clickable etat de la case
+     */
     public void setClickable(boolean clickable) {
         this.clickable = clickable;
         if (clickable) {
             setEnabled(true);
-            /*
-            filter.setVisible(true);
-            filter.paint(this.getGraphics());*/
-            //setBorder(BorderFactory.createLineBorder(Color.GREEN, 4));
-
         } else {
             setEnabled(false);
-//            filter.setVisible(false);
-            //setBorder(null);
         }
     }
 

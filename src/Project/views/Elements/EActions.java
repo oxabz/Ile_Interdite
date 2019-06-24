@@ -184,6 +184,10 @@ public class EActions extends JPanel {
     }
 
     @Override
+    /**
+     *
+     * @enabled etat des boutons
+     */
     public void setEnabled(boolean enabled) {
         super.setEnabled(enabled);
         for (int i = 0; i < boutons.size(); i++) {
@@ -199,11 +203,20 @@ public class EActions extends JPanel {
         setEnableAnnuler(!enabled);
     }
 
+    /**
+     *
+     * @param b etat du bouton annulé
+     */
     public void setEnableAnnuler(boolean b) {
         annulerButon.setEnabled(b);
         annulerButon.setIcon(icones.get(7));
     }
 
+    /**
+     *
+     * @param enabled etat des boutons
+     * @param actions boutons a update
+     */
     public void setEnabled(boolean enabled, ArrayList<Utils.Action> actions) {
         setEnabled(false);
         super.setEnabled(true);
