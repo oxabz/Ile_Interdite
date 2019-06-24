@@ -13,8 +13,6 @@ import Project.views.Vue;
 import Project.views.VueFormulaire;
 import Project.views.VueGameOver;
 import Project.views.VueVictoire;
-
-import java.awt.*;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.util.*;
@@ -64,7 +62,6 @@ public class Controleur implements Observeur {
         vue.getWindow().addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
-
             }
 
             @Override
@@ -72,32 +69,26 @@ public class Controleur implements Observeur {
                 if (!(isGameOver() || isVictoire())) {
                     System.exit(0);
                 }
-
             }
 
             @Override
             public void windowClosed(WindowEvent e) {
-
             }
 
             @Override
             public void windowIconified(WindowEvent e) {
-
             }
 
             @Override
             public void windowDeiconified(WindowEvent e) {
-
             }
 
             @Override
             public void windowActivated(WindowEvent e) {
-
             }
 
             @Override
             public void windowDeactivated(WindowEvent e) {
-
             }
         });
         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
@@ -207,7 +198,6 @@ public class Controleur implements Observeur {
     }
 
     /**
-     *
      *
      * @return Retourne l'aventurier d'index indexAventurier
      */
@@ -366,22 +356,22 @@ public class Controleur implements Observeur {
                     getAlerteMessage()
             );
 
-            vue.popUpMessage(av.getJoueur() + " : Veuillez selectionner une action",1);
+            vue.popUpMessage(av.getJoueur() + " : Veuillez sélectionner une action", 1);
             switch (getSelectedAction(currentAventurier)) {
                 case SE_DEPLACER:
-                    vue.popUpMessage("Selectionnez la case de votre destination",1);
+                    vue.popUpMessage("Sélectionnez la case de votre destination", 1);
                     if (av.seDeplacer(true)) {
                         av.utiliserAction();
                     }
                     break;
                 case ASSECHER:
-                    vue.popUpMessage("Selectionnez la case à assecher",1);
+                    vue.popUpMessage("Sélectionnez la case à assecher", 1);
                     if (av.assecher()) {
                         av.utiliserAction();
                     }
                     break;
                 case DON_CARTE:
-                    vue.popUpMessage("Selectionnez l'aventurier destinataire puis selectionnez la carte que vous voullez donner",1);
+                    vue.popUpMessage("Sélectionnez l'aventurier destinataire puis selectionnez la carte que vous voulez donner", 1);
                     av.donnerCarte();
                     break;
                 case FIN_TOUR:
@@ -394,7 +384,7 @@ public class Controleur implements Observeur {
                     }
                     break;
                 case UTILISER_CARTE:
-                    vue.popUpMessage("Selectionnez la carte que vous voullez utiliser",1);
+                    vue.popUpMessage("Sélectionnez la carte que vous voulez utiliser", 1);
                     if (av.utiliserCarte()) {
                     }
                     break;
@@ -407,15 +397,11 @@ public class Controleur implements Observeur {
             vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
             vue.getGrille().updatePion(getPosPion());
             vue.updateJoueurs();
-
             if (finDeTour) {
-
                 //phase de pioche
                 CarteItem cIt1 = (CarteItem) cartesItem.piocher();
                 CarteItem cIt2 = (CarteItem) cartesItem.piocher();
-
-                vue.popUpMessage("Distribution des cartes ..." , 2);
-
+                vue.popUpMessage("Distribution des cartes ...", 2);
                 if (cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau) {
                     if (cIt1 instanceof CarteMEau) {
                         vue.getDeck().piocherItem(cIt1);
@@ -423,7 +409,6 @@ public class Controleur implements Observeur {
                         vue.getDeck().piocherItem(cIt2);
                     }
                 }
-
                 if (cIt1 instanceof CarteMEau && cIt2 instanceof CarteMEau) {
                     faireMonteDesEau();
                     gameState.incrementNiveau();
@@ -444,35 +429,27 @@ public class Controleur implements Observeur {
                         cartesItem.addCarteDefausseDebut(cIt2);
                     }
                     vue.getNiveauEau().setNiveau(gameState.getNiveauEau());
-
                 } else {
                     vue.getDeck().piocherItem(cIt1);
                     av.addCarteItem(cIt1);
                     vue.updateJoueurs();
                     vue.getDeck().piocherItem(cIt2);
                     av.addCarteItem(cIt2);
-
                 }
                 vue.getDeck().setItemDefausseNombre(this.getCartesItem().getDefausse().size());
                 vue.getDeck().setItemPiocheNombre(this.getCartesItem().getPioche().size());
-
                 vue.updateJoueurs();
-
-                //phase d'innondation
+                // phase d'innondation
                 if (!(cIt1 instanceof CarteMEau || cIt2 instanceof CarteMEau)) { // Si les cartes piochées ne sont pas des cartes montée des eaux
                     faireInnondation();
                     Sound.jouer(Utils.Son.getCHEMIN_INONDATION());
                 }
                 currentAventurier = (currentAventurier != aventuriers.size() - 1 ? currentAventurier + 1 : 0);
-
                 vue.getDeck().setInondationPiocheNombre(this.getCartesInondation().getPioche().size());
                 vue.getDeck().setInondationDefausseNombre(this.getCartesInondation().getDefausse().size());
-
                 vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
             }
-
         }
-
         vue.getWindow().setVisible(false);
         vue.getWindow().dispose();
         if (isVictoire()) {
@@ -486,9 +463,7 @@ public class Controleur implements Observeur {
             son.stopMusiqueJeu();
             son.stopAmbianceJeu();
         }
-
         this.isPartieFinie = !getReponseRejouer();
-
         if (vueDefaite != null) {
             vueDefaite.cacher();
         } else {
@@ -514,7 +489,6 @@ public class Controleur implements Observeur {
      */
     private void faireInnondation() {
         int nbCarteInondation = gameState.getNbDeCarte();
-
         for (int j = 0; j < nbCarteInondation; j++) {
             CarteInondation cIn = (CarteInondation) cartesInondation.piocher();
             vue.getDeck().piocherInondation(cIn);
@@ -541,14 +515,10 @@ public class Controleur implements Observeur {
                             y++;
                         }
                     }
-
                     // Si on a la position de la tuile
                     if (pos != null) {
-
                         grille.removeTuile(cIn.getTuile());
-
                         vue.getGrille().updateGrid(grille.getInnondee(), grille.getCoulee());
-
                         // Si tous les joueurs peuvent se déplacer
                         if (!isJoueursCoince()) {
                             for (Aventurier av : this.getAventuriers()) {
@@ -556,7 +526,6 @@ public class Controleur implements Observeur {
                                 if (av.getPosition().x == pos.x && av.getPosition().y == pos.y) {
                                     // Il se déplace sur une case adjacente
                                     av.seDeplacer(false);
-
                                     vue.getGrille().updatePion(getPosPion());
                                 }
                             }
@@ -564,7 +533,6 @@ public class Controleur implements Observeur {
                     } else {
                         grille.removeTuile(cIn.getTuile());
                     }
-
                 } else {
                     cartesInondation.addCarteDefausseDebut(cIn);
                     cIn.getTuile().setInnondee(true);
@@ -572,7 +540,6 @@ public class Controleur implements Observeur {
             }
             vue.getDeck().setInondationPiocheNombre(this.getCartesInondation().getPioche().size());
             vue.getDeck().setInondationDefausseNombre(this.getCartesInondation().getDefausse().size());
-
         }
     }
 
@@ -582,17 +549,14 @@ public class Controleur implements Observeur {
      */
     public void initialiserPartie() {
         Message m = this.recevoirFormulaire();
-
         //Initialisation du gamestate
         gameState = new GameState(m.difficulte);
-
         // Initialisation de la grille
         if (m.random) {
             grille = FactoryGrille.genererGrilleAleatoire();
         } else {
             grille = FactoryGrille.getGrilleTest();
         }
-
         // Initialisation des decks
         if(m.random) {
             cartesInondation = FactoryDeck.getDeckInondations();
@@ -617,7 +581,6 @@ public class Controleur implements Observeur {
             aventuriers.add(av);
             dispoAventuriers.remove(r);
             av.setJoueur(nomJ);
-
         }
     }
 
@@ -658,7 +621,6 @@ public class Controleur implements Observeur {
                 }
                 i = 0;
             }
-
         }
         return false;
     }
@@ -798,7 +760,6 @@ public class Controleur implements Observeur {
         int cartes = 0;
         // On initialise une variable cartes_non_inondees qui fera le cumul des cartes non inondées
         int cartes_non_inondees = 0;
-
         // Pour toutes les cartes
         for (int x = 0; x < grille.getSizeX(); x++) {
             for (int y = 0; y < grille.getSizeX(); y++) {
@@ -827,7 +788,6 @@ public class Controleur implements Observeur {
     public int getRateTuilesRestantes() {
         // On initialise une variable cartes qui fera le cumul des cartes existantes
         int cartes = 0;
-
         // Pour toutes les cases de la grille
         for (int x = 0; x < grille.getSizeX(); x++) {
             for (int y = 0; y < grille.getSizeX(); y++) {
@@ -894,7 +854,7 @@ public class Controleur implements Observeur {
         // Pour tous les tresors
         for (Tresor tresor : Tresor.values()) {
             // Si il reste plus qu'une tuile trésor et qu'il n'a pas été récupéré, on envoie un message
-            if (tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue()) {
+            if (tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor)) {
                 // On incrémente la variable cumule
                 nb_tresors++;
             }
@@ -907,7 +867,7 @@ public class Controleur implements Observeur {
 
             // On refait la boucle permettant d'obtenir les tuiles trésors critiques non récupérées
             for (Tresor tresor : Tresor.values()) {
-                if (tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor).booleanValue()) {
+                if (tresors.get(tresor) == 1 && !this.getGameState().getTresors().get(tresor)) {
                     index++;
                     // Pour la première itération, on consuit le début de la boucle
                     if (index == 1) {
@@ -943,14 +903,11 @@ public class Controleur implements Observeur {
 
         // S'il y a des aventuriers sur une case inondé
         if (nb_aventuriers_inondes > 0) {
-
             int index = 0;
-
             // On répète la boucle précédente
             for (Aventurier aventurier : getAventuriers()) {
                 Tuile tuile = grille.getTuile(aventurier.getPosition());
                 if (tuile != null && tuile.isInnondee()) {
-
                     index++;
                     // Pour la première itération, on ajoute le joueur
                     if (index == 1) {
@@ -966,7 +923,6 @@ public class Controleur implements Observeur {
             }
             // On ajoute la fin du message
             msg += " sur tuile inondé.";
-
             return msg;
         }
 
@@ -974,7 +930,6 @@ public class Controleur implements Observeur {
         if (gameState.getNiveauEau() >= 8) {
             return "Niveau d'eau critique";
         }
-
         // Sinon on affiche rien
         return "";
     }
@@ -1013,11 +968,8 @@ public class Controleur implements Observeur {
      * courant
      */
     public void updateMain() {
-
         Aventurier aventurier = this.getAventuriers().get(this.getCurrentAventurier());
-
         this.vue.getMain().setCartesItems(aventurier.getCarteItems());
-
     }
 
     /*

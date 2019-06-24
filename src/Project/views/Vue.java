@@ -5,7 +5,6 @@ import Project.Modele.Deck;
 import Project.util.CalculatedVector2;
 import Project.util.Observe;
 import java.awt.*;
-
 import Project.util.Vector2;
 import Project.views.Elements.EActions;
 import Project.views.Elements.EDeck;

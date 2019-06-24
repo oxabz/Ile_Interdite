@@ -58,6 +58,7 @@ public abstract class Aventurier extends IdentifiedElement {
 
     /**
      * Déplace le joueur
+     *
      * @param annulable true si l'action est annulable
      * @return true si l'action a été effectuée
      */
@@ -251,6 +252,7 @@ public abstract class Aventurier extends IdentifiedElement {
     public static ArrayList<Vector2> getPosCroix(Aventurier av) {
         return getPosCroix(av.getPosition());
     }
+
     public static ArrayList<Vector2> getPosCroix(Vector2 center) {
         ArrayList<Vector2> pos = new ArrayList<>();
         pos.add(center.add(-1, 0));

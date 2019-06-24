@@ -5,8 +5,6 @@ import Project.Modele.Aventurier;
 import Project.Modele.Grille;
 import Project.util.Utils;
 import Project.util.Vector2;
-
-import java.lang.invoke.SwitchPoint;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -49,47 +47,44 @@ public class Navigateur extends Aventurier {
     }
 
     @Override
-    public boolean actionSpeciale () {
-        Controleur controleur = Controleur.getControleur() ;
+    public boolean actionSpeciale() {
+        Controleur controleur = Controleur.getControleur();
 
-        Aventurier av = controleur.getSelectedAventurier() ;
-        if(av != null) {
+        Aventurier av = controleur.getSelectedAventurier();
+        if (av != null) {
             ArrayList<Vector2> pos;
             Grille grille = controleur.getGrille();
             pos = Aventurier.getPosCroix(av);
             Iterator<Vector2> iterator = pos.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Vector2 posPossible = iterator.next();
-                if (grille.getTuile(posPossible)==null){
+                if (grille.getTuile(posPossible) == null) {
                     iterator.remove();
                 }
             }
             Vector2 p1 = controleur.getPosClic(pos, true);
-            if (p1 == null){
-                return false ;
-            }
-            else {
+            if (p1 == null) {
+                return false;
+            } else {
                 av.setPosition(p1);
             }
 
             // premier déplacement fini
-
             grille = controleur.getGrille();
             pos = Aventurier.getPosCroix(av);
             iterator = pos.iterator();
-            while(iterator.hasNext()){
+            while (iterator.hasNext()) {
                 Vector2 posPossible = iterator.next();
-                if (grille.getTuile(posPossible)==null){
+                if (grille.getTuile(posPossible) == null) {
                     iterator.remove();
                 }
             }
             Vector2 p2 = controleur.getPosClic(pos, true);
             if (p2 != null) {
                 av.setPosition(p2);
-                return true ;
-            }
-            else {
-                return false ;
+                return true;
+            } else {
+                return false;
             }
         }
 
