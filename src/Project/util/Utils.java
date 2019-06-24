@@ -160,9 +160,14 @@ public class Utils {
         private final static String CHEMIN_SON = "src/sons/";
         private final static String CHEMIN_HELICOPTERE = "src/sons/effets/helicoptere.wav";
         private final static String CHEMIN_INONDATION = "src/sons/carte/inondation.wav";
-        
+        private final static String CHEMIN_SABLE = "src/sons/effets/sable.wav";
+
         public static String getCHEMIN_SON() {
             return CHEMIN_SON;
+        }
+
+        public static String getCHEMIN_SABLE() {
+            return CHEMIN_SABLE;
         }
 
         public static String getCHEMIN_HELICOPTERE() {
@@ -172,9 +177,6 @@ public class Utils {
         public static String getCHEMIN_INONDATION() {
             return CHEMIN_INONDATION;
         }
-        
-        
-        
-        
+
     }
 }

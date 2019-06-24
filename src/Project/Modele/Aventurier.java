@@ -6,10 +6,10 @@ import Project.Modele.Cartes.CartesItem.CarteBonus;
 import Project.Modele.Cartes.CartesItem.CarteTresor;
 import Project.Modele.Tuiles.TuileTresor;
 import Project.util.IdentifiedElement;
+import Project.util.Sound;
 import Project.util.Utils;
 import Project.util.Vector2;
 import Project.util.Utils.Tresor;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -112,7 +112,7 @@ public abstract class Aventurier extends IdentifiedElement {
 
         Vector2 aAssecher = c.getPosClic(pos, true);
         if (aAssecher != null) {
-
+            Sound.jouer(Utils.Son.getCHEMIN_SABLE());
             g.getTuile(aAssecher).setInnondee(false);
             return true;
         } else {
