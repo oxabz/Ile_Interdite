@@ -1,6 +1,7 @@
 package Project.views.Elements;
 
 import Project.Modele.Grille;
+import Project.util.ImageBuffer;
 import Project.util.Utils;
 import Project.util.Vector2;
 
@@ -22,27 +23,6 @@ public class ECase extends JPanel {
         INNONDEE,
         COULEE
     }
-
-    public class FiltreCouleur extends LayerUI<JComponent> {
-
-        private Color color;
-
-        public FiltreCouleur(Color color) {
-            this.color = color;
-        }
-
-        public FiltreCouleur(Color color, float opacity) {
-            this.color = new Color(color.getRed() / 256, color.getGreen() / 256, color.getBlue() / 256, opacity);
-        }
-
-        @Override
-        public void paint(Graphics g, JComponent c) {
-            super.paint(g, c);
-            setBackground(color);
-        }
-    }
-
-
 
     /*
     CONSTANTS
@@ -77,14 +57,14 @@ public class ECase extends JPanel {
             String location = "JE SUIS VIDE C'EST PAS NORMAL";
             try {
                 location = IMAGE_PREFIX + name.replaceAll(" ", "") + IMAGE_EXTENTION;
-                imageNormale = ImageIO.read(new File(location));
+                imageNormale = ImageBuffer.getImage(location);
             } catch (IOException e) {
                 System.out.println("Project.views.Elements.ECase.<init>()");
                 System.out.println(e.getMessage() + " pour " + location);
             }
             try {
                 location = IMAGE_PREFIX + name.replaceAll(" ", "") + IMAGE_INNONDEE_SUFIX + IMAGE_EXTENTION;
-                imageInnondee = ImageIO.read(new File(location));
+                imageInnondee = ImageBuffer.getImage(location);
             } catch (IOException e) {
                 System.out.println("Project.views.Elements.ECase.<init>() INONDEE");
                 System.out.println(e.getMessage() + " pour " + location);
@@ -160,6 +140,10 @@ public class ECase extends JPanel {
         }
     }
 
+    /**
+     * Permet de changer l'etat de la tuile
+     * @param newEtat
+     */
     public void changeEtat(Etat newEtat) {
         this.etat = newEtat;
         this.repaint();
@@ -173,19 +157,16 @@ public class ECase extends JPanel {
         return position;
     }
 
+    /**
+     * permet de definir si la case est clickable
+     * @param clickable etat de la case
+     */
     public void setClickable(boolean clickable) {
         this.clickable = clickable;
         if (clickable) {
             setEnabled(true);
-            /*
-            filter.setVisible(true);
-            filter.paint(this.getGraphics());*/
-            setBorder(BorderFactory.createLineBorder(Color.GREEN, 4));
-
         } else {
             setEnabled(false);
-//            filter.setVisible(false);
-            setBorder(null);
         }
     }
 

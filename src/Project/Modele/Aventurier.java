@@ -109,6 +109,7 @@ public abstract class Aventurier extends IdentifiedElement {
                 pos.add(position.add(0, i));
             }
         }
+
         Vector2 aAssecher = c.getPosClic(pos, true);
         if (aAssecher != null) {
 
@@ -134,7 +135,6 @@ public abstract class Aventurier extends IdentifiedElement {
             Carte carte;
             do {
                 carte = c.getCarteSelectionne();
-                System.out.println("test");
             } while (carte != null && !(carte instanceof CarteTresor));
             if (carte != null) {
                 this.removeCarteItem((CarteItem) carte);
@@ -249,11 +249,14 @@ public abstract class Aventurier extends IdentifiedElement {
     }
 
     public static ArrayList<Vector2> getPosCroix(Aventurier av) {
+        return getPosCroix(av.getPosition());
+    }
+    public static ArrayList<Vector2> getPosCroix(Vector2 center) {
         ArrayList<Vector2> pos = new ArrayList<>();
-        pos.add(av.getPosition().add(-1, 0));
-        pos.add(av.getPosition().add(1, 0));
-        pos.add(av.getPosition().add(0, -1));
-        pos.add(av.getPosition().add(0, 1));
+        pos.add(center.add(-1, 0));
+        pos.add(center.add(1, 0));
+        pos.add(center.add(0, -1));
+        pos.add(center.add(0, 1));
         return pos;
     }
 

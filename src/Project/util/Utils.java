@@ -63,7 +63,7 @@ public class Utils {
             this.libelle = libelle;
             this.couleur = couleur;
             try {
-                image = ImageIO.read(new File(Utils.View.getImagePrefixePion() + libelle + Utils.View.getImageExtension()));
+                image = ImageBuffer.getImage(Utils.View.getImagePrefixePion() + libelle + Utils.View.getImageExtension());
             } catch (IOException e) {
                 System.err.println("Erreur : Echec du chargement de l'image du pion " + libelle);
                 image = null;
